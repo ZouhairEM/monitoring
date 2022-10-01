@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 body {
-    @apply bg-white
-}
-
-#app {
-  font-family: 'Poppins', sans-serif;
-  min-width: 320px;
-}
+    @apply bg-white;
+  }
+  
+  #app {
+    font-family: 'Roboto', sans-serif;
+    min-width: 320px;
+  }
+  main {
+    min-height: 90vh;
+  }

@@ -6,20 +6,28 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    extend: {
+      fontFamily: {
+        'open-sans': ['Open Sans', 'sans-serif'] 
+      },
+    },    
     container: {
       center: true,
       screens: {
         sm: '600px',
         md: '728px',
-        lg: '984px',
-        xl: '1340px'
+        lg: '1084px',
+        xl: '1440px'
       }
     },
     colors: {
       green: '#459a7d',
       lightGreen: '#c1e0d6',
       grey: '#e4e9ed',
-      black: '#1b1b1b',
+      black: {
+        100: '#25313e',
+        200: '#141a40',
+      },
       white: '#f3e4e4'
     },
   },
