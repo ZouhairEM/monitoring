@@ -1,8 +1,13 @@
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+
 function PatientBio() {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-6 text-center bg-green text-white gap-5 rounded-md">
+    <div className="grid grid-cols-3 sm:grid-cols-6 text-center bg-lightGreen rounded-md">
       <div>#001</div>
-      <div>Alarm</div>
+      <div>
+        <AccessAlarmIcon />
+        Alarm
+      </div>
       <div>Patient</div>
       <div>Time</div>
       <div>Status</div>
