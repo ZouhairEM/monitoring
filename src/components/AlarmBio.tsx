@@ -1,8 +1,25 @@
-function AlarmBio(props: any) {
+interface Entry {
+  level: string;
+  alarm: string;
+  patient: string;
+  time: string;
+  status: string;
+  room: string;
+}
+
+interface Props {
+  entry: Entry[];
+}
+
+function AlarmBio(props: Props) {
   const { entry } = props;
+  // console.log(entry.level);
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-6 mx-2 p-1 odd:bg-lightGreen hover:bg-green hover:text-white">
-      <div>{entry.level}</div>
+    <div className="grid grid-cols-3 gap-4 sm:grid-cols-6 mx-2 p-1 odd:bg-lightGreen hover:bg-green hover:text-white text-sm">
+      <div className="flex gap-2">
+        <input type="checkbox" />
+        <div>{entry.level}</div>
+      </div>
       <div className="flex justify-start items-center gap-2 capitalize">
         <svg
           className="w-5 h-5"
@@ -39,7 +56,7 @@ function AlarmBio(props: any) {
         </svg>
         {entry.status ? 'resolved' : 'open'}
       </div>
-      <div>{entry.room}</div>
+      <div className="">{entry.room}</div>
     </div>
   );
 }
