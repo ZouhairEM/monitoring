@@ -51,7 +51,7 @@ function Home() {
     },
   ];
 
-  const patientGuy: any[] = [
+  const patients: any[] = [
     {
       name: 'Rick James',
       room: '14',
@@ -77,7 +77,7 @@ function Home() {
         <SideBar />
       </div>
       <div className="col-span-2 h-full bg-white dark:bg-black-200 drop-shadow-md transition duration-500">
-        {patientGuy.map((patient) => (
+        {patients.map((patient) => (
           <PatientBio patient={patient} key={patient.name} />
         ))}
         {alarmInfo.map((alarm) => (

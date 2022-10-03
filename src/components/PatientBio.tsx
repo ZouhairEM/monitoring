@@ -1,14 +1,11 @@
-interface PatientBioData {
-  name: string;
-  room: string;
-  age: number;
-  gender: string;
-  enrollDate: string;
-  diagnosis?: string;
+import rickJames from '../assets/img/patients/rickjames.png';
+import Patient from '../types/Patient';
+
+interface IProps {
+  patient: Patient;
 }
 
-function PatientBio(props: any) {
-  const { patient } = props;
+function PatientBio({ patient }: IProps) {
   return (
     <div>
       <div className="flex flex-col">
@@ -16,14 +13,23 @@ function PatientBio(props: any) {
           Profile
         </div>
         <div className="text-sm p-2">
-          <div className="text-green dark:text-white font-extrabold uppercase text-xs">
-            Name
+          <div className="grid grid-cols-2">
+            <div className="text-green dark:text-white font-extrabold uppercase text-xs">
+              Name
+            </div>
+            <div className="text-black-100 dark:text-white text-xs">
+              <img
+                src={rickJames}
+                alt="Rick James"
+                className="rounded-lg h-20"
+              />
+            </div>
           </div>
           <div className="text-black-100 dark:text-white text-xs">
             {patient.name}
           </div>
         </div>
-        <div className="flex gap-8 text-sm p-2">
+        <div className="grid grid-cols-2 text-sm p-2">
           <div>
             <div className="text-green dark:text-white font-extrabold uppercase text-xs">
               Date of birth
