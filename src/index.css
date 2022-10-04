@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-white;
+    @apply bg-white dark:bg-black-200 transition duration-200;
   }
   
   #app {

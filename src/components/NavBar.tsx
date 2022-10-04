@@ -6,7 +6,7 @@ import useDarkMode from '../hooks/useDarkMode';
 function NavBar() {
   const [colorTheme, setTheme] = useDarkMode();
   return (
-    <nav className="flex justify-between items-center bg-green dark:bg-black-100 text-white sm:grid-cols-6 p-2 mb-2 transition duration-500">
+    <nav className="flex justify-between items-center bg-green dark:bg-black-100 text-white sm:grid-cols-6 p-2 mb-2">
       <div>Monitoring App</div>
       <div className="flex items-center gap-10">
         <div

@@ -1,15 +1,15 @@
 import rickJames from '../assets/img/patients/rickjames.png';
 import Patient from '../types/Patient';
 
-interface IProps {
+interface Props {
   patient: Patient;
 }
 
-function PatientBio({ patient }: IProps) {
+function PatientBio({ patient }: Props) {
   return (
     <div>
       <div className="flex flex-col">
-        <div className="font-extrabold bg-green dark:bg-black-100 text-white p-2">
+        <div className="font-extrabold bg-green dark:bg-black-200 text-white p-2">
           Profile
         </div>
         <div className="text-sm p-2">
@@ -17,16 +17,18 @@ function PatientBio({ patient }: IProps) {
             <div className="text-green dark:text-white font-extrabold uppercase text-xs">
               Name
             </div>
-            <div className="text-black-100 dark:text-white text-xs">
+            <div className="text-black-100 dark:text-white text-xs absolute right-2">
               <img
                 src={rickJames}
                 alt="Rick James"
-                className="rounded-lg h-20"
+                className="rounded-lg h-16 drop-shadow-lg opacity-90"
               />
             </div>
           </div>
           <div className="text-black-100 dark:text-white text-xs">
-            {patient.name}
+            <span className="p-1 bg-lightGrey dark:bg-black-100">
+              {patient.name}
+            </span>
           </div>
         </div>
         <div className="grid grid-cols-2 text-sm p-2">
@@ -35,7 +37,9 @@ function PatientBio({ patient }: IProps) {
               Date of birth
             </div>
             <div className="text-black-100 dark:text-white text-xs">
-              {patient.dob}
+              <span className="p-1 bg-lightGrey dark:bg-black-100">
+                {patient.dob}
+              </span>
             </div>
           </div>
           <div>
@@ -43,7 +47,9 @@ function PatientBio({ patient }: IProps) {
               Age
             </div>
             <div className="text-black-100 dark:text-white text-xs">
-              {patient.age}
+              <span className="p-1 bg-lightGrey dark:bg-black-100">
+                {patient.age}
+              </span>
             </div>
           </div>
         </div>
@@ -52,7 +58,9 @@ function PatientBio({ patient }: IProps) {
             Room
           </div>
           <div className="text-black-100 dark:text-white text-xs">
-            {patient.room}
+            <span className="p-1 bg-lightGrey dark:bg-black-100">
+              {patient.room}
+            </span>
           </div>
         </div>
         <div className="text-sm p-2">
@@ -60,7 +68,9 @@ function PatientBio({ patient }: IProps) {
             Gender
           </div>
           <div className="text-black-100 dark:text-white text-xs">
-            {patient.gender}
+            <span className="p-1 bg-lightGrey dark:bg-black-100">
+              {patient.gender}
+            </span>
           </div>
         </div>
         <div className="text-sm p-2">
@@ -68,7 +78,9 @@ function PatientBio({ patient }: IProps) {
             Enrolled since
           </div>
           <div className="text-black-100 dark:text-white text-xs">
-            {patient.enrollDate}
+            <span className="p-1 bg-lightGrey dark:bg-black-100">
+              {patient.enrollDate}
+            </span>
           </div>
         </div>
       </div>
