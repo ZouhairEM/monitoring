@@ -13,3 +13,7 @@ body {
   main {
     min-height: 90vh;
   }
+
+  .noscrollbar::-webkit-scrollbar {
+      display: none;
+  }

@@ -1,5 +1,5 @@
-import rickJames from '../assets/img/patients/rickjames.png';
-import Patient from '../types/Patient';
+import rickJames from '../../assets/img/patients/rickjames.png';
+import Patient from '../../types/Patient';
 
 interface Props {
   patient: Patient;

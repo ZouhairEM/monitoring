@@ -18,8 +18,9 @@ function NavBar() {
           {colorTheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
         </div>
         <div className="flex justify-between items-center gap-4 text-sm">
-          <div className="flex flex-col text-right">
+          <div className="flex gap-4">
             <span>John Doe</span>
+            <span>|</span>
             <span>Healthcare Provider</span>
           </div>
           <AccountCircleIcon />
