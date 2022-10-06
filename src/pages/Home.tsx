@@ -33,8 +33,8 @@ function Home() {
     {
       id: 1,
       level: 1,
-      alarm: 'acoustic',
-      patient: 'Jack Sparrow',
+      alarm: 'Acoustic',
+      patient: 'Tyrion Lanister',
       time: '12:01',
       status: true,
       room: '21',
@@ -42,29 +42,38 @@ function Home() {
     {
       id: 2,
       level: 2,
-      alarm: 'acoustic',
-      patient: 'Edward Scissorhands',
+      alarm: 'Fire',
+      patient: 'Danaerys Targaryan',
       time: '12:02',
       status: false,
-      room: '11',
+      room: '36',
     },
     {
       id: 3,
       level: 2,
-      alarm: 'acoustic',
-      patient: 'Johnny B. Goode',
+      alarm: 'Faulty Sensor',
+      patient: 'Jon Snow',
       time: '12:02',
       status: false,
-      room: '11',
+      room: '07',
+    },
+    {
+      id: 4,
+      level: 3,
+      alarm: 'Patient up',
+      patient: 'Eddard Stark',
+      time: '12:05',
+      status: false,
+      room: '14',
     },
   ];
 
   const patients: Patient[] = [
     {
-      name: 'Rick James',
-      room: '14',
-      dob: '12/12/1950',
-      age: 71,
+      name: 'Tyrion Lanister',
+      room: '21',
+      dob: '12/12/2000',
+      age: 22,
       gender: 'Male',
       enrollDate: '12/01/2020',
     },
@@ -81,8 +90,8 @@ function Home() {
   ];
 
   const entryTypes: string[] = [
-    'Priority level',
-    'Type of Alarm',
+    'Priority',
+    'Alarm',
     'Patient',
     'Time',
     'Status',
@@ -91,7 +100,7 @@ function Home() {
 
   return (
     <main className="grid grid-cols-10 gap-2 mx-2 dark:bg-black-200">
-      <div className="col-span-1 bg-green dark:bg-black-100 h-full ">
+      <div className="col-span-1 bg-green dark:bg-black-100">
         <SideBar />
       </div>
       <div className="col-span-2 h-full bg-white dark:bg-black-100 drop-shadow-md">
@@ -114,10 +123,13 @@ function Home() {
         </div>
       </div>
       <div className="col-span-7 bg-white dark:bg-black-100 drop-shadow-lg">
-        <div className="grid grid-cols-3 sm:grid-cols-6 text-left gap-2 bg-green dark:bg-black-200 text-white font-medium p-2">
-          {entryTypes.map((entryType) => (
+        <div className="grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium p-1">
+          <div className="col-span-1" />
+          {entryTypes.map((entryType, i) => (
             <div
-              className="flex justify-between items-center text-right"
+              className={`${
+                i === 0 ? 'col-span-1' : 'col-span-2'
+              } flex gap-2 justify-end`}
               key={entryType}
             >
               {entryType}

@@ -17,3 +17,19 @@ body {
   .noscrollbar::-webkit-scrollbar {
       display: none;
   }
+
+  .acoustic-alarm {
+    background-color: rgba(0, 132, 53, 0.6);
+  }
+
+  .patient-up-alarm {
+    background-color: rgba(69, 154, 125, 1);
+  }
+
+  .faulty-sensor-alarm {
+    background-color: rgba(129, 177, 134, 1)
+  }
+
+  .fire-alarm {
+    background-color: rgba(55, 75, 67, 1)
+  }
