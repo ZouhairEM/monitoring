@@ -99,62 +99,64 @@ function Home() {
   ];
 
   return (
-    <main className="grid grid-cols-10 gap-2 mx-2 dark:bg-black-200">
-      <div className="col-span-1 bg-green dark:bg-black-100">
+    <div className="flex">
+      <div className=" bg-green dark:bg-black-100">
         <SideBar />
       </div>
-      <div className="col-span-2 h-full bg-white dark:bg-black-100 drop-shadow-md">
-        {patients.map((patient) => (
-          <PatientBio patient={patient} key={patient.name} />
-        ))}
-        <div
-          className="flex flex-col gap-1 overflow-y-scroll noscrollbar"
-          style={{ maxHeight: 430 }}
-        >
-          {alarmInfo.map((alarm) => (
-            <AlarmInfo alarm={alarm} key={alarm.name} />
+      <main className="grid grid-cols-9 gap-2 mx-2 dark:bg-black-200">
+        <div className="col-span-3 h-full bg-white dark:bg-black-100 drop-shadow-md">
+          {patients.map((patient) => (
+            <PatientBio patient={patient} key={patient.name} />
           ))}
-          {healthCareInfo.map((healthCare) => (
-            <HealthCare healthCare={healthCare} key={healthCare.healthcare} />
-          ))}
-          {emergencyContact.map((contact) => (
-            <EmergencyContact emergencyContact={contact} key={contact.name} />
-          ))}
+          <div
+            className="flex flex-col gap-1 overflow-y-scroll noscrollbar"
+            style={{ maxHeight: 430 }}
+          >
+            {alarmInfo.map((alarm) => (
+              <AlarmInfo alarm={alarm} key={alarm.name} />
+            ))}
+            {healthCareInfo.map((healthCare) => (
+              <HealthCare healthCare={healthCare} key={healthCare.healthcare} />
+            ))}
+            {emergencyContact.map((contact) => (
+              <EmergencyContact emergencyContact={contact} key={contact.name} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="col-span-7 bg-white dark:bg-black-100 drop-shadow-lg">
-        <div className="grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium p-1">
-          <div className="col-span-1" />
-          {entryTypes.map((entryType, i) => (
-            <div
-              className={`${
-                i === 0 ? 'col-span-1' : 'col-span-2'
-              } flex gap-2 justify-end`}
-              key={entryType}
-            >
-              {entryType}
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+        <div className="col-span-6 bg-white dark:bg-black-100 drop-shadow-lg">
+          <div className="grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium p-2">
+            <div className="col-span-1" />
+            {entryTypes.map((entryType, i) => (
+              <div
+                className={`${
+                  i === 0 ? 'col-span-1' : 'col-span-2'
+                } flex gap-2 justify-end`}
+                key={entryType}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
+                {entryType}
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            ))}
+          </div>
+          {entries.map((entry) => (
+            <AlarmBio key={entry.level} entry={entry} />
           ))}
         </div>
-        {entries.map((entry) => (
-          <AlarmBio key={entry.level} entry={entry} />
-        ))}
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
 

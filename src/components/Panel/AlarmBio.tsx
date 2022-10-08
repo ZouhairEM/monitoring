@@ -2,6 +2,7 @@ import HearingIcon from '@mui/icons-material/Hearing';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import RunCircleIcon from '@mui/icons-material/RunCircle';
+import { useRef } from 'react';
 import AlarmEntry from '../../types/AlarmEntryType';
 
 interface Props {
@@ -9,6 +10,14 @@ interface Props {
 }
 
 function AlarmBio({ entry }: Props) {
+  const target = useRef(null);
+
+  const makeActive = () => {
+    // target.current.classList.remove('bg-lightGreen');
+    // target.current.classList.remove('bg-white');
+    // target.current.classList.add('bg-green');
+  };
+
   const handleClass = (alarm: string) => {
     return alarm.toLowerCase().replace(' ', '-');
   };
@@ -29,7 +38,14 @@ function AlarmBio({ entry }: Props) {
   };
 
   return (
-    <div className="grid grid-cols-12 mx-2 p-2 dark:bg-black-100 transition duration-200 dark:text-white odd:bg-lightGreen dark:odd:bg-black-300 hover:bg-green hover:text-white text-sm">
+    <div
+      ref={target}
+      onClick={() => makeActive()}
+      onKeyDown={() => makeActive()}
+      role="button"
+      tabIndex={0}
+      className="grid grid-cols-12 p-2 dark:bg-black-100 transition duration-200 dark:text-white odd:bg-lightGreen dark:odd:bg-black-300 hover:bg-green hover:text-white text-sm"
+    >
       <div>
         <input
           type="checkbox"
