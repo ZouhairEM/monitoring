@@ -3,17 +3,20 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import useDarkMode from '../hooks/useDarkMode';
+import useAlarmsStore from '../store/AlarmsStore';
 
 function NavBar() {
   const [colorTheme, setTheme] = useDarkMode();
+  const alarms = useAlarmsStore((state) => state.alarms);
+
   return (
-    <nav className="flex justify-between items-center bg-green dark:bg-black-60 text-white text-base sm:grid-cols-6 py-2 px-6 mb-2">
+    <nav className="flex justify-between items-center bg-green dark:bg-black-100 text-white text-base sm:grid-cols-6 py-2 px-6 mb-2">
       <div className="flex gap-6">
         Monitoring App
-        <div className="flex justify-center items-center bg-white text-sm text-green font-semibold dark:text-white rounded px-2">
+        <div className="flex justify-center items-center bg-white dark:bg-black-200 text-sm text-green font-semibold dark:text-white rounded px-2">
           <NotificationsIcon style={{ height: '20px' }} />
           <span>
-            <span className="text-xs font-bold">x</span> 12 Alarms
+            <span className="text-sm font-bold">x{alarms.length}</span>  Alarms
           </span>
         </div>
       </div>

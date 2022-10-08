@@ -9,13 +9,11 @@ interface Props {
   entry: AlarmEntry;
 }
 
-function AlarmBio({ entry }: Props) {
+function AlarmBio({ entry, onToggle }: Props) {
   const target = useRef(null);
 
-  const makeActive = () => {
-    // target.current.classList.remove('bg-lightGreen');
-    // target.current.classList.remove('bg-white');
-    // target.current.classList.add('bg-green');
+  const openControlPanel = (id) => {
+    onToggle(id);
   };
 
   const handleClass = (alarm: string) => {
@@ -40,8 +38,8 @@ function AlarmBio({ entry }: Props) {
   return (
     <div
       ref={target}
-      onClick={() => makeActive()}
-      onKeyDown={() => makeActive()}
+      onClick={() => openControlPanel(entry.id)}
+      onKeyDown={() => openControlPanel(entry.id)}
       role="button"
       tabIndex={0}
       className="grid grid-cols-12 p-2 dark:bg-black-100 transition duration-200 dark:text-white odd:bg-lightGreen dark:odd:bg-black-300 hover:bg-green hover:text-white text-sm"
