@@ -1,7 +1,22 @@
 import create from 'zustand';
-// import AlarmType from '../types/AlarmEntryType';
 
-const useAlarmsStore = create((set) => ({
+type Alarm = {
+  id: number;
+  level: number;
+  alarm: string;
+  patient: string;
+  time: string;
+  status: boolean;
+  room: string;
+  // filter/*  */(arg0: (alarm: AlarmState) => boolean): Alarm | undefined;
+};
+
+interface AlarmState {
+  alarms: Alarm[];
+  closeAlarm: (id: number) => void;
+}
+
+const useAlarmsStore = create<AlarmState>((set) => ({
   alarms: [
     {
       id: 1,
@@ -40,9 +55,9 @@ const useAlarmsStore = create((set) => ({
       room: '14',
     },
   ],
-  closeAlarm: (id) =>
-    set((state) => ({
-      alarms: state.alarms.filter((alarm) => alarm.id !== id),
+  closeAlarm: (id: number) =>
+    set((state: AlarmState) => ({
+      alarms: state.alarms.filter((alarm: Alarm) => alarm.id !== id),
     })),
 }));
 

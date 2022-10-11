@@ -16,7 +16,7 @@ function NavBar() {
         <div className="flex justify-center items-center bg-white dark:bg-black-200 text-sm text-green font-semibold dark:text-white rounded px-2">
           <NotificationsIcon style={{ height: '20px' }} />
           <span>
-            <span className="text-sm font-bold">x{alarms.length}</span>  Alarms
+            <span className="text-sm font-bold">x{alarms?.length}</span> Alarms
           </span>
         </div>
       </div>

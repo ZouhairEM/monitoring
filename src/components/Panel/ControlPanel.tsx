@@ -1,6 +1,10 @@
 import useAlarmsStore from '../../store/AlarmsStore';
 
-function ControlPanel({ clickedAlarm }) {
+interface Props {
+  clickedAlarm: number;
+}
+
+function ControlPanel({ clickedAlarm }: Props) {
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
   return (
     <div className="border border-green">
@@ -9,6 +13,7 @@ function ControlPanel({ clickedAlarm }) {
       </div>
       <div className="flex gap-2 p-2 py-4 text-sm">
         <button
+          type="button"
           onClick={() => {
             closeAlarm(clickedAlarm);
           }}
@@ -35,7 +40,8 @@ function ControlPanel({ clickedAlarm }) {
           Close alarm
         </button>
         <button
-          tabIndex={1}
+          type="button"
+          tabIndex={0}
           className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
         >
           <svg
@@ -55,7 +61,8 @@ function ControlPanel({ clickedAlarm }) {
           Eavesdrop
         </button>
         <button
-          tabIndex={2}
+          type="button"
+          tabIndex={0}
           className="flex gap-2 p-1 text-white dark:bg-black-200 dark:text-white rounded"
         >
           Something

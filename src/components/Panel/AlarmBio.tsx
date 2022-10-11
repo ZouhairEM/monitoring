@@ -7,12 +7,13 @@ import AlarmEntry from '../../types/AlarmEntryType';
 
 interface Props {
   entry: AlarmEntry;
+  onToggle: (event: number) => void;
 }
 
 function AlarmBio({ entry, onToggle }: Props) {
   const target = useRef(null);
 
-  const openControlPanel = (id) => {
+  const openControlPanel = (id: number) => {
     onToggle(id);
   };
 

@@ -15,9 +15,10 @@ import EmergencyContactType from '../types/EmergencyContactType';
 
 function Home() {
   const [visibleControlPanel, setVisibleControlPanel] = useState(false);
-  const [clickedAlarm, setClickedAlarm] = useState(null);
-  const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
-  const parentMethod = (id) => {
+  const [clickedAlarm, setClickedAlarm] = useState(Number);
+  // const [user, setUser] = useState<IUser>({name: 'Jon'});
+  const alarms: AlarmEntryType[] = useAlarmsStore((state: any) => state.alarms);
+  const parentMethod = (id: number) => {
     setVisibleControlPanel(true);
     setClickedAlarm(id);
   };
@@ -75,7 +76,7 @@ function Home() {
         <SideBar />
       </div>
       <main className="grid grid-cols-9 gap-4 mx-2 dark:bg-black-200">
-        <div className="col-span-3 bg-white dark:bg-black-100 drop-shadow-md border border-2 border-green">
+        <div className="col-span-3 bg-white dark:bg-black-100 drop-shadow-md border-2 border-green">
           {patients.map((patient) => (
             <PatientBio patient={patient} key={patient.name} />
           ))}
@@ -95,7 +96,7 @@ function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-between gap-4 col-span-6 dark:bg-black-100">
-          <div className="h-full border border-2 border-green">
+          <div className="h-full border-2 border-green">
             <div className="grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium p-2">
               {entryTypes.map((entryType, i) => (
                 <div
