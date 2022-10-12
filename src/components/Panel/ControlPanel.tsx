@@ -1,3 +1,5 @@
+import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
+import ReplayIcon from '@mui/icons-material/Replay';
 import useAlarmsStore from '../../store/AlarmsStore';
 
 interface Props {
@@ -57,15 +59,45 @@ function ControlPanel({ clickedAlarm }: Props) {
               strokeWidth="2"
               d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
             />
-          </svg>{' '}
+          </svg>
           Eavesdrop
         </button>
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 p-1 text-white dark:bg-black-200 dark:text-white rounded"
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
         >
-          Something
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+            />
+          </svg>
+          Unlock door
+        </button>
+        <button
+          type="button"
+          tabIndex={0}
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+        >
+          <NotificationsOffIcon style={{ height: '20px' }} />
+          Disable alarm
+        </button>
+        <button
+          type="button"
+          tabIndex={0}
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+        >
+          <ReplayIcon style={{ height: '20px' }} />
+          Replay
         </button>
       </div>
     </div>
