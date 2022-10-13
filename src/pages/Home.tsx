@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SideBar from '../components/SideBar';
 import PatientBio from '../components/Panel/PatientBio';
 import AlarmBio from '../components/Panel/AlarmBio';
@@ -17,10 +17,58 @@ function Home() {
   const [visibleControlPanel, setVisibleControlPanel] = useState(false);
   const [clickedAlarm, setClickedAlarm] = useState(Number);
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [alarmsPerPage] = useState(13);
+
   const parentMethod = (id: number) => {
     setVisibleControlPanel(true);
     setClickedAlarm(id);
   };
+
+  const changePage = (e: { currentTarget: { id: string | number } }) => {
+    setCurrentPage(+e.currentTarget.id);
+  };
+
+  const lastIndex = currentPage * alarmsPerPage;
+  const alarmsIndex = lastIndex - alarmsPerPage;
+  const maxPage = Math.ceil(alarms.length / alarmsPerPage);
+  const pageNums = [];
+  const currentAlarms = [];
+
+  if (maxPage > 1) {
+    for (let i = 1; i <= maxPage; i += 1) {
+      pageNums.push(
+        <div
+          key={i.toString()}
+          id={i.toString()}
+          className="p-2 py-1"
+          onClick={changePage}
+          onKeyDown={changePage}
+          role="button"
+          tabIndex={0}
+        >
+          <h5 className="p-2 border">{i}</h5>
+        </div>
+      );
+    }
+  }
+
+  for (let i = alarmsIndex; i < currentPage * alarmsPerPage; i += 1) {
+    const entry = alarms[i];
+    if (!entry) break;
+    currentAlarms.push(
+      <AlarmBio key={entry.id} entry={entry} onToggle={parentMethod} />
+    );
+  }
+
+  useEffect(() => {
+    if (currentPage > 1) {
+      if (currentPage > maxPage) {
+        setCurrentPage(maxPage);
+      }
+    }
+  }, [alarms.length, currentPage, maxPage, alarmsPerPage]);
+
   const alarmInfo: AlarmInfoType[] = [
     {
       level: 1,
@@ -120,9 +168,8 @@ function Home() {
                 </div>
               ))}
             </div>
-            {alarms.map((entry) => (
-              <AlarmBio key={entry.id} entry={entry} onToggle={parentMethod} />
-            ))}
+            <div>{currentAlarms}</div>
+            <div className="flex">{pageNums}</div>
           </div>
           <div className={`${visibleControlPanel ? 'block' : 'hidden'}`}>
             <ControlPanel clickedAlarm={clickedAlarm} />
