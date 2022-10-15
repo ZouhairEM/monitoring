@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import HealthCareType from '../../types/HealthCareType';
+import Patient from '../../types/PatientType';
 
 interface Props {
-  healthCare: HealthCareType;
+  healthCare: Patient['healthcare'];
 }
 
 function HealthCareInfo({ healthCare }: Props) {
@@ -54,12 +54,21 @@ function HealthCareInfo({ healthCare }: Props) {
         </div>
 
         {isCollapsed &&
-          Object.values(healthCare).map((el) => (
-            <div key={el} className="mb-1">
-              <div className="text-black-100 dark:text-white text-xs transition duration-200">
-                {el}
-              </div>
-            </div>
+          (healthCare ? (
+            <>
+              {Object.entries(healthCare).map((el) => (
+                <div key={el[0]} className="grid grid-cols-2 mb-1">
+                  <div className="text-green dark:text-white font-extrabold uppercase text-xs transition duration-200">
+                    {el[0]}
+                  </div>
+                  <div className="text-black-100 dark:text-white text-xs transition duration-200">
+                    {el[1]}
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <>None selected</>
           ))}
       </div>
     </div>

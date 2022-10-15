@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import EmergencyContactType from '../../types/EmergencyContactType';
+import Patient from '../../types/PatientType';
 
 interface Props {
-  emergencyContact: EmergencyContactType;
+  emergencyContact: Patient['emergency_contact'];
 }
 
 function EmergencyContact({ emergencyContact }: Props) {
@@ -53,15 +53,21 @@ function EmergencyContact({ emergencyContact }: Props) {
         </div>
 
         {isCollapsed &&
-          Object.entries(emergencyContact).map((el) => (
-            <div key={el[0]} className="grid grid-cols-2 mb-1">
-              <div className="text-green dark:text-white font-extrabold uppercase text-xs transition duration-200">
-                {el[0]}
-              </div>
-              <div className="text-black-100 dark:text-white text-xs transition duration-200">
-                {el[1]}
-              </div>
-            </div>
+          (emergencyContact ? (
+            <>
+              {Object.entries(emergencyContact).map((el) => (
+                <div key={el[0]} className="grid grid-cols-2 mb-1">
+                  <div className="text-green dark:text-white font-extrabold uppercase text-xs transition duration-200">
+                    {el[0]}
+                  </div>
+                  <div className="text-black-100 dark:text-white text-xs transition duration-200">
+                    {el[1]}
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <>None selected</>
           ))}
       </div>
     </div>

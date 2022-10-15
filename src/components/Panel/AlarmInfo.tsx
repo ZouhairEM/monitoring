@@ -18,7 +18,7 @@ function AlarmInfo({ alarm }: Props) {
           className="flex justify-between text-green dark:text-white transition duration-200 font-extrabold uppercase text-sm border-b-2 py-1 mb-2 border-green dark:border-black-200"
         >
           Alarm info
-          {!isCollapsed && (
+          {alarm && !isCollapsed && (
             <svg
               className="w-5 h-5"
               fill="none"
@@ -34,7 +34,7 @@ function AlarmInfo({ alarm }: Props) {
               />
             </svg>
           )}
-          {isCollapsed && (
+          {alarm && isCollapsed && (
             <svg
               className="w-5 h-5"
               fill="none"
@@ -53,6 +53,7 @@ function AlarmInfo({ alarm }: Props) {
         </div>
 
         {isCollapsed &&
+          alarm &&
           Object.entries(alarm).map((el) => (
             <div key={el[0]} className="grid grid-cols-2 mb-1">
               <div className="text-green dark:text-white font-extrabold uppercase text-xs transition duration-200">
@@ -63,6 +64,7 @@ function AlarmInfo({ alarm }: Props) {
               </div>
             </div>
           ))}
+        {Object.values.length === 0 && <div>hey</div>}
       </div>
     </div>
   );

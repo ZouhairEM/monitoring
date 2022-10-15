@@ -23,7 +23,7 @@ function ControlPanel({ clickedAlarm }: Props) {
             closeAlarm(clickedAlarm);
           }}
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <svg
             className="w-5 h-5"
@@ -44,7 +44,7 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <svg
             className="w-5 h-5"
@@ -65,7 +65,7 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <svg
             className="w-5 h-5"
@@ -86,7 +86,7 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <NotificationsOffIcon style={{ height: '20px' }} />
           Disable alarm
@@ -94,7 +94,7 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded"
+          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <ReplayIcon style={{ height: '20px' }} />
           Replay
