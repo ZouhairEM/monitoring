@@ -10,7 +10,7 @@ function NavBar() {
   const alarms = useAlarmsStore((state) => state.alarms);
 
   return (
-    <nav className="flex justify-between items-center bg-green dark:bg-black-100 text-white text-base sm:grid-cols-6 py-2 px-6 mb-2">
+    <nav className="flex justify-between items-center bg-darkGreen dark:bg-black-100 text-white text-base sm:grid-cols-6 py-2 px-6 mb-2">
       <div className="flex gap-6">
         Monitoring App
         <div className="flex justify-center items-center bg-white dark:bg-black-200 text-sm text-green font-semibold dark:text-white rounded px-2">

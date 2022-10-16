@@ -15,7 +15,7 @@ function HealthCareInfo({ healthCare }: Props) {
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="flex justify-between text-green dark:text-white transition duration-200 font-extrabold uppercase text-sm border-b-2 py-1 mb-2 border-green dark:border-black-200"
+          className="flex justify-between text-green dark:text-white transition duration-200 font-bold uppercase text-sm border-b-2 py-1 mb-2 border-green dark:border-black-200"
         >
           Healthcare plan
           {!isCollapsed && (
@@ -58,7 +58,7 @@ function HealthCareInfo({ healthCare }: Props) {
             <>
               {Object.entries(healthCare).map((el) => (
                 <div key={el[0]} className="grid grid-cols-2 mb-1">
-                  <div className="text-green dark:text-white font-extrabold uppercase text-xs transition duration-200">
+                  <div className="text-green dark:text-white font-bold uppercase text-xs transition duration-200">
                     {el[0]}
                   </div>
                   <div className="text-black-100 dark:text-white text-xs transition duration-200">
@@ -68,7 +68,7 @@ function HealthCareInfo({ healthCare }: Props) {
               ))}
             </>
           ) : (
-            <>None selected</>
+            <div className="dark:text-white">No alarm has been selected</div>
           ))}
       </div>
     </div>

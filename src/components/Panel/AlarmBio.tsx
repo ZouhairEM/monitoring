@@ -1,23 +1,24 @@
+import { MutableRefObject, useRef, useState } from 'react';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HearingIcon from '@mui/icons-material/Hearing';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import RunCircleIcon from '@mui/icons-material/RunCircle';
-import { MutableRefObject, useRef, useState } from 'react';
 import AlarmEntry from '../../types/AlarmEntryType';
 import useAlarmsStore from '../../store/AlarmsStore';
 
 interface Props {
   entry: AlarmEntry;
-  visibleControlPanel: boolean;
   onToggle: (event: number) => void;
 }
 
-function AlarmBio({ entry, onToggle, visibleControlPanel }: Props) {
+function AlarmBio({ entry, onToggle }: Props) {
   const [active, setActive] = useState(Number);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const findPatient = useAlarmsStore((state) => state.findPatient);
 
-  const handleActive = (id: number) => {
+  const makeActivePatient = (id: number) => {
     onToggle(id);
     setActive(id);
     findPatient(id);
@@ -46,13 +47,13 @@ function AlarmBio({ entry, onToggle, visibleControlPanel }: Props) {
 
   return (
     <div
-      onClick={() => handleActive(entry.id)}
-      onKeyDown={() => handleActive(entry.id)}
+      onClick={() => makeActivePatient(entry.patient_id)}
+      onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`grid grid-cols-12 p-2 hover:bg-green hover:text-white text-sm ${
+      className={`grid grid-cols-12 p-2 py-3 hover:bg-green hover:text-white text-sm ${
         active
-          ? ' odd:bg-green even:bg-green dark:odd:bg-green dark:even:bg-green text-white'
+          ? ' odd:bg-darkGreen even:bg-darkGreen dark:odd:bg-darkGreen dark:even:bg-darkGreen text-white'
           : 'dark:bg-black-100 transition duration-200 dark:text-white odd:bg-lightGreen dark:odd:bg-black-200'
       }`}
     >
@@ -78,8 +79,20 @@ function AlarmBio({ entry, onToggle, visibleControlPanel }: Props) {
       </div>
       <div className="col-span-2 text-right">{entry.patient_name}</div>
       <div className="col-span-2 text-right">{entry.time}</div>
-      <div className="col-span-2 text-right">
-        {entry.status ? 'resolved' : 'open'}
+      <div className="col-span-2">
+        {entry.status ? (
+          <span className="flex gap-1 justify-end items-center">
+            <CheckCircleIcon style={{ height: '15px', opacity: '0.9' }} />
+            Resolved
+          </span>
+        ) : (
+          <span className="flex gap-1 justify-end items-center">
+            <NotificationsActiveIcon
+              style={{ height: '15px', opacity: '0.9' }}
+            />
+            Open
+          </span>
+        )}
       </div>
       <div className="col-span-2 text-right">{entry.room}</div>
     </div>

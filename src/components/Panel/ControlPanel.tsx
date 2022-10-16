@@ -4,13 +4,15 @@ import useAlarmsStore from '../../store/AlarmsStore';
 
 interface Props {
   clickedAlarm: number;
+  onToggle: (event: number) => void;
 }
 
-function ControlPanel({ clickedAlarm }: Props) {
+function ControlPanel({ clickedAlarm, onToggle }: Props) {
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
+
   return (
     <div className="border border-green">
-      <div className="font-extrabold bg-green dark:bg-black-200 text-white p-2">
+      <div className="font-bold bg-green dark:bg-black-200 text-white p-2">
         Control Options
       </div>
       <div className="flex gap-2 p-2 py-4 text-sm">
@@ -18,15 +20,17 @@ function ControlPanel({ clickedAlarm }: Props) {
           type="button"
           onClick={() => {
             closeAlarm(clickedAlarm);
+            onToggle(clickedAlarm);
           }}
           onKeyDown={() => {
             closeAlarm(clickedAlarm);
+            onToggle(clickedAlarm);
           }}
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+          className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <svg
-            className="w-5 h-5"
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -44,10 +48,10 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+          className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <svg
-            className="w-5 h-5"
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -65,10 +69,10 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+          className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <svg
-            className="w-5 h-5"
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -86,7 +90,7 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+          className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <NotificationsOffIcon style={{ height: '20px' }} />
           Disable alarm
@@ -94,7 +98,7 @@ function ControlPanel({ clickedAlarm }: Props) {
         <button
           type="button"
           tabIndex={0}
-          className="flex gap-2 align-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+          className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
         >
           <ReplayIcon style={{ height: '20px' }} />
           Replay

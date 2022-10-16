@@ -19,17 +19,21 @@ body {
   }
 
   .acoustic-alarm {
-    background-color: rgba(0, 132, 53, 0.6);
+    background-color: rgba(243, 56, 31, 0.84);
+    background: #005B40;
   }
 
   .patient-up-alarm {
     background-color: rgba(69, 154, 125, 1);
+    background: #00C9A3
   }
 
   .faulty-sensor-alarm {
-    background-color: rgba(129, 177, 134, 1)
+    background-color: rgba(129, 177, 134, 1);
+    background: #B6A1DF;
   }
 
   .fire-alarm {
-    background-color: rgba(55, 75, 67, 1)
+    background-color: rgba(55, 75, 67, 1);
+    background: #6A5890
   }

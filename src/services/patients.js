@@ -1,4 +1,4 @@
-import patients from '../data/patients.json';
+import {patients} from '../data/patients';
 
 export default function retrievePatients() {
   return patients;

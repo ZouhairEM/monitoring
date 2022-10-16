@@ -13,15 +13,17 @@ function Home() {
   const [visibleControlPanel, setVisibleControlPanel] = useState(false);
   const [clickedAlarm, setClickedAlarm] = useState(Number);
   const [currentPage, setCurrentPage] = useState(1);
-  const [alarmsPerPage] = useState(17);
+  const [alarmsPerPage] = useState(15);
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
-  const patient: any = useAlarmsStore((state) => state.chosenPatient);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const patient: any = useAlarmsStore((state) => state.correspondingPatient);
   const lastIndex = currentPage * alarmsPerPage;
   const alarmsIndex = lastIndex - alarmsPerPage;
   const maxPage = Math.ceil(alarms.length / alarmsPerPage);
   const pageNums = [];
   const currentAlarms = [];
-  const parentMethod = (id: number) => {
+
+  const handleToggle = (id: number) => {
     setVisibleControlPanel(!visibleControlPanel);
     setClickedAlarm(id);
   };
@@ -37,7 +39,6 @@ function Home() {
       }
     }
   }, [alarms.length, currentPage, maxPage, alarmsPerPage]);
-
   if (maxPage > 1) {
     for (let i = 1; i <= maxPage; i += 1) {
       pageNums.push(
@@ -62,12 +63,7 @@ function Home() {
     const entry = alarms[i];
     if (!entry) break;
     currentAlarms.push(
-      <AlarmBio
-        key={entry.id}
-        entry={entry}
-        onToggle={parentMethod}
-        visibleControlPanel={visibleControlPanel}
-      />
+      <AlarmBio key={entry.id} entry={entry} onToggle={handleToggle} />
     );
   }
 
@@ -86,7 +82,7 @@ function Home() {
         <SideBar />
       </div>
       <main className="grid grid-cols-9 gap-4 mx-2 dark:bg-black-200 w-full">
-        <div className="col-span-3 bg-white dark:bg-black-100 drop-shadow-md border-2 border-green">
+        <div className="col-span-2 bg-white dark:bg-black-100 drop-shadow-md border border-green dark:border-black-200">
           {patient ? (
             patient.map((patientObj: PatientType) => (
               <PatientBio
@@ -123,17 +119,17 @@ function Home() {
             )}
           </div>
         </div>
-        <div className="flex flex-col justify-between gap-4 col-span-6 dark:bg-black-100">
-          <div className="flex flex-col h-full border-2 border-green">
+        <div className="flex flex-col justify-between gap-4 col-span-7 dark:bg-black-100">
+          <div className="flex flex-col h-full border border-green dark:border-black-200">
             <div className="grid grid-cols-3 sm:grid-cols-12 gap-2 bg-green dark:bg-black-200 text-white font-medium p-2">
               {entryTypes.map((entryType) => (
                 <div
-                  className={` col-span-2 flex justify-between`}
+                  className="col-span-2 flex justify-between items-center font-bold"
                   key={entryType}
                 >
                   {entryType}
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -155,7 +151,7 @@ function Home() {
             </div>
           </div>
           <div className={`${visibleControlPanel ? 'block' : 'hidden'}`}>
-            <ControlPanel clickedAlarm={clickedAlarm} />
+            <ControlPanel clickedAlarm={clickedAlarm} onToggle={handleToggle} />
           </div>
         </div>
       </main>
