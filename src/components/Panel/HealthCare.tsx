@@ -9,7 +9,7 @@ function HealthCareInfo({ healthCare }: Props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
-      <div className="text-sm px-1">
+      <div className="flex flex-col gap-2 text-sm px-1">
         <div
           onClick={() => setIsCollapsed(!isCollapsed)}
           onKeyDown={() => setIsCollapsed(!isCollapsed)}

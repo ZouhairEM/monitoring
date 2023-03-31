@@ -38,7 +38,7 @@ function PatientBio({ profile }: Props) {
           </div>
         </div>
         <div className="text-sm p-2">
-          <div className="grid grid-cols-2 mb-1">
+          <div className="grid grid-cols-2 gap-1">
             {profile ? (
               <>
                 <div className="text-green dark:text-white font-bold uppercase text-xs">

@@ -146,7 +146,7 @@ function Home() {
               ))}
             </div>
             <div className="flex flex-col h-full justify-between">
-              <div>{currentAlarms}</div>
+              <div className="client-list">{currentAlarms}</div>
               <div className="flex">{pageNums}</div>
             </div>
           </div>
