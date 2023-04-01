@@ -3,6 +3,7 @@ const Patients = [
     profile: {
       id: 1,
       name: 'Tyrion Lannister',
+      photo: 'tyrionlannister.jpg',
       room: '1',
       date_of_birth: '11-11-2000',
       age: 20,
@@ -26,6 +27,7 @@ const Patients = [
     profile: {
       id: 2,
       name: 'Danaerys Targaryan',
+      photo: 'daenerystargaryan.jpg',
       room: '2',
       date_of_birth: 'XX-XX-XXXX',
       age: 10,
@@ -49,6 +51,7 @@ const Patients = [
     profile: {
       id: 3,
       name: 'Jon Snow',
+      photo: 'jonsnow.jpg',
       room: '2',
       date_of_birth: '11-11-2001',
       age: 10,

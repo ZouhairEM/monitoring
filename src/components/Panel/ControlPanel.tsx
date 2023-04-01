@@ -1,7 +1,6 @@
-import ReplayIcon from '@mui/icons-material/Replay';
-import useAlarmsStore from '../../store/AlarmsStore';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import useAlarmsStore from '../../store/AlarmsStore';
 
 interface Props {
   clickedAlarm: number;
@@ -10,6 +9,8 @@ interface Props {
 
 function ControlPanel({ clickedAlarm, onToggle }: Props) {
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
+  const setPrevious = useAlarmsStore((state) => state.setPrevious);
+  const setNext = useAlarmsStore((state) => state.setNext);
 
   return (
     <div className="border border-green">
@@ -46,11 +47,13 @@ function ControlPanel({ clickedAlarm, onToggle }: Props) {
           </svg>
           Close alarm
         </button>
-        <div className='flex gap-2'>
+        <div className="flex gap-2">
           <button
             type="button"
             tabIndex={0}
             className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+            onClick={() => setPrevious()}
+            onKeyDown={() => () => setPrevious()}
           >
             Previous alarm
             <ArrowBackIosNewIcon style={{ height: '20px' }} />
@@ -59,6 +62,8 @@ function ControlPanel({ clickedAlarm, onToggle }: Props) {
             type="button"
             tabIndex={0}
             className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkGreen"
+            onClick={() => setNext()}
+            onKeyDown={() => () => setNext()}
           >
             <ArrowForwardIosIcon style={{ height: '20px' }} />
             Next alarm

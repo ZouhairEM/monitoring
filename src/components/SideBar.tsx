@@ -3,9 +3,9 @@ import { useState } from 'react';
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <div className="flex justify-between flex-col p-2 font-semibold text-white text-sm h-full">
+    <div className="flex justify-between flex-col py-2 px-4 font-semibold text-white text-sm h-full">
       <div>
-        <div className="flex items-center gap-x-2 mb-2">
+        <div className="flex items-center gap-x-2 mb-4">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -22,7 +22,7 @@ function SideBar() {
           </svg>
           {isCollapsed && <div>Monitoring</div>}
         </div>
-        <div className="flex items-center gap-x-2 mb-2">
+        <div className="flex items-center gap-x-2 mb-4">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -39,7 +39,7 @@ function SideBar() {
           </svg>
           {isCollapsed && <div>Dashboard</div>}
         </div>
-        <div className="flex items-center gap-x-2 mb-2">
+        <div className="flex items-center gap-x-2">
           <svg
             className="w-5 h-5"
             fill="none"

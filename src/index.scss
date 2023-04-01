@@ -6,11 +6,10 @@ body {
   @apply bg-white dark:bg-black-200 transition duration-200;
 }
 
-:root{
+:root {
   --primary-green: #00c9a3;
   --primary-purple: #4a05d3;
 }
-
 
 #app {
   font-family: 'Roboto', sans-serif;
@@ -42,7 +41,7 @@ main {
   background: #6a5890;
 }
 
-.client-list {
+.responsive-client-list {
   height: 66.3vh;
   overflow-y: scroll;
 }
@@ -53,4 +52,16 @@ main {
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary-green);
+}
+
+.active {
+  background: red;
+}
+
+.profile-block.empty {
+  min-height: 333px;
+
+  img {
+    height: 100px;
+  }
 }

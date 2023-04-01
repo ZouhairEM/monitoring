@@ -2,6 +2,7 @@ export default interface PatientType {
   profile: {
     id: number;
     name: string;
+    photo: string;
     room: string;
     date_of_birth: string;
     age: number;

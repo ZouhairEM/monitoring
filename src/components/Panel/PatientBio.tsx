@@ -1,46 +1,53 @@
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Patient from '../../types/PatientType';
-import TyrionLannister from '../../assets/img/patients/TyrionLannister.jpg';
+import EmptyProfile from '../../assets/img/illustrations/empty-profile.svg';
 
 interface Props {
   profile: Patient['profile'];
 }
 
 function PatientBio({ profile }: Props) {
+  const profilePhoto = new URL(
+    `../../assets/img/patients/${
+      profile ? profile.photo ?? 'placeholder.png' : ''
+    }`,
+    import.meta.url
+  ).href;
+
   return (
     <section>
       <div className="flex flex-col">
         <div className="font-bold bg-green dark:bg-black-200 text-white p-2">
           Profile
         </div>
-        <div className="flex flex-col gap-1 justify-center items-center p-2">
-          <img
-            src={TyrionLannister}
-            alt=""
-            className="rounded-full object-fill h-24"
-          />
-          <h2 className="font-extrabold text-green dark:text-white">
-            Tyrion Lannister
-          </h2>
-          <div className="flex justify-around w-full">
-            <div className="flex flex-col justify-center items-center">
-              <NotificationsIcon style={{ height: '15px' }} />
-              <span className="font-bold text-xs text-black-100 dark:text-white">
-                Alarm
-              </span>
+        {profile && (
+          <div className="profile-block">
+            <div className="flex flex-col gap-1 justify-center items-center p-2">
+              <img
+                src={profilePhoto}
+                alt={profile.name}
+                className="rounded-full object-fill h-24"
+              />
+              <h2 className="font-extrabold text-green dark:text-white">
+                {profile.name}
+              </h2>
+              <div className="flex justify-around w-full">
+                <div className="flex flex-col justify-center items-center">
+                  <NotificationsIcon style={{ height: '15px' }} />
+                  <span className="font-bold text-xs text-black-100 dark:text-white">
+                    Alarm
+                  </span>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                  <span className="font-bold text-sm">14</span>
+                  <span className="font-bold text-xs text-black-100 dark:text-white">
+                    Room
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-bold text-sm">14</span>
-              <span className="font-bold text-xs text-black-100 dark:text-white">
-                Room
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="text-sm p-2">
-          <div className="grid grid-cols-2 gap-1">
-            {profile ? (
-              <>
+            <div className="text-sm p-2">
+              <div className="grid grid-cols-2 gap-1">
                 <div className="text-green dark:text-white font-bold uppercase text-xs">
                   Name
                 </div>
@@ -91,12 +98,19 @@ function PatientBio({ profile }: Props) {
                     {profile.diagnosis ? profile.diagnosis : 'Undiagnosed'}
                   </span>
                 </div>
-              </>
-            ) : (
-              <div className="dark:text-white">No alarm has been selected</div>
-            )}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+        {!profile && (
+          <div className="profile-block empty flex flex-col gap-1 justify-center items-center p-2">
+            <img src={EmptyProfile} alt={EmptyProfile} />
+            <p className="text-center">
+              Once you click on any active alarm, the corresponding patient
+              information will be displayed.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

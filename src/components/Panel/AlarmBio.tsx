@@ -8,21 +8,25 @@ import RunCircleIcon from '@mui/icons-material/RunCircle';
 import AlarmEntry from '../../types/AlarmEntryType';
 import useAlarmsStore from '../../store/AlarmsStore';
 
-interface Props {
+interface IProps {
   entry: AlarmEntry;
   onToggle: (event: number) => void;
 }
 
-function AlarmBio({ entry, onToggle }: Props) {
-  const [active, setActive] = useState(Number);
+function AlarmBio({ entry, onToggle }: IProps) {
+  const [disabled, setDisabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const findPatient = useAlarmsStore((state) => state.findPatient);
-
+  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
+  const setActive = useAlarmsStore((state) => state.setActive);
   const makeActivePatient = (id: number) => {
-    onToggle(id);
-    setActive(id);
-    findPatient(id);
-    inputRef.current.checked = true;
+    if (id !== activeAlarm) {
+      onToggle(id);
+      findPatient(id);
+      setActive(id);
+    } else {
+      setDisabled(true);
+    }
   };
 
   const handleClass = (alarm: string) => {
@@ -52,9 +56,7 @@ function AlarmBio({ entry, onToggle }: Props) {
       role="button"
       tabIndex={0}
       className={`grid grid-cols-12 p-2 py-3 hover:bg-green hover:text-white text-sm ${
-        active
-          ? ' odd:bg-darkGreen even:bg-darkGreen dark:odd:bg-darkGreen dark:even:bg-darkGreen text-white'
-          : 'dark:bg-black-100 transition duration-200 dark:text-white odd:bg-lightGreen dark:odd:bg-black-200'
+        entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
       <div>
@@ -62,6 +64,8 @@ function AlarmBio({ entry, onToggle }: Props) {
           type="checkbox"
           ref={inputRef}
           className="accent-green focus:accent-green dark:accent-black-200 dark:focus:accent-black-200"
+          checked={entry.id === activeAlarm && !disabled}
+          readOnly
         />
       </div>
       <div className="col-span-1 text-right">

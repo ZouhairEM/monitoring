@@ -78,16 +78,16 @@ function Home() {
 
   return (
     <div className="flex">
-      <div className="bg-green dark:bg-black-100">
+      <div className="bg-green dark:bg-black-100 mr-3">
         <SideBar />
       </div>
       <main className="grid grid-cols-9 gap-4 mx-2 dark:bg-black-200 w-full">
         <div className="col-span-2 bg-white dark:bg-black-100 drop-shadow-md border border-green dark:border-black-200">
           {patient ? (
-            patient.map((patientObj: PatientType) => (
+            patient.map((patientInfo: PatientType) => (
               <PatientBio
-                profile={patientObj.profile}
-                key={patientObj.profile.name}
+                profile={patientInfo.profile}
+                key={patientInfo.profile.name}
               />
             ))
           ) : (
@@ -121,7 +121,11 @@ function Home() {
         </div>
         <div className="flex flex-col justify-between gap-4 col-span-7 dark:bg-black-100">
           <div className="flex flex-col h-full border border-green dark:border-black-200">
-            <div className="grid grid-cols-3 sm:grid-cols-12 gap-2 bg-green dark:bg-black-200 text-white font-medium p-2">
+            <div
+              className={`grid grid-cols-3 sm:grid-cols-12 gap-2 bg-green dark:bg-black-200 text-white font-medium p-2 ${
+                visibleControlPanel ? 'pr-4' : ''
+              }`}
+            >
               {entryTypes.map((entryType) => (
                 <div
                   className="col-span-2 flex justify-between items-center font-bold"
@@ -146,7 +150,13 @@ function Home() {
               ))}
             </div>
             <div className="flex flex-col h-full justify-between">
-              <div className="client-list">{currentAlarms}</div>
+              <div
+                className={`${
+                  visibleControlPanel ? 'responsive-client-list' : ''
+                }`}
+              >
+                {currentAlarms}
+              </div>
               <div className="flex">{pageNums}</div>
             </div>
           </div>

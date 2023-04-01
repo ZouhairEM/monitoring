@@ -11,16 +11,23 @@ function NavBar() {
 
   return (
     <nav className="flex justify-between items-center bg-darkGreen dark:bg-black-100 text-white text-base sm:grid-cols-6 py-2 px-6 mb-2">
-      <div className="flex gap-6">
-        Monitoring App
-        <div className="flex justify-center items-center bg-white dark:bg-black-200 text-sm text-green font-semibold dark:text-white rounded px-2">
-          <NotificationsIcon style={{ height: '20px' }} />
-          <span>
-            <span className="text-sm font-bold">x{alarms?.length}</span> Alarms
-          </span>
+      <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          <p>Monitor App</p>
+          <p>-</p>
+          <p className="text-sm">
+            A <i>simulated </i>
+            interface for healthcare workers to monitor patient health activity
+          </p>
         </div>
       </div>
       <div className="flex items-center gap-6">
+        <div className="flex justify-center items-center bg-white dark:bg-black-200 text-sm text-green font-semibold dark:text-white rounded px-2">
+          <NotificationsIcon style={{ height: '20px' }} />
+          <span>
+            <span className="text-lg font-bold">x{alarms?.length}</span> Alarms
+          </span>
+        </div>
         <div
           role="button"
           tabIndex={0}

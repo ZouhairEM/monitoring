@@ -6,6 +6,10 @@ import Alarm from '../types/AlarmEntryType';
 import Patient from '../types/PatientType';
 
 interface AlarmState {
+  activeAlarm: number;
+  setActive: (by: number) => void;
+  setPrevious: () => void;
+  setNext: () => void;
   correspondingPatient: null | object;
   patients: Patient[];
   alarms: Alarm[];
@@ -14,6 +18,10 @@ interface AlarmState {
 }
 
 const useAlarmsStore = create<AlarmState>((set) => ({
+  activeAlarm: 0,
+  setActive: (id) => set(() => ({ activeAlarm: id })),
+  setPrevious: () => set((state) => ({ activeAlarm: state.activeAlarm - 1 })),
+  setNext: () => set((state) => ({ activeAlarm: state.activeAlarm + 1 })),
   correspondingPatient: null,
   alarms: [
     {
