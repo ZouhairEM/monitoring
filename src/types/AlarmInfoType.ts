@@ -1,5 +1,5 @@
 export default interface AlarmInfoType {
-  level: number;
+  priority: number;
   name: string;
   room: string;
   dob: string;

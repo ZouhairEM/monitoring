@@ -55,7 +55,7 @@ function AlarmBio({ entry, onToggle }: IProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`grid grid-cols-12 p-2 py-3 hover:bg-green hover:text-white text-sm ${
+      className={`alarm-bio grid grid-cols-12 p-2 py-3 hover:bg-green hover:text-white text-sm ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
@@ -69,22 +69,22 @@ function AlarmBio({ entry, onToggle }: IProps) {
         />
       </div>
       <div className="col-span-1 text-right">
-        <div>{entry.level}</div>
+        <div>{entry.priority}</div>
       </div>
       <div className="col-span-2 text-right text-sm">
         <span
           className={`${handleClass(
             entry.alarm
-          )}-alarm p-1 text-white dark:bg-black-200 dark:text-white rounded`}
+          )}-alarm active-alarm p-1 text-white dark:bg-black-200 dark:text-white rounded`}
         >
           <span>{handleIcon()}</span>
           {entry.alarm}
         </span>
       </div>
-      <div className="col-span-2 text-right">{entry.patient_name}</div>
+      <div className="col-span-2 text-right">{entry.name}</div>
       <div className="col-span-2 text-right">{entry.time}</div>
       <div className="col-span-2">
-        {entry.status ? (
+        {entry.status === 'resolved' ? (
           <span className="flex gap-1 justify-end items-center">
             <CheckCircleIcon style={{ height: '15px', opacity: '0.9' }} />
             Resolved

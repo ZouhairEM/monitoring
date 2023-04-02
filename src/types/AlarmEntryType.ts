@@ -1,10 +1,10 @@
 export default interface AlarmEntryType {
   id: number;
-  level: number;
+  priority: number;
   alarm: string;
-  patient_name: string;
+  name: string;
   patient_id: number;
   time: string;
-  status: boolean;
+  status: string;
   room: string;
 }

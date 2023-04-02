@@ -4,10 +4,12 @@
 
 body {
   @apply bg-white dark:bg-black-200 transition duration-200;
+  background: #EFF5F5;
+  margin: 0.5em;
 }
 
 :root {
-  --primary-green: #00c9a3;
+  --secondary-green: #27e1c1;
   --primary-purple: #4a05d3;
 }
 
@@ -15,6 +17,7 @@ body {
   font-family: 'Roboto', sans-serif;
   min-width: 320px;
 }
+
 main {
   min-height: 90vh;
 }
@@ -24,38 +27,29 @@ main {
 }
 
 .acoustic-alarm {
-  background-color: rgba(243, 56, 31, 0.84);
-  background: #005b40;
+  background: #3E54AC;
 }
 
 .patient-up-alarm {
-  background: var(--primary-green);
+  background: #3E54AC;
 }
 
 .faulty-sensor-alarm {
-  background: var(--primary-purple);
+  background: #3E54AC;
 }
 
 .fire-alarm {
-  background-color: rgba(55, 75, 67, 1);
-  background: #6a5890;
+  background: #3E54AC;
 }
 
 .responsive-client-list {
   height: 66.3vh;
-  overflow-y: scroll;
-}
-
-::-webkit-scrollbar {
-  width: 0.5em;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary-green);
+  overflow: hidden;
 }
 
 .active {
-  background: red;
+  background: var(--secondary-green);
+  color: white;
 }
 
 .profile-block.empty {
@@ -64,4 +58,24 @@ main {
   img {
     height: 100px;
   }
+}
+
+.active > div + div + div > span.active-alarm,
+.alarm-bio:hover > div + div + div > span.active-alarm {
+  background: none;
+}
+
+img.photo {
+  height: 140px;
+  min-width: 120px;
+}
+
+.section-header{
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.section-footer{
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }

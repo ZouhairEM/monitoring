@@ -13,10 +13,12 @@ function Home() {
   const [visibleControlPanel, setVisibleControlPanel] = useState(false);
   const [clickedAlarm, setClickedAlarm] = useState(Number);
   const [currentPage, setCurrentPage] = useState(1);
-  const [alarmsPerPage] = useState(15);
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const patient: any = useAlarmsStore((state) => state.correspondingPatient);
+  const sortByField = useAlarmsStore((state) => state.sortByField);
+  const [, setSort] = useState(false);
+  const [alarmsPerPage, setAlarmsPerPage] = useState(15);
   const lastIndex = currentPage * alarmsPerPage;
   const alarmsIndex = lastIndex - alarmsPerPage;
   const maxPage = Math.ceil(alarms.length / alarmsPerPage);
@@ -25,7 +27,17 @@ function Home() {
 
   const handleToggle = (id: number) => {
     setVisibleControlPanel(!visibleControlPanel);
+    if (visibleControlPanel) {
+      setAlarmsPerPage(10);
+    } else {
+      setAlarmsPerPage(13);
+    }
     setClickedAlarm(id);
+  };
+
+  const handleSortByField = (id: string) => {
+    sortByField(id);
+    setSort(true);
   };
 
   const changePage = (e: { currentTarget: { id: string | number } }) => {
@@ -51,7 +63,7 @@ function Home() {
           role="button"
           tabIndex={0}
         >
-          <h5 className="font-medium text-center rounded px-3 py-1 bg-green dark:bg-black-200 text-white hover:bg-darkGreen">
+          <h5 className="font-medium text-center rounded px-3 py-1 bg-green dark:bg-black-200 text-white hover:bg-darkPrimary">
             {i}
           </h5>
         </div>
@@ -77,12 +89,12 @@ function Home() {
   ];
 
   return (
-    <div className="flex">
-      <div className="bg-green dark:bg-black-100 mr-3">
+    <div className="flex gap-2">
+      <div className="section-header section-footer bg-green dark:bg-black-100">
         <SideBar />
       </div>
-      <main className="grid grid-cols-9 gap-4 mx-2 dark:bg-black-200 w-full">
-        <div className="col-span-2 bg-white dark:bg-black-100 drop-shadow-md border border-green dark:border-black-200">
+      <main className="grid grid-cols-9 gap-2 dark:bg-black-200 w-full">
+        <section className="section-header section-footer col-span-2 bg-white drop-shadow-md dark:bg-black-100">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
               <PatientBio
@@ -98,38 +110,44 @@ function Home() {
             style={{ maxHeight: 430 }}
           >
             {patient ? (
-              patient.map((patientObj: PatientType) => (
+              patient.map((patientInfo: PatientType) => (
                 <HealthCare
-                  healthCare={patientObj.healthcare}
-                  key={patientObj.healthcare.plan}
+                  healthCare={patientInfo.healthcare}
+                  key={patientInfo.healthcare.plan}
                 />
               ))
             ) : (
               <HealthCare healthCare={patient} />
             )}
             {patient ? (
-              patient.map((patientObj: PatientType) => (
+              patient.map((patientInfo: PatientType) => (
                 <EmergencyContact
-                  emergencyContact={patientObj.emergency_contact}
-                  key={patientObj.emergency_contact.name}
+                  emergencyContact={patientInfo.emergency_contact}
+                  key={patientInfo.emergency_contact.name}
                 />
               ))
             ) : (
               <EmergencyContact emergencyContact={patient} />
             )}
           </div>
-        </div>
-        <div className="flex flex-col justify-between gap-4 col-span-7 dark:bg-black-100">
-          <div className="flex flex-col h-full border border-green dark:border-black-200">
+        </section>
+        <div className="flex flex-col justify-between gap-2 col-span-7 dark:bg-black-100">
+          <div className="section-header section-footer flex flex-col h-full bg-white drop-shadow-md">
             <div
-              className={`grid grid-cols-3 sm:grid-cols-12 gap-2 bg-green dark:bg-black-200 text-white font-medium p-2 ${
+              className={`section-header grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium p-2 ${
                 visibleControlPanel ? 'pr-4' : ''
               }`}
             >
-              {entryTypes.map((entryType) => (
+              {entryTypes.map((entryType, i) => (
                 <div
-                  className="col-span-2 flex justify-between items-center font-bold"
+                  className={`col-span-2 flex gap-4 justify-end items-center font-bold pl-4 ${
+                    i === 0 ? 'pl-6' : ''
+                  }`}
                   key={entryType}
+                  onClick={() => handleSortByField(entryType)}
+                  onKeyDown={() => handleSortByField(entryType)}
+                  role="button"
+                  tabIndex={0}
                 >
                   {entryType}
                   <svg
@@ -160,7 +178,11 @@ function Home() {
               <div className="flex">{pageNums}</div>
             </div>
           </div>
-          <div className={`${visibleControlPanel ? 'block' : 'hidden'}`}>
+          <div
+            className={`section-header section-footer bg-white drop-shadow-md ${
+              visibleControlPanel ? 'block' : 'hidden'
+            }`}
+          >
             <ControlPanel clickedAlarm={clickedAlarm} onToggle={handleToggle} />
           </div>
         </div>

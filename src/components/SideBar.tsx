@@ -3,7 +3,7 @@ import { useState } from 'react';
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <div className="flex justify-between flex-col py-2 px-4 font-semibold text-white text-sm h-full">
+    <section className="flex justify-between flex-col py-2 px-4 font-semibold text-white text-sm h-full bg-primary">
       <div>
         <div className="flex items-center gap-x-2 mb-4">
           <svg
@@ -91,7 +91,7 @@ function SideBar() {
           )}
         </svg>
       </div>
-    </div>
+    </section>
   );
 }
 

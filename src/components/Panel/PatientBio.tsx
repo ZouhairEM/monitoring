@@ -17,20 +17,20 @@ function PatientBio({ profile }: Props) {
   return (
     <section>
       <div className="flex flex-col">
-        <div className="font-bold bg-green dark:bg-black-200 text-white p-2">
+        <div className="section-header font-bold bg-green dark:bg-black-200 text-white p-2">
           Profile
         </div>
         {profile && (
-          <div className="profile-block">
+          <div className="section-header profile-block">
             <div className="flex flex-col gap-1 justify-center items-center p-2">
-              <img
-                src={profilePhoto}
-                alt={profile.name}
-                className="rounded-full object-fill h-24"
-              />
               <h2 className="font-extrabold text-green dark:text-white">
                 {profile.name}
               </h2>
+              <img
+                src={profilePhoto}
+                alt={profile.name}
+                className="photo object-fill h-24"
+              />
               <div className="flex justify-around w-full">
                 <div className="flex flex-col justify-center items-center">
                   <NotificationsIcon style={{ height: '15px' }} />
@@ -103,11 +103,10 @@ function PatientBio({ profile }: Props) {
           </div>
         )}
         {!profile && (
-          <div className="profile-block empty flex flex-col gap-1 justify-center items-center p-2">
+          <div className="section-header profile-block empty flex flex-col gap-1 justify-center items-center p-2">
             <img src={EmptyProfile} alt={EmptyProfile} />
             <p className="text-center">
-              Once you click on any active alarm, the corresponding patient
-              information will be displayed.
+              Once you click on any active alarm on the right, patient information will be displayed here.
             </p>
           </div>
         )}
