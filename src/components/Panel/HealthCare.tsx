@@ -9,13 +9,13 @@ function HealthCareInfo({ healthCare }: Props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
-      <div className="flex flex-col gap-2 text-sm px-1">
+      <div className="flex flex-col gap-4 text-sm px-1">
         <div
           onClick={() => setIsCollapsed(!isCollapsed)}
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="flex justify-between text-green dark:text-white transition duration-200 font-bold uppercase text-sm border-b-2 py-1 mb-2 border-green dark:border-black-200"
+          className="flex justify-between text-green dark:text-white transition duration-200 font-bold uppercase text-sm border-b-2 py-1 mb-4 border-green dark:border-black-200"
         >
           Healthcare plan
           {!isCollapsed && (

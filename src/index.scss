@@ -2,15 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  // outline: solid 1px;
+}
+
 body {
   @apply bg-white dark:bg-black-200 transition duration-200;
-  background: #EFF5F5;
+  background: #eff5f5;
   margin: 0.5em;
 }
 
 :root {
   --secondary-green: #27e1c1;
   --primary-purple: #4a05d3;
+  --dark-primary: #3e54ac;
 }
 
 #app {
@@ -27,19 +32,19 @@ main {
 }
 
 .acoustic-alarm {
-  background: #3E54AC;
+  background: #3e54ac;
 }
 
 .patient-up-alarm {
-  background: #3E54AC;
+  background: #3e54ac;
 }
 
 .faulty-sensor-alarm {
-  background: #3E54AC;
+  background: #3e54ac;
 }
 
 .fire-alarm {
-  background: #3E54AC;
+  background: #3e54ac;
 }
 
 .responsive-client-list {
@@ -47,16 +52,22 @@ main {
   overflow: hidden;
 }
 
-.active {
-  background: var(--secondary-green);
+.alarm-grid > div:nth-child(even) {
+  // background: rgba(239, 245, 245, 0.8);
+}
+
+.alarm-bio.grid.grid-cols-12.px-4.py-3.text-sm.active {
+  background: var(--dark-primary);
   color: white;
 }
+
 
 .profile-block.empty {
   min-height: 333px;
 
   img {
-    height: 100px;
+    height: 140px;
+    min-width: 120px;
   }
 }
 
@@ -68,14 +79,15 @@ main {
 img.photo {
   height: 140px;
   min-width: 120px;
+  border-radius: 0.5em;
 }
 
-.section-header{
+.section-header {
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
 }
 
-.section-footer{
+.section-footer {
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
 }

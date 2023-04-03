@@ -75,7 +75,12 @@ function Home() {
     const entry = alarms[i];
     if (!entry) break;
     currentAlarms.push(
-      <AlarmBio key={entry.id} entry={entry} onToggle={handleToggle} />
+      <AlarmBio
+        key={entry.id}
+        index={i}
+        entry={entry}
+        onToggle={handleToggle}
+      />
     );
   }
 
@@ -106,35 +111,29 @@ function Home() {
             <PatientBio profile={patient} />
           )}
           <div
-            className="flex flex-col gap-1 overflow-y-scroll noscrollbar"
+            className="flex flex-col gap-1 overflow-y-scroll noscrollbar px-2"
             style={{ maxHeight: 430 }}
           >
-            {patient ? (
+            {patient &&
               patient.map((patientInfo: PatientType) => (
                 <HealthCare
                   healthCare={patientInfo.healthcare}
                   key={patientInfo.healthcare.plan}
                 />
-              ))
-            ) : (
-              <HealthCare healthCare={patient} />
-            )}
-            {patient ? (
+              ))}
+            {patient &&
               patient.map((patientInfo: PatientType) => (
                 <EmergencyContact
                   emergencyContact={patientInfo.emergency_contact}
                   key={patientInfo.emergency_contact.name}
                 />
-              ))
-            ) : (
-              <EmergencyContact emergencyContact={patient} />
-            )}
+              ))}
           </div>
         </section>
         <div className="flex flex-col justify-between gap-2 col-span-7 dark:bg-black-100">
           <div className="section-header section-footer flex flex-col h-full bg-white drop-shadow-md">
             <div
-              className={`section-header grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium p-2 ${
+              className={`section-header grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium py-2 px-4 drop-shadow-md ${
                 visibleControlPanel ? 'pr-4' : ''
               }`}
             >
@@ -169,13 +168,13 @@ function Home() {
             </div>
             <div className="flex flex-col h-full justify-between">
               <div
-                className={`${
+                className={`alarm-grid ${
                   visibleControlPanel ? 'responsive-client-list' : ''
                 }`}
               >
                 {currentAlarms}
               </div>
-              <div className="flex">{pageNums}</div>
+              <div className="flex m-2">{pageNums}</div>
             </div>
           </div>
           <div

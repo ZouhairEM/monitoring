@@ -15,7 +15,7 @@ function ControlPanel({ clickedAlarm, onToggle }: Props) {
 
   return (
     <section className="section-header">
-      <div className="section-header font-bold bg-green dark:bg-black-200 text-white p-2">
+      <div className="section-header font-bold bg-green dark:bg-black-200 text-white p-2 drop-shadow-md">
         Control Options
       </div>
       <div className="section-header flex gap-2 p-2 py-4 text-sm">

@@ -17,11 +17,11 @@ function PatientBio({ profile }: Props) {
   return (
     <section>
       <div className="flex flex-col">
-        <div className="section-header font-bold bg-green dark:bg-black-200 text-white p-2">
+        <div className="section-header font-bold bg-green dark:bg-black-200 text-white p-2 drop-shadow-md">
           Profile
         </div>
         {profile && (
-          <div className="section-header profile-block">
+          <div className="section-header profile-block px-2">
             <div className="flex flex-col gap-1 justify-center items-center p-2">
               <h2 className="font-extrabold text-green dark:text-white">
                 {profile.name}
@@ -29,24 +29,24 @@ function PatientBio({ profile }: Props) {
               <img
                 src={profilePhoto}
                 alt={profile.name}
-                className="photo object-fill h-24"
+                className="photo object-fill h-24 drop-shadow-md"
               />
               <div className="flex justify-around w-full">
                 <div className="flex flex-col justify-center items-center">
-                  <NotificationsIcon style={{ height: '15px' }} />
-                  <span className="font-bold text-xs text-black-100 dark:text-white">
+                  <NotificationsIcon style={{ height: '22px' }} />
+                  <span className="font-bold text-lg text-black-100 dark:text-white">
                     Alarm
                   </span>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <span className="font-bold text-sm">14</span>
-                  <span className="font-bold text-xs text-black-100 dark:text-white">
+                  <span className="font-bold text-lg">14</span>
+                  <span className="font-bold text-lg text-black-100 dark:text-white">
                     Room
                   </span>
                 </div>
               </div>
             </div>
-            <div className="text-sm p-2">
+            <div className="text-sm p-2 mb-2">
               <div className="grid grid-cols-2 gap-1">
                 <div className="text-green dark:text-white font-bold uppercase text-xs">
                   Name
@@ -106,7 +106,8 @@ function PatientBio({ profile }: Props) {
           <div className="section-header profile-block empty flex flex-col gap-1 justify-center items-center p-2">
             <img src={EmptyProfile} alt={EmptyProfile} />
             <p className="text-center">
-              Once you click on any active alarm on the right, patient information will be displayed here.
+              Once you click on any active alarm on the right, patient
+              information will be displayed here.
             </p>
           </div>
         )}

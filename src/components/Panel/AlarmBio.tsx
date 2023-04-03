@@ -10,10 +10,11 @@ import useAlarmsStore from '../../store/AlarmsStore';
 
 interface IProps {
   entry: AlarmEntry;
+  index: number;
   onToggle: (event: number) => void;
 }
 
-function AlarmBio({ entry, onToggle }: IProps) {
+function AlarmBio({ entry, index, onToggle }: IProps) {
   const [disabled, setDisabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const findPatient = useAlarmsStore((state) => state.findPatient);
@@ -27,6 +28,10 @@ function AlarmBio({ entry, onToggle }: IProps) {
     } else {
       setDisabled(true);
     }
+  };
+
+  const handlePriority = (priority: number) => {
+    return <div>{priority} </div>;
   };
 
   const handleClass = (alarm: string) => {
@@ -55,7 +60,7 @@ function AlarmBio({ entry, onToggle }: IProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`alarm-bio grid grid-cols-12 p-2 py-3 hover:bg-green hover:text-white text-sm ${
+      className={`alarm-bio grid grid-cols-12 px-4 py-3 hover:bg-green hover:text-white text-sm ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
@@ -68,8 +73,9 @@ function AlarmBio({ entry, onToggle }: IProps) {
           readOnly
         />
       </div>
+      <div className="col-span-1">#{index + 1}</div>
       <div className="col-span-1 text-right">
-        <div>{entry.priority}</div>
+        <div>{handlePriority(entry.priority)}</div>
       </div>
       <div className="col-span-2 text-right text-sm">
         <span
@@ -82,7 +88,7 @@ function AlarmBio({ entry, onToggle }: IProps) {
         </span>
       </div>
       <div className="col-span-2 text-right">{entry.name}</div>
-      <div className="col-span-2 text-right">{entry.time}</div>
+      <div className="col-span-1 text-right">{entry.time}</div>
       <div className="col-span-2">
         {entry.status === 'resolved' ? (
           <span className="flex gap-1 justify-end items-center">
