@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Patient from '../../types/PatientType';
 
-interface Props {
+interface HealthCareInfoProps {
   healthCare: Patient['healthcare'];
 }
 
-function HealthCareInfo({ healthCare }: Props) {
+function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
@@ -15,7 +15,7 @@ function HealthCareInfo({ healthCare }: Props) {
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="flex justify-between text-green dark:text-white transition duration-200 font-bold uppercase text-sm border-b-2 py-1 mb-4 border-green dark:border-black-200"
+          className="flex justify-between text-primary-200 dark:text-white transition duration-200 font-bold uppercase text-sm border-b-2 py-1 mb-4 border-primary-200 dark:border-black-200"
         >
           Healthcare plan
           {!isCollapsed && (
@@ -56,13 +56,13 @@ function HealthCareInfo({ healthCare }: Props) {
         {isCollapsed &&
           (healthCare ? (
             <>
-              {Object.entries(healthCare).map((el) => (
-                <div key={el[0]} className="grid grid-cols-2 mb-1">
-                  <div className="text-green dark:text-white font-bold uppercase text-xs transition duration-200">
-                    {el[0]}
+              {Object.entries(healthCare).map(([name, value]) => (
+                <div key={name} className="grid grid-cols-2 mb-1">
+                  <div className="text-primary-200 dark:text-white font-bold uppercase text-xs transition duration-200">
+                    {name}
                   </div>
                   <div className="text-black-100 dark:text-white text-xs transition duration-200">
-                    {el[1]}
+                    {value}
                   </div>
                 </div>
               ))}

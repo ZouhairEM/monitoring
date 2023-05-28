@@ -63,7 +63,7 @@ function Home() {
           role="button"
           tabIndex={0}
         >
-          <h5 className="font-medium text-center rounded px-3 py-1 bg-green dark:bg-black-200 text-white hover:bg-darkPrimary">
+          <h5 className="font-medium text-center rounded px-3 py-1 bg-primary-200 dark:bg-black-200 text-white hover:bg-primary-300">
             {i}
           </h5>
         </div>
@@ -95,10 +95,10 @@ function Home() {
 
   return (
     <div className="flex gap-2">
-      <div className="section-header section-footer bg-green dark:bg-black-100">
+      <div className="section-header section-footer bg-primary-200 dark:bg-black-100">
         <SideBar />
       </div>
-      <main className="grid grid-cols-9 gap-2 dark:bg-black-200 w-full">
+      <main className="grid grid-cols-9 gap-2 w-full">
         <section className="section-header section-footer col-span-2 bg-white drop-shadow-md dark:bg-black-100">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
@@ -130,10 +130,10 @@ function Home() {
               ))}
           </div>
         </section>
-        <div className="flex flex-col justify-between gap-2 col-span-7 dark:bg-black-100">
+        <div className="flex flex-col justify-between gap-2 col-span-7">
           <div className="section-header section-footer flex flex-col h-full bg-white drop-shadow-md">
             <div
-              className={`section-header grid grid-cols-3 sm:grid-cols-12 bg-green dark:bg-black-200 text-white font-medium py-2 px-4 drop-shadow-md ${
+              className={`section-header grid grid-cols-3 sm:grid-cols-12 bg-primary-200 dark:bg-black-200 text-white font-medium py-2 px-4 drop-shadow-md ${
                 visibleControlPanel ? 'pr-4' : ''
               }`}
             >
@@ -166,7 +166,7 @@ function Home() {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col h-full justify-between">
+            <div className="flex flex-col h-full justify-between dark:bg-black-100 dark:text-white">
               <div
                 className={`alarm-grid ${
                   visibleControlPanel ? 'responsive-client-list' : ''

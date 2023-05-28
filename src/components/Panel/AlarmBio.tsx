@@ -8,13 +8,13 @@ import RunCircleIcon from '@mui/icons-material/RunCircle';
 import AlarmEntry from '../../types/AlarmEntryType';
 import useAlarmsStore from '../../store/AlarmsStore';
 
-interface IProps {
+interface AlarmBioProps {
   entry: AlarmEntry;
   index: number;
   onToggle: (event: number) => void;
 }
 
-function AlarmBio({ entry, index, onToggle }: IProps) {
+function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
   const [disabled, setDisabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const findPatient = useAlarmsStore((state) => state.findPatient);
@@ -31,7 +31,7 @@ function AlarmBio({ entry, index, onToggle }: IProps) {
   };
 
   const handlePriority = (priority: number) => {
-    return <div>{priority} </div>;
+    return <div> {priority} </div>;
   };
 
   const handleClass = (alarm: string) => {
@@ -60,7 +60,7 @@ function AlarmBio({ entry, index, onToggle }: IProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`alarm-bio grid grid-cols-12 px-4 py-3 hover:bg-green hover:text-white text-sm ${
+      className={`alarm-bio grid grid-cols-12 px-4 py-3 dark:bg-black-100 dark:text-white hover:bg-primary-100 text-sm ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
@@ -68,7 +68,7 @@ function AlarmBio({ entry, index, onToggle }: IProps) {
         <input
           type="checkbox"
           ref={inputRef}
-          className="accent-green focus:accent-green dark:accent-black-200 dark:focus:accent-black-200"
+          className="accent-primary-200 focus:accent-primary-200 dark:accent-black-200 dark:focus:accent-black-200"
           checked={entry.id === activeAlarm && !disabled}
           readOnly
         />

@@ -3,19 +3,19 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useAlarmsStore from '../../store/AlarmsStore';
 
-interface Props {
+interface ControlPanelProps {
   clickedAlarm: number;
   onToggle: (event: number) => void;
 }
 
-function ControlPanel({ clickedAlarm, onToggle }: Props) {
+function ControlPanel({ clickedAlarm, onToggle }: ControlPanelProps) {
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
   const setPrevious = useAlarmsStore((state) => state.setPrevious);
   const setNext = useAlarmsStore((state) => state.setNext);
 
   return (
-    <section className="section-header">
-      <div className="section-header font-bold bg-green dark:bg-black-200 text-white p-2 drop-shadow-md">
+    <section className="section-header dark:bg-black-100">
+      <div className="section-header font-bold bg-primary-200 dark:bg-black-200 text-white p-2 drop-shadow-md">
         Control Options
       </div>
       <div className="section-header flex gap-2 p-2 py-4 text-sm">
@@ -30,7 +30,7 @@ function ControlPanel({ clickedAlarm, onToggle }: Props) {
             onToggle(clickedAlarm);
           }}
           tabIndex={0}
-          className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkPrimary"
+          className="flex gap-2 items-center justify-center bg-primary-200 dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-primary-300"
         >
           Close alarm
           <CloseIcon style={{ height: '16px' }} />
@@ -39,7 +39,7 @@ function ControlPanel({ clickedAlarm, onToggle }: Props) {
           <button
             type="button"
             tabIndex={0}
-            className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkPrimary"
+            className="flex gap-2 items-center justify-center bg-primary-200 dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-primary-300"
             onClick={() => setPrevious()}
             onKeyDown={() => () => setPrevious()}
           >
@@ -49,7 +49,7 @@ function ControlPanel({ clickedAlarm, onToggle }: Props) {
           <button
             type="button"
             tabIndex={0}
-            className="flex gap-2 items-center justify-center bg-green dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-darkPrimary"
+            className="flex gap-2 items-center justify-center bg-primary-200 dark:bg-black-200 text-white font-medium text-center p-2 rounded hover:bg-primary-300"
             onClick={() => setNext()}
             onKeyDown={() => () => setNext()}
           >
