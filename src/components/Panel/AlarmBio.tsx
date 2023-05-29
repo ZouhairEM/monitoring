@@ -60,11 +60,11 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`alarm-bio grid grid-cols-12 px-4 py-3 dark:bg-black-100 dark:text-white hover:bg-primary-100 text-sm ${
+      className={`alarm-bio grid grid-cols-12 gap-2 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 dark:text-white ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
-      <div>
+      <div className="flex gap-6">
         <input
           type="checkbox"
           ref={inputRef}
@@ -72,31 +72,29 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
           checked={entry.id === activeAlarm && !disabled}
           readOnly
         />
+        <div>#{index + 1}</div>
       </div>
-      <div className="col-span-1">#{index + 1}</div>
-      <div className="col-span-1 text-right">
-        <div>{handlePriority(entry.priority)}</div>
-      </div>
-      <div className="col-span-2 text-right text-sm">
+      <div className="text-right">{handlePriority(entry.priority)}</div>
+      <div className="col-span-3 text-right text-sm">
         <span
           className={`${handleClass(
             entry.alarm
-          )}-alarm active-alarm p-1 text-white dark:bg-black-200 dark:text-white rounded`}
+          )}-alarm active-alarm rounded p-1 text-white dark:bg-black-200 dark:text-white`}
         >
           <span>{handleIcon()}</span>
           {entry.alarm}
         </span>
       </div>
-      <div className="col-span-2 text-right">{entry.name}</div>
-      <div className="col-span-1 text-right">{entry.time}</div>
+      <div className="col-span-3 text-right">{entry.name}</div>
+      <div className="text-right">{entry.time}</div>
       <div className="col-span-2">
         {entry.status === 'resolved' ? (
-          <span className="flex gap-1 justify-end items-center">
+          <span className="flex items-center justify-end gap-1">
             <CheckCircleIcon style={{ height: '15px', opacity: '0.9' }} />
             Resolved
           </span>
         ) : (
-          <span className="flex gap-1 justify-end items-center">
+          <span className="flex items-center justify-end gap-1">
             <NotificationsActiveIcon
               style={{ height: '15px', opacity: '0.9' }}
             />
@@ -104,7 +102,7 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
           </span>
         )}
       </div>
-      <div className="col-span-2 text-right">{entry.room}</div>
+      <div className="text-right">{entry.room}</div>
     </div>
   );
 }

@@ -105,11 +105,11 @@ function PatientBio({ profile }: PatientBioProps) {
           </div>
         )}
         {!profile && (
-          <div className="section-header profile-block empty flex flex-col gap-1 justify-center items-center p-2">
+          <div className="section-header profile-block empty flex flex-col gap-1 justify-center items-center p-4">
             <img src={EmptyProfile} alt={EmptyProfile} />
-            <p className="text-center">
-              Once you click on any active alarm on the right, patient
-              information will be displayed here.
+            <p className="text-center dark:text-white py-4">
+              Click on any active alarm on the right, patient info will be
+              displayed here.
             </p>
           </div>
         )}

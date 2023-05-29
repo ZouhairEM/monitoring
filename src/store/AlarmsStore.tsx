@@ -16,13 +16,21 @@ interface AlarmState {
   findPatient: (id: number) => void;
   closeAlarm: (id: number) => void;
   sortByField: (id: string) => void;
+  clickedAlarm: any;
 }
 
 const useAlarmsStore = create<AlarmState>((set) => ({
   activeAlarm: 0,
   setActive: (id) => set(() => ({ activeAlarm: id })),
-  setPrevious: () => set((state) => ({ activeAlarm: state.activeAlarm - 1 })),
-  setNext: () => set((state) => ({ activeAlarm: state.activeAlarm + 1 })),
+  clickedAlarm: null,
+  setPrevious: () =>
+    set((state) => ({
+      activeAlarm: state.activeAlarm - 1,
+    })),
+  setNext: () =>
+    set((state) => ({
+      activeAlarm: state.activeAlarm + 1,
+    })),
   correspondingPatient: null,
   alarms: [
     {

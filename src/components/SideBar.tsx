@@ -6,13 +6,13 @@ import CameraIcon from '@mui/icons-material/Camera';
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <section className="flex justify-between flex-col py-2 px-4 font-semibold text-white text-sm h-full bg-primary">
+    <section className="bg-primary flex h-full flex-col justify-between px-4 py-2 text-sm font-semibold text-white">
       <div>
-        <div className="flex items-center gap-x-2 mb-4">
+        <div className="mb-4 flex items-center gap-x-2">
           <CameraIcon />
           {isCollapsed && <div>Monitoring</div>}
         </div>
-        <div className="flex items-center gap-x-2 mb-4">
+        <div className="mb-4 flex items-center gap-x-2">
           <Grid3x3Icon />
           {isCollapsed && <div>Dashboard</div>}
         </div>
@@ -28,10 +28,10 @@ function SideBar() {
         onKeyDown={() => setIsCollapsed(!isCollapsed)}
         role="button"
         tabIndex={0}
-        className="flex justify-end items-end"
+        className="flex items-end justify-end"
       >
         <svg
-          className="w-6 h-6"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

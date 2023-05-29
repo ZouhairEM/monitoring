@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 body {
-  @apply bg-white dark:bg-black-200 transition duration-200;
+  @apply bg-white transition duration-200 dark:bg-black-200;
   @apply dark:bg-primary-300;
   background: #eff5f5;
-  margin: 0.5em;
+  margin: 1em 0.5em;
+  max-width: 1180px;
 }
 
 #app {
@@ -15,29 +23,36 @@ body {
 }
 
 main {
-  min-height: 90vh;
+  height: 88vh;
 }
 
 .noscrollbar::-webkit-scrollbar {
   display: none;
 }
 
-.acoustic-alarm,
-.patient-up-alarm,
-.faulty-sensor-alarm,
+.acoustic-alarm {
+  background: #ff6eb8;
+}
+
+.patient-up-alarm {
+  background: #329692;
+}
+.faulty-sensor-alarm {
+  background: #002d2c;
+}
 .fire-alarm {
-  @apply bg-primary-200 dark:bg-black-300;
+  background: #b82c2c;
 }
 
 .responsive-client-list {
-  height: 66.3vh;
+  // height: 66.3vh;
   overflow: hidden;
 }
 
 .alarm-bio.active {
   @apply bg-primary-200 dark:bg-black-300;
+  @apply hover:bg-primary-200 dark:bg-black-300;
   color: white;
-  @apply dark:bg-black-300 hover:bg-primary-200;
 }
 
 .profile-block {
@@ -45,7 +60,7 @@ main {
     min-height: 333px;
   }
   img {
-    height: 140px;
+    height: 100px;
     min-width: 120px;
     border-radius: 0.5em;
   }
@@ -64,12 +79,13 @@ main {
 input[type='checkbox'] {
   text-align: center;
   width: 1.5em;
+  min-width: 1.5em;
   height: 1.5em;
   appearance: none;
   border-radius: 10%;
   box-shadow: none;
   @apply border border-primary-200;
-  @apply dark:bg-black-300 border-black-200;
+  @apply border-black-200 dark:bg-black-300;
   &:checked {
     &:after {
       content: '\2713';
