@@ -21,7 +21,7 @@ function ControlPanel({
 
   return (
     <section className="section-header dark:bg-black-100">
-      <div className="section-header bg-primary-200 p-2 font-bold text-white drop-shadow-md dark:bg-black-200">
+      <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200">
         Control Options
       </div>
       <div className="section-header flex gap-2 p-2 py-4 text-sm">

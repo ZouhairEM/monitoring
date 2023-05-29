@@ -9,13 +9,13 @@ function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
-      <div className="flex flex-col gap-4 px-1 text-sm">
+      <div className="flex flex-col gap-2 px-1 text-sm">
         <div
           onClick={() => setIsCollapsed(!isCollapsed)}
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold uppercase text-primary-200 transition duration-200 dark:border-black-200 dark:text-white"
+          className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-black-200 dark:text-white"
         >
           Emergency Contact
           {!isCollapsed && (
@@ -57,8 +57,8 @@ function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
             <>
               {Object.entries(emergencyContact).map(([name, value]) => (
                 <div key={name} className="mb-1 grid grid-cols-2">
-                  <div className="text-xs font-bold uppercase text-primary-200 transition duration-200 dark:text-white">
-                    {name}
+                  <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-white">
+                    {name.includes('_') ? name.replaceAll('_', ' ') : name}
                   </div>
                   <div className="text-xs text-black-100 transition duration-200 dark:text-white">
                     {value}
