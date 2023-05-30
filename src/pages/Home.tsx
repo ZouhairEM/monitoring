@@ -16,7 +16,7 @@ function Home() {
   const [, setSort] = useState(false);
 
   type State = {
-    panel: boolean;
+    isPanelVisible: boolean;
     isActive: number;
     currentPage: number;
     alarmsPerPage: number;
@@ -33,7 +33,7 @@ function Home() {
       case 'visibility_control_panel': {
         return {
           ...state,
-          panel: action.setPanel,
+          isPanelVisible: action.setPanel,
         };
       }
       case 'is_active': {
@@ -60,7 +60,7 @@ function Home() {
   }
 
   const initialState: State = {
-    panel: false,
+    isPanelVisible: false,
     isActive: 1,
     currentPage: 1,
     alarmsPerPage: 12,
@@ -70,33 +70,74 @@ function Home() {
     initialState
   );
 
-  const patient = useAlarmsStore<PatientType[] | []>(
-    (zustandState) => zustandState.correspondingPatient as any
+  const patient = useAlarmsStore<PatientType[] | null>(
+    (zustandState) => zustandState.correspondingPatient
   );
-  const sortByField = useAlarmsStore(
-    (zustandState) => zustandState.sortByField
-  );
+
   const lastIndex = state.currentPage * state.alarmsPerPage;
   const alarmsIndex = lastIndex - state.alarmsPerPage;
-  const maxPage = Math.ceil(alarms.length / state.alarmsPerPage);
+  const maxPages = Math.ceil(alarms.length / state.alarmsPerPage);
   const pageNums = [];
   const currentAlarms = [];
 
-  const handleToggle = (id: number) => {
-    setClickedAlarm(id);
+  const sortByField = useAlarmsStore(
+    (zustandState) => zustandState.sortByField
+  );
+
+  const handleSelectAlarm = (id: number) => {
+    setClickedAlarm(id+1);
     dispatch({ type: 'visibility_control_panel', setPanel: true });
+
+    if (!state.isPanelVisible) {
+      if (
+        (id + 1 < lastIndex && id + 1 >= lastIndex - 1) ||
+        id + 1 === lastIndex
+      ) {
+        dispatch({
+          type: 'set_current_page',
+          setCurrentPage: state.currentPage + 1,
+        });
+        dispatch({ type: 'is_active', setActive: state.isActive + 1 });
+      }
+    }
   };
 
   useEffect(() => {
     if (!patient) {
       dispatch({ type: 'visibility_control_panel', setPanel: false });
     }
-    if (state?.panel) {
+    if (state?.isPanelVisible) {
+      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
+    } else if (state.currentPage === maxPages) {
       dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
     } else {
-      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 15 });
+      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 14 });
     }
-  }, [state?.panel, patient]);
+  }, [state?.isPanelVisible, patient, state.currentPage, maxPages, lastIndex]);
+
+  useEffect(() => {
+    if (activeAlarm > lastIndex && activeAlarm <= alarms?.length) {
+      dispatch({
+        type: 'set_current_page',
+        setCurrentPage: state.currentPage + 1,
+      });
+      dispatch({ type: 'is_active', setActive: state.isActive + 1 });
+    }
+    if (activeAlarm !== 0 && lastIndex - state.alarmsPerPage >= activeAlarm) {
+      dispatch({
+        type: 'set_current_page',
+        setCurrentPage: state.currentPage - 1,
+      });
+      dispatch({ type: 'is_active', setActive: state.isActive - 1 });
+    }
+  }, [
+    alarms,
+    lastIndex,
+    activeAlarm,
+    state.currentPage,
+    state.alarmsPerPage,
+    alarmsIndex,
+  ]);
 
   const handleSortByField = (id: string) => {
     sortByField(id);
@@ -104,22 +145,19 @@ function Home() {
   };
 
   const changePage = (e: { currentTarget: { id: string | number } }) => {
-    // setIsActive(+e.currentTarget.id);
     dispatch({ type: 'is_active', setActive: +e.currentTarget.id });
-    // setCurrentPage(+e.currentTarget.id);
     dispatch({ type: 'set_current_page', setCurrentPage: +e.currentTarget.id });
   };
 
   useEffect(() => {
     if (state?.currentPage > 1) {
-      if (state?.currentPage > maxPage) {
-        // setCurrentPage(maxPage);
-        dispatch({ type: 'set_current_page', setCurrentPage: maxPage });
+      if (state?.currentPage > maxPages) {
+        dispatch({ type: 'set_current_page', setCurrentPage: maxPages });
       }
     }
-  }, [alarms.length, state?.currentPage, maxPage, state?.alarmsPerPage]);
-  if (maxPage > 1) {
-    for (let index = 1; index <= maxPage; index += 1) {
+  }, [alarms.length, state?.currentPage, maxPages, state?.alarmsPerPage]);
+  if (maxPages > 1) {
+    for (let index = 1; index <= maxPages; index += 1) {
       pageNums.push(
         <div
           key={index.toString()}
@@ -153,7 +191,7 @@ function Home() {
         key={entry.id}
         index={i}
         entry={entry}
-        onToggle={handleToggle}
+        onToggle={handleSelectAlarm}
       />
     );
   }
@@ -205,7 +243,7 @@ function Home() {
           <div className="section-header section-footer flex h-full flex-col bg-white drop-shadow-md">
             <div
               className={`section-header grid grid-cols-12 gap-2 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white drop-shadow-md dark:bg-black-200 ${
-                state?.panel ? 'pr-4' : ''
+                state?.isPanelVisible ? 'pr-4' : ''
               }`}
             >
               {entryTypes.map((entryType) => (
@@ -242,8 +280,8 @@ function Home() {
             </div>
             <div className="flex h-full flex-col justify-between dark:bg-black-100 dark:text-white">
               <div
-                className={`alarm-grid ${
-                  state?.panel ? 'responsive-client-list' : ''
+                className={`alarm-grid my-3 ${
+                  state?.isPanelVisible ? 'responsive-client-list' : ''
                 }`}
               >
                 {currentAlarms}
@@ -253,13 +291,13 @@ function Home() {
           </div>
           <div
             className={`section-header section-footer bg-white drop-shadow-md ${
-              state?.panel ? 'block' : 'hidden'
+              state?.isPanelVisible ? 'block' : 'hidden'
             }`}
           >
             <ControlPanel
               clickedAlarm={clickedAlarm}
               setClickedAlarm={setClickedAlarm}
-              onToggle={handleToggle}
+              onSelectAlarm={handleSelectAlarm}
             />
           </div>
         </div>

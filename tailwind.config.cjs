@@ -26,6 +26,7 @@ module.exports = {
         200: '#655DBB',
         300: '#3E54AC',
       },
+      secondary: '#00a3e1',
       black: {
         100: '#2e3139',
         200: '#1f2128',

@@ -5,35 +5,36 @@ import useAlarmsStore from '../../store/AlarmsStore';
 
 interface ControlPanelProps {
   clickedAlarm: number;
-  onToggle: (event: number) => void;
+  onSelectAlarm: (event: number) => void;
   setClickedAlarm: (event: number) => void;
 }
 
 function ControlPanel({
   clickedAlarm,
   setClickedAlarm,
-  onToggle,
+  onSelectAlarm,
 }: ControlPanelProps) {
+  const alarms = useAlarmsStore((state) => state.alarms);
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
+  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const setPrevious = useAlarmsStore((state) => state.setPrevious);
   const setNext = useAlarmsStore((state) => state.setNext);
-  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
 
   return (
     <section className="section-header dark:bg-black-100">
       <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200">
         Control Options
       </div>
-      <div className="section-header flex gap-2 p-2 py-4 text-sm">
+      <div className="section-header flex gap-2 p-2 py-3 text-sm">
         <button
           type="button"
           onClick={() => {
             closeAlarm(clickedAlarm);
-            onToggle(clickedAlarm);
+            onSelectAlarm(clickedAlarm);
           }}
           onKeyDown={() => {
             closeAlarm(clickedAlarm);
-            onToggle(clickedAlarm);
+            onSelectAlarm(clickedAlarm);
           }}
           tabIndex={0}
           className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
@@ -47,12 +48,16 @@ function ControlPanel({
             tabIndex={0}
             className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
             onClick={() => {
-              setPrevious();
-              return setClickedAlarm(activeAlarm - 1);
+              if (activeAlarm >= 2) {
+                setPrevious();
+                setClickedAlarm(activeAlarm - 1);
+              }
             }}
             onKeyDown={() => {
-              setPrevious();
-              return setClickedAlarm(activeAlarm - 1);
+              if (activeAlarm >= 2) {
+                setPrevious();
+                setClickedAlarm(activeAlarm - 1);
+              }
             }}
           >
             Previous alarm
@@ -63,12 +68,16 @@ function ControlPanel({
             tabIndex={0}
             className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
             onClick={() => {
-              setNext();
-              return setClickedAlarm(activeAlarm + 1);
+              if (activeAlarm + 1 <= alarms?.length) {
+                setNext();
+                setClickedAlarm(activeAlarm + 1);
+              }
             }}
             onKeyDown={() => {
-              setNext();
-              return setClickedAlarm(activeAlarm + 1);
+              if (activeAlarm + 1 <= alarms?.length) {
+                setNext();
+                setClickedAlarm(activeAlarm + 1);
+              }
             }}
           >
             <ArrowForwardIosIcon style={{ height: '16px' }} />

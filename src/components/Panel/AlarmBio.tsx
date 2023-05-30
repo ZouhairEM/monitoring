@@ -22,9 +22,9 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
   const setActive = useAlarmsStore((state) => state.setActive);
   const makeActivePatient = (id: number) => {
     if (id !== activeAlarm) {
-      onToggle(id);
+      onToggle(index);
       findPatient(id);
-      setActive(id);
+      setActive(index+1);
     } else {
       setDisabled(true);
     }

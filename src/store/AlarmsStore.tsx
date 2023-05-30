@@ -10,13 +10,14 @@ interface AlarmState {
   setActive: (by: number) => void;
   setPrevious: () => void;
   setNext: () => void;
-  correspondingPatient: null | object;
+  hasTotalChanged: boolean;
+  correspondingPatient: Patient[] | null;
   patients: Patient[];
   alarms: AlarmEntryType[];
   findPatient: (id: number) => void;
-  closeAlarm: (id: number) => void;
   sortByField: (id: string) => void;
-  clickedAlarm: any;
+  closeAlarm: (id: number) => void;
+  clickedAlarm: AlarmEntryType | null;
 }
 
 const useAlarmsStore = create<AlarmState>((set) => ({
@@ -31,6 +32,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     set((state) => ({
       activeAlarm: state.activeAlarm + 1,
     })),
+  hasTotalChanged: false,
   correspondingPatient: null,
   alarms: [
     {
@@ -165,7 +167,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 14,
-      patient_id: 2,
+      patient_id: 14,
       priority: 2,
       alarm: 'Fire',
       name: 'Danaerys Targaryan',
@@ -175,7 +177,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 15,
-      patient_id: 3,
+      patient_id: 1,
       priority: 2,
       alarm: 'Faulty Sensor',
       name: 'Jon Snow',
@@ -185,7 +187,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 16,
-      patient_id: 4,
+      patient_id: 2,
       priority: 3,
       alarm: 'Patient up',
       name: 'Eddard Stark',
@@ -195,7 +197,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 17,
-      patient_id: 14,
+      patient_id: 3,
       priority: 2,
       alarm: 'Fire',
       name: 'Robb Stark',
@@ -205,7 +207,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 18,
-      patient_id: 3,
+      patient_id: 4,
       priority: 2,
       alarm: 'Faulty Sensor',
       name: 'Jon Snow',
@@ -215,7 +217,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 19,
-      patient_id: 4,
+      patient_id: 5,
       priority: 3,
       alarm: 'Patient up',
       name: 'Eddard Stark',
@@ -224,8 +226,8 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       room: '14',
     },
     {
-      id: 21,
-      patient_id: 1,
+      id: 20,
+      patient_id: 6,
       priority: 1,
       alarm: 'Acoustic',
       name: 'Tyrion Lannister',
@@ -234,8 +236,18 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       room: '21',
     },
     {
+      id: 21,
+      patient_id: 7,
+      priority: 1,
+      alarm: 'Fire',
+      name: 'Ser Jorah Mormont',
+      time: '12:02',
+      status: 'resolved',
+      room: '21',
+    },
+    {
       id: 22,
-      patient_id: 2,
+      patient_id: 8,
       priority: 2,
       alarm: 'Fire',
       name: 'Danaerys Targaryan',
@@ -245,7 +257,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 23,
-      patient_id: 11,
+      patient_id: 9,
       priority: 2,
       alarm: 'Faulty Sensor',
       name: 'Khal Drogo',
@@ -255,7 +267,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 24,
-      patient_id: 4,
+      patient_id: 10,
       priority: 3,
       alarm: 'Patient up',
       name: 'Eddard Stark',
@@ -265,7 +277,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 25,
-      patient_id: 5,
+      patient_id: 11,
       priority: 1,
       alarm: 'Acoustic',
       name: 'Cercei Lanister',
@@ -275,7 +287,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 26,
-      patient_id: 6,
+      patient_id: 12,
       priority: 2,
       alarm: 'Fire',
       name: 'Tywin Lannister',
@@ -285,7 +297,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 27,
-      patient_id: 7,
+      patient_id: 13,
       priority: 2,
       alarm: 'Faulty Sensor',
       name: 'Samwell Tarly',
@@ -295,7 +307,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 28,
-      patient_id: 8,
+      patient_id: 14,
       priority: 3,
       alarm: 'Patient up',
       name: 'Catelyn Stark',
@@ -305,7 +317,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 29,
-      patient_id: 9,
+      patient_id: 1,
       priority: 1,
       alarm: 'Acoustic',
       name: 'Brandon Stark',
@@ -315,7 +327,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 30,
-      patient_id: 10,
+      patient_id: 2,
       priority: 2,
       alarm: 'Fire',
       name: 'Viserys Targaryan',
@@ -325,7 +337,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 31,
-      patient_id: 11,
+      patient_id: 3,
       priority: 2,
       alarm: 'Faulty Sensor',
       name: 'Khal Drogo',
@@ -335,7 +347,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 32,
-      patient_id: 12,
+      patient_id: 4,
       priority: 3,
       alarm: 'Patient up',
       name: 'Sansa Stark',
@@ -353,18 +365,25 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     })),
   closeAlarm: (id: number) => {
     return set((state: AlarmState) => ({
-      alarms: state.alarms.filter((alarm: Alarm) => alarm.id !== id),
+      alarms: state.alarms.filter((alarm: AlarmEntryType) => alarm.id !== id),
+      hasTotalChanged: true,
       correspondingPatient: null,
     }));
   },
   sortByField: (id: string) => {
-    const property: string = id.toString().toLowerCase();
-    console.log('store', id);
-    console.log('store', property);
+    const property: keyof AlarmEntryType =
+      id.toLowerCase() as keyof AlarmEntryType;
     return set((state: AlarmState) => ({
-      alarms: state.alarms.sort((a, b) =>
-        a[property].localeCompare(b[property])
-      ),
+      alarms: state.alarms.sort((a: AlarmEntryType, b: AlarmEntryType) => {
+        const valueA = a[property];
+        const valueB = b[property];
+
+        if (typeof valueA === 'string' && typeof valueB === 'string') {
+          return valueA.localeCompare(valueB);
+        }
+
+        return valueA - valueB;
+      }),
     }));
   },
 }));

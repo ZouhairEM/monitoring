@@ -1,9 +1,8 @@
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Patient from '../../types/PatientType';
 import EmptyProfile from '../../assets/img/illustrations/empty-profile.svg';
 
 interface PatientBioProps {
-  profile: Patient['profile'];
+  profile: Patient['profile'] | null;
 }
 
 function PatientBio({ profile }: PatientBioProps) {
@@ -22,7 +21,7 @@ function PatientBio({ profile }: PatientBioProps) {
         </div>
         {profile && (
           <div className="section-header profile-block px-2">
-            <div className="flex flex-col items-center justify-center gap-1 p-2">
+            <div className="flex flex-col items-center justify-center gap-1 py-3 p-2">
               <h2 className="font-extrabold text-primary-200 dark:text-white">
                 {profile.name}
               </h2>

@@ -15,7 +15,8 @@ body {
   background: #eff5f5;
   margin: 1em 0.5em;
   max-width: 1180px;
-  background: url('https://tailwindcss.com/_next/static/media/docs-dark@tinypng.1bbe175e.png') no-repeat
+  background: url('https://tailwindcss.com/_next/static/media/docs-dark@tinypng.1bbe175e.png')
+    no-repeat;
 }
 
 #app {
@@ -51,9 +52,8 @@ main {
 }
 
 .alarm-bio.active {
-  @apply bg-primary-200 dark:bg-black-300;
-  @apply hover:bg-primary-200 dark:bg-black-300;
-  color: white;
+  @apply hover:bg-primary-100 dark:bg-black-300;
+  @apply bg-primary-100 dark:bg-black-300;
 }
 
 .profile-block {
@@ -88,6 +88,7 @@ input[type='checkbox'] {
   @apply border border-primary-200;
   @apply border-black-200 dark:bg-black-300;
   &:checked {
+    @apply bg-primary-200 dark:bg-black-300;
     &:after {
       content: '\2713';
       font-size: 1.5em;
