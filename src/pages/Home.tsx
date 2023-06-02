@@ -11,10 +11,14 @@ import PatientType from '../types/PatientType';
 
 function Home() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
+  const actualAlarms: number[] = useAlarmsStore((state) => state.actualAlarms);
+  const currentIndex: number | null = useAlarmsStore(
+    (state) => state.currentIndex
+  );
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const [clickedAlarm, setClickedAlarm] = useState(activeAlarm);
   const [, setSort] = useState(false);
-
+  console.log({ activeAlarm });
   type State = {
     isPanelVisible: boolean;
     isActive: number;
@@ -74,6 +78,7 @@ function Home() {
     (zustandState) => zustandState.correspondingPatient
   );
 
+
   const lastIndex = state.currentPage * state.alarmsPerPage;
   const alarmsIndex = lastIndex - state.alarmsPerPage;
   const maxPages = Math.ceil(alarms.length / state.alarmsPerPage);
@@ -116,14 +121,18 @@ function Home() {
   }, [state?.isPanelVisible, patient, state.currentPage, maxPages, lastIndex]);
 
   useEffect(() => {
-    if (activeAlarm > lastIndex && activeAlarm <= alarms?.length) {
+    if (
+      currentIndex &&
+      currentIndex + 1 > lastIndex &&
+      currentIndex + 1 <= actualAlarms?.length
+    ) {
       dispatch({
         type: 'set_current_page',
         setCurrentPage: state.currentPage + 1,
       });
       dispatch({ type: 'is_active', setActive: state.isActive + 1 });
     }
-    if (activeAlarm !== 0 && lastIndex - state.alarmsPerPage >= activeAlarm) {
+    if (currentIndex && lastIndex - state.alarmsPerPage >= currentIndex + 1) {
       dispatch({
         type: 'set_current_page',
         setCurrentPage: state.currentPage - 1,
@@ -133,7 +142,7 @@ function Home() {
   }, [
     alarms,
     lastIndex,
-    activeAlarm,
+    currentIndex,
     state.currentPage,
     state.alarmsPerPage,
     alarmsIndex,
@@ -190,8 +199,9 @@ function Home() {
     currentAlarms.push(
       <AlarmBio
         key={entry.id}
-        index={entry.id}
+        entryId={entry.id}
         entry={entry}
+        index={i}
         onToggle={handleSelectAlarm}
       />
     );

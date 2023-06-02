@@ -16,35 +16,25 @@ function ControlPanel({
   onSelectAlarm,
 }: ControlPanelProps) {
   const alarms = useAlarmsStore((state) => state.alarms);
+  const setActualAlarms = useAlarmsStore((state) => state.setActualAlarms);
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const overrideActive = useAlarmsStore((state) => state.setActive);
   const setPrevious = useAlarmsStore((state) => state.setPrevious);
   const setNext = useAlarmsStore((state) => state.setNext);
+  const currentIndex = useAlarmsStore((state) => state.currentIndex);
+  const setIndex = useAlarmsStore((state) => state.setIndex);
   const findPatient = useAlarmsStore((state) => state.findPatient);
-  const [areAlarmsDifferent, setIsNumberOfAlarmsDifferent] = useState(false);
-  const storedNumberOfAlarms = sessionStorage.getItem('alarms');
+  
   const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
 
   useEffect(() => {
     if (alarms.length !== 0) {
-      sessionStorage.setItem('alarms', alarms.length.toString());
-
-      const ids = alarms.map((alarm) => alarm.id);
-      setAvailableAlarmsById(ids);
+      const AlarmIds = alarms.map((alarm) => alarm.id);
+      setAvailableAlarmsById(AlarmIds);
+      setActualAlarms(AlarmIds);
     }
   }, [alarms]);
-
-  useEffect(() => {
-    if (alarms.length !== 0 && storedNumberOfAlarms) {
-      if (+storedNumberOfAlarms !== alarms.length) {
-        setIsNumberOfAlarmsDifferent(true);
-        sessionStorage.setItem('alarms', alarms.length.toString());
-      } else {
-        setIsNumberOfAlarmsDifferent(false);
-      }
-    }
-  }, [alarms, areAlarmsDifferent, storedNumberOfAlarms]);
 
   const handleCloseAlarmSelection = (activeAlarmID: number) => {
     sessionStorage.setItem('alarms', alarms.length.toString());
@@ -52,29 +42,50 @@ function ControlPanel({
     onSelectAlarm(activeAlarmID);
 
     setAvailableAlarmsById((prevAvailableAlarmsById) => {
-      const updatedAlarms = prevAvailableAlarmsById.filter(
+      const availableAlarms = prevAvailableAlarmsById.filter(
         (alarmId) => +alarmId !== +activeAlarmID
       );
-      return [...updatedAlarms];
+      return [...availableAlarms];
     });
   };
 
-  const [current, setCurrent] = useState(1);
-  const next = availableAlarmsById.includes(current)
-    ? availableAlarmsById[
-        (availableAlarmsById.indexOf(current) + 1) % availableAlarmsById.length
-      ]
-    : null;
+  const handleAlarmShuffle = (direction: string) => {
+    let current = 1;
+    let conditionalIndex = 1;
+    let closestElement: number | undefined;
 
-  const handleNextAlarmSelection = () => {
-    setNext();
-    setClickedAlarm(activeAlarm + 1);
-    findPatient(activeAlarm + 1);
+    if (direction === 'prev') {
+      current = activeAlarm - 1;
+      // eslint-disable-next-line prefer-destructuring
+      closestElement = availableAlarmsById
+        .filter((element) => element < current)
+        .sort((a, b) => b - a)[0];
+      setPrevious();
+      if (currentIndex) {
+        conditionalIndex = currentIndex - 1;
+      }
+    } else if (direction === 'next') {
+      current = activeAlarm + 1;
+      if (currentIndex) {
+        conditionalIndex = currentIndex + 1;
+      }
+      closestElement = availableAlarmsById.find((id) => id > activeAlarm + 1);
+      setNext();
+    }
 
-    // if (next) {
-    //   overrideActive(next);
-    //   setCurrent(next);
-    // }
+    if (closestElement && current && conditionalIndex) {
+      if (availableAlarmsById.includes(current)) {
+        overrideActive(current);
+        findPatient(current);
+        setClickedAlarm(current);
+        setIndex(conditionalIndex);
+      } else {
+        overrideActive(closestElement);
+        findPatient(current);
+        setClickedAlarm(current);
+        setIndex(conditionalIndex);
+      }
+    }
   };
 
   return (
@@ -100,16 +111,12 @@ function ControlPanel({
             className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
             onClick={() => {
               if (activeAlarm >= 2) {
-                setPrevious();
-                setClickedAlarm(activeAlarm - 1);
-                findPatient(activeAlarm - 1);
+                handleAlarmShuffle('prev');
               }
             }}
             onKeyDown={() => {
               if (activeAlarm >= 2) {
-                setPrevious();
-                setClickedAlarm(activeAlarm - 1);
-                findPatient(activeAlarm - 1);
+                handleAlarmShuffle('prev');
               }
             }}
           >
@@ -122,12 +129,12 @@ function ControlPanel({
             className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
             onClick={() => {
               if (activeAlarm + 1 <= alarms?.length) {
-                handleNextAlarmSelection();
+                handleAlarmShuffle('next');
               }
             }}
             onKeyDown={() => {
               if (activeAlarm + 1 <= alarms?.length) {
-                handleNextAlarmSelection();
+                handleAlarmShuffle('next');
               }
             }}
           >

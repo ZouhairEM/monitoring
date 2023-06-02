@@ -8,12 +8,16 @@ import Patient from '../types/PatientType';
 interface AlarmState {
   activeAlarm: number;
   setActive: (by: number) => void;
+  currentIndex: number | null;
+  setIndex: (by: number) => void;
   setPrevious: () => void;
   setNext: () => void;
   hasTotalChanged: boolean;
   correspondingPatient: Patient[] | null;
   patients: Patient[];
   alarms: AlarmEntryType[];
+  setActualAlarms: (value: number[]) => void;
+  actualAlarms: number[] | [];
   findPatient: (id: number) => void;
   sortByField: (id: string) => void;
   closeAlarm: (id: number) => void;
@@ -22,7 +26,17 @@ interface AlarmState {
 
 const useAlarmsStore = create<AlarmState>((set) => ({
   activeAlarm: 0,
-  setActive: (id) => set(() => ({ activeAlarm: id })),
+  setActive: (id) =>
+    set((state) => ({
+      activeAlarm: state.alarms.filter((alarm) => alarm.id === id)[0]
+        .patient_id,
+    })),
+  setIndex: (index) =>
+    set(() => ({
+      currentIndex: index,
+    })),
+  setActualAlarms: (value) => set(() => ({ actualAlarms: value })),
+  currentIndex: null,
   clickedAlarm: null,
   setPrevious: () =>
     set((state) => ({
@@ -177,7 +191,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     },
     {
       id: 15,
-      patient_id: 1,
+      patient_id: 2,
       priority: 2,
       alarm: 'Faulty Sensor',
       name: 'Jon Snow',
@@ -356,6 +370,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       room: '14',
     },
   ],
+  actualAlarms: [],
   patients,
   findPatient: (id: number) =>
     set((state: AlarmState) => ({
