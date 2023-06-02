@@ -5,16 +5,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useAlarmsStore from '../../store/AlarmsStore';
 
 interface ControlPanelProps {
-  clickedAlarm: number;
   onSelectAlarm: (event: number) => void;
   setClickedAlarm: (event: number) => void;
 }
 
-function ControlPanel({
-  clickedAlarm,
-  setClickedAlarm,
-  onSelectAlarm,
-}: ControlPanelProps) {
+function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
   const alarms = useAlarmsStore((state) => state.alarms);
   const setActualAlarms = useAlarmsStore((state) => state.setActualAlarms);
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
@@ -25,7 +20,8 @@ function ControlPanel({
   const currentIndex = useAlarmsStore((state) => state.currentIndex);
   const setIndex = useAlarmsStore((state) => state.setIndex);
   const findPatient = useAlarmsStore((state) => state.findPatient);
-  
+  const setLegalClick = useAlarmsStore((state) => state.setLegalClick);
+
   const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
 
   useEffect(() => {
@@ -40,7 +36,7 @@ function ControlPanel({
     sessionStorage.setItem('alarms', alarms.length.toString());
     closeAlarm(activeAlarmID);
     onSelectAlarm(activeAlarmID);
-
+    setIndex(0);
     setAvailableAlarmsById((prevAvailableAlarmsById) => {
       const availableAlarms = prevAvailableAlarmsById.filter(
         (alarmId) => +alarmId !== +activeAlarmID
@@ -53,6 +49,7 @@ function ControlPanel({
     let current = 1;
     let conditionalIndex = 1;
     let closestElement: number | undefined;
+    setLegalClick(true);
 
     if (direction === 'prev') {
       current = activeAlarm - 1;
@@ -81,7 +78,7 @@ function ControlPanel({
         setIndex(conditionalIndex);
       } else {
         overrideActive(closestElement);
-        findPatient(current);
+        findPatient(closestElement);
         setClickedAlarm(current);
         setIndex(conditionalIndex);
       }
@@ -128,12 +125,18 @@ function ControlPanel({
             tabIndex={0}
             className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
             onClick={() => {
-              if (activeAlarm + 1 <= alarms?.length) {
+              if (
+                activeAlarm !==
+                availableAlarmsById?.[availableAlarmsById.length - 1]
+              ) {
                 handleAlarmShuffle('next');
               }
             }}
             onKeyDown={() => {
-              if (activeAlarm + 1 <= alarms?.length) {
+              if (
+                activeAlarm !==
+                availableAlarmsById?.[availableAlarmsById.length - 1]
+              ) {
                 handleAlarmShuffle('next');
               }
             }}
