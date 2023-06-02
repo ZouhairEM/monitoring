@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -17,8 +18,64 @@ function ControlPanel({
   const alarms = useAlarmsStore((state) => state.alarms);
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
+  const overrideActive = useAlarmsStore((state) => state.setActive);
   const setPrevious = useAlarmsStore((state) => state.setPrevious);
   const setNext = useAlarmsStore((state) => state.setNext);
+  const findPatient = useAlarmsStore((state) => state.findPatient);
+  const [areAlarmsDifferent, setIsNumberOfAlarmsDifferent] = useState(false);
+  const storedNumberOfAlarms = sessionStorage.getItem('alarms');
+  const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (alarms.length !== 0) {
+      sessionStorage.setItem('alarms', alarms.length.toString());
+
+      const ids = alarms.map((alarm) => alarm.id);
+      setAvailableAlarmsById(ids);
+    }
+  }, [alarms]);
+
+  useEffect(() => {
+    if (alarms.length !== 0 && storedNumberOfAlarms) {
+      if (+storedNumberOfAlarms !== alarms.length) {
+        setIsNumberOfAlarmsDifferent(true);
+        sessionStorage.setItem('alarms', alarms.length.toString());
+      } else {
+        setIsNumberOfAlarmsDifferent(false);
+      }
+    }
+  }, [alarms, areAlarmsDifferent, storedNumberOfAlarms]);
+
+  const handleCloseAlarmSelection = (activeAlarmID: number) => {
+    sessionStorage.setItem('alarms', alarms.length.toString());
+    closeAlarm(activeAlarmID);
+    onSelectAlarm(activeAlarmID);
+
+    setAvailableAlarmsById((prevAvailableAlarmsById) => {
+      const updatedAlarms = prevAvailableAlarmsById.filter(
+        (alarmId) => +alarmId !== +activeAlarmID
+      );
+      return [...updatedAlarms];
+    });
+  };
+
+  const [current, setCurrent] = useState(1);
+  const next = availableAlarmsById.includes(current)
+    ? availableAlarmsById[
+        (availableAlarmsById.indexOf(current) + 1) % availableAlarmsById.length
+      ]
+    : null;
+
+  const handleNextAlarmSelection = () => {
+    setNext();
+    setClickedAlarm(activeAlarm + 1);
+    findPatient(activeAlarm + 1);
+
+    // if (next) {
+    //   overrideActive(next);
+    //   setCurrent(next);
+    // }
+  };
 
   return (
     <section className="section-header dark:bg-black-100">
@@ -28,14 +85,8 @@ function ControlPanel({
       <div className="section-header flex gap-2 p-2 py-3 text-sm">
         <button
           type="button"
-          onClick={() => {
-            closeAlarm(clickedAlarm);
-            onSelectAlarm(clickedAlarm);
-          }}
-          onKeyDown={() => {
-            closeAlarm(clickedAlarm);
-            onSelectAlarm(clickedAlarm);
-          }}
+          onClick={() => handleCloseAlarmSelection(activeAlarm)}
+          onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
           tabIndex={0}
           className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
         >
@@ -51,12 +102,14 @@ function ControlPanel({
               if (activeAlarm >= 2) {
                 setPrevious();
                 setClickedAlarm(activeAlarm - 1);
+                findPatient(activeAlarm - 1);
               }
             }}
             onKeyDown={() => {
               if (activeAlarm >= 2) {
                 setPrevious();
                 setClickedAlarm(activeAlarm - 1);
+                findPatient(activeAlarm - 1);
               }
             }}
           >
@@ -69,14 +122,12 @@ function ControlPanel({
             className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
             onClick={() => {
               if (activeAlarm + 1 <= alarms?.length) {
-                setNext();
-                setClickedAlarm(activeAlarm + 1);
+                handleNextAlarmSelection();
               }
             }}
             onKeyDown={() => {
               if (activeAlarm + 1 <= alarms?.length) {
-                setNext();
-                setClickedAlarm(activeAlarm + 1);
+                handleNextAlarmSelection();
               }
             }}
           >

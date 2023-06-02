@@ -368,6 +368,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       alarms: state.alarms.filter((alarm: AlarmEntryType) => alarm.id !== id),
       hasTotalChanged: true,
       correspondingPatient: null,
+      activeAlarm: 0,
     }));
   },
   sortByField: (id: string) => {

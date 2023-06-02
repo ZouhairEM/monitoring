@@ -85,7 +85,7 @@ function Home() {
   );
 
   const handleSelectAlarm = (id: number) => {
-    setClickedAlarm(id+1);
+    setClickedAlarm(id + 1);
     dispatch({ type: 'visibility_control_panel', setPanel: true });
 
     if (!state.isPanelVisible) {
@@ -186,10 +186,11 @@ function Home() {
   ) {
     const entry = alarms[i];
     if (!entry) break;
+
     currentAlarms.push(
       <AlarmBio
         key={entry.id}
-        index={i}
+        index={entry.id}
         entry={entry}
         onToggle={handleSelectAlarm}
       />

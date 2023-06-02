@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import AlarmInfoType from '../../types/AlarmInfoType';
+import PatientProfileType from '../../types/PatientProfileType';
 
-interface AlarmInfoProps {
-  alarm: AlarmInfoType;
+interface PatientProfileProps {
+  alarm: PatientProfileType;
 }
 
-function AlarmInfo({ alarm }: AlarmInfoProps) {
+function PatientProfile({ alarm }: PatientProfileProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
@@ -69,4 +69,4 @@ function AlarmInfo({ alarm }: AlarmInfoProps) {
   );
 }
 
-export default AlarmInfo;
+export default PatientProfile;

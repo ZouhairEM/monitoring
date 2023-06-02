@@ -24,7 +24,7 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
     if (id !== activeAlarm) {
       onToggle(index);
       findPatient(id);
-      setActive(index+1);
+      setActive(index);
     } else {
       setDisabled(true);
     }
@@ -72,7 +72,7 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
           checked={entry.id === activeAlarm && !disabled}
           readOnly
         />
-        <div>#{index + 1}</div>
+        <div>#{index}</div>
       </div>
       <div className="text-right">{handlePriority(entry.priority)}</div>
       <div className="col-span-3 text-right text-sm">
