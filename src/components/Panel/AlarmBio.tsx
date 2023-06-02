@@ -10,21 +10,24 @@ import useAlarmsStore from '../../store/AlarmsStore';
 
 interface AlarmBioProps {
   entry: AlarmEntry;
-  index: number;
+  entryId: number;
   onToggle: (event: number) => void;
+  index: number;
 }
 
-function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
+function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   const [disabled, setDisabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const findPatient = useAlarmsStore((state) => state.findPatient);
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const setActive = useAlarmsStore((state) => state.setActive);
+  const setIndex = useAlarmsStore((state) => state.setIndex);
   const makeActivePatient = (id: number) => {
     if (id !== activeAlarm) {
-      onToggle(index);
+      onToggle(entryId);
       findPatient(id);
-      setActive(index+1);
+      setActive(entryId);
+      setIndex(index);
     } else {
       setDisabled(true);
     }
@@ -72,7 +75,7 @@ function AlarmBio({ entry, index, onToggle }: AlarmBioProps) {
           checked={entry.id === activeAlarm && !disabled}
           readOnly
         />
-        <div>#{index + 1}</div>
+        <div>#{entryId}</div>
       </div>
       <div className="text-right">{handlePriority(entry.priority)}</div>
       <div className="col-span-3 text-right text-sm">

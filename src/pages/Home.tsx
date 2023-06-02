@@ -11,6 +11,12 @@ import PatientType from '../types/PatientType';
 
 function Home() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
+  const legalClick = useAlarmsStore((state) => state.legalClick);
+  const setLegalClick = useAlarmsStore((state) => state.setLegalClick);
+  const actualAlarms: number[] = useAlarmsStore((state) => state.actualAlarms);
+  const currentIndex: number | null = useAlarmsStore(
+    (state) => state.currentIndex
+  );
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const [clickedAlarm, setClickedAlarm] = useState(activeAlarm);
   const [, setSort] = useState(false);
@@ -76,7 +82,7 @@ function Home() {
 
   const lastIndex = state.currentPage * state.alarmsPerPage;
   const alarmsIndex = lastIndex - state.alarmsPerPage;
-  const maxPages = Math.ceil(alarms.length / state.alarmsPerPage);
+  const maxPages = Math.ceil(actualAlarms.length / state.alarmsPerPage);
   const pageNums = [];
   const currentAlarms = [];
 
@@ -85,7 +91,7 @@ function Home() {
   );
 
   const handleSelectAlarm = (id: number) => {
-    setClickedAlarm(id+1);
+    setClickedAlarm(id + 1);
     dispatch({ type: 'visibility_control_panel', setPanel: true });
 
     if (!state.isPanelVisible) {
@@ -108,22 +114,33 @@ function Home() {
     }
     if (state?.isPanelVisible) {
       dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
-    } else if (state.currentPage === maxPages) {
-      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
+      if (state.currentPage === maxPages) {
+        dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
+      }
     } else {
       dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 14 });
     }
   }, [state?.isPanelVisible, patient, state.currentPage, maxPages, lastIndex]);
 
   useEffect(() => {
-    if (activeAlarm > lastIndex && activeAlarm <= alarms?.length) {
+    if (
+      legalClick &&
+      currentIndex &&
+      currentIndex + 1 > lastIndex &&
+      currentIndex + 1 <= actualAlarms?.length
+    ) {
       dispatch({
         type: 'set_current_page',
         setCurrentPage: state.currentPage + 1,
       });
       dispatch({ type: 'is_active', setActive: state.isActive + 1 });
     }
-    if (activeAlarm !== 0 && lastIndex - state.alarmsPerPage >= activeAlarm) {
+
+    if (
+      legalClick &&
+      currentIndex &&
+      lastIndex - state.alarmsPerPage >= currentIndex + 1
+    ) {
       dispatch({
         type: 'set_current_page',
         setCurrentPage: state.currentPage - 1,
@@ -132,11 +149,14 @@ function Home() {
     }
   }, [
     alarms,
-    lastIndex,
-    activeAlarm,
+    legalClick,
+    currentIndex,
     state.currentPage,
     state.alarmsPerPage,
     alarmsIndex,
+    actualAlarms?.length,
+    state.isActive,
+    lastIndex,
   ]);
 
   const handleSortByField = (id: string) => {
@@ -145,6 +165,7 @@ function Home() {
   };
 
   const changePage = (e: { currentTarget: { id: string | number } }) => {
+    setLegalClick(false);
     dispatch({ type: 'is_active', setActive: +e.currentTarget.id });
     dispatch({ type: 'set_current_page', setCurrentPage: +e.currentTarget.id });
   };
@@ -186,11 +207,13 @@ function Home() {
   ) {
     const entry = alarms[i];
     if (!entry) break;
+
     currentAlarms.push(
       <AlarmBio
         key={entry.id}
-        index={i}
+        entryId={entry.id}
         entry={entry}
+        index={i}
         onToggle={handleSelectAlarm}
       />
     );
@@ -295,7 +318,6 @@ function Home() {
             }`}
           >
             <ControlPanel
-              clickedAlarm={clickedAlarm}
               setClickedAlarm={setClickedAlarm}
               onSelectAlarm={handleSelectAlarm}
             />
