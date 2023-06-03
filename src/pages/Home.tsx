@@ -1,4 +1,5 @@
 import { useState, useEffect, useReducer, Dispatch } from 'react';
+import TagIcon from '@mui/icons-material/Tag';
 import useAlarmsStore from '../store/AlarmsStore';
 import SideBar from '../components/SideBar';
 import PatientBio from '../components/Panel/PatientBio';
@@ -18,7 +19,7 @@ function Home() {
     (state) => state.currentIndex
   );
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
-  const [clickedAlarm, setClickedAlarm] = useState(activeAlarm);
+  const [, setClickedAlarm] = useState(activeAlarm);
   const [, setSort] = useState(false);
 
   type State = {
@@ -190,8 +191,12 @@ function Home() {
           tabIndex={0}
         >
           <h5
-            className={`rounded bg-primary-200 px-3 py-1 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 
-            ${index === state?.isActive ? 'bg-primary-300' : ''}`}
+            className={`rounded bg-primary-200 px-3 py-1 text-center font-medium text-white  hover:bg-primary-300 dark:bg-black-200 dark:text-grey
+            ${
+              index === state?.isActive
+                ? 'bg-primary-300 dark:bg-primary-300 dark:text-white'
+                : ''
+            }`}
           >
             {index}
           </h5>
@@ -230,10 +235,8 @@ function Home() {
 
   return (
     <div className="flex flex-col gap-2 sm:flex-row">
-      <div className="section-header section-footer bg-primary-200 dark:bg-black-100">
-        <SideBar />
-      </div>
-      <main className="grid w-full grid-cols-9 gap-2">
+      <SideBar />
+      <main className="grid w-full grid-cols-9 gap-2 lg:overflow-hidden">
         <section className="section-header section-footer col-span-12 bg-white drop-shadow-md dark:bg-black-100 sm:col-span-2 ">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
@@ -245,7 +248,7 @@ function Home() {
           ) : (
             <PatientBio profile={patient} />
           )}
-          <div className="noscrollbar flex flex-col gap-1 overflow-y-scroll px-2">
+          <div className="noscrollbar flex flex-col gap-1 overflow-y-scroll px-2 pb-2 sm:pb-0">
             {patient &&
               patient.map((patientInfo: PatientType) => (
                 <HealthCare
@@ -265,17 +268,31 @@ function Home() {
         <div className="col-span-12 flex flex-col justify-between gap-2 sm:col-span-7">
           <div className="section-header section-footer flex h-full flex-col bg-white drop-shadow-md">
             <div
-              className={`section-header grid grid-cols-12 gap-2 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white drop-shadow-md dark:bg-black-200 ${
+              className={`section-header grid grid-cols-6 gap-2 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white drop-shadow-md dark:bg-black-200 md:grid-cols-12 ${
                 state?.isPanelVisible ? 'pr-4' : ''
               }`}
             >
+              <span className="hidden md:block">
+                <TagIcon
+                  className="dark:text-grey"
+                  style={{ fontSize: '16px' }}
+                />
+              </span>
               {entryTypes.map((entryType) => (
                 <div
-                  className={`flex items-center justify-end gap-2 font-bold 
-                    ${entryType === 'Priority' ? 'col-span-2' : ''} 
-                    ${entryType === 'Alarm' ? 'col-span-3' : ''} 
-                    ${entryType === 'Patient' ? 'col-span-3' : ''} 
-                    ${entryType === 'Status' ? 'col-span-2' : ''}
+                  className={`flex items-center justify-end gap-2 font-bold dark:text-grey
+                    ${
+                      entryType === 'Priority' ? 'col-span-2 md:col-span-1' : ''
+                    } 
+                    ${entryType === 'Alarm' ? 'col-span-2 md:col-span-3' : ''} 
+                    ${
+                      entryType === 'Patient' ? 'col-span-2 md:col-span-3' : ''
+                    } 
+                    ${entryType === 'Alarm' ? 'col-span-2 md:col-span-3' : ''} 
+                    ${entryType === 'Time' ? 'col-span-2 md:col-span-1' : ''} 
+                    ${entryType === 'Status' ? 'col-span-2 md:col-span-2' : ''}
+                    } 
+                    ${entryType === 'Room' ? 'col-span-2 md:col-span-1' : ''}
                   `}
                   key={entryType}
                   onClick={() => handleSortByField(entryType)}
@@ -285,7 +302,7 @@ function Home() {
                 >
                   {entryType}
                   <svg
-                    className="h-4 w-4"
+                    className="down-chevron h-4 w-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -301,10 +318,13 @@ function Home() {
                 </div>
               ))}
             </div>
-            <div className="flex h-full flex-col justify-between dark:bg-black-100 dark:text-white">
+
+            <div className="flex h-full flex-col justify-between dark:bg-black-100 dark:text-grey">
               <div
-                className={`alarm-grid my-3 ${
-                  state?.isPanelVisible ? 'responsive-client-list' : ''
+                className={`alarm-grid my-3 pb-4 sm:pb-0 ${
+                  state?.isPanelVisible
+                    ? 'overflow-auto md:overflow-hidden'
+                    : ''
                 }`}
               >
                 {currentAlarms}

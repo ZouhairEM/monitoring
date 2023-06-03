@@ -10,7 +10,7 @@ interface AlarmState {
   setActive: (by: number) => void;
   currentIndex: number | null;
   legalClick: boolean;
-  setLegalClick: (by: value) => void;
+  setLegalClick: (value: boolean) => void;
   setIndex: (by: number) => void;
   setPrevious: () => void;
   setNext: () => void;

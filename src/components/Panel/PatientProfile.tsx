@@ -15,7 +15,7 @@ function PatientProfile({ alarm }: PatientProfileProps) {
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold uppercase text-primary-200 transition duration-200 dark:border-black-200 dark:text-white"
+          className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold uppercase text-primary-200 transition duration-200 dark:border-black-200 dark:text-grey"
         >
           Alarm info
           {alarm && !isCollapsed && (
@@ -56,10 +56,10 @@ function PatientProfile({ alarm }: PatientProfileProps) {
           alarm &&
           Object.entries(alarm).map(([name, value]) => (
             <div key={name} className="mb-1 grid grid-cols-2">
-              <div className="text-xs font-bold uppercase text-primary-200 transition duration-200 dark:text-white">
+              <div className="text-xs font-bold uppercase text-primary-200 transition duration-200 dark:text-grey">
                 {name}
               </div>
-              <div className="text-xs text-black-100 transition duration-200 dark:text-white">
+              <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
                 {value}
               </div>
             </div>

@@ -17,7 +17,7 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
           tabIndex={0}
           className={`${
             !isCollapsed ? 'mb-4' : ''
-          } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-black-200 dark:text-white`}
+          } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey`}
         >
           Healthcare Info
           {!isCollapsed && (
@@ -59,18 +59,23 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
           (healthCare ? (
             <>
               {Object.entries(healthCare).map(([name, value]) => (
-                <div key={name} className="mb-1 grid grid-cols-2">
-                  <div className="text-xs font-bold capitalize text-primary-200 transition duration-200 dark:text-white">
+                <div
+                  key={name}
+                  className={`mb-1 grid grid-cols-2 text-center sm:text-left ${
+                    isCollapsed ? 'show' : 'hide'
+                  }`}
+                >
+                  <div className="text-xs font-bold capitalize text-primary-200 transition duration-200 dark:text-grey">
                     {name}
                   </div>
-                  <div className="text-xs text-black-100 transition duration-200 dark:text-white">
+                  <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
                     {value}
                   </div>
                 </div>
               ))}
             </>
           ) : (
-            <div className="dark:text-white">No alarm has been selected</div>
+            <div className="dark:text-grey">No alarm has been selected</div>
           ))}
       </div>
     </div>

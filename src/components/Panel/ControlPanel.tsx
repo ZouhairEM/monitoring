@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -30,7 +30,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
       setAvailableAlarmsById(AlarmIds);
       setActualAlarms(AlarmIds);
     }
-  }, [alarms]);
+  }, [alarms, setActualAlarms]);
 
   const handleCloseAlarmSelection = (activeAlarmID: number) => {
     sessionStorage.setItem('alarms', alarms.length.toString());
@@ -87,25 +87,25 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
 
   return (
     <section className="section-header dark:bg-black-100">
-      <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200">
+      <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200 dark:text-grey">
         Control Options
       </div>
-      <div className="section-header flex gap-2 p-2 py-3 text-sm">
+      <div className="section-header flex flex-col gap-2 p-2 py-3 text-sm sm:flex-row">
         <button
           type="button"
           onClick={() => handleCloseAlarmSelection(activeAlarm)}
           onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
           tabIndex={0}
-          className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
+          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey"
         >
           Close alarm
           <CloseIcon style={{ height: '16px' }} />
         </button>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
           <button
             type="button"
             tabIndex={0}
-            className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
+            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey"
             onClick={() => {
               if (activeAlarm >= 2) {
                 handleAlarmShuffle('prev');
@@ -118,12 +118,12 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
             }}
           >
             Previous alarm
-            <ArrowBackIosNewIcon style={{ height: '16px' }} />
+            <ArrowBackIosNewIcon style={{ height: '13px' }} />
           </button>
           <button
             type="button"
             tabIndex={0}
-            className="flex items-center justify-center gap-2 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200"
+            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey"
             onClick={() => {
               if (
                 activeAlarm !==
@@ -141,7 +141,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
               }
             }}
           >
-            <ArrowForwardIosIcon style={{ height: '16px' }} />
+            <ArrowForwardIosIcon style={{ height: '13px' }} />
             Next alarm
           </button>
         </div>

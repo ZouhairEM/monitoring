@@ -7,15 +7,13 @@ import useDarkMode from './hooks/useDarkMode';
 function App() {
   useDarkMode();
   return (
-    <>
+    <div className="container font-open-sans">
       <NavBar />
-      <div className="container font-open-sans">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
   );
 }
 

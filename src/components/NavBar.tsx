@@ -23,44 +23,49 @@ function NavBar() {
   }, [hasTotalChanged]);
 
   return (
-    <nav className="section-header section-footer mb-2 flex items-center justify-between bg-primary-300 px-3 py-2 text-base text-white dark:bg-black-100 sm:grid-cols-6">
+    <nav className="section-header section-footer mb-2 flex flex-col items-center justify-between gap-2 bg-primary-300 px-3 py-2 text-base text-white dark:bg-black-100 sm:grid-cols-6 md:mt-0 md:flex-row md:gap-0 lg:flex">
       <div className="flex gap-2">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center gap-2 dark:text-grey sm:flex-row">
           <p>Monitor App</p>
-          <p>-</p>
-          <p className="text-sm">
+          <p className="hidden sm:block">-</p>
+          <p className="text-center text-sm sm:text-left">
             A <i>simulated </i>
             dashboard for healthcare workers to monitor patient activity
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col-reverse items-center gap-2 pb-2 sm:flex-row sm:gap-6 sm:pb-0">
         <div
-          className="flex items-center justify-center rounded  bg-white px-2 text-sm font-semibold text-primary-200 dark:bg-black-200 dark:text-white"
+          className="flex items-center justify-center rounded  bg-white px-2 text-sm font-semibold text-primary-200 dark:bg-black-200 dark:text-grey"
           style={{ height: '26px' }}
         >
           <NotificationsIcon
             style={{ height: `${hasTotalChanged ? '32px' : '20px'}` }}
           />
           <span>
-            <span className="text-sm font-bold">x{alarms?.length}</span> Active Alarms
+            <span className="text-sm font-bold">x{alarms?.length}</span> Active
+            Alarms
           </span>
         </div>
         <div className="flex items-center justify-between gap-4 text-sm">
-          <div className="flex gap-4">
+          <div className="flex gap-2 dark:text-grey  sm:gap-4">
             <span>John Doe</span>
             <span>|</span>
             <span>Healthcare Provider</span>
           </div>
-          <AccountCircleIcon />
-        </div>
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setTheme(colorTheme)}
-          onKeyDown={() => setTheme(colorTheme)}
-        >
-          {colorTheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+          <AccountCircleIcon className="dark:text-grey" />
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => setTheme(colorTheme)}
+            onKeyDown={() => setTheme(colorTheme)}
+          >
+            {colorTheme === 'light' ? (
+              <DarkModeIcon className="dark:text-grey" />
+            ) : (
+              <LightModeIcon />
+            )}
+          </div>
         </div>
       </div>
     </nav>
