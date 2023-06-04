@@ -19,10 +19,10 @@ function Home() {
   const currentIndex: number | null = useSettingsStore(
     (state) => state.currentIndex
   );
+
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
   const [, setSort] = useState(false);
-
   type State = {
     isPanelVisible: boolean;
     isActive: number;

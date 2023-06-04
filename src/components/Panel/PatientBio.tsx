@@ -1,5 +1,7 @@
-import Patient from '../../types/PatientType';
+import MaleIcon from '@mui/icons-material/Male';
+import FemaleIcon from '@mui/icons-material/Female';
 import EmptyProfile from '../../assets/img/illustrations/EmptyProfile';
+import Patient from '../../types/PatientType';
 
 interface PatientBioProps {
   profile: Patient['profile'] | null;
@@ -56,7 +58,13 @@ function PatientBio({ profile }: PatientBioProps) {
                     Gender
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="dark:bg-black-100">{profile.gender}</span>
+                    <span className="dark:bg-black-100">
+                      {profile.gender === 'Male' ? (
+                        <MaleIcon style={{ fontSize: '17px' }} />
+                      ) : (
+                        <FemaleIcon style={{ fontSize: '17px' }} />
+                      )}
+                    </span>
                   </div>
                 </div>
                 <div>

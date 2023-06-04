@@ -7,7 +7,7 @@ const Patients = [
       room: '1',
       date_of_birth: '11-11-2000',
       age: 20,
-      gender: 'male',
+      gender: 'Male',
       enroll_date: '11-11-2000',
     },
     emergency_contact: {
@@ -19,20 +19,20 @@ const Patients = [
     },
     healthcare: {
       plan: 'None',
-      diagnosis: 'X',
+      diagnosis: 'Dwarfism',
       provider: 'None',
     },
   },
   {
     profile: {
       id: 2,
-      name: 'Danaerys Targaryan',
-      photo: 'daenerystargaryan.jpg',
+      name: 'Daenerys Targaryen',
+      photo: 'daenerystargaryen.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Female',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -55,7 +55,7 @@ const Patients = [
       room: '2',
       date_of_birth: '11-11-2001',
       age: 10,
-      gender: 'female',
+      gender: 'Male',
       enroll_date: '11-11-2001',
     },
     emergency_contact: {
@@ -74,12 +74,13 @@ const Patients = [
   {
     profile: {
       id: 4,
-      name: 'Eddard Stark',
+      name: 'Tywin Lannister',
+      photo: 'tywinlannister.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
-      age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
+      age: 50,
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -98,11 +99,12 @@ const Patients = [
     profile: {
       id: 5,
       name: 'Cercei Lannister',
+      photo: 'cerceilannister.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Female',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -120,12 +122,13 @@ const Patients = [
   {
     profile: {
       id: 6,
-      name: 'Tywin Lannister',
+      name: 'Jaime Lannister',
+      photo: 'jaimelannister.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -144,11 +147,12 @@ const Patients = [
     profile: {
       id: 7,
       name: 'Samwell Tarly',
+      photo: 'samwelltarly.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -166,12 +170,13 @@ const Patients = [
   {
     profile: {
       id: 8,
-      name: 'Catelyn Stark',
+      name: 'Joffrey Baratheon',
+      photo: 'joffreybaratheon.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -189,12 +194,13 @@ const Patients = [
   {
     profile: {
       id: 9,
-      name: 'Brandon Stark',
+      name: 'Bran Stark',
+      photo: 'branstark.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -212,12 +218,13 @@ const Patients = [
   {
     profile: {
       id: 10,
-      name: 'Viserys Targaryan',
+      name: 'Sansa Stark',
+      photo: 'sansastark.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Female',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -235,12 +242,13 @@ const Patients = [
   {
     profile: {
       id: 11,
-      name: 'Khal Drogo',
+      name: 'Ygritte',
+      photo: 'ygritte.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Female',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -258,12 +266,13 @@ const Patients = [
   {
     profile: {
       id: 12,
-      name: 'Sansa Stark',
+      name: 'Arya Stark',
+      photo: 'aryastark.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Female',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -281,12 +290,13 @@ const Patients = [
   {
     profile: {
       id: 13,
-      name: 'Stannis Baratheon',
+      name: 'Sandor Clegane',
+      photo: 'sandorclegane.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -305,11 +315,12 @@ const Patients = [
     profile: {
       id: 14,
       name: 'Robb Stark',
+      photo: 'robbstark.jpg',
       room: '2',
-      date_of_birth: 'XX-XX-XXXX',
+      date_of_birth: 'DD-MM-YYYY',
       age: 10,
-      gender: 'female',
-      enroll_date: 'XX-XX-XXXX',
+      gender: 'Male',
+      enroll_date: 'DD-MM-YYYY',
     },
     emergency_contact: {
       name: 'Jane Doe',

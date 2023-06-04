@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import CheckIcon from '@mui/icons-material/Check';
 import HearingIcon from '@mui/icons-material/Hearing';
@@ -18,12 +18,26 @@ interface AlarmBioProps {
 }
 
 function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
+  const [mappedPatient, setMappedPatient] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const findPatient = useAlarmsStore((state) => state.findPatient);
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
+  const findPatient = useAlarmsStore((state) => state.findPatient);
   const setActive = useAlarmsStore((state) => state.setActive);
   const setIndex = useSettingsStore((state) => state.setIndex);
+  const patients = useAlarmsStore((state) => state.patients);
+  const alarms = useAlarmsStore((state) => state.alarms);
+
+  useEffect(() => {
+    setMappedPatient(
+      patients.filter(
+        (patient) =>
+          patient.profile.id ===
+          alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
+      )[0].profile.name
+    );
+  }, [alarms, entry.id, mappedPatient, patients]);
+
   const makeActivePatient = (id: number) => {
     if (id !== activeAlarm) {
       onToggle(entryId);
@@ -159,7 +173,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </span>
       </div>
       <div className="col-span-2 flex flex-col justify-center text-right">
-        {entry.name}
+        {mappedPatient}
       </div>
       <div className="flex flex-col justify-center text-right">
         {entry.time}
