@@ -9,7 +9,6 @@ const Patients = [
       age: 20,
       gender: 'male',
       enroll_date: '11-11-2000',
-      diagnosis: '',
     },
     emergency_contact: {
       name: 'Jaime Lannister',
@@ -20,6 +19,7 @@ const Patients = [
     },
     healthcare: {
       plan: 'None',
+      diagnosis: 'X',
       provider: 'None',
     },
   },
@@ -33,7 +33,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -43,9 +42,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -58,7 +57,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: '11-11-2001',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Sansa Stark',
@@ -68,9 +66,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -82,7 +80,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -92,9 +89,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -106,7 +103,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -116,9 +112,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -130,7 +126,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -140,9 +135,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -154,7 +149,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -164,9 +158,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -178,7 +172,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -188,9 +181,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -202,7 +195,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -212,9 +204,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -226,7 +218,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -236,9 +227,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -250,7 +241,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -260,9 +250,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -274,7 +264,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -284,9 +273,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -298,7 +287,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -308,9 +296,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
   {
@@ -322,7 +310,6 @@ const Patients = [
       age: 10,
       gender: 'female',
       enroll_date: 'XX-XX-XXXX',
-      diagnosis: 'TBC',
     },
     emergency_contact: {
       name: 'Jane Doe',
@@ -332,9 +319,9 @@ const Patients = [
       work_phone: '1234567',
     },
     healthcare: {
-      plan: 'TBC care',
-      Diagnosis: 'TBC treatment',
-      provider: 'EBA',
+      plan: 'None',
+      diagnosis: 'X',
+      provider: 'None',
     },
   },
 ];

@@ -1,6 +1,7 @@
 import { useState, useEffect, useReducer, Dispatch } from 'react';
 import TagIcon from '@mui/icons-material/Tag';
-import useAlarmsStore from '../store/AlarmsStore';
+import useAlarmsStore from '../stores/AlarmsStore';
+import useSettingsStore from '../stores/SettingsStore';
 import SideBar from '../components/SideBar';
 import PatientBio from '../components/Panel/PatientBio';
 import AlarmBio from '../components/Panel/AlarmBio';
@@ -12,13 +13,13 @@ import PatientType from '../types/PatientType';
 
 function Home() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
-  const legalClick = useAlarmsStore((state) => state.legalClick);
-  const setLegalClick = useAlarmsStore((state) => state.setLegalClick);
+  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
+  const legalClick = useSettingsStore((state) => state.legalClick);
   const actualAlarms: number[] = useAlarmsStore((state) => state.actualAlarms);
-  const currentIndex: number | null = useAlarmsStore(
+  const currentIndex: number | null = useSettingsStore(
     (state) => state.currentIndex
   );
-  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
+  const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
   const [, setSort] = useState(false);
 
@@ -268,11 +269,11 @@ function Home() {
         <div className="col-span-12 flex flex-col justify-between gap-2 sm:col-span-7">
           <div className="section-header section-footer flex h-full flex-col bg-white drop-shadow-md">
             <div
-              className={`section-header grid grid-cols-6 gap-2 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white drop-shadow-md dark:bg-black-200 md:grid-cols-12 ${
+              className={`section-header grid grid-cols-6 gap-4 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white drop-shadow-md dark:bg-black-200 md:grid-cols-9 ${
                 state?.isPanelVisible ? 'pr-4' : ''
               }`}
             >
-              <span className="hidden md:block">
+              <span className="hidden items-center justify-end md:flex">
                 <TagIcon
                   className="dark:text-grey"
                   style={{ fontSize: '16px' }}
@@ -280,23 +281,12 @@ function Home() {
               </span>
               {entryTypes.map((entryType) => (
                 <div
-                  className={`flex items-center justify-end gap-2 font-bold dark:text-grey
-                    ${
-                      entryType === 'Priority' ? 'col-span-2 md:col-span-1' : ''
-                    } 
-                    ${entryType === 'Alarm' ? 'col-span-2 md:col-span-3' : ''} 
-                    ${
-                      entryType === 'Patient' ? 'col-span-2 md:col-span-3' : ''
-                    } 
-                    ${entryType === 'Alarm' ? 'col-span-2 md:col-span-3' : ''} 
-                    ${entryType === 'Time' ? 'col-span-2 md:col-span-1' : ''} 
-                    ${entryType === 'Status' ? 'col-span-2 md:col-span-2' : ''}
-                    } 
-                    ${entryType === 'Room' ? 'col-span-2 md:col-span-1' : ''}
-                  `}
+                  className={`flex items-center justify-end gap-2 font-bold dark:text-grey ${
+                    entryType === 'Alarm' || entryType === 'Patient'
+                      ? 'col-span-2'
+                      : ''
+                  }`}
                   key={entryType}
-                  onClick={() => handleSortByField(entryType)}
-                  onKeyDown={() => handleSortByField(entryType)}
                   role="button"
                   tabIndex={0}
                 >

@@ -32,15 +32,13 @@ function PatientBio({ profile }: PatientBioProps) {
               />
             </div>
             <div className="mb-2 p-2 text-center text-sm sm:text-left">
-              <div className="grid grid-cols-2 gap-2 gap-x-5">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <div className="text-xs font-bold text-primary-200 dark:text-grey">
                     Name
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="p-1 dark:bg-black-100">
-                      {profile.name}
-                    </span>
+                    <span className="dark:bg-black-100">{profile.name}</span>
                   </div>
                 </div>
                 <div>
@@ -48,7 +46,7 @@ function PatientBio({ profile }: PatientBioProps) {
                     Date of Birth
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="p-1 dark:bg-black-100">
+                    <span className="dark:bg-black-100">
                       {profile.date_of_birth}
                     </span>
                   </div>
@@ -58,9 +56,7 @@ function PatientBio({ profile }: PatientBioProps) {
                     Gender
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="p-1 dark:bg-black-100">
-                      {profile.gender}
-                    </span>
+                    <span className="dark:bg-black-100">{profile.gender}</span>
                   </div>
                 </div>
                 <div>
@@ -68,7 +64,7 @@ function PatientBio({ profile }: PatientBioProps) {
                     Age
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="p-1 dark:bg-black-100">{profile.age}</span>
+                    <span className="dark:bg-black-100">{profile.age}</span>
                   </div>
                 </div>
                 <div>
@@ -76,7 +72,7 @@ function PatientBio({ profile }: PatientBioProps) {
                     Room
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="p-1 dark:bg-black-100">
+                    <span className="dark:bg-black-100">
                       #{+profile.room < 10 ? `0${profile.room}` : profile.room}
                     </span>
                   </div>

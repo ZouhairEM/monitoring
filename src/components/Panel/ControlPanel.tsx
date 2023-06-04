@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import useAlarmsStore from '../../store/AlarmsStore';
+import useAlarmsStore from '../../stores/AlarmsStore';
+import useSettingsStore from '../../stores/SettingsStore';
 
 interface ControlPanelProps {
   onSelectAlarm: (event: number) => void;
@@ -11,16 +12,16 @@ interface ControlPanelProps {
 
 function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
   const alarms = useAlarmsStore((state) => state.alarms);
+  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
+  const currentIndex = useSettingsStore((state) => state.currentIndex);
   const setActualAlarms = useAlarmsStore((state) => state.setActualAlarms);
   const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
-  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const overrideActive = useAlarmsStore((state) => state.setActive);
   const setPrevious = useAlarmsStore((state) => state.setPrevious);
   const setNext = useAlarmsStore((state) => state.setNext);
-  const currentIndex = useAlarmsStore((state) => state.currentIndex);
-  const setIndex = useAlarmsStore((state) => state.setIndex);
+  const setIndex = useSettingsStore((state) => state.setIndex);
   const findPatient = useAlarmsStore((state) => state.findPatient);
-  const setLegalClick = useAlarmsStore((state) => state.setLegalClick);
+  const setLegalClick = useSettingsStore((state) => state.setLegalClick);
 
   const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
 
@@ -53,10 +54,9 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
 
     if (direction === 'prev') {
       current = activeAlarm - 1;
-      // eslint-disable-next-line prefer-destructuring
-      closestElement = availableAlarmsById
+      [closestElement] = availableAlarmsById
         .filter((element) => element < current)
-        .sort((a, b) => b - a)[0];
+        .sort((a, b) => b - a);
       setPrevious();
       if (currentIndex) {
         conditionalIndex = currentIndex - 1;

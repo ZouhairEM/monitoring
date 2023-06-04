@@ -4,12 +4,20 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import useDarkMode from '../hooks/useDarkMode';
-import useAlarmsStore from '../store/AlarmsStore';
+import useAlarmsStore from '../stores/AlarmsStore';
+import useSettingsStore from '../stores/SettingsStore';
+import Modal from '../composables/Modal';
+
+function ModalContent() {
+  return <div>Modal Content</div>;
+}
 
 function NavBar() {
   const [colorTheme, setTheme] = useDarkMode();
   const alarms = useAlarmsStore((state) => state.alarms);
   const hasTotalChanged = useAlarmsStore((state) => state.hasTotalChanged);
+  const modal = useSettingsStore((state) => state.modal);
+  const setModal = useSettingsStore((state) => state.setModal);
 
   useEffect(() => {
     if (hasTotalChanged) {
@@ -53,7 +61,19 @@ function NavBar() {
             <span>|</span>
             <span>Healthcare Provider</span>
           </div>
-          <AccountCircleIcon className="dark:text-grey" />
+          {modal && (
+            <Modal>
+              <ModalContent />
+            </Modal>
+          )}
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => setModal(true)}
+            onKeyDown={() => setModal(true)}
+          >
+            <AccountCircleIcon className="dark:text-grey" />
+          </div>
           <div
             role="button"
             tabIndex={0}

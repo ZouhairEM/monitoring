@@ -2,7 +2,7 @@ export default interface PatientType {
   profile: {
     id: number;
     name: string;
-    photo: string;
+    photo?: string;
     room: string;
     date_of_birth: string;
     age: number;
@@ -13,11 +13,12 @@ export default interface PatientType {
     name: string;
     relation: string;
     address: string;
-    phone_number: string;
-    work_phone_number: string;
+    private_phone: string;
+    work_phone: string;
   };
   healthcare: {
     plan: string;
     provider: string;
+    diagnosis: string;
   };
 }
