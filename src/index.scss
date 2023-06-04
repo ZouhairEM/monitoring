@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  // outline: solid 0.1px;
+}
+
 body {
   @apply bg-white transition duration-200 dark:bg-black-200;
   @apply dark:bg-primary-300;
@@ -10,6 +14,23 @@ body {
   background: url('https://tailwindcss.com/_next/static/media/docs-dark@tinypng.1bbe175e.png')
     no-repeat;
 }
+
+h1 {
+  @apply text-2xl font-extrabold text-primary-200 dark:text-primary-300;
+}
+
+h2 {
+  @apply text-xl font-bold text-primary-200 dark:text-primary-300;
+}
+
+h3 {
+  @apply text-lg font-bold  dark:text-primary-300;
+}
+
+h4 {
+  @apply text-sm font-bold text-black-200 dark:text-grey;
+}
+
 
 #app {
   font-family: 'Roboto', sans-serif;

@@ -6,7 +6,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 2,
@@ -15,7 +14,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 3,
@@ -24,7 +22,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 4,
@@ -33,7 +30,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 5,
@@ -42,7 +38,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 6,
@@ -51,7 +46,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 7,
@@ -60,7 +54,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 8,
@@ -69,7 +62,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 9,
@@ -78,7 +70,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 10,
@@ -87,7 +78,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 11,
@@ -96,7 +86,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 12,
@@ -105,7 +94,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 13,
@@ -114,7 +102,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 14,
@@ -123,7 +110,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 15,
@@ -132,7 +118,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 16,
@@ -141,7 +126,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 17,
@@ -150,7 +134,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 18,
@@ -159,7 +142,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 19,
@@ -168,7 +150,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 20,
@@ -177,7 +158,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 21,
@@ -186,7 +166,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 22,
@@ -195,7 +174,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 23,
@@ -204,7 +182,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 24,
@@ -213,7 +190,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 25,
@@ -222,7 +198,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 26,
@@ -231,7 +206,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 27,
@@ -240,7 +214,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 28,
@@ -249,7 +222,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
   {
     id: 29,
@@ -258,7 +230,6 @@ const Alarms = [
     alarm: 'Acoustic',
     time: '12:01',
     status: 'resolved',
-    room: '21',
   },
   {
     id: 30,
@@ -267,7 +238,6 @@ const Alarms = [
     alarm: 'Fire',
     time: '12:02',
     status: 'open',
-    room: '36',
   },
   {
     id: 31,
@@ -276,7 +246,6 @@ const Alarms = [
     alarm: 'Help',
     time: '12:02',
     status: 'open',
-    room: '07',
   },
   {
     id: 32,
@@ -285,7 +254,6 @@ const Alarms = [
     alarm: 'Patient up',
     time: '12:05',
     status: 'open',
-    room: '14',
   },
 ];
 

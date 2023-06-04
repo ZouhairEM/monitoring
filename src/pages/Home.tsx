@@ -2,12 +2,12 @@ import { useState, useEffect, useReducer, Dispatch } from 'react';
 import TagIcon from '@mui/icons-material/Tag';
 import useAlarmsStore from '../stores/AlarmsStore';
 import useSettingsStore from '../stores/SettingsStore';
-import SideBar from '../components/SideBar';
-import PatientBio from '../components/Panel/PatientBio';
-import AlarmBio from '../components/Panel/AlarmBio';
-import HealthCare from '../components/Panel/HealthCare';
-import EmergencyContact from '../components/Panel/EmergencyContact';
-import ControlPanel from '../components/Panel/ControlPanel';
+import SideBar from '../components/layout/SideBar';
+import PatientBio from '../components/home/PatientBio';
+import AlarmBio from '../components/home/AlarmBio';
+import HealthCare from '../components/home/HealthCare';
+import EmergencyContact from '../components/home/EmergencyContact';
+import ControlPanel from '../components/home/ControlPanel';
 import AlarmEntryType from '../types/AlarmEntryType';
 import PatientType from '../types/PatientType';
 
@@ -22,7 +22,6 @@ function Home() {
 
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
-  const [, setSort] = useState(false);
   type State = {
     isPanelVisible: boolean;
     isActive: number;
@@ -87,10 +86,6 @@ function Home() {
   const maxPages = Math.ceil(actualAlarms.length / state.alarmsPerPage);
   const pageNums = [];
   const currentAlarms = [];
-
-  const sortByField = useAlarmsStore(
-    (zustandState) => zustandState.sortByField
-  );
 
   const handleSelectAlarm = (id: number) => {
     setClickedAlarm(id + 1);
@@ -161,11 +156,6 @@ function Home() {
     lastIndex,
   ]);
 
-  const handleSortByField = (id: string) => {
-    sortByField(id);
-    setSort(true);
-  };
-
   const changePage = (e: { currentTarget: { id: string | number } }) => {
     setLegalClick(false);
     dispatch({ type: 'is_active', setActive: +e.currentTarget.id });
@@ -192,7 +182,7 @@ function Home() {
           tabIndex={0}
         >
           <h5
-            className={`rounded bg-primary-200 px-3 py-1 text-center font-medium text-white  hover:bg-primary-300 dark:bg-black-200 dark:text-grey
+            className={`rounded bg-primary-200 px-3 py-1 text-center font-medium text-white  hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300
             ${
               index === state?.isActive
                 ? 'bg-primary-300 dark:bg-primary-300 dark:text-white'

@@ -9,18 +9,30 @@ function SideBar() {
     <aside className="section-header section-footer sidebar hidden bg-primary-200 dark:bg-black-100 lg:block">
       <div className="bg-primary flex h-full flex-col justify-between pb-2 text-sm font-semibold text-white">
         <div>
-          <div className="mb-3 flex items-center gap-x-2 rounded-t-lg bg-primary-300 px-4 pb-1 pt-2 dark:bg-black-100">
+          <button
+            type="button"
+            tabIndex={0}
+            className="mb-3 flex items-center gap-x-2 rounded-t-lg bg-primary-300 px-4 pb-1 pt-2 dark:bg-black-100"
+          >
             <CameraIcon />
-            {isCollapsed && <div className=" dark:text-grey">Monitoring</div>}
-          </div>
-          <div className="mb-3 flex items-center gap-x-2 px-4 py-1">
+            {isCollapsed && <div className="dark:text-grey">Monitoring</div>}
+          </button>
+          <button
+            type="button"
+            tabIndex={0}
+            className="mb-3 flex items-center gap-x-2 px-4 py-1"
+          >
             <Grid3x3Icon className="dark:text-grey" />
-            {isCollapsed && <div className=" dark:text-grey">Dashboard</div>}
-          </div>
-          <div className="flex items-center gap-x-2 px-4 py-1">
+            {isCollapsed && <div className="dark:text-grey">Dashboard</div>}
+          </button>
+          <button
+            className="flex items-center gap-x-2 px-4 py-1"
+            type="button"
+            tabIndex={0}
+          >
             <HistoryToggleOffIcon className="dark:text-grey" />
-            {isCollapsed && <div className=" dark:text-grey">History</div>}
-          </div>
+            {isCollapsed && <div className="dark:text-grey">History</div>}
+          </button>
         </div>
         <div
           onClick={() => {

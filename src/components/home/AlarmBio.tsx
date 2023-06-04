@@ -19,6 +19,9 @@ interface AlarmBioProps {
 
 function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   const [mappedPatient, setMappedPatient] = useState<string | null>(null);
+  const [mappedPatientRoom, setMappedPatientRoom] = useState<
+    string | number | null
+  >(null);
   const [disabled, setDisabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
@@ -36,7 +39,14 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
           alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
       )[0].profile.name
     );
-  }, [alarms, entry.id, mappedPatient, patients]);
+    setMappedPatientRoom(
+      patients.filter(
+        (patient) =>
+          patient.profile.id ===
+          alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
+      )[0].profile.room
+    );
+  }, [alarms, entry.id, mappedPatient, mappedPatientRoom, patients]);
 
   const makeActivePatient = (id: number) => {
     if (id !== activeAlarm) {
@@ -202,7 +212,9 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       <div className="flex justify-end">
         <div className="flex items-center">
           <TagIcon style={{ fontSize: '14px' }} />
-          {entryId < 10 ? `0${entryId}` : entryId}
+          {mappedPatientRoom && +mappedPatientRoom < 10
+            ? `0${mappedPatientRoom}`
+            : mappedPatientRoom}
         </div>
       </div>
     </div>

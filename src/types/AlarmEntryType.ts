@@ -5,5 +5,4 @@ export default interface AlarmEntryType {
   patient_id: number;
   time: string;
   status: string;
-  room: string;
 }
