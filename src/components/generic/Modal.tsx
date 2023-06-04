@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import useSettingsStore from '../../stores/SettingsStore';
 
@@ -6,14 +7,29 @@ interface IModal {
 }
 
 function Modal({ children }: IModal) {
+  const modalRef = useRef<HTMLDivElement>(null);
   const setModal = useSettingsStore((state) => state.setModal);
+
+  const closeModalViaBackdrop = (event: any) => {
+    if (
+      modalRef.current &&
+      modalRef.current === (event.target as HTMLDivElement)
+    ) {
+      setModal(false);
+    }
+  };
 
   return (
     <div
+      ref={modalRef}
+      role="button"
+      tabIndex={0}
       className="fixed left-0 top-0 z-10 h-full w-full"
       style={{ backgroundColor: 'rgba(0,0,0, 0.5)' }}
+      onClick={(e: any) => closeModalViaBackdrop(e)}
+      onKeyDown={(e: any) => closeModalViaBackdrop(e)}
     >
-      <div className="absolute left-1/2 top-1/2 z-20 w-1/4 -translate-x-1/2 -translate-y-1/2 transform rounded bg-white p-4 text-black-300  dark:bg-black-100">
+      <div className="absolute left-1/2 top-1/2 z-20 w-1/4 -translate-x-1/2 -translate-y-1/2 transform rounded bg-white p-4 text-black-300  hover:cursor-auto dark:bg-black-100">
         <div className="relative">
           {children}
           <CloseIcon

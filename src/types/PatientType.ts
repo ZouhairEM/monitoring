@@ -3,7 +3,7 @@ export default interface PatientType {
     id: number;
     name: string;
     photo?: string;
-    room: string;
+    room: number;
     date_of_birth: string;
     age: number;
     gender: string;

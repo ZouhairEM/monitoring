@@ -18,7 +18,6 @@ interface AlarmState {
   setPrevious: () => void;
   setNext: () => void;
   closeAlarm: (id: number) => void;
-  sortByField: (id: string) => void;
 }
 
 const useAlarmsStore = create<AlarmState>((set) => ({
@@ -54,22 +53,6 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       hasTotalChanged: true,
       correspondingPatient: null,
       activeAlarm: 0,
-    }));
-  },
-  sortByField: (id: string) => {
-    const property: keyof AlarmEntryType =
-      id.toLowerCase() as keyof AlarmEntryType;
-    return set((state: AlarmState) => ({
-      alarms: state.alarms.sort((a: AlarmEntryType, b: AlarmEntryType) => {
-        const valueA = a[property];
-        const valueB = b[property];
-
-        if (typeof valueA === 'string' && typeof valueB === 'string') {
-          return valueA.localeCompare(valueB);
-        }
-
-        return valueA - valueB;
-      }),
     }));
   },
 }));

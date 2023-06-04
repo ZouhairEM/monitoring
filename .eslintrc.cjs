@@ -18,6 +18,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
+  ignorePatterns: ["/*.*"],
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
