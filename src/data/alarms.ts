@@ -1,11 +1,43 @@
-const Alarms = [
+import AlarmEntryType from '../types/AlarmEntryType';
+
+class RandomAlarmGenerator implements AlarmEntryType {
+  id: number;
+
+  patient_id: number;
+
+  priority: number;
+
+  alarm: string;
+
+  time: string;
+
+  status: string;
+
+  constructor(
+    id: number,
+    patient_id: number,
+    priority: number,
+    alarm: string,
+    time: string,
+    status: string
+  ) {
+    this.id = id;
+    this.patient_id = patient_id;
+    this.priority = priority;
+    this.alarm = alarm;
+    this.time = time;
+    this.status = status;
+  }
+}
+
+const Alarms: AlarmEntryType[] = [
   {
     id: 1,
     patient_id: 1,
     priority: 5,
     alarm: 'Acoustic',
     time: '12:01',
-    status: 'resolved',
+    status: 'Done',
   },
   {
     id: 2,
@@ -13,7 +45,7 @@ const Alarms = [
     priority: 2,
     alarm: 'Fire',
     time: '12:02',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 3,
@@ -21,7 +53,7 @@ const Alarms = [
     priority: 2,
     alarm: 'Help',
     time: '12:02',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 4,
@@ -29,7 +61,7 @@ const Alarms = [
     priority: 1,
     alarm: 'Patient up',
     time: '12:05',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 5,
@@ -37,7 +69,7 @@ const Alarms = [
     priority: 5,
     alarm: 'Acoustic',
     time: '12:01',
-    status: 'resolved',
+    status: 'Done',
   },
   {
     id: 6,
@@ -45,7 +77,7 @@ const Alarms = [
     priority: 2,
     alarm: 'Fire',
     time: '12:02',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 7,
@@ -53,7 +85,7 @@ const Alarms = [
     priority: 2,
     alarm: 'Help',
     time: '12:02',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 8,
@@ -61,7 +93,7 @@ const Alarms = [
     priority: 3,
     alarm: 'Patient up',
     time: '12:05',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 9,
@@ -69,7 +101,7 @@ const Alarms = [
     priority: 1,
     alarm: 'Acoustic',
     time: '12:01',
-    status: 'resolved',
+    status: 'Done',
   },
   {
     id: 10,
@@ -77,7 +109,7 @@ const Alarms = [
     priority: 2,
     alarm: 'Fire',
     time: '12:02',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 11,
@@ -85,7 +117,7 @@ const Alarms = [
     priority: 2,
     alarm: 'Help',
     time: '12:02',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 12,
@@ -93,7 +125,7 @@ const Alarms = [
     priority: 3,
     alarm: 'Patient up',
     time: '12:05',
-    status: 'open',
+    status: 'Open',
   },
   {
     id: 13,
@@ -101,7 +133,7 @@ const Alarms = [
     priority: 4,
     alarm: 'Acoustic',
     time: '12:01',
-    status: 'resolved',
+    status: 'Done',
   },
   {
     id: 14,
@@ -109,152 +141,34 @@ const Alarms = [
     priority: 2,
     alarm: 'Fire',
     time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 15,
-    patient_id: 1,
-    priority: 2,
-    alarm: 'Help',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 16,
-    patient_id: 2,
-    priority: 3,
-    alarm: 'Patient up',
-    time: '12:05',
-    status: 'open',
-  },
-  {
-    id: 17,
-    patient_id: 3,
-    priority: 2,
-    alarm: 'Fire',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 18,
-    patient_id: 4,
-    priority: 2,
-    alarm: 'Help',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 19,
-    patient_id: 5,
-    priority: 3,
-    alarm: 'Patient up',
-    time: '12:05',
-    status: 'open',
-  },
-  {
-    id: 20,
-    patient_id: 6,
-    priority: 1,
-    alarm: 'Acoustic',
-    time: '12:01',
-    status: 'resolved',
-  },
-  {
-    id: 21,
-    patient_id: 7,
-    priority: 1,
-    alarm: 'Fire',
-    time: '12:02',
-    status: 'resolved',
-  },
-  {
-    id: 22,
-    patient_id: 8,
-    priority: 2,
-    alarm: 'Fire',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 23,
-    patient_id: 9,
-    priority: 2,
-    alarm: 'Help',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 24,
-    patient_id: 10,
-    priority: 3,
-    alarm: 'Patient up',
-    time: '12:05',
-    status: 'open',
-  },
-  {
-    id: 25,
-    patient_id: 11,
-    priority: 1,
-    alarm: 'Acoustic',
-    time: '12:01',
-    status: 'resolved',
-  },
-  {
-    id: 26,
-    patient_id: 12,
-    priority: 2,
-    alarm: 'Fire',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 27,
-    patient_id: 13,
-    priority: 2,
-    alarm: 'Help',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 28,
-    patient_id: 14,
-    priority: 3,
-    alarm: 'Patient up',
-    time: '12:05',
-    status: 'open',
-  },
-  {
-    id: 29,
-    patient_id: 1,
-    priority: 1,
-    alarm: 'Acoustic',
-    time: '12:01',
-    status: 'resolved',
-  },
-  {
-    id: 30,
-    patient_id: 2,
-    priority: 2,
-    alarm: 'Fire',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 31,
-    patient_id: 3,
-    priority: 2,
-    alarm: 'Help',
-    time: '12:02',
-    status: 'open',
-  },
-  {
-    id: 32,
-    patient_id: 12,
-    priority: 3,
-    alarm: 'Patient up',
-    time: '12:05',
-    status: 'open',
+    status: 'Open',
   },
 ];
+
+const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+const availableStatuses = ['Open', 'Done'];
+const availableAlarmTypes = ['Acoustic', 'Fire', 'Patient up', 'Help'];
+
+const generatePatientID = (): number =>
+  availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
+const generatePriority = (): number => Math.floor(Math.random() * 5);
+const generateHighestAlarmID = (): number =>
+  Math.max(...Alarms.map((alarm) => alarm.id), 0) + 1;
+const generateAlarmType = (): string =>
+  availableAlarmTypes[Math.floor(Math.random() * availableAlarmTypes.length)];
+const generateStatus = (): string =>
+  availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
+
+for (let i = 1; i < 20; i += 1) {
+  const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
+    generateHighestAlarmID(),
+    generatePatientID(),
+    generatePriority(),
+    generateAlarmType(),
+    '12:02',
+    generateStatus()
+  );
+  Alarms.push(generateAlarm);
+}
 
 export default Alarms;

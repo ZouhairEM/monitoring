@@ -200,7 +200,7 @@ const Patients = [
       date_of_birth: '09-04-1999',
       age: 24,
       gender: 'Male',
-      enroll_date: '10-20-2018',
+      enroll_date: '10-11-2018',
     },
     emergency_contact: {
       name: 'Maester Luwin',

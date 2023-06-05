@@ -189,13 +189,13 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         {entry.time}
       </div>
       <div className="flex flex-col items-end justify-center">
-        {entry.status === 'resolved' ? (
+        {entry.status === 'Done' ? (
           <span className="flex items-center gap-1">
             <CheckIcon
               className="dark:text-grey"
               style={{ height: '15px', opacity: '0.9' }}
             />
-            <p>Done</p>
+            <p>{entry.status}</p>
           </span>
         ) : (
           <span className="flex items-center justify-end gap-1">
@@ -205,7 +205,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
                 opacity: '0.9',
               }}
             />
-            Open
+            {entry.status}
           </span>
         )}
       </div>
