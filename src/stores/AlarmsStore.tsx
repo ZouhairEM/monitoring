@@ -10,23 +10,31 @@ interface AlarmState {
   alarms: AlarmEntryType[];
   actualAlarms: number[] | [];
   activeAlarm: number;
+  closedAlarm: AlarmEntryType | AlarmEntryType[] | null;
   clickedAlarm: AlarmEntryType | null;
   hasTotalChanged: boolean;
+  closedAlarmIndex: number;
   findPatient: (id: number) => void;
   setActualAlarms: (value: number[]) => void;
   setActive: (by: number) => void;
+  setReactiveAlarms: (value: AlarmEntryType) => void;
   setPrevious: () => void;
   setNext: () => void;
   closeAlarm: (id: number) => void;
+  setUndo: () => void;
 }
 
 const useAlarmsStore = create<AlarmState>((set) => ({
   correspondingPatient: null,
   patients,
   alarms,
+  setReactiveAlarms: (alarm: AlarmEntryType) =>
+    set(() => ({ alarms: [alarm, ...alarms] })),
   actualAlarms: [],
   activeAlarm: 0,
   clickedAlarm: null,
+  closedAlarm: null,
+  closedAlarmIndex: 0,
   hasTotalChanged: false,
   findPatient: (id: number) =>
     set((state: AlarmState) => ({
@@ -47,14 +55,30 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     set((state) => ({
       activeAlarm: state.activeAlarm + 1,
     })),
-  closeAlarm: (id: number) => {
-    return set((state: AlarmState) => ({
+  setClosedAlarm: () =>
+    set((state: AlarmState) => ({
+      closedAlarm: state.alarms[state.activeAlarm],
+    })),
+  setUndo: () => {
+    set((state) => {
+      const newAlarms = [...state.alarms];
+      newAlarms.splice(state.closedAlarmIndex, 0, ...state.closedAlarm);
+      return { alarms: newAlarms };
+    });
+  },
+  closeAlarm: (id: number) =>
+    set((state: AlarmState) => ({
+      closedAlarmIndex: state.alarms.indexOf(
+        state.alarms.filter((alarm: AlarmEntryType) => alarm.id === id)[0]
+      ),
+      closedAlarm: state.alarms.filter(
+        (alarm: AlarmEntryType) => alarm.id === id
+      ),
       alarms: state.alarms.filter((alarm: AlarmEntryType) => alarm.id !== id),
       hasTotalChanged: true,
       correspondingPatient: null,
       activeAlarm: 0,
-    }));
-  },
+    })),
 }));
 
 export default useAlarmsStore;

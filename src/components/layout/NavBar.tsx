@@ -12,20 +12,8 @@ import AccountModal from '../composables/AccountModal';
 function NavBar() {
   const [colorTheme, setTheme] = useDarkMode();
   const alarms = useAlarmsStore((state) => state.alarms);
-  const hasTotalChanged = useAlarmsStore((state) => state.hasTotalChanged);
   const modal = useSettingsStore((state) => state.modal);
   const setModal = useSettingsStore((state) => state.setModal);
-
-  useEffect(() => {
-    if (hasTotalChanged) {
-      setTimeout(() => {
-        useAlarmsStore.setState((state) => ({
-          ...state,
-          hasTotalChanged: false,
-        }));
-      }, 200);
-    }
-  }, [hasTotalChanged]);
 
   return (
     <nav className="section-header section-footer mb-2 flex flex-col items-center justify-between gap-2 bg-primary-300 px-3 py-2 text-base text-white dark:bg-black-100 sm:grid-cols-6 md:mt-0 md:flex-row md:gap-0 lg:flex">
@@ -44,9 +32,7 @@ function NavBar() {
           className="flex items-center justify-center rounded bg-white px-2 text-sm font-semibold text-primary-200 dark:bg-black-200 dark:text-grey"
           style={{ height: '26px' }}
         >
-          <NotificationsIcon
-            style={{ height: `${hasTotalChanged ? '32px' : '20px'}` }}
-          />
+          <NotificationsIcon style={{ height: '20px' }} />
           <span>
             <span className="text-sm font-bold">x{alarms?.length}</span> Active
             alarms

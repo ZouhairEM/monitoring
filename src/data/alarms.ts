@@ -1,35 +1,5 @@
 import AlarmEntryType from '../types/AlarmEntryType';
 
-class RandomAlarmGenerator implements AlarmEntryType {
-  id: number;
-
-  patient_id: number;
-
-  priority: number;
-
-  alarm: string;
-
-  time: string;
-
-  status: string;
-
-  constructor(
-    id: number,
-    patient_id: number,
-    priority: number,
-    alarm: string,
-    time: string,
-    status: string
-  ) {
-    this.id = id;
-    this.patient_id = patient_id;
-    this.priority = priority;
-    this.alarm = alarm;
-    this.time = time;
-    this.status = status;
-  }
-}
-
 const Alarms: AlarmEntryType[] = [
   {
     id: 1,
@@ -144,31 +114,5 @@ const Alarms: AlarmEntryType[] = [
     status: 'Open',
   },
 ];
-
-const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-const availableStatuses = ['Open', 'Done'];
-const availableAlarmTypes = ['Acoustic', 'Fire', 'Patient up', 'Help'];
-
-const generatePatientID = (): number =>
-  availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
-const generatePriority = (): number => Math.floor(Math.random() * 5);
-const generateHighestAlarmID = (): number =>
-  Math.max(...Alarms.map((alarm) => alarm.id), 0) + 1;
-const generateAlarmType = (): string =>
-  availableAlarmTypes[Math.floor(Math.random() * availableAlarmTypes.length)];
-const generateStatus = (): string =>
-  availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
-
-for (let i = 1; i < 20; i += 1) {
-  const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
-    generateHighestAlarmID(),
-    generatePatientID(),
-    generatePriority(),
-    generateAlarmType(),
-    '12:02',
-    generateStatus()
-  );
-  Alarms.push(generateAlarm);
-}
 
 export default Alarms;

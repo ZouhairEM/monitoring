@@ -22,8 +22,9 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
   const setIndex = useSettingsStore((state) => state.setIndex);
   const findPatient = useAlarmsStore((state) => state.findPatient);
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
-
+  const setToast = useSettingsStore((state) => state.setToast);
   const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
+  const timer = useSettingsStore((state) => state.resetTimer);
 
   useEffect(() => {
     if (alarms.length !== 0) {
@@ -38,6 +39,10 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
     closeAlarm(activeAlarmID);
     onSelectAlarm(activeAlarmID);
     setIndex(0);
+    timer();
+    setToast(false);
+    setTimeout(() => setToast(true), 0);
+
     setAvailableAlarmsById((prevAvailableAlarmsById) => {
       const availableAlarms = prevAvailableAlarmsById.filter(
         (alarmId) => +alarmId !== +activeAlarmID

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import { useState, useEffect, useReducer, Dispatch } from 'react';
 import TagIcon from '@mui/icons-material/Tag';
 import useAlarmsStore from '../stores/AlarmsStore';
@@ -10,6 +11,7 @@ import EmergencyContact from '../components/home/EmergencyContact';
 import ControlPanel from '../components/home/ControlPanel';
 import AlarmEntryType from '../types/AlarmEntryType';
 import PatientType from '../types/PatientType';
+import Toast from '../components/generic/Toast';
 
 function Home() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
@@ -19,9 +21,82 @@ function Home() {
   const currentIndex: number | null = useSettingsStore(
     (state) => state.currentIndex
   );
+  const setReactiveAlarms = useAlarmsStore((state) => state.setReactiveAlarms);
+  const toast = useSettingsStore((state) => state.toast);
+  const closedAlarm = useAlarmsStore((state) => state.closedAlarm);
+  const timer = useSettingsStore((state) => state.timer);
+
+  class RandomAlarmGenerator implements AlarmEntryType {
+    id: number;
+
+    patient_id: number;
+
+    priority: number;
+
+    alarm: string;
+
+    time: string;
+
+    status: string;
+
+    constructor(
+      id: number,
+      patient_id: number,
+      priority: number,
+      alarm: string,
+      time: string,
+      status: string
+    ) {
+      this.id = id;
+      this.patient_id = patient_id;
+      this.priority = priority;
+      this.alarm = alarm;
+      this.time = time;
+      this.status = status;
+    }
+  }
+
+  const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  const availableStatuses = ['Open', 'Done'];
+  const availableAlarmTypes = ['Acoustic', 'Fire', 'Patient up', 'Help'];
+
+  const generatePatientID = (): number =>
+    availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
+  const generatePriority = (): number => Math.floor(Math.random() * 5);
+  const generateHighestAlarmID = (): number =>
+    Math.max(...alarms.map((alarm) => alarm.id), 0) + 1;
+  const generateAlarmType = (): string =>
+    availableAlarmTypes[Math.floor(Math.random() * availableAlarmTypes.length)];
+  const generateStatus = (): string =>
+    availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
+
+  // for (let i = 1; i < 10; i += 1) {
+  //   const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
+  //     generateHighestAlarmID(),
+  //     generatePatientID(),
+  //     generatePriority(),
+  //     generateAlarmType(),
+  //     '12:02',
+  //     generateStatus()
+  //   );
+  //   alarms.push(generateAlarm);
+  // }
+
+  // setInterval(() => {
+  //   const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
+  //     generateHighestAlarmID(),
+  //     generatePatientID(),
+  //     generatePriority(),
+  //     generateAlarmType(),
+  //     '12:02',
+  //     generateStatus()
+  //   );
+  //   setReactiveAlarms(generateAlarm);
+  // }, 1000);
 
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
+
   type State = {
     isPanelVisible: boolean;
     isActive: number;
@@ -323,6 +398,15 @@ function Home() {
             />
           </div>
         </div>
+        {toast && closedAlarm && (
+          <Toast timer={timer} icon="close">
+            Alarm <TagIcon style={{ fontSize: '14px' }} />
+            {closedAlarm[0].id < 10
+              ? `0${closedAlarm[0].id}`
+              : closedAlarm[0].id}{' '}
+            has been closed
+          </Toast>
+        )}
       </main>
     </div>
   );
