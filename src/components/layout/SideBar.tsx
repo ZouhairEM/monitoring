@@ -12,10 +12,10 @@ function SideBar() {
           <button
             type="button"
             tabIndex={0}
-            className="mb-3 flex items-center gap-x-2 rounded-t-lg bg-primary-300 px-4 pb-1 pt-2 dark:bg-black-100"
+            className="mb-3 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-2 dark:bg-black-100"
           >
             <CameraIcon />
-            {isCollapsed && <div className="dark:text-grey">Monitoring</div>}
+            {isCollapsed && <div className="dark:text-grey ">Monitoring</div>}
           </button>
           <button
             type="button"

@@ -315,7 +315,7 @@ function Home() {
     <div className="flex flex-col gap-2 sm:flex-row">
       <SideBar />
       <main className="grid w-full grid-cols-9 gap-2 lg:overflow-hidden">
-        <section className="section-header section-footer col-span-12 bg-white drop-shadow-md dark:bg-black-100 sm:col-span-2 ">
+        <section className="section-header section-footer col-span-12 bg-white box-shadow-md dark:bg-black-100 sm:col-span-2 ">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
               <PatientBio
@@ -344,9 +344,9 @@ function Home() {
           </div>
         </section>
         <div className="col-span-12 flex flex-col justify-between gap-2 sm:col-span-7">
-          <div className="section-header section-footer flex h-full flex-col bg-white drop-shadow-md">
+          <div className="section-header section-footer flex h-full flex-col bg-white box-shadow-md">
             <div
-              className={`section-header grid grid-cols-6 gap-4 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white drop-shadow-md dark:bg-black-200 md:grid-cols-9 ${
+              className={`section-header grid grid-cols-6 gap-4 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white box-shadow-md dark:bg-black-200 md:grid-cols-9 ${
                 state?.isPanelVisible ? 'pr-4' : ''
               }`}
             >
@@ -400,7 +400,7 @@ function Home() {
             </div>
           </div>
           <div
-            className={`section-header section-footer bg-white drop-shadow-md ${
+            className={`section-header section-footer bg-white box-shadow-md ${
               state?.isPanelVisible ? 'block' : 'hidden'
             }`}
           >

@@ -107,7 +107,7 @@ input[type='checkbox'] {
   @apply border border-primary-200;
   @apply border-black-200 dark:bg-black-300;
   &:checked {
-    @apply bg-primary-200 dark:bg-black-300;
+    @apply bg-primary-200 dark:bg-black-300 border-none;
     &:after {
       content: '\2713';
       font-size: 1.5em;
@@ -242,4 +242,9 @@ svg.priority {
     top: 0;
     opacity: 0;
   }
+}
+
+nav,
+.box-shadow-md {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px, rgba(0, 0, 0, 0.13) 0px 3px 3px;
 }

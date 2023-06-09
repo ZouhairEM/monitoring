@@ -18,7 +18,7 @@ function PatientBio({ profile }: PatientBioProps) {
   return (
     <section>
       <div className="flex flex-col">
-        <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200 dark:text-grey">
+        <div className="section-header box-shadow-md bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
           Patient
         </div>
         {profile && (
@@ -30,7 +30,7 @@ function PatientBio({ profile }: PatientBioProps) {
               <img
                 src={profilePhoto}
                 alt={profile.name}
-                className="photo h-24 object-fill drop-shadow-md"
+                className="photo box-shadow-md h-24 object-fill"
               />
             </div>
             <div className="mb-2 p-2 text-center text-sm sm:text-left">
@@ -90,7 +90,7 @@ function PatientBio({ profile }: PatientBioProps) {
                     Enrolled
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
-                    <span className="p-1 dark:bg-black-100">
+                    <span className="dark:bg-black-100">
                       {profile.enroll_date}
                     </span>
                   </div>

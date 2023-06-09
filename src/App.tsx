@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/layout/NavBar';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+import Home from './routes/Home';
+import NotFound from './routes/NotFound';
 import useDarkMode from './hooks/useDarkMode';
 
 function App() {

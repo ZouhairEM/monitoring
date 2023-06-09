@@ -92,7 +92,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
 
   return (
     <section className="section-header dark:bg-black-100">
-      <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200 dark:text-grey">
+      <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white box-shadow-md dark:bg-black-200 dark:text-grey">
         Control Options
       </div>
       <div className="section-header flex flex-col gap-2 p-2 py-3 text-sm sm:flex-row">

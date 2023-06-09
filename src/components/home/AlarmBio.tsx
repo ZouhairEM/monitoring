@@ -130,7 +130,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
 
   const handleIcon = () => {
     if (entry.alarm === 'Loud noise') {
-      return <HearingIcon style={{ height: '18px' }} />;
+      return <HearingIcon style={{ height: '17px' }} />;
     }
     if (entry.alarm === 'Fire hazard') {
       return <LocalFireDepartmentIcon style={{ height: '18px' }} />;
