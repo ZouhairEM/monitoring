@@ -19,7 +19,7 @@ function PatientBio({ profile }: PatientBioProps) {
     <section>
       <div className="flex flex-col">
         <div className="section-header bg-primary-200 p-2 text-sm font-bold text-white drop-shadow-md dark:bg-black-200 dark:text-grey">
-          Profile
+          Patient
         </div>
         {profile && (
           <div className="section-header profile-block px-2">

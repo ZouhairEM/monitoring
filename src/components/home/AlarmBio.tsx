@@ -5,6 +5,7 @@ import HearingIcon from '@mui/icons-material/Hearing';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import AccessibleIcon from '@mui/icons-material/Accessible';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import TagIcon from '@mui/icons-material/Tag';
 import AlarmEntry from '../../types/AlarmEntryType';
 import useAlarmsStore from '../../stores/AlarmsStore';
@@ -128,17 +129,20 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   };
 
   const handleIcon = () => {
-    if (entry.alarm === 'Acoustic') {
+    if (entry.alarm === 'Loud noise') {
       return <HearingIcon style={{ height: '18px' }} />;
     }
-    if (entry.alarm === 'Fire') {
+    if (entry.alarm === 'Fire hazard') {
       return <LocalFireDepartmentIcon style={{ height: '18px' }} />;
     }
-    if (entry.alarm === 'Help') {
+    if (entry.alarm === 'Help call') {
       return <RecordVoiceOverIcon style={{ height: '18px' }} />;
     }
     if (entry.alarm === 'Patient up') {
       return <AccessibleIcon style={{ height: '18px' }} />;
+    }
+    if (entry.alarm === 'Heart Monitor') {
+      return <MonitorHeartIcon style={{ height: '18px' }} />;
     }
     return <HearingIcon />;
   };

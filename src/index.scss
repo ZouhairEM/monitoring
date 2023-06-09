@@ -54,20 +54,22 @@ main {
   display: none;
 }
 
-.acoustic-alarm {
-  background: #ff6eb8;
+.loud-noise-alarm {
+  background: #995fa3;
 }
 
 .patient-up-alarm {
   background: #329692;
 }
-.help-alarm {
+.help-call-alarm {
   background: #002d2c;
 }
-.fire-alarm {
-  background: #b82c2c;
+.fire-hazard-alarm {
+  background: #d64045;
 }
-
+.heart-monitor-alarm {
+  background: #4c3b4d;
+}
 .alarm-bio.active {
   @apply hover:bg-primary-100 dark:bg-black-300;
   @apply bg-primary-100 dark:bg-black-300;

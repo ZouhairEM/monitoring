@@ -26,6 +26,7 @@ function Home() {
   const closedAlarm = useAlarmsStore((state) => state.closedAlarm);
   const timer = useSettingsStore((state) => state.timer);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   class RandomAlarmGenerator implements AlarmEntryType {
     id: number;
 
@@ -58,44 +59,55 @@ function Home() {
 
   const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   const availableStatuses = ['Open', 'Done'];
-  const availableAlarmTypes = ['Acoustic', 'Fire', 'Patient up', 'Help'];
+  const availableAlarmTypes = [
+    'Loud Noise',
+    'Fire Hazard',
+    'Patient up',
+    'Help call',
+    'Heart Monitor',
+  ];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generatePatientID = (): number =>
     availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
   const generatePriority = (): number => Math.floor(Math.random() * 5);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateHighestAlarmID = (): number =>
     Math.max(...alarms.map((alarm) => alarm.id), 0) + 1;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateAlarmType = (): string =>
     availableAlarmTypes[Math.floor(Math.random() * availableAlarmTypes.length)];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateStatus = (): string =>
     availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
 
-  // for (let i = 1; i < 10; i += 1) {
-  //   const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
-  //     generateHighestAlarmID(),
-  //     generatePatientID(),
-  //     generatePriority(),
-  //     generateAlarmType(),
-  //     '12:02',
-  //     generateStatus()
-  //   );
-  //   alarms.push(generateAlarm);
-  // }
-
-  // setInterval(() => {
-  //   const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
-  //     generateHighestAlarmID(),
-  //     generatePatientID(),
-  //     generatePriority(),
-  //     generateAlarmType(),
-  //     '12:02',
-  //     generateStatus()
-  //   );
-  //   setReactiveAlarms(generateAlarm);
-  // }, 1000);
-
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
+        generateHighestAlarmID(),
+        generatePatientID(),
+        generatePriority(),
+        generateAlarmType(),
+        '12:02',
+        generateStatus()
+      );
+      setReactiveAlarms(generateAlarm);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [
+    RandomAlarmGenerator,
+    generateAlarmType,
+    generateHighestAlarmID,
+    generatePatientID,
+    generateStatus,
+    setReactiveAlarms,
+  ]);
 
   type State = {
     isPanelVisible: boolean;
