@@ -10,7 +10,7 @@ interface AlarmState {
   alarms: AlarmEntryType[];
   actualAlarms: number[] | [];
   activeAlarm: number;
-  closedAlarm: AlarmEntryType | AlarmEntryType[] | null;
+  closedAlarm: any;
   clickedAlarm: AlarmEntryType | null;
   hasTotalChanged: boolean;
   closedAlarmIndex: number;

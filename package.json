@@ -1,16 +1,15 @@
 {
   "name": "monitoring",
   "private": true,
-  "homepage": "https://ZouhairEM.github.io/monitoring",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",    
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint --fix --ext .js,.jsx,.tsx .",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "lint": "eslint --fix --ext .js,.jsx,.tsx ."
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",

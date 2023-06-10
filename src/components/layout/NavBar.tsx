@@ -42,12 +42,12 @@ function NavBar() {
         >
           {!alarmsChanged ? (
             <NotificationsIcon
-              className="text-secondary"
+              className="text-primary-300"
               style={{ height: '20px' }}
             />
           ) : (
             <NotificationsActiveIcon
-              className="new-alarm text-secondary"
+              className="new-alarm text-primary-300"
               style={{ height: '20px' }}
             />
           )}
@@ -67,7 +67,7 @@ function NavBar() {
           onClick={() => setModal(true)}
           onKeyDown={() => setModal(true)}
         >
-          <AccountCircleIcon className="text-secondary dark:text-grey" />
+          <AccountCircleIcon className="text-secondary text-primary-300 dark:text-grey" />
         </div>
         <div
           role="button"
@@ -78,7 +78,7 @@ function NavBar() {
           {colorTheme === 'light' ? (
             <DarkModeIcon className="text-secondary dark:text-grey" />
           ) : (
-            <LightModeIcon className="text-secondary" />
+            <LightModeIcon className="text-primary-300" />
           )}
         </div>
       </div>
