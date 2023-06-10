@@ -10,6 +10,7 @@ import TagIcon from '@mui/icons-material/Tag';
 import AlarmEntry from '../../types/AlarmEntryType';
 import useAlarmsStore from '../../stores/AlarmsStore';
 import useSettingsStore from '../../stores/SettingsStore';
+import AlarmTypes from '../../data/alarmtypes';
 
 interface AlarmBioProps {
   entry: AlarmEntry;
@@ -23,7 +24,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   const [mappedPatientRoom, setMappedPatientRoom] = useState<
     string | number | null
   >(null);
-  const [disabled, setDisabled] = useState(false);
+  const [disabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const findPatient = useAlarmsStore((state) => state.findPatient);
@@ -50,18 +51,14 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   }, [alarms, entry.id, mappedPatient, mappedPatientRoom, patients]);
 
   const makeActivePatient = (id: number) => {
-    if (id !== activeAlarm) {
-      onToggle(entryId);
-      findPatient(id);
-      setActive(entryId);
-      setIndex(index);
-    } else {
-      setDisabled(true);
-    }
+    onToggle(entryId);
+    findPatient(id);
+    setActive(entryId);
+    setIndex(index);
   };
 
   const handlePriority = () => {
-    if (entry.alarm === 'Loud noise') {
+    if (entry.alarm === AlarmTypes.One) {
       return (
         <>
           <div className="w-1/3 rounded bg-primary-200 opacity-90  dark:bg-primary-300" />
@@ -74,7 +71,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.alarm === 'Patient up') {
+    if (entry.alarm === AlarmTypes.Two) {
       return (
         <>
           <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
@@ -88,7 +85,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.alarm === 'Help call') {
+    if (entry.alarm === AlarmTypes.Three) {
       return (
         <>
           {[1, 2, 3].map((i) => (
@@ -103,7 +100,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.alarm === 'Heart monitor') {
+    if (entry.alarm === AlarmTypes.Four) {
       return (
         <>
           {[1, 2, 3, 4].map((i) => (
@@ -116,7 +113,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.alarm === 'Fire hazard') {
+    if (entry.alarm === AlarmTypes.Five) {
       return (
         <>
           {[1, 2, 3, 4, 5].map((i) => (
@@ -132,19 +129,19 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   };
 
   const handleIcon = () => {
-    if (entry.alarm === 'Loud noise') {
+    if (entry.alarm === AlarmTypes.One) {
       return <HearingIcon style={{ height: '17px' }} />;
     }
-    if (entry.alarm === 'Fire hazard') {
+    if (entry.alarm === AlarmTypes.Two) {
       return <LocalFireDepartmentIcon style={{ height: '18px' }} />;
     }
-    if (entry.alarm === 'Help call') {
+    if (entry.alarm === AlarmTypes.Three) {
       return <RecordVoiceOverIcon style={{ height: '18px' }} />;
     }
-    if (entry.alarm === 'Patient up') {
+    if (entry.alarm === AlarmTypes.Four) {
       return <AccessibleIcon style={{ height: '18px' }} />;
     }
-    if (entry.alarm === 'Heart monitor') {
+    if (entry.alarm === AlarmTypes.Five) {
       return <MonitorHeartIcon style={{ height: '18px' }} />;
     }
     return <HearingIcon />;

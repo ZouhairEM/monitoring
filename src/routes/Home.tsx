@@ -12,6 +12,8 @@ import ControlPanel from '../components/home/ControlPanel';
 import AlarmEntryType from '../types/AlarmEntryType';
 import PatientType from '../types/PatientType';
 import Toast from '../components/generic/Toast';
+import useBreakpoint from '../hooks/useBreakpoint';
+import AlarmTypes from '../data/alarmtypes';
 
 function Home() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
@@ -25,6 +27,9 @@ function Home() {
   const toast = useSettingsStore((state) => state.toast);
   const closedAlarm = useAlarmsStore((state) => state.closedAlarm);
   const timer = useSettingsStore((state) => state.timer);
+  const setLegalClick = useSettingsStore((state) => state.setLegalClick);
+  const [, setClickedAlarm] = useState(activeAlarm);
+  const breakpoint = useBreakpoint();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   class RandomAlarmGenerator implements AlarmEntryType {
@@ -55,13 +60,8 @@ function Home() {
 
   const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   const availableStatuses = ['Open', 'Done'];
-  const availableAlarmTypes = [
-    'Loud noise',
-    'Fire hazard',
-    'Patient up',
-    'Help call',
-    'Heart monitor',
-  ];
+
+  const availableAlarmTypes = Object.values(AlarmTypes);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const generatePatientID = (): number =>
@@ -76,8 +76,7 @@ function Home() {
   const generateStatus = (): string =>
     availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
 
-  const setLegalClick = useSettingsStore((state) => state.setLegalClick);
-  const [, setClickedAlarm] = useState(activeAlarm);
+  const timeStamp = new Date().toLocaleTimeString().substring(0, 5);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,7 +84,7 @@ function Home() {
         generateHighestAlarmID(),
         generatePatientID(),
         generateAlarmType(),
-        '12:02',
+        timeStamp,
         generateStatus()
       );
       setReactiveAlarms(generateAlarm);
@@ -99,11 +98,12 @@ function Home() {
     generateAlarmType,
     generateHighestAlarmID,
     generatePatientID,
-    generateStatus,
     setReactiveAlarms,
+    timeStamp,
+    generateStatus,
   ]);
 
-  type State = {
+  type HomeState = {
     isPanelVisible: boolean;
     isActive: number;
     currentPage: number;
@@ -116,7 +116,7 @@ function Home() {
     | { type: 'set_current_page'; setCurrentPage: number }
     | { type: 'alarms_per_page'; setAlarmsPerPage: number };
 
-  function reducer(state: State, action: Action): State {
+  function reducer(state: HomeState, action: Action): HomeState {
     switch (action.type) {
       case 'visibility_control_panel': {
         return {
@@ -147,13 +147,13 @@ function Home() {
     }
   }
 
-  const initialState: State = {
+  const initialState: HomeState = {
     isPanelVisible: false,
     isActive: 1,
     currentPage: 1,
-    alarmsPerPage: 12,
+    alarmsPerPage: 7,
   };
-  const [state, dispatch]: [State, Dispatch<Action>] = useReducer(
+  const [state, dispatch]: [HomeState, Dispatch<Action>] = useReducer(
     reducer,
     initialState
   );
@@ -190,15 +190,24 @@ function Home() {
     if (!patient) {
       dispatch({ type: 'visibility_control_panel', setPanel: false });
     }
-    if (state?.isPanelVisible) {
+    if (state?.isPanelVisible && breakpoint !== 'sm' && breakpoint !== 'md') {
       dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
       if (state.currentPage === maxPages) {
         dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
       }
+    } else if (breakpoint === 'sm' || breakpoint === 'md') {
+      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 7 });
     } else {
       dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 14 });
     }
-  }, [state?.isPanelVisible, patient, state.currentPage, maxPages, lastIndex]);
+  }, [
+    state?.isPanelVisible,
+    patient,
+    state.currentPage,
+    maxPages,
+    lastIndex,
+    breakpoint,
+  ]);
 
   useEffect(() => {
     if (
@@ -306,8 +315,7 @@ function Home() {
   ];
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row">
-      <SideBar />
+    <div className="flex w-full flex-col gap-2 sm:flex-row">
       <main className="grid w-full grid-cols-9 gap-2">
         <section className="section-header section-footer box-shadow-md col-span-12 bg-white dark:bg-black-100 md:col-span-2 ">
           {patient ? (
@@ -392,10 +400,14 @@ function Home() {
         </div>
         {toast && closedAlarm && (
           <Toast timer={timer} icon="close">
-            Alarm <TagIcon style={{ fontSize: '14px' }} />
-            {closedAlarm[0].id < 10
-              ? `0${closedAlarm[0].id}`
-              : closedAlarm[0].id}{' '}
+            Alarm{' '}
+            <span className="font-bold">
+              {' '}
+              #
+              {closedAlarm[0].id < 10
+                ? `0${closedAlarm[0].id}`
+                : closedAlarm[0].id}
+            </span>{' '}
             has been closed
           </Toast>
         )}

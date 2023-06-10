@@ -1,31 +1,35 @@
 import { useState } from 'react';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
-import CameraIcon from '@mui/icons-material/Camera';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <aside className="section-header section-footer sidebar hidden bg-primary-200 dark:bg-black-100 lg:block">
-      <div className="bg-primary flex h-full flex-col justify-between pb-2 text-sm font-semibold text-white">
-        <div>
+    <aside className="section-header section-footer sidebar bg-primary-200 dark:bg-black-100 lg:block mb-2 sm:mb-0">
+      <div className="bg-primary flex h-full flex-col justify-between pb-0 text-sm font-semibold text-white md:pb-2">
+        <div className="flex justify-evenly md:flex-col">
           <button
             type="button"
             tabIndex={0}
-            className="mb-3 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-2 dark:bg-black-100"
+            className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-2 dark:bg-black-100 md:mb-3"
           >
-            <CameraIcon className="text-primary-300 dark:text-grey" />
+            <VisibilityIcon className="text-primary-300 dark:text-grey" />
             {isCollapsed && (
-              <div className="text-primary-300 dark:text-grey">Monitoring</div>
+              <div className="hidden text-primary-300 dark:text-grey md:block">
+                Monitoring
+              </div>
             )}
           </button>
           <button
             type="button"
             tabIndex={0}
-            className="mb-3 flex items-center gap-x-2 px-4 py-1"
+            className="mb-0 flex items-center gap-x-2 px-4 py-1 md:mb-3"
           >
             <Grid3x3Icon className="dark:text-grey" />
-            {isCollapsed && <div className="dark:text-grey">Dashboard</div>}
+            {isCollapsed && (
+              <div className="hidden dark:text-grey md:block">Dashboard</div>
+            )}
           </button>
           <button
             className="flex items-center gap-x-2 px-4 py-1"
@@ -33,7 +37,9 @@ function SideBar() {
             tabIndex={0}
           >
             <HistoryToggleOffIcon className="dark:text-grey" />
-            {isCollapsed && <div className="dark:text-grey">History</div>}
+            {isCollapsed && (
+              <div className="hidden dark:text-grey md:block">History</div>
+            )}
           </button>
         </div>
         <div
@@ -43,7 +49,7 @@ function SideBar() {
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="flex items-center justify-start gap-x-2 rounded-t-lg  px-4 pb-1 pt-2"
+          className="hidden items-center justify-start gap-x-2  rounded-t-lg px-4 pb-1 pt-2 md:flex"
         >
           <svg
             className="h-6 w-6"

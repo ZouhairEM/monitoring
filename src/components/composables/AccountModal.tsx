@@ -1,6 +1,9 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import useSettingsStore from '../../stores/SettingsStore';
 
 function AccountModal() {
+  const setModal = useSettingsStore((state) => state.setModal);
+
   return (
     <>
       <div className="flex flex-col items-center gap-2 pb-10">
@@ -16,6 +19,8 @@ function AccountModal() {
         <div className="flex justify-center gap-2">
           <button
             type="button"
+            onClick={() => setModal(false)}
+            onKeyDown={() => setModal(false)}
             tabIndex={0}
             className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >
@@ -23,6 +28,8 @@ function AccountModal() {
           </button>
           <button
             type="button"
+            onClick={() => setModal(false)}
+            onKeyDown={() => setModal(false)}
             tabIndex={0}
             className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >

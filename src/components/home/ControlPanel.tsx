@@ -103,7 +103,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
           tabIndex={0}
           className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
         >
-          Close alarm
+          Close
           <CloseIcon style={{ height: '16px' }} />
         </button>
         <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
@@ -122,7 +122,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
               }
             }}
           >
-            Previous alarm
+            Previous
             <ArrowBackIosNewIcon style={{ height: '13px' }} />
           </button>
           <button
@@ -147,7 +147,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
             }}
           >
             <ArrowForwardIosIcon style={{ height: '13px' }} />
-            Next alarm
+            Next
           </button>
         </div>
       </div>

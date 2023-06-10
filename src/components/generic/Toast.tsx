@@ -47,7 +47,6 @@ function Toast({ children, icon, timer }: ToastProps) {
           <div>{children}</div>
           <p className="flex gap-2 text-center">
             Didn&apos;t mean to?
-            <span>-</span>
             <span
               tabIndex={0}
               role="button"
@@ -60,7 +59,7 @@ function Toast({ children, icon, timer }: ToastProps) {
                 return setUndo();
               }}
             >
-              <b>Undo</b>
+              <span className="font-bold underline">Undo</span>
             </span>
           </p>
         </div>
