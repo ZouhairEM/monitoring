@@ -39,7 +39,7 @@ function Toast({ children, icon, timer }: ToastProps) {
     <div
       className={`${
         toast ? 'toast' : ''
-      } fixed left-1/2 top-16 z-20 -translate-x-1/2 -translate-y-1/2 transform rounded  border border-grey bg-primary-200 p-5 text-white shadow-2xl dark:bg-primary-300 dark:text-grey`}
+      } fixed bottom-12 right-16 z-20 rounded  border border-grey bg-primary-200 p-5 text-white shadow-2xl dark:bg-primary-300 dark:text-grey`}
     >
       <div className="flex gap-4">
         {renderTypeIcon(icon)}

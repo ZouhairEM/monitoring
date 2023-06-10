@@ -14,10 +14,10 @@ module.exports = {
     container: {
       center: true,
       screens: {
-        // sm: '600px',
-        // md: '728px',
-        // lg: '1084px',
-        // xl: '1440px'
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
       },
     },
     colors: {

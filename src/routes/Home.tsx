@@ -32,8 +32,6 @@ function Home() {
 
     patient_id: number;
 
-    priority: number;
-
     alarm: string;
 
     time: string;
@@ -43,14 +41,12 @@ function Home() {
     constructor(
       id: number,
       patient_id: number,
-      priority: number,
       alarm: string,
       time: string,
       status: string
     ) {
       this.id = id;
       this.patient_id = patient_id;
-      this.priority = priority;
       this.alarm = alarm;
       this.time = time;
       this.status = status;
@@ -60,17 +56,16 @@ function Home() {
   const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   const availableStatuses = ['Open', 'Done'];
   const availableAlarmTypes = [
-    'Loud Noise',
-    'Fire Hazard',
+    'Loud noise',
+    'Fire hazard',
     'Patient up',
     'Help call',
-    'Heart Monitor',
+    'Heart monitor',
   ];
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const generatePatientID = (): number =>
     availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
-  const generatePriority = (): number => Math.floor(Math.random() * 5);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateHighestAlarmID = (): number =>
     Math.max(...alarms.map((alarm) => alarm.id), 0) + 1;
@@ -89,7 +84,6 @@ function Home() {
       const generateAlarm: AlarmEntryType = new RandomAlarmGenerator(
         generateHighestAlarmID(),
         generatePatientID(),
-        generatePriority(),
         generateAlarmType(),
         '12:02',
         generateStatus()
@@ -314,8 +308,8 @@ function Home() {
   return (
     <div className="flex flex-col gap-2 sm:flex-row">
       <SideBar />
-      <main className="grid w-full grid-cols-9 gap-2 lg:overflow-hidden">
-        <section className="section-header section-footer col-span-12 bg-white box-shadow-md dark:bg-black-100 sm:col-span-2 ">
+      <main className="grid w-full grid-cols-9 gap-2">
+        <section className="section-header section-footer box-shadow-md col-span-12 bg-white dark:bg-black-100 md:col-span-2 ">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
               <PatientBio
@@ -343,10 +337,10 @@ function Home() {
               ))}
           </div>
         </section>
-        <div className="col-span-12 flex flex-col justify-between gap-2 sm:col-span-7">
-          <div className="section-header section-footer flex h-full flex-col bg-white box-shadow-md">
+        <div className="col-span-12 flex flex-col justify-between gap-2 md:col-span-7">
+          <div className="section-header section-footer box-shadow-md flex h-full flex-col bg-white">
             <div
-              className={`section-header grid grid-cols-6 gap-4 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white box-shadow-md dark:bg-black-200 md:grid-cols-9 ${
+              className={`section-header box-shadow-md grid grid-cols-6 gap-4 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white dark:bg-black-200 md:grid-cols-9 ${
                 state?.isPanelVisible ? 'pr-4' : ''
               }`}
             >
@@ -358,10 +352,10 @@ function Home() {
               </span>
               {entryTypes.map((entryType) => (
                 <div
-                  className={`flex items-center justify-end gap-2 font-bold dark:text-grey ${
+                  className={`flex items-center justify-center gap-2 font-bold dark:text-grey md:justify-end ${
                     entryType === 'Alarm' || entryType === 'Patient'
                       ? 'col-span-2'
-                      : ''
+                      : 'col-span-2 md:col-span-1'
                   }`}
                   key={entryType}
                   role="button"
@@ -386,7 +380,7 @@ function Home() {
               ))}
             </div>
 
-            <div className="flex h-full flex-col justify-between dark:bg-black-100 dark:text-grey">
+            <div className="flex h-full flex-col justify-between overflow-hidden dark:bg-black-100 dark:text-grey">
               <div
                 className={`alarm-grid my-3 pb-4 sm:pb-0 ${
                   state?.isPanelVisible
@@ -400,7 +394,7 @@ function Home() {
             </div>
           </div>
           <div
-            className={`section-header section-footer bg-white box-shadow-md ${
+            className={`section-header section-footer box-shadow-md bg-white ${
               state?.isPanelVisible ? 'block' : 'hidden'
             }`}
           >

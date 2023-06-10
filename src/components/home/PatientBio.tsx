@@ -2,6 +2,8 @@ import MaleIcon from '@mui/icons-material/Male';
 import FemaleIcon from '@mui/icons-material/Female';
 import EmptyProfile from '../../assets/img/illustrations/EmptyProfile';
 import Patient from '../../types/PatientType';
+import Doctors from '../../data/doctors';
+import useBreakpoint from '../../hooks/useBreakpoint';
 
 interface PatientBioProps {
   profile: Patient['profile'] | null;
@@ -14,6 +16,14 @@ function PatientBio({ profile }: PatientBioProps) {
     }`,
     import.meta.url
   ).href;
+  const breakpoint = useBreakpoint();
+
+  const getCorrespondingDoctor = () => {
+    if (profile) {
+      return Doctors.filter((doctor) => doctor.id === profile.doctor)[0].name;
+    }
+    return null;
+  };
 
   return (
     <section>
@@ -87,11 +97,11 @@ function PatientBio({ profile }: PatientBioProps) {
                 </div>
                 <div>
                   <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                    Enrolled
+                    Doctor
                   </div>
                   <div className="text-xs text-black-100 dark:text-grey">
                     <span className="dark:bg-black-100">
-                      {profile.enroll_date}
+                      {getCorrespondingDoctor()}
                     </span>
                   </div>
                 </div>
@@ -103,8 +113,11 @@ function PatientBio({ profile }: PatientBioProps) {
           <div className="section-header profile-block empty flex flex-col items-center justify-center gap-1 p-4">
             <EmptyProfile />
             <p className="py-4 text-center dark:text-grey">
-              Click on any active alarm on the right, patient info will be
-              displayed here.
+              Click on any active alarm{' '}
+              {breakpoint === 'sm' || breakpoint === 'md'
+                ? 'below'
+                : 'on the right'}
+              , patient info will be displayed here.
             </p>
           </div>
         )}

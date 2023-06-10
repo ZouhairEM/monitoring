@@ -1,10 +1,9 @@
 export default interface AlarmInfoType {
-  priority: number;
   name: string;
   room: number;
   dob: string;
   age: number;
   gender: string;
-  enrollDate: string;
+  doctor: number;
   diagnosis?: string;
 }

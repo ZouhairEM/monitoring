@@ -8,7 +8,7 @@ const Patients = [
       date_of_birth: '06-11-1969',
       age: 53,
       gender: 'Male',
-      enroll_date: '20-03-2015',
+      doctor: 1,
     },
     emergency_contact: {
       name: 'Jaime Lannister',
@@ -32,7 +32,7 @@ const Patients = [
       date_of_birth: '23-10-1986',
       age: 36,
       gender: 'Female',
-      enroll_date: '04-11-2016',
+      doctor: 2,
     },
     emergency_contact: {
       name: 'Jorah Mormont',
@@ -56,7 +56,7 @@ const Patients = [
       date_of_birth: '26-12-1986',
       age: 36,
       gender: 'Male',
-      enroll_date: '11-11-2001',
+      doctor: 3,
     },
     emergency_contact: {
       name: 'Eddard Stark',
@@ -80,7 +80,7 @@ const Patients = [
       date_of_birth: '10-10-1946',
       age: 76,
       gender: 'Male',
-      enroll_date: '04-11-2014',
+      doctor: 4,
     },
     emergency_contact: {
       name: 'Cercei Lannister',
@@ -104,7 +104,7 @@ const Patients = [
       date_of_birth: '03-10-1973',
       age: 49,
       gender: 'Female',
-      enroll_date: '30-02-2017',
+      doctor: 5,
     },
     emergency_contact: {
       name: 'Jaime Lannister',
@@ -128,7 +128,7 @@ const Patients = [
       date_of_birth: '27-07-1970',
       age: 52,
       gender: 'Male',
-      enroll_date: '30-02-2017',
+      doctor: 6,
     },
     emergency_contact: {
       name: 'Cercei Lannister',
@@ -152,7 +152,7 @@ const Patients = [
       date_of_birth: '15-09-1988',
       age: 34,
       gender: 'Male',
-      enroll_date: '04-01-2017',
+      doctor: 1,
     },
     emergency_contact: {
       name: 'Melessa Florent',
@@ -176,7 +176,7 @@ const Patients = [
       date_of_birth: '20-05-1992',
       age: 31,
       gender: 'Male',
-      enroll_date: '02-05-2019',
+      doctor: 2,
     },
     emergency_contact: {
       name: 'Cercei Lannister',
@@ -200,7 +200,7 @@ const Patients = [
       date_of_birth: '09-04-1999',
       age: 24,
       gender: 'Male',
-      enroll_date: '10-11-2018',
+      doctor: 3,
     },
     emergency_contact: {
       name: 'Maester Luwin',
@@ -224,7 +224,7 @@ const Patients = [
       date_of_birth: '21-02-1996',
       age: 27,
       gender: 'Female',
-      enroll_date: '31-05-2016',
+      doctor: 4,
     },
     emergency_contact: {
       name: 'Catelyn Stark',
@@ -248,7 +248,7 @@ const Patients = [
       date_of_birth: '09-02-1987',
       age: 36,
       gender: 'Female',
-      enroll_date: '25-06-2017',
+      doctor: 5,
     },
     emergency_contact: {
       name: 'Mance Rayder',
@@ -272,7 +272,7 @@ const Patients = [
       date_of_birth: '15-04-1997',
       age: 26,
       gender: 'Female',
-      enroll_date: '12-12-2018',
+      doctor: 5,
     },
     emergency_contact: {
       name: 'Eddard Stark',
@@ -296,7 +296,7 @@ const Patients = [
       date_of_birth: '24-04-1969',
       age: 54,
       gender: 'Male',
-      enroll_date: '14-03-2017',
+      doctor: 1,
     },
     emergency_contact: {
       name: 'Gregor Glegane',
@@ -320,7 +320,7 @@ const Patients = [
       date_of_birth: '18-06-1986',
       age: 36,
       gender: 'Male',
-      enroll_date: '04-09-2016',
+      doctor: 2,
     },
     emergency_contact: {
       name: 'Catelyn Stark',

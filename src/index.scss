@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  // outline: solid 0.1px;
-}
-
 body {
   @apply bg-white transition duration-200 dark:bg-black-200;
   @apply dark:bg-primary-300;
@@ -38,8 +34,6 @@ h4 {
 .container {
   min-width: 320px;
   max-width: 1180px;
-  margin: 1em auto;
-  position: relative;
 }
 .sidebar {
   padding: 1px 0;
@@ -47,6 +41,7 @@ h4 {
 
 main {
   height: 88vh;
+  max-height: 753px;
   padding: 1px;
 }
 
@@ -107,7 +102,7 @@ input[type='checkbox'] {
   @apply border border-primary-200;
   @apply border-black-200 dark:bg-black-300;
   &:checked {
-    @apply bg-primary-200 dark:bg-black-300 border-none;
+    @apply border-none bg-primary-200 dark:bg-black-300;
     &:after {
       content: '\2713';
       font-size: 1.5em;
@@ -202,49 +197,80 @@ svg.priority {
 
 @-webkit-keyframes fadein {
   from {
-    top: 0;
+    bottom: 0;
     opacity: 0;
   }
   to {
-    top: 64px;
+    bottom: 48px;
     opacity: 1;
   }
 }
 
 @keyframes fadein {
   from {
-    top: 0;
+    bottom: 0;
     opacity: 0;
   }
   to {
-    top: 64px;
+    bottom: 48px;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeout {
   from {
-    top: 64px;
+    bottom: 48px;
     opacity: 1;
   }
   to {
-    top: 0;
+    bottom: 0;
     opacity: 0;
   }
 }
 
 @keyframes fadeout {
   from {
-    top: 64px;
+    bottom: 48px;
     opacity: 1;
   }
   to {
-    top: 0;
+    bottom: 0;
     opacity: 0;
   }
 }
 
-nav,
+nav {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
 .box-shadow-md {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px, rgba(0, 0, 0, 0.13) 0px 3px 3px;
+}
+
+.new-alarm {
+  animation: tilt-shaking 0.3s infinite;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(0.05em);
+  }
+  50% {
+    transform: translateX(-0.05em);
+  }
+  75% {
+    transform: translateX(0.05em);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (max-width: 728px) {
+  main {
+    max-height: initial;
+  }
 }

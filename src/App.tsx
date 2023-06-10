@@ -7,7 +7,7 @@ import useDarkMode from './hooks/useDarkMode';
 function App() {
   useDarkMode();
   return (
-    <div className="container font-open-sans">
+    <div className="container relative mx-auto my-0 p-2 font-open-sans md:my-4">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

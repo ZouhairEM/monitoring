@@ -61,7 +61,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   };
 
   const handlePriority = () => {
-    if (entry.priority === 1) {
+    if (entry.alarm === 'Loud noise') {
       return (
         <>
           <div className="w-1/3 rounded bg-primary-200 opacity-90  dark:bg-primary-300" />
@@ -74,7 +74,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.priority === 2) {
+    if (entry.alarm === 'Patient up') {
       return (
         <>
           <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
@@ -88,7 +88,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.priority === 3) {
+    if (entry.alarm === 'Help call') {
       return (
         <>
           {[1, 2, 3].map((i) => (
@@ -103,7 +103,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    if (entry.priority === 4) {
+    if (entry.alarm === 'Heart monitor') {
       return (
         <>
           {[1, 2, 3, 4].map((i) => (
@@ -116,16 +116,19 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         </>
       );
     }
-    return (
-      <>
-        {[1, 2, 3, 4, 5].map((i) => (
-          <div
-            key={i}
-            className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300"
-          />
-        ))}
-      </>
-    );
+    if (entry.alarm === 'Fire hazard') {
+      return (
+        <>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div
+              key={i}
+              className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300"
+            />
+          ))}
+        </>
+      );
+    }
+    return null;
   };
 
   const handleIcon = () => {
@@ -141,7 +144,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
     if (entry.alarm === 'Patient up') {
       return <AccessibleIcon style={{ height: '18px' }} />;
     }
-    if (entry.alarm === 'Heart Monitor') {
+    if (entry.alarm === 'Heart monitor') {
       return <MonitorHeartIcon style={{ height: '18px' }} />;
     }
     return <HearingIcon />;

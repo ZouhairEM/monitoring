@@ -7,7 +7,7 @@ export default interface PatientType {
     date_of_birth: string;
     age: number;
     gender: string;
-    enroll_date: string;
+    doctor: number;
   };
   emergency_contact: {
     name: string;

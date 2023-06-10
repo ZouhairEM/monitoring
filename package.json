@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "lint": "eslint --fix --ext .js,.jsx,.tsx .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

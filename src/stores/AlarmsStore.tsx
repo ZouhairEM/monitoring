@@ -35,7 +35,9 @@ const useAlarmsStore = create<AlarmState>((set) => ({
   closedAlarmIndex: 0,
   hasTotalChanged: false,
   setReactiveAlarms: (alarm: AlarmEntryType) =>
-    set((state) => ({ alarms: [...state.alarms, alarm] })),
+    set((state) => ({
+      alarms: [...state.alarms, alarm],
+    })),
   findPatient: (id: number) =>
     set((state: AlarmState) => ({
       correspondingPatient: state.patients.filter(
