@@ -7,6 +7,7 @@ interface PatientProfileProps {
 
 function PatientProfile({ alarm }: PatientProfileProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
     <div>
       <div className="px-1 text-sm">
@@ -18,7 +19,7 @@ function PatientProfile({ alarm }: PatientProfileProps) {
           className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold uppercase text-primary-200 transition duration-200 dark:border-black-200 dark:text-grey"
         >
           Alarm info
-          {alarm && !isCollapsed && (
+          {alarm && (
             <svg
               className="h-5 w-5"
               fill="none"
@@ -30,23 +31,7 @@ function PatientProfile({ alarm }: PatientProfileProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          )}
-          {alarm && isCollapsed && (
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 15l7-7 7 7"
+                d={isCollapsed ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'}
               />
             </svg>
           )}

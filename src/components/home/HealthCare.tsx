@@ -9,7 +9,7 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
-      <div className="flex flex-col gap-2 px-1 text-sm">
+      <div className="flex flex-col gap-2 text-sm">
         <div
           onClick={() => setIsCollapsed(!isCollapsed)}
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
@@ -20,7 +20,7 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
           } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey`}
         >
           Healthcare Info
-          {!isCollapsed && (
+          {!isCollapsed ? (
             <svg
               className="h-5 w-5"
               fill="none"
@@ -35,8 +35,7 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-          )}
-          {isCollapsed && (
+          ) : (
             <svg
               className="h-5 w-5"
               fill="none"

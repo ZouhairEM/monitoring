@@ -5,8 +5,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <aside className="section-header section-footer sidebar bg-primary-200 dark:bg-black-100 lg:block mb-2 sm:mb-0">
+    <aside className="sidebar mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
       <div className="bg-primary flex h-full flex-col justify-between pb-0 text-sm font-semibold text-white md:pb-2">
         <div className="flex justify-evenly md:flex-col">
           <button
@@ -43,13 +44,11 @@ function SideBar() {
           </button>
         </div>
         <div
-          onClick={() => {
-            setIsCollapsed(!isCollapsed);
-          }}
+          onClick={() => setIsCollapsed(!isCollapsed)}
           onKeyDown={() => setIsCollapsed(!isCollapsed)}
           role="button"
           tabIndex={0}
-          className="hidden items-center justify-start gap-x-2  rounded-t-lg px-4 pb-1 pt-2 md:flex"
+          className="hidden items-center justify-start gap-x-2 rounded-t-lg px-4 pb-1 pt-2 md:flex"
         >
           <svg
             className="h-6 w-6"
@@ -58,15 +57,14 @@ function SideBar() {
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {!isCollapsed && (
+            {!isCollapsed ? (
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M13 5l7 7-7 7M5 5l7 7-7 7"
               />
-            )}
-            {isCollapsed && (
+            ) : (
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -75,7 +73,7 @@ function SideBar() {
               />
             )}
           </svg>
-          {isCollapsed && <div className=" dark:text-grey">Collapse</div>}
+          {isCollapsed && <div className="dark:text-grey">Collapse</div>}
         </div>
       </div>
     </aside>

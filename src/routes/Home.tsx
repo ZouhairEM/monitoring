@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-this-in-sfc */
 import { useState, useEffect, useReducer, Dispatch } from 'react';
 import TagIcon from '@mui/icons-material/Tag';
 import useAlarmsStore from '../stores/AlarmsStore';
 import useSettingsStore from '../stores/SettingsStore';
-import SideBar from '../components/layout/SideBar';
 import PatientBio from '../components/home/PatientBio';
 import AlarmBio from '../components/home/AlarmBio';
 import HealthCare from '../components/home/HealthCare';
@@ -14,6 +14,8 @@ import PatientType from '../types/PatientType';
 import Toast from '../components/generic/Toast';
 import useBreakpoint from '../hooks/useBreakpoint';
 import AlarmTypes from '../data/alarmtypes';
+import Modal from '../components/generic/Modal';
+import FollowupModal from '../components/composables/FollowupModal';
 
 function Home() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
@@ -25,13 +27,13 @@ function Home() {
   );
   const setReactiveAlarms = useAlarmsStore((state) => state.setReactiveAlarms);
   const toast = useSettingsStore((state) => state.toast);
+  const modal = useSettingsStore((state) => state.modal);
   const closedAlarm = useAlarmsStore((state) => state.closedAlarm);
   const timer = useSettingsStore((state) => state.timer);
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
   const breakpoint = useBreakpoint();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   class RandomAlarmGenerator implements AlarmEntryType {
     id: number;
 
@@ -63,16 +65,14 @@ function Home() {
 
   const availableAlarmTypes = Object.values(AlarmTypes);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generatePatientID = (): number =>
     availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const generateHighestAlarmID = (): number =>
     Math.max(...alarms.map((alarm) => alarm.id), 0) + 1;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateAlarmType = (): string =>
     availableAlarmTypes[Math.floor(Math.random() * availableAlarmTypes.length)];
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const generateStatus = (): string =>
     availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
 
@@ -98,9 +98,9 @@ function Home() {
     generateAlarmType,
     generateHighestAlarmID,
     generatePatientID,
+    generateStatus,
     setReactiveAlarms,
     timeStamp,
-    generateStatus,
   ]);
 
   type HomeState = {
@@ -317,7 +317,7 @@ function Home() {
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row">
       <main className="grid w-full grid-cols-9 gap-2">
-        <section className="section-header section-footer box-shadow-md col-span-12 bg-white dark:bg-black-100 md:col-span-2 ">
+        <section className="box-shadow-md col-span-12 rounded-b-lg rounded-t-lg bg-white dark:bg-black-100 md:col-span-2 ">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
               <PatientBio
@@ -346,9 +346,9 @@ function Home() {
           </div>
         </section>
         <div className="col-span-12 flex flex-col justify-between gap-2 md:col-span-7">
-          <div className="section-header section-footer box-shadow-md flex h-full flex-col bg-white">
+          <div className="box-shadow-md flex h-full flex-col rounded-b-lg rounded-t-lg bg-white">
             <div
-              className={`section-header box-shadow-md grid grid-cols-6 gap-4 bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white dark:bg-black-200 md:grid-cols-9 ${
+              className={`box-shadow-md grid grid-cols-6 gap-4 rounded-t-lg bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white dark:bg-black-200 md:grid-cols-9 ${
                 state?.isPanelVisible ? 'pr-4' : ''
               }`}
             >
@@ -388,7 +388,7 @@ function Home() {
             </div>
           </div>
           <div
-            className={`section-header section-footer box-shadow-md bg-white ${
+            className={`box-shadow-md rounded-b-lg rounded-t-lg bg-white ${
               state?.isPanelVisible ? 'block' : 'hidden'
             }`}
           >
@@ -410,6 +410,11 @@ function Home() {
             </span>{' '}
             has been closed
           </Toast>
+        )}
+        {modal.status && modal.name === 'followup' && (
+          <Modal>
+            <FollowupModal />
+          </Modal>
         )}
       </main>
     </div>

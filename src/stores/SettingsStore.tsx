@@ -3,12 +3,15 @@ import create from 'zustand';
 interface SettingsState {
   currentIndex: number | null;
   legalClick: boolean;
-  modal: boolean;
+  modal: {
+    status: boolean;
+    name: string;
+  };
   toast: boolean;
   timer: boolean;
   setIndex: (by: number) => void;
   setLegalClick: (value: boolean) => void;
-  setModal: (value: boolean) => void;
+  setModal: ({ status, name }: { status: boolean; name: string }) => void;
   setToast: (value: boolean) => void;
   resetTimer: () => void;
 }
@@ -16,7 +19,10 @@ interface SettingsState {
 const useSettingsStore = create<SettingsState>((set) => ({
   currentIndex: null,
   legalClick: false,
-  modal: false,
+  modal: {
+    status: false,
+    name: '',
+  },
   toast: true,
   timer: false,
   canReset: false,
@@ -29,9 +35,12 @@ const useSettingsStore = create<SettingsState>((set) => ({
       legalClick: value,
     }));
   },
-  setModal: (value) =>
+  setModal: ({ status, name }: { status: boolean; name: string }) =>
     set(() => ({
-      modal: value,
+      modal: {
+        status,
+        name,
+      },
     })),
   setToast: (value) =>
     set(() => ({

@@ -2,25 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($name) {
+  -webkit-animation: #{$name};
+  animation: #{$name};
+}
+
 body {
-  @apply bg-white transition duration-200 dark:bg-black-200;
-  @apply dark:bg-primary-300;
+  @apply bg-white transition duration-200 dark:bg-primary-300;
   background: #eff5f5;
   min-width: 300px;
   background: url('https://tailwindcss.com/_next/static/media/docs-dark@tinypng.1bbe175e.png')
     no-repeat;
 }
 
+nav {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 h1 {
-  @apply text-2xl font-extrabold text-primary-200 dark:text-primary-300;
+  @apply text-2xl font-extrabold text-primary-200 dark:text-grey;
 }
 
 h2 {
-  @apply text-xl font-bold text-primary-200 dark:text-primary-300;
+  @apply text-xl font-bold text-primary-200 dark:text-grey;
 }
 
 h3 {
-  @apply text-lg font-bold  dark:text-primary-300;
+  @apply text-lg font-bold dark:text-grey;
 }
 
 h4 {
@@ -35,14 +54,21 @@ h4 {
   min-width: 320px;
   max-width: 1180px;
 }
+
 .sidebar {
   padding: 1px 0;
 }
 
 main {
-  height: 88vh;
-  max-height: 753px;
+  height: 754px;
+  @screen lg {
+  }
   padding: 1px;
+}
+
+.alarm-grid {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .noscrollbar::-webkit-scrollbar {
@@ -50,45 +76,47 @@ main {
 }
 
 .loud-noise-alarm {
-  background: #995fa3;
+  background-color: #995fa3;
 }
 
 .patient-up-alarm {
-  background: #329692;
+  background-color: #329692;
 }
+
 .help-call-alarm {
-  background: #002d2c;
+  background-color: #002d2c;
 }
+
 .fire-hazard-alarm {
-  background: #d64045;
+  background-color: #d64045;
 }
+
 .heart-monitor-alarm {
-  background: #4c3b4d;
+  background-color: #4c3b4d;
 }
+
 .alarm-bio.active {
-  @apply hover:bg-primary-100 dark:bg-black-300;
-  @apply bg-primary-100 dark:bg-black-300;
+  @apply bg-primary-100 hover:bg-primary-100 dark:bg-black-300;
 }
 
 .profile-block {
-  &.empty {
-    min-height: 333px;
-  }
   img {
-    height: 100px;
     min-width: 120px;
     border-radius: 0.5em;
   }
-}
 
-.section-header {
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-}
+  &.empty {
+    & > img {
+      min-width: initial;
+      @screen lg {
+        max-height: 300px;
+      }
 
-.section-footer {
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
+      @media only screen and (max-width: 728px) {
+        height: 150px;
+      }
+    }
+  }
 }
 
 input[type='checkbox'] {
@@ -99,10 +127,11 @@ input[type='checkbox'] {
   appearance: none;
   border-radius: 10%;
   box-shadow: none;
-  @apply border border-primary-200;
-  @apply border-black-200 dark:bg-black-300;
+  @apply border border-primary-200 dark:bg-black-300;
+
   &:checked {
     @apply border-none bg-primary-200 dark:bg-black-300;
+
     &:after {
       content: '\2713';
       font-size: 1.5em;
@@ -117,76 +146,47 @@ input[type='checkbox'] {
 }
 
 .hide {
-  -webkit-animation: hideDisplay 0.3s linear forwards;
-  animation: hideDisplay 0.3s linear forwards;
+  @include keyframes(hideDisplay) {
+    0% {
+      max-height: 0px;
+    }
+
+    50% {
+      max-height: 10vh;
+    }
+
+    100% {
+      max-height: 100%;
+    }
+  }
+
+  @include animation(hideDisplay 0.3s linear forwards);
 }
 
 .show {
-  -webkit-animation: showDisplay 0.5s linear forwards;
-  animation: showDisplay 0.5s linear forwards;
+  @include keyframes(showDisplay) {
+    0% {
+      max-height: 0px;
+    }
+
+    50% {
+      max-height: 10vh;
+    }
+
+    100% {
+      max-height: 100%;
+    }
+  }
+
+  @include animation(showDisplay 0.5s linear forwards);
   transition: all 0.5s;
-}
-
-@-webkit-keyframes showDisplay {
-  0% {
-    max-height: 0px;
-  }
-  50% {
-    max-height: 10vh;
-  }
-  100% {
-    max-height: 100%;
-  }
-}
-
-@keyframes showDisplay {
-  0% {
-    max-height: 0px;
-  }
-  50% {
-    max-height: 10vh;
-  }
-  100% {
-    max-height: 100%;
-  }
-}
-
-svg.empty-profile {
-  @apply fill-primary-200;
-  @apply dark:fill-grey;
-}
-
-svg.priority {
-  @apply fill-primary-200;
-  @apply dark:fill-grey;
-}
-
-.alarm-grid {
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
 .row {
   width: 710px;
-}
 
-@screen lg {
-  .alarm-grid {
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: normal;
-  }
-
-  .row {
+  @screen lg {
     width: auto;
-  }
-}
-
-@media only screen and (max-width: 728px) {
-  .profile-block {
-    &.empty {
-      min-height: initial;
-    }
   }
 }
 
@@ -195,54 +195,6 @@ svg.priority {
   animation: fadein 0.5s, fadeout 0.5s 4.8s;
 }
 
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 48px;
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 48px;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 48px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 48px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-nav {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
 .box-shadow-md {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px, rgba(0, 0, 0, 0.13) 0px 3px 3px;
 }
@@ -251,26 +203,45 @@ nav {
   animation: tilt-shaking 0.3s infinite;
 }
 
-@keyframes tilt-shaking {
-  0% {
-    transform: translateX(0);
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
   }
-  25% {
-    transform: translateX(0.05em);
-  }
-  50% {
-    transform: translateX(-0.05em);
-  }
-  75% {
-    transform: translateX(0.05em);
-  }
-  100% {
-    transform: translateX(0);
+
+  to {
+    bottom: 48px;
+    opacity: 1;
   }
 }
 
-@media only screen and (max-width: 728px) {
-  main {
-    max-height: initial;
+@keyframes fadeout {
+  from {
+    bottom: 48px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes tilt-shaking {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(0.05em);
+  }
+
+  50% {
+    transform: translateX(-0.05em);
+  }
+
+  75% {
+    transform: translateX(0.05em);
   }
 }

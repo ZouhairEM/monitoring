@@ -19,8 +19,8 @@ function AccountModal() {
         <div className="flex justify-center gap-2">
           <button
             type="button"
-            onClick={() => setModal(false)}
-            onKeyDown={() => setModal(false)}
+            onClick={() => setModal({ status: false, name: '' })}
+            onKeyDown={() => setModal({ status: false, name: '' })}
             tabIndex={0}
             className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >
@@ -28,8 +28,8 @@ function AccountModal() {
           </button>
           <button
             type="button"
-            onClick={() => setModal(false)}
-            onKeyDown={() => setModal(false)}
+            onClick={() => setModal({ status: false, name: '' })}
+            onKeyDown={() => setModal({ status: false, name: '' })}
             tabIndex={0}
             className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >

@@ -15,7 +15,10 @@ function Modal({ children }: IModal) {
       modalRef.current &&
       modalRef.current === (event.target as HTMLDivElement)
     ) {
-      setModal(false);
+      setModal({
+        status: false,
+        name: '',
+      });
     }
   };
 
@@ -34,8 +37,8 @@ function Modal({ children }: IModal) {
           {children}
           <CloseIcon
             className="absolute right-0 top-0 cursor-pointer dark:text-white"
-            onClick={() => setModal(false)}
-            onKeyDown={() => setModal(false)}
+            onClick={() => setModal({ status: false, name: '' })}
+            onKeyDown={() => setModal({ status: false, name: '' })}
           />
         </div>
       </div>

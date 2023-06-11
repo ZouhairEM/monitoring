@@ -9,7 +9,7 @@ function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <div>
-      <div className="flex flex-col gap-2 px-1 text-sm">
+      <div className="flex flex-col gap-2 text-sm">
         <div
           onClick={() => setIsCollapsed(!isCollapsed)}
           onKeyDown={() => setIsCollapsed(!isCollapsed)}

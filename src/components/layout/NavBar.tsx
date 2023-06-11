@@ -25,7 +25,7 @@ function NavBar() {
   }, [alarms]);
 
   return (
-    <nav className="section-header section-footer mb-2 flex flex-col items-center justify-between gap-2 bg-white px-3 py-2 text-base text-black-200 dark:bg-black-100 sm:grid-cols-6 md:mt-0 md:flex-row md:gap-0 lg:flex">
+    <nav className="mb-2 flex flex-col items-center justify-between gap-2 rounded-b-lg rounded-t-lg bg-white px-3 py-2 text-base text-black-200 dark:bg-black-100 sm:grid-cols-6 md:mt-0 md:flex-row md:gap-0 lg:flex">
       <div className="flex gap-2">
         <div className="flex flex-col items-center gap-2 dark:text-grey sm:flex-row">
           <p>Monitor App</p>
@@ -56,7 +56,7 @@ function NavBar() {
             alarms
           </span>
         </div>
-        {modal && (
+        {modal.status && modal.name === 'account' && (
           <Modal>
             <AccountModal />
           </Modal>
@@ -64,8 +64,8 @@ function NavBar() {
         <div
           role="button"
           tabIndex={0}
-          onClick={() => setModal(true)}
-          onKeyDown={() => setModal(true)}
+          onClick={() => setModal({ status: true, name: 'account' })}
+          onKeyDown={() => setModal({ status: true, name: 'account' })}
         >
           <AccountCircleIcon className="text-secondary text-primary-300 dark:text-grey" />
         </div>

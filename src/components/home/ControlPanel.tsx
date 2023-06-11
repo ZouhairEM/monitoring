@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import MedicationIcon from '@mui/icons-material/Medication';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useAlarmsStore from '../../stores/AlarmsStore';
@@ -23,6 +24,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
   const findPatient = useAlarmsStore((state) => state.findPatient);
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const setToast = useSettingsStore((state) => state.setToast);
+  const setModal = useSettingsStore((state) => state.setModal);
   const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
   const timer = useSettingsStore((state) => state.resetTimer);
 
@@ -49,6 +51,10 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
       );
       return [...availableAlarms];
     });
+  };
+
+  const handleFollowUp = () => {
+    setModal({ status: true, name: 'followup' });
   };
 
   const handleAlarmShuffle = (direction: string) => {
@@ -91,21 +97,34 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
   };
 
   return (
-    <section className="section-header dark:bg-black-100">
-      <div className="section-header box-shadow-md bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+    <section className="rounded-t-lg dark:bg-black-100">
+      <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
         Control Options
       </div>
-      <div className="section-header flex flex-col gap-2 p-2 py-3 text-sm sm:flex-row">
-        <button
-          type="button"
-          onClick={() => handleCloseAlarmSelection(activeAlarm)}
-          onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
-          tabIndex={0}
-          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
-        >
-          Close
-          <CloseIcon style={{ height: '16px' }} />
-        </button>
+      <div className="flex flex-col gap-2 rounded-t-lg p-2 py-3 text-sm sm:flex-row">
+        <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
+          <button
+            type="button"
+            onClick={() => handleFollowUp()}
+            onKeyDown={() => handleFollowUp()}
+            tabIndex={0}
+            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+          >
+            Follow up
+            <MedicationIcon style={{ height: '16px' }} />
+          </button>
+          <button
+            type="button"
+            onClick={() => handleCloseAlarmSelection(activeAlarm)}
+            onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
+            tabIndex={0}
+            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+          >
+            Close
+            <CloseIcon style={{ height: '16px' }} />
+          </button>
+        </div>
+
         <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
           <button
             type="button"
