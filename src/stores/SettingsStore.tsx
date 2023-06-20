@@ -7,10 +7,18 @@ interface SettingsState {
     status: boolean;
     name: string;
   };
+  expandHealthCare: boolean;
+  expandEmergencyContact: boolean;
   toast: boolean;
   timer: boolean;
   setIndex: (by: number) => void;
   setLegalClick: (value: boolean) => void;
+  setExpandHealthCare: ({ healthCare }: { healthCare: boolean }) => void;
+  setExpandEmergencyContact: ({
+    emergencyContact,
+  }: {
+    emergencyContact: boolean;
+  }) => void;
   setModal: ({ status, name }: { status: boolean; name: string }) => void;
   setToast: (value: boolean) => void;
   resetTimer: () => void;
@@ -19,6 +27,8 @@ interface SettingsState {
 const useSettingsStore = create<SettingsState>((set) => ({
   currentIndex: null,
   legalClick: false,
+  expandHealthCare: false,
+  expandEmergencyContact: false,
   modal: {
     status: false,
     name: '',
@@ -35,6 +45,18 @@ const useSettingsStore = create<SettingsState>((set) => ({
       legalClick: value,
     }));
   },
+  setExpandHealthCare: ({ healthCare }: { healthCare: boolean }) =>
+    set(() => ({
+      expandHealthCare: healthCare,
+    })),
+  setExpandEmergencyContact: ({
+    emergencyContact,
+  }: {
+    emergencyContact: boolean;
+  }) =>
+    set(() => ({
+      expandEmergencyContact: emergencyContact,
+    })),
   setModal: ({ status, name }: { status: boolean; name: string }) =>
     set(() => ({
       modal: {

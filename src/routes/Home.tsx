@@ -316,7 +316,7 @@ function Home() {
 
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row">
-      <main className="grid w-full grid-cols-9 gap-2">
+      <main className="mb-11 grid w-full grid-cols-9 gap-2 md:mb-0">
         <section className="box-shadow-md col-span-12 rounded-b-lg rounded-t-lg bg-white dark:bg-black-100 md:col-span-2 ">
           {patient ? (
             patient.map((patientInfo: PatientType) => (
