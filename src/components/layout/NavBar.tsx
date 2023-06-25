@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -16,6 +17,7 @@ function NavBar() {
   const modal = useSettingsStore((state) => state.modal);
   const setModal = useSettingsStore((state) => state.setModal);
   const [alarmsChanged, setAlarmsChanged] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setAlarmsChanged(true);
@@ -28,10 +30,10 @@ function NavBar() {
     <nav className="mb-2 flex flex-col items-center justify-between gap-2 rounded-b-lg rounded-t-lg bg-white px-3 py-2 text-base text-black-200 dark:bg-black-100 sm:grid-cols-6 md:mt-0 md:flex-row md:gap-0 lg:flex">
       <div className="flex gap-2">
         <div className="flex flex-col items-center gap-2 dark:text-grey sm:flex-row">
-          <p>Monitor App</p>
+          <p>{t('navBar.title')}</p>
           <p className="hidden sm:block">-</p>
           <p className="text-center text-sm sm:text-left">
-            A simulated dashboard for nurses to monitor patient activity
+            {t('navBar.description')}
           </p>
         </div>
       </div>
@@ -52,8 +54,8 @@ function NavBar() {
             />
           )}
           <span>
-            <span className="text-sm font-bold">x{alarms?.length}</span> open
-            alarms
+            <span className="text-sm font-bold">x{alarms?.length}</span>{' '}
+            {t('navBar.openAlarms')}
           </span>
         </div>
         {modal.status && modal.name === 'account' && (

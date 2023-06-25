@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import InfoIcon from '@mui/icons-material/Info';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,6 +23,7 @@ function Toast({ children, icon, timer }: ToastProps) {
   const toast = useSettingsStore((state) => state.toast);
   const setToast = useSettingsStore((state) => state.setToast);
   const setUndo = useAlarmsStore((state) => state.setUndo);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let timeOut: NodeJS.Timeout;
@@ -46,7 +48,7 @@ function Toast({ children, icon, timer }: ToastProps) {
         <div className="flex flex-col gap-2">
           <div>{children}</div>
           <p className="flex flex-col gap-2 text-center sm:flex-row">
-            <span>Didn&apos;t mean to?</span>
+            <span>{t('toast.didntMeanTo')}</span>
             <span
               tabIndex={0}
               role="button"
@@ -59,7 +61,7 @@ function Toast({ children, icon, timer }: ToastProps) {
                 return setUndo();
               }}
             >
-              <span className="font-bold underline">Undo</span>
+              <span className="font-bold underline">{t('toast.undo')}</span>
             </span>
           </p>
         </div>

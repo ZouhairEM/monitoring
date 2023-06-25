@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-this-in-sfc */
 import { useState, useEffect, useReducer, Dispatch } from 'react';
+import { useTranslation } from 'react-i18next';
 import TagIcon from '@mui/icons-material/Tag';
 import useAlarmsStore from '../stores/AlarmsStore';
 import useSettingsStore from '../stores/SettingsStore';
 import PatientBio from '../components/home/PatientBio';
 import AlarmBio from '../components/home/AlarmBio';
-import HealthCare from '../components/home/HealthCare';
+import HealthCareInfo from '../components/home/HealthCareInfo';
 import EmergencyContact from '../components/home/EmergencyContact';
 import ControlPanel from '../components/home/ControlPanel';
 import AlarmEntryType from '../types/AlarmEntryType';
@@ -33,6 +34,7 @@ function Home() {
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const [, setClickedAlarm] = useState(activeAlarm);
   const breakpoint = useBreakpoint();
+  const { t } = useTranslation();
 
   class RandomAlarmGenerator implements AlarmEntryType {
     id: number;
@@ -61,7 +63,10 @@ function Home() {
   }
 
   const availablePatientIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-  const availableStatuses = ['Open', 'Done'];
+  const availableStatuses = [
+    t('availableStatus.open'),
+    t('availableStatus.done'),
+  ];
 
   const availableAlarmTypes = Object.values(AlarmTypes);
 
@@ -306,12 +311,12 @@ function Home() {
   }
 
   const entryTypes: string[] = [
-    'Priority',
-    'Alarm',
-    'Patient',
-    'Time',
-    'Status',
-    'Room',
+    t('entryTypes.priority'),
+    t('entryTypes.alarm'),
+    t('entryTypes.patient'),
+    t('entryTypes.time'),
+    t('entryTypes.status'),
+    t('entryTypes.room'),
   ];
 
   return (
@@ -331,7 +336,7 @@ function Home() {
           <div className="noscrollbar flex flex-col gap-1 overflow-y-scroll px-2 pb-2 sm:pb-0">
             {patient &&
               patient.map((patientInfo: PatientType) => (
-                <HealthCare
+                <HealthCareInfo
                   healthCare={patientInfo.healthcare}
                   key={patientInfo.healthcare.plan}
                 />
@@ -361,7 +366,8 @@ function Home() {
               {entryTypes.map((entryType) => (
                 <div
                   className={`flex items-center justify-center gap-2 font-bold dark:text-grey md:justify-end ${
-                    entryType === 'Alarm' || entryType === 'Patient'
+                    entryType === t('entryTypes.alarm') ||
+                    entryType === t('entryTypes.patient')
                       ? 'col-span-2'
                       : 'col-span-2 md:col-span-1'
                   }`}
@@ -400,7 +406,7 @@ function Home() {
         </div>
         {toast && closedAlarm && (
           <Toast timer={timer} icon="close">
-            Alarm{' '}
+            {t('alarm')}{' '}
             <span className="font-bold">
               {' '}
               #
@@ -408,7 +414,7 @@ function Home() {
                 ? `0${closedAlarm[0].id}`
                 : closedAlarm[0].id}
             </span>{' '}
-            has been closed
+            {t('alarmHasBeenClosed')}
           </Toast>
         )}
         {modal.status && modal.name === 'followup' && (

@@ -2,9 +2,11 @@ import { useState } from 'react';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useTranslation } from 'react-i18next';
 
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <aside className="sidebar mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
@@ -18,7 +20,7 @@ function SideBar() {
             <VisibilityIcon className="text-primary-300 dark:text-grey" />
             {isCollapsed && (
               <div className="hidden text-primary-300 dark:text-grey md:block">
-                Monitoring
+                {t('sidebar.monitoring')}
               </div>
             )}
           </button>
@@ -29,7 +31,9 @@ function SideBar() {
           >
             <Grid3x3Icon className="dark:text-grey" />
             {isCollapsed && (
-              <div className="hidden dark:text-grey md:block">Dashboard</div>
+              <div className="hidden dark:text-grey md:block">
+                {t('sidebar.dashboard')}
+              </div>
             )}
           </button>
           <button
@@ -39,7 +43,9 @@ function SideBar() {
           >
             <HistoryToggleOffIcon className="dark:text-grey" />
             {isCollapsed && (
-              <div className="hidden dark:text-grey md:block">History</div>
+              <div className="hidden dark:text-grey md:block">
+                {t('sidebar.history')}
+              </div>
             )}
           </button>
         </div>
@@ -73,7 +79,9 @@ function SideBar() {
               />
             )}
           </svg>
-          {isCollapsed && <div className="dark:text-grey">Collapse</div>}
+          {isCollapsed && (
+            <div className="dark:text-grey">{t('sidebar.collapse')}</div>
+          )}
         </div>
       </div>
     </aside>

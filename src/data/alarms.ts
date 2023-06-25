@@ -1,5 +1,6 @@
 import AlarmEntryType from '../types/AlarmEntryType';
 import AlarmTypes from './alarmtypes';
+
 const currentTime = new Date().toLocaleTimeString().substring(0, 5);
 const Alarms: AlarmEntryType[] = [
   {

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Patient from '../../types/PatientType';
@@ -10,6 +11,7 @@ interface HealthCareInfoProps {
 function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
   const expand = useSettingsStore((state) => state.expandHealthCare);
   const setExpand = useSettingsStore((state) => state.setExpandHealthCare);
+  const { t } = useTranslation();
 
   const renderIcon = () => {
     if (expand) {
@@ -30,7 +32,7 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
             !expand ? 'mb-4' : ''
           } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey`}
         >
-          Healthcare Info
+          {t('healthCareInfo.title')}
           {renderIcon()}
         </div>
 
@@ -44,7 +46,7 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
                     sm:text-left"
                 >
                   <div className="text-xs font-bold capitalize text-primary-200 transition duration-200 dark:text-grey">
-                    {name}
+                    {t(`healthCareInfo.${name}`)}
                   </div>
                   <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
                     {value}
@@ -53,7 +55,9 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
               ))}
             </>
           ) : (
-            <div className="dark:text-grey">No alarm has been selected</div>
+            <div className="dark:text-grey">
+              {t('healthCareInfo.noAlarmHasBeenSelected')}
+            </div>
           ))}
       </div>
     </div>

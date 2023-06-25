@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import MaleIcon from '@mui/icons-material/Male';
 import FemaleIcon from '@mui/icons-material/Female';
 import Patient from '../../types/PatientType';
@@ -9,6 +10,7 @@ interface PatientBioProps {
 }
 
 function PatientBio({ profile }: PatientBioProps) {
+  const { t } = useTranslation();
   const profilePhoto = new URL(
     `../../assets/img/patients/${
       profile ? profile.photo ?? 'placeholder.png' : ''
@@ -33,7 +35,7 @@ function PatientBio({ profile }: PatientBioProps) {
   return (
     <>
       <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
-        Patient
+        {t('patientBio.title')}
       </div>
       {profile && (
         <div className="flex flex-col gap-1 p-2 py-3">
@@ -51,7 +53,7 @@ function PatientBio({ profile }: PatientBioProps) {
             <div className="grid grid-cols-3 gap-y-2 md:grid-cols-2">
               <div>
                 <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                  Name
+                  {t('patientBio.name')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey">
                   <span className="dark:bg-black-100">{profile.name}</span>
@@ -59,7 +61,7 @@ function PatientBio({ profile }: PatientBioProps) {
               </div>
               <div>
                 <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                  Date of Birth
+                  {t('patientBio.dob')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey">
                   <span className="dark:bg-black-100">
@@ -69,7 +71,7 @@ function PatientBio({ profile }: PatientBioProps) {
               </div>
               <div>
                 <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                  Gender
+                  {t('patientBio.gender')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey">
                   <span className="dark:bg-black-100">
@@ -83,7 +85,7 @@ function PatientBio({ profile }: PatientBioProps) {
               </div>
               <div>
                 <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                  Age
+                  {t('patientBio.age')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey">
                   <span className="dark:bg-black-100">{profile.age}</span>
@@ -91,7 +93,7 @@ function PatientBio({ profile }: PatientBioProps) {
               </div>
               <div>
                 <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                  Room
+                  {t('patientBio.room')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey">
                   <span className="dark:bg-black-100">
@@ -101,7 +103,7 @@ function PatientBio({ profile }: PatientBioProps) {
               </div>
               <div>
                 <div className="text-xs font-bold text-primary-200 dark:text-grey">
-                  Doctor
+                  {t('patientBio.doctor')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey">
                   <span className="dark:bg-black-100">
@@ -117,11 +119,11 @@ function PatientBio({ profile }: PatientBioProps) {
         <div className="profile-block empty flex h-full flex-col items-center justify-center gap-1 rounded-t-lg p-4">
           <img src={nurse} alt="Nurse" />
           <p className="py-4 text-center dark:text-grey">
-            Click on any active alarm{' '}
+            {t('patientBio.clickOnAlarm')}{' '}
             {breakpoint === 'sm' || breakpoint === 'md'
-              ? 'below'
-              : 'on the right'}
-            , patient info will be displayed here.
+              ? t('patientBio.below')
+              : t('patientBio.onTheRight')}
+            {t('patientBio.patientInfo')}
           </p>
         </div>
       )}

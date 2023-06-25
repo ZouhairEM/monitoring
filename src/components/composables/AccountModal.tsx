@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import useSettingsStore from '../../stores/SettingsStore';
 
 function AccountModal() {
   const setModal = useSettingsStore((state) => state.setModal);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -12,10 +14,10 @@ function AccountModal() {
           style={{ fontSize: '50px' }}
         />
         <h1 className="dark:text-grey">John Doe</h1>
-        <h4>Healthcare Provider</h4>
+        <h4>{t('navBar.modal.job')}</h4>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <p className="dark:text-grey">Log out from Monitor App?</p>
+        <p className="dark:text-grey">{t('navBar.modal.description')}</p>
         <div className="flex justify-center gap-2">
           <button
             type="button"
@@ -24,7 +26,7 @@ function AccountModal() {
             tabIndex={0}
             className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >
-            Yes, log out
+            {t('navBar.modal.confirm')}
           </button>
           <button
             type="button"
@@ -33,7 +35,7 @@ function AccountModal() {
             tabIndex={0}
             className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >
-            Cancel
+            {t('navBar.modal.cancel')}
           </button>
         </div>
       </div>

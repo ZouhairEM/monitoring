@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import CheckIcon from '@mui/icons-material/Check';
@@ -32,6 +33,23 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   const setIndex = useSettingsStore((state) => state.setIndex);
   const patients = useAlarmsStore((state) => state.patients);
   const alarms = useAlarmsStore((state) => state.alarms);
+  const { t } = useTranslation();
+
+  const handleAlarmTranslation = () => {
+    if (entry.alarm === AlarmTypes.One) {
+      return t('alarmTypes.fireHazard');
+    }
+    if (entry.alarm === AlarmTypes.Two) {
+      return t('alarmTypes.loudNoise');
+    }
+    if (entry.alarm === AlarmTypes.Three) {
+      return t('alarmTypes.helpCall');
+    }
+    if (entry.alarm === AlarmTypes.Four) {
+      return t('alarmTypes.patientUp');
+    }
+    return t('alarmTypes.heartMonitor');
+  };
 
   useEffect(() => {
     setMappedPatient(
@@ -130,10 +148,10 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
 
   const handleIcon = () => {
     if (entry.alarm === AlarmTypes.One) {
-      return <HearingIcon style={{ height: '17px' }} />;
+      return <LocalFireDepartmentIcon style={{ height: '17px' }} />;
     }
     if (entry.alarm === AlarmTypes.Two) {
-      return <LocalFireDepartmentIcon style={{ height: '18px' }} />;
+      return <HearingIcon style={{ height: '18px' }} />;
     }
     if (entry.alarm === AlarmTypes.Three) {
       return <RecordVoiceOverIcon style={{ height: '18px' }} />;
@@ -183,7 +201,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
             )}-alarm active-alarm flex justify-center gap-2 rounded p-1 text-white dark:opacity-80 `}
         >
           <span>{handleIcon()}</span>
-          {entry.alarm}
+          {handleAlarmTranslation()}
         </span>
       </div>
       <div className="col-span-2 flex flex-col justify-center text-right">
@@ -199,7 +217,11 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
               className="dark:text-grey"
               style={{ height: '15px', opacity: '0.9' }}
             />
-            <p>{entry.status}</p>
+            <p>
+              {entry.status === t('availableStatus.open')
+                ? t('availableStatus.open')
+                : t('availableStatus.done')}
+            </p>
           </span>
         ) : (
           <span className="flex items-center justify-end gap-1">
@@ -209,7 +231,9 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
                 opacity: '0.9',
               }}
             />
-            {entry.status}
+            {entry.status === 'Done'
+              ? t('availableStatus.done')
+              : t('availableStatus.open')}
           </span>
         )}
       </div>
