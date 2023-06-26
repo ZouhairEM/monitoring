@@ -32,15 +32,8 @@ function Modal({ children }: IModal) {
       onClick={(e: any) => closeModalViaBackdrop(e)}
       onKeyDown={(e: any) => closeModalViaBackdrop(e)}
     >
-      <div className="absolute left-1/2 top-1/2 z-20 w-80 -translate-x-1/2 -translate-y-1/2 transform rounded bg-white p-4 text-black-300 hover:cursor-auto dark:bg-black-100">
-        <div className="relative">
-          {children}
-          <CloseIcon
-            className="absolute right-0 top-0 cursor-pointer dark:text-white"
-            onClick={() => setModal({ status: false, name: '' })}
-            onKeyDown={() => setModal({ status: false, name: '' })}
-          />
-        </div>
+      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 transform rounded bg-white p-4 text-black-300 hover:cursor-auto dark:bg-black-100">
+        <div className="relative">{children}</div>
       </div>
     </div>
   );

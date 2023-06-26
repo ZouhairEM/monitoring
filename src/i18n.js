@@ -13,6 +13,18 @@ i18n
     resources: {
       en: {
         translation: {
+          dashboard: {
+            modal: {
+              title: 'Settings',
+            },
+            openAlarms: 'Open alarms',
+            darkMode: 'Dark Mode',
+            on: 'On',
+            off: 'Off',
+            visible: 'Visible',
+            hidden: 'Hidden',
+            language: 'Language',
+          },
           sidebar: {
             monitoring: 'Monitoring',
             dashboard: 'Dashboard',
@@ -102,6 +114,18 @@ i18n
       },
       nl: {
         translation: {
+          dashboard: {
+            modal: {
+              title: 'Instellingen',
+            },
+            openAlarms: 'Open meldingen',
+            darkMode: 'Donkere Modus',
+            on: 'Aan',
+            off: 'Uit',
+            visible: 'Zichtbaar',
+            hidden: 'Verstopt',
+            language: 'Taal',
+          },
           sidebar: {
             monitoring: 'Monitoring',
             dashboard: 'Dashboard',

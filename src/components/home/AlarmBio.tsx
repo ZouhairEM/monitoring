@@ -171,7 +171,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`row alarm-bio grid grid-cols-9 gap-4 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 dark:text-grey ${
+      className={`row alarm-bio grid w-[710px] grid-cols-9 gap-4 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 dark:text-grey lg:w-auto ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
@@ -193,7 +193,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       </div>
       <div className="col-span-2 flex justify-end text-right text-sm">
         <span
-          className={`${entry.alarm
+          className={`${handleAlarmTranslation()
             .toLowerCase()
             .replace(
               ' ',

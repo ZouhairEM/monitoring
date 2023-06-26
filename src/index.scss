@@ -17,12 +17,20 @@
   animation: #{$name};
 }
 
+* {
+  // outline: solid 0.1px;
+}
+
 body {
   @apply bg-white transition duration-200 dark:bg-primary-300;
   background: #eff5f5;
   min-width: 300px;
   background: url('https://tailwindcss.com/_next/static/media/docs-dark@tinypng.1bbe175e.png')
     no-repeat;
+}
+
+.widget {
+  @apply box-shadow-md flex flex-col justify-between rounded-b-lg rounded-t-lg bg-white p-2 text-sm font-bold dark:bg-black-100 dark:text-grey;
 }
 
 nav {
@@ -50,20 +58,8 @@ h4 {
   font-family: 'Roboto', sans-serif;
 }
 
-.container {
-  min-width: 320px;
-  max-width: 1180px;
-}
-
 .sidebar {
   padding: 1px 0;
-}
-
-main {
-  height: 754px;
-  @screen lg {
-  }
-  padding: 1px;
 }
 
 .alarm-grid {
@@ -75,23 +71,28 @@ main {
   display: none;
 }
 
-.loud-noise-alarm {
+.loud-noise-alarm,
+.harde-knal-alarm {
   background-color: #995fa3;
 }
 
-.patient-up-alarm {
+.patient-up-alarm,
+.patiënt-uit-alarm {
   background-color: #329692;
 }
 
-.help-call-alarm {
+.help-call-alarm,
+.hulpomroep-alarm {
   background-color: #002d2c;
 }
 
-.fire-hazard-alarm {
+.fire-hazard-alarm,
+.brandgevaar-alarm {
   background-color: #d64045;
 }
 
-.heart-monitor-alarm {
+.heart-monitor-alarm,
+.hartslag-alarm {
   background-color: #4c3b4d;
 }
 
@@ -100,12 +101,6 @@ main {
 }
 
 .profile-block {
-  img {
-    min-width: 120px;
-    max-height: 300px;
-    border-radius: 0.5em;
-  }
-
   &.empty {
     & > img {
       min-width: initial;
@@ -139,11 +134,6 @@ input[type='checkbox'] {
       color: white;
     }
   }
-}
-
-.down-chevron {
-  min-height: 15px;
-  min-width: 15px;
 }
 
 .hide {
@@ -181,14 +171,6 @@ input[type='checkbox'] {
 
   @include animation(showDisplay 0.5s linear forwards);
   transition: all 0.5s;
-}
-
-.row {
-  width: 710px;
-
-  @screen lg {
-    width: auto;
-  }
 }
 
 .toast {

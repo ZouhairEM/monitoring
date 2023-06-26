@@ -3,39 +3,61 @@ import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
 
 function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   return (
     <aside className="sidebar mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
       <div className="bg-primary flex h-full flex-col justify-between pb-0 text-sm font-semibold text-white md:pb-2">
         <div className="flex justify-evenly md:flex-col">
-          <button
-            type="button"
-            tabIndex={0}
-            className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-2 dark:bg-black-100 md:mb-3"
-          >
-            <VisibilityIcon className="text-primary-300 dark:text-grey" />
-            {isCollapsed && (
-              <div className="hidden text-primary-300 dark:text-grey md:block">
-                {t('sidebar.monitoring')}
-              </div>
-            )}
-          </button>
-          <button
-            type="button"
-            tabIndex={0}
-            className="mb-0 flex items-center gap-x-2 px-4 py-1 md:mb-3"
-          >
-            <Grid3x3Icon className="dark:text-grey" />
-            {isCollapsed && (
-              <div className="hidden dark:text-grey md:block">
-                {t('sidebar.dashboard')}
-              </div>
-            )}
-          </button>
+          <Link to="/">
+            <button
+              type="button"
+              tabIndex={0}
+              className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-2 dark:bg-black-100 md:mb-3"
+            >
+              <VisibilityIcon
+                className={`dark:text-grey ${
+                  pathname === '/' ? 'text-primary-300' : ''
+                }`}
+              />
+              {isCollapsed && (
+                <div
+                  className={`hidden ${
+                    pathname === '/' ? 'text-primary-300' : ''
+                  } dark:text-grey md:block`}
+                >
+                  {t('sidebar.monitoring')}
+                </div>
+              )}
+            </button>
+          </Link>
+          <Link to="/dashboard">
+            <button
+              type="button"
+              tabIndex={0}
+              className="mb-0 flex items-center gap-x-2 px-4 py-1 md:mb-3"
+            >
+              <Grid3x3Icon
+                className={`dark:text-grey ${
+                  pathname === '/dashboard' ? 'text-primary-300' : ''
+                }`}
+              />
+              {isCollapsed && (
+                <div
+                  className={`hidden dark:text-grey ${
+                    pathname === '/dashboard' ? 'text-primary-300' : ''
+                  }  md:block`}
+                >
+                  {t('sidebar.dashboard')}
+                </div>
+              )}
+            </button>
+          </Link>
           <button
             className="flex items-center gap-x-2 px-4 py-1"
             type="button"
