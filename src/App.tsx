@@ -3,11 +3,14 @@ import NavBar from './components/layout/NavBar';
 import Home from './routes/Home';
 import NotFound from './routes/NotFound';
 import useDarkMode from './hooks/useDarkMode';
+import useColorTheme from './hooks/useColorTheme';
 import SideBar from './components/layout/SideBar';
 import Dashboard from './routes/Dashboard';
 
 function App() {
   useDarkMode();
+  useColorTheme();
+
   return (
     <div className="relative mx-auto my-0 min-w-[320px] max-w-[1180px] p-2 font-open-sans md:my-4">
       <NavBar />

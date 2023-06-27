@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useSettingsStore from '../stores/SettingsStore';
 
-const useDarkMode = () => {
-  const [theme, setTheme] = useState(localStorage.theme);
+function useDarkMode() {
+  const theme = useSettingsStore((state) => state.theme);
+  const setTheme = useSettingsStore((state) => state.setTheme);
   const colorTheme = theme === 'dark' ? 'light' : 'dark';
 
   useEffect(() => {
@@ -12,6 +14,6 @@ const useDarkMode = () => {
   }, [theme, colorTheme]);
 
   return [colorTheme, setTheme] as const;
-};
+}
 
 export default useDarkMode;

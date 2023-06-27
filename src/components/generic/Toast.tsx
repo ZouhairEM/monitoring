@@ -29,7 +29,7 @@ function Toast({ children, icon, timer }: ToastProps) {
     let timeOut: NodeJS.Timeout;
 
     if (timer) {
-      timeOut = setTimeout(() => setToast(false), 5000);
+      timeOut = setTimeout(() => setToast(false), 7500);
     }
 
     return () => {

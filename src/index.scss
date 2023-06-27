@@ -21,6 +21,19 @@
   // outline: solid 0.1px;
 }
 
+:root {
+  --primary-100: rgba(32, 162, 211, 0.1);
+  --primary-200: #20a2d3;
+  --primary-300: #3e54ac;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-6xl: 4rem;
+}
 body {
   @apply bg-white transition duration-200 dark:bg-primary-300;
   background: #eff5f5;
@@ -72,27 +85,37 @@ h4 {
 }
 
 .loud-noise-alarm,
-.harde-knal-alarm {
+.harde-knal-alarm,
+.lauter-knall-alarm,
+.bruits-forts-alarm {
   background-color: #995fa3;
 }
 
 .patient-up-alarm,
-.patiënt-uit-alarm {
+.patiënt-uit-alarm,
+.patient-auf-alarm,
+.patient-debout-alarm {
   background-color: #329692;
 }
 
 .help-call-alarm,
-.hulpomroep-alarm {
+.hulpomroep-alarm,
+.hilferuf-alarm,
+.appel-à.l\'aide-alarm {
   background-color: #002d2c;
 }
 
 .fire-hazard-alarm,
-.brandgevaar-alarm {
+.brandgevaar-alarm,
+.brandgefahr-alarm,
+.danger-d\'incendie-alarm {
   background-color: #d64045;
 }
 
 .heart-monitor-alarm,
-.hartslag-alarm {
+.hartslag-alarm,
+.herzmonitor-alarm,
+.mon\.-cardiaque-alarm {
   background-color: #4c3b4d;
 }
 
@@ -175,7 +198,7 @@ input[type='checkbox'] {
 
 .toast {
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 4.8s;
+  animation: fadein 0.5s, fadeout 0.5s 7.6s;
 }
 
 .box-shadow-md {

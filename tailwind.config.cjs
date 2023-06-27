@@ -7,6 +7,15 @@ module.exports = {
       fontFamily: {
         'open-sans': ['Open Sans', 'sans-serif'],
       },
+      fontSize: {
+        xs: 'var(--text-xs)',
+        sm: 'var(--text-sm)',
+        base: 'var(--text-base)',
+        lg: 'var(--text-lg)',
+        xl: 'var(--text-xl)',
+        '2xl': 'var(--text-2xl)',
+        '6xl': 'var(--text-6xl)',
+      },
       dropShadow: {
         md: '0 1px 1px rgba(74, 5, 211, 0.5)',
       },
@@ -22,9 +31,9 @@ module.exports = {
     },
     colors: {
       primary: {
-        100: 'rgba(32, 162, 211, 0.1)',
-        200: '#20a2d3',
-        300: '#3E54AC',
+        100: 'var(--primary-100)',
+        200: 'var(--primary-200)',
+        300: 'var(--primary-300)',
       },
       black: {
         100: '#2e3139',
