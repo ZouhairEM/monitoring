@@ -11,12 +11,7 @@ import useSettingsStore from '../stores/SettingsStore';
 function Dashboard() {
   const { t } = useTranslation();
   const modal = useSettingsStore((state) => state.modal);
-  const alarmsWidget = useSettingsStore((state) => state.alarmsWidget);
-  const tipWidget = useSettingsStore((state) => state.tipWidget);
-  const totalWidget = useSettingsStore((state) => state.totalWidget);
-  const typeWidget = useSettingsStore((state) => state.typeWidget);
-  const newestWidget = useSettingsStore((state) => state.newestWidget);
-  const timeWidget = useSettingsStore((state) => state.timeWidget);
+  const widgets = useSettingsStore((state) => state.widgets);
 
   return (
     <div className="w-full">
@@ -24,12 +19,12 @@ function Dashboard() {
         <h1>{t('dashboard.title')}</h1>
         <div className="flex h-full flex-col gap-2">
           <div className="grid h-1/4 grid-cols-4 gap-2">
-            {alarmsWidget && (
+            {widgets.alarms && (
               <section className="widget col-span-2 md:col-span-1">
                 <AlarmCountWidget />
               </section>
             )}
-            {tipWidget && (
+            {widgets.tip && (
               <section className="widget col-span-2">
                 <div>{t('dashboard.modal.tipOfTheDay')}</div>
                 <TipOfTheDayWidget />
@@ -45,24 +40,24 @@ function Dashboard() {
             </section>
           </div>
           <div className="grid h-1/4 grid-cols-4 gap-2">
-            {totalWidget && (
+            {widgets.total && (
               <section className="widget col-span-2 md:col-span-1">
                 <TotalCountWidget />
               </section>
             )}
-            {typeWidget && (
+            {widgets.type && (
               <section className="widget col-span-2">
                 <div>{t('dashboard.modal.alarmsByType')}</div>
               </section>
             )}
-            {timeWidget && (
+            {widgets.time && (
               <section className="widget col-span-2 md:col-span-1">
                 <TimeWidget />
               </section>
             )}
           </div>
           <div className="grid h-1/4 grid-cols-4 gap-2">
-            {newestWidget && (
+            {widgets.newest && (
               <section className="widget col-span-2 md:col-span-1">
                 <div>{t('dashboard.modal.newestAlarm')}</div>
               </section>

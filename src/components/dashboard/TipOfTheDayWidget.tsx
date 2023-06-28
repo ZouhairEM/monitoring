@@ -1,21 +1,29 @@
 import { useTranslation } from 'react-i18next';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 function TipOfTheDayWidget() {
-  const { t } = useTranslation();
-  const tips = [
-    t('dashboard.tips.first'),
-    t('dashboard.tips.second'),
-    t('dashboard.tips.third'),
-    t('dashboard.tips.fourth'),
-    t('dashboard.tips.fifth'),
-    t('dashboard.tips.sixth'),
-    t('dashboard.tips.seventh'),
-    t('dashboard.tips.eigth'),
-  ];
-  const [currentTip, setCurrentTip] = useState(tips[1]);
+  const { t, i18n } = useTranslation();
+  const [currentTip, setCurrentTip] = useState('');
+
+  const tips = useMemo(
+    () => [
+      t('dashboard.tips.first'),
+      t('dashboard.tips.second'),
+      t('dashboard.tips.third'),
+      t('dashboard.tips.fourth'),
+      t('dashboard.tips.fifth'),
+      t('dashboard.tips.sixth'),
+      t('dashboard.tips.seventh'),
+      t('dashboard.tips.eighth'),
+    ],
+    [t]
+  );
+
+  useEffect(() => {
+    setCurrentTip(tips[1]);
+  }, [i18n.language, tips]);
 
   const changeTip = (direction: 'prev' | 'next') => {
     let newIndex = 0;
@@ -26,12 +34,13 @@ function TipOfTheDayWidget() {
     } else if (direction === 'next') {
       newIndex = currentIndex === tips.length - 1 ? 0 : currentIndex + 1;
     }
+
     setCurrentTip(tips[newIndex]);
   };
 
   return (
     <div className="flex h-full flex-col justify-between">
-      <p className="flex h-full items-center justify-center font-medium">
+      <p className="flex h-full items-center justify-center text-center font-medium">
         {currentTip}
       </p>
       <div className="flex justify-center gap-2">

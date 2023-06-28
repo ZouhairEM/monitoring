@@ -27,21 +27,11 @@ function SettingsModal() {
   const breakpoint = useBreakpoint();
 
   const { t, i18n } = useTranslation();
-  const alarmsWidget = useSettingsStore((state) => state.alarmsWidget);
-  const tipWidget = useSettingsStore((state) => state.tipWidget);
+  const widgets = useSettingsStore((state) => state.widgets);
   const darkMode = useSettingsStore((state) => state.darkMode);
-  const totalWidget = useSettingsStore((state) => state.totalWidget);
-  const typeWidget = useSettingsStore((state) => state.typeWidget);
-  const newestWidget = useSettingsStore((state) => state.newestWidget);
-  const timeWidget = useSettingsStore((state) => state.timeWidget);
 
-  const setAlarmsWidget = useSettingsStore((state) => state.setAlarmsWidget);
-  const setTipWidget = useSettingsStore((state) => state.setTipWidget);
+  const setWidget = useSettingsStore((state) => state.setWidget);
   const setDarkMode = useSettingsStore((state) => state.setDarkMode);
-  const setTotalWidget = useSettingsStore((state) => state.setTotalWidget);
-  const setTypeWidget = useSettingsStore((state) => state.setTypeWidget);
-  const setNewestWidget = useSettingsStore((state) => state.setNewestWidget);
-  const setTimeWidget = useSettingsStore((state) => state.setTimeWidget);
 
   const toggleClass = ' transform translate-x-5';
   const [colorTheme, setTheme] = useDarkMode();
@@ -160,7 +150,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  alarmsWidget ? 'visible' : 'invisible'
+                  widgets.alarms ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -169,26 +159,32 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  alarmsWidget ? 'bg-primary-200' : 'bg-grey'
+                  widgets.alarms ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('alarmsWidget', String(!alarmsWidget));
-                  setAlarmsWidget(!alarmsWidget);
+                  localStorage.setItem(
+                    'widgets.alarms',
+                    String(!widgets.alarms)
+                  );
+                  setWidget('alarms', !widgets.alarms);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('alarmsWidget', String(!alarmsWidget));
-                  setAlarmsWidget(!alarmsWidget);
+                  localStorage.setItem(
+                    'widgets.alarms',
+                    String(!widgets.alarms)
+                  );
+                  setWidget('alarms', !widgets.alarms);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    alarmsWidget ? null : toggleClass
+                    widgets.alarms ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  alarmsWidget ? 'invisible' : 'visible'
+                  widgets.alarms ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -201,7 +197,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  tipWidget ? 'visible' : 'invisible'
+                  widgets.tip ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -210,26 +206,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  tipWidget ? 'bg-primary-200' : 'bg-grey'
+                  widgets.tip ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('tipWidget', String(!tipWidget));
-                  setTipWidget(!tipWidget);
+                  localStorage.setItem('widgets.tip', String(!widgets.tip));
+                  setWidget('tip', !widgets.tip);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('tipWidget', String(!tipWidget));
-                  setTipWidget(!tipWidget);
+                  localStorage.setItem('widgets.tip', String(!widgets.tip));
+                  setWidget('tip', !widgets.tip);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    tipWidget ? null : toggleClass
+                    widgets.tip ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  tipWidget ? 'invisible' : 'visible'
+                  widgets.tip ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -242,7 +238,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  totalWidget ? 'visible' : 'invisible'
+                  widgets.total ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -251,26 +247,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  totalWidget ? 'bg-primary-200' : 'bg-grey'
+                  widgets.total ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('totalWidget', String(!totalWidget));
-                  setTotalWidget(!totalWidget);
+                  localStorage.setItem('widgets.total', String(!widgets.total));
+                  setWidget('total', !widgets.total);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('totalWidget', String(!totalWidget));
-                  setTotalWidget(!totalWidget);
+                  localStorage.setItem('widgets.total', String(!widgets.total));
+                  setWidget('total', !widgets.total);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    totalWidget ? null : toggleClass
+                    widgets.total ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  totalWidget ? 'invisible' : 'visible'
+                  widgets.total ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -283,7 +279,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  typeWidget ? 'visible' : 'invisible'
+                  widgets.type ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -292,26 +288,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  typeWidget ? 'bg-primary-200' : 'bg-grey'
+                  widgets.type ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('typeWidget', String(!typeWidget));
-                  setTypeWidget(!typeWidget);
+                  localStorage.setItem('widgets.type', String(!widgets.type));
+                  setWidget('type', !widgets.type);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('typeWidget', String(!typeWidget));
-                  setTypeWidget(!typeWidget);
+                  localStorage.setItem('widgets.type', String(!widgets.type));
+                  setWidget('type', !widgets.type);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    typeWidget ? null : toggleClass
+                    widgets.type ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  typeWidget ? 'invisible' : 'visible'
+                  widgets.type ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -324,7 +320,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  timeWidget ? 'visible' : 'invisible'
+                  widgets.time ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -333,26 +329,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  timeWidget ? 'bg-primary-200' : 'bg-grey'
+                  widgets.time ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('timeWidget', String(!timeWidget));
-                  setTimeWidget(!timeWidget);
+                  localStorage.setItem('widgets.time', String(!widgets.time));
+                  setWidget('time', !widgets.time);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('timeWidget', String(!timeWidget));
-                  setTimeWidget(!timeWidget);
+                  localStorage.setItem('widgets.time', String(!widgets.time));
+                  setWidget('time', !widgets.time);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    timeWidget ? null : toggleClass
+                    widgets.time ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  timeWidget ? 'invisible' : 'visible'
+                  widgets.time ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -365,7 +361,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  newestWidget ? 'visible' : 'invisible'
+                  widgets.newest ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -374,26 +370,32 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  newestWidget ? 'bg-primary-200' : 'bg-grey'
+                  widgets.newest ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('newestWidget', String(!newestWidget));
-                  setNewestWidget(!newestWidget);
+                  localStorage.setItem(
+                    'widgets.newest',
+                    String(!widgets.newest)
+                  );
+                  setWidget('newest', !widgets.newest);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('newestWidget', String(!newestWidget));
-                  setNewestWidget(!newestWidget);
+                  localStorage.setItem(
+                    'widgets.newest',
+                    String(!widgets.newest)
+                  );
+                  setWidget('newest', !widgets.newest);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    newestWidget ? null : toggleClass
+                    widgets.newest ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  newestWidget ? 'invisible' : 'visible'
+                  widgets.newest ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}

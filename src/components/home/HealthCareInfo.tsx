@@ -9,8 +9,8 @@ interface HealthCareInfoProps {
 }
 
 function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
-  const expand = useSettingsStore((state) => state.expandHealthCare);
-  const setExpand = useSettingsStore((state) => state.setExpandHealthCare);
+  const expand = useSettingsStore((state) => state.expand.healthcare);
+  const setExpand = useSettingsStore((state) => state.setExpand);
   const { t } = useTranslation();
 
   const renderIcon = () => {
@@ -24,8 +24,8 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
     <div>
       <div className="flex flex-col gap-2 text-sm">
         <div
-          onClick={() => setExpand({ healthCare: !expand })}
-          onKeyDown={() => setExpand({ healthCare: !expand })}
+          onClick={() => setExpand('healthcare', !expand)}
+          onKeyDown={() => setExpand('healthcare', !expand)}
           role="button"
           tabIndex={0}
           className={`${

@@ -9,8 +9,8 @@ interface EmergencyContactProps {
 }
 
 function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
-  const expand = useSettingsStore((state) => state.expandContact);
-  const setExpand = useSettingsStore((state) => state.setExpandContact);
+  const expand = useSettingsStore((state) => state.expand.emergencyContact);
+  const setExpand = useSettingsStore((state) => state.setExpand);
   const { t } = useTranslation();
 
   const renderIcon = () => {
@@ -24,8 +24,8 @@ function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
     <div>
       <div className="flex flex-col gap-2 text-sm">
         <div
-          onClick={() => setExpand({ emergencyContact: !expand })}
-          onKeyDown={() => setExpand({ emergencyContact: !expand })}
+          onClick={() => setExpand('emergencyContact', !expand)}
+          onKeyDown={() => setExpand('emergencyContact', !expand)}
           role="button"
           tabIndex={0}
           className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey"

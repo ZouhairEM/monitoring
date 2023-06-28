@@ -1,13 +1,15 @@
 import { useTranslation } from 'react-i18next';
+import useAlarmsStore from '../../stores/AlarmsStore';
 
 function TotalCountWidget() {
+  const alarms = useAlarmsStore((state) => state.alarms);
   const { t } = useTranslation();
 
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="flex flex-col justify-between gap-2">
         <p>{t('dashboard.modal.totalAlarms')}</p>
-        <h3 className="text-center text-6xl">211</h3>
+        <h3 className="text-center text-6xl">{alarms.length + 133}</h3>
       </div>
       <div className="flex justify-center">
         <p>{t('dashboard.thisWeek')}</p>
