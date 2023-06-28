@@ -46,7 +46,7 @@ function PatientBio({ profile }: PatientBioProps) {
             <img
               src={profilePhoto}
               alt={profile.name}
-              className="photo box-shadow-md h-24 max-h-[300px] min-w-[120px] border-r-2 object-fill"
+              className="photo box-shadow-md h-24 max-h-[300px] min-w-[120px] object-fill"
             />
           </div>
           <div className="mb-2 text-center text-sm md:text-left">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -27,41 +27,21 @@ function SettingsModal() {
   const breakpoint = useBreakpoint();
 
   const { t, i18n } = useTranslation();
-  const toggleOpenAlarms = useSettingsStore((state) => state.toggleOpenAlarms);
-  const toggleTipOfTheDay = useSettingsStore(
-    (state) => state.toggleTipOfTheDay
-  );
-  const toggleDarkMode = useSettingsStore((state) => state.toggleDarkMode);
-  const toggleTotalAlarms = useSettingsStore(
-    (state) => state.toggleTotalAlarms
-  );
-  const toggleAlarmsByType = useSettingsStore(
-    (state) => state.toggleAlarmsByType
-  );
-  const toggleNewestAlarm = useSettingsStore(
-    (state) => state.toggleNewestAlarm
-  );
-  const toggleTime = useSettingsStore((state) => state.toggleTime);
+  const alarmsWidget = useSettingsStore((state) => state.alarmsWidget);
+  const tipWidget = useSettingsStore((state) => state.tipWidget);
+  const darkMode = useSettingsStore((state) => state.darkMode);
+  const totalWidget = useSettingsStore((state) => state.totalWidget);
+  const typeWidget = useSettingsStore((state) => state.typeWidget);
+  const newestWidget = useSettingsStore((state) => state.newestWidget);
+  const timeWidget = useSettingsStore((state) => state.timeWidget);
 
-  const setToggleOpenAlarms = useSettingsStore(
-    (state) => state.setToggleOpenAlarms
-  );
-  const setToggleTipOfTheDay = useSettingsStore(
-    (state) => state.setToggleTipOfTheDay
-  );
-  const setToggleDarkMode = useSettingsStore(
-    (state) => state.setToggleDarkMode
-  );
-  const setToggleTotalAlarms = useSettingsStore(
-    (state) => state.setToggleTotalAlarms
-  );
-  const setToggleAlarmsByType = useSettingsStore(
-    (state) => state.setToggleAlarmsByType
-  );
-  const setToggleNewestAlarm = useSettingsStore(
-    (state) => state.setToggleNewestAlarm
-  );
-  const setToggleTime = useSettingsStore((state) => state.setToggleTime);
+  const setAlarmsWidget = useSettingsStore((state) => state.setAlarmsWidget);
+  const setTipWidget = useSettingsStore((state) => state.setTipWidget);
+  const setDarkMode = useSettingsStore((state) => state.setDarkMode);
+  const setTotalWidget = useSettingsStore((state) => state.setTotalWidget);
+  const setTypeWidget = useSettingsStore((state) => state.setTypeWidget);
+  const setNewestWidget = useSettingsStore((state) => state.setNewestWidget);
+  const setTimeWidget = useSettingsStore((state) => state.setTimeWidget);
 
   const toggleClass = ' transform translate-x-5';
   const [colorTheme, setTheme] = useDarkMode();
@@ -180,7 +160,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleOpenAlarms ? 'visible' : 'invisible'
+                  alarmsWidget ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -189,24 +169,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  toggleOpenAlarms ? 'bg-primary-200' : 'bg-grey'
+                  alarmsWidget ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  setToggleOpenAlarms(!toggleOpenAlarms);
+                  localStorage.setItem('alarmsWidget', String(!alarmsWidget));
+                  setAlarmsWidget(!alarmsWidget);
                 }}
                 onKeyDown={() => {
-                  setToggleOpenAlarms(!toggleOpenAlarms);
+                  localStorage.setItem('alarmsWidget', String(!alarmsWidget));
+                  setAlarmsWidget(!alarmsWidget);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    toggleOpenAlarms ? null : toggleClass
+                    alarmsWidget ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleOpenAlarms ? 'invisible' : 'visible'
+                  alarmsWidget ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -219,7 +201,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleTipOfTheDay ? 'visible' : 'invisible'
+                  tipWidget ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -228,24 +210,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  toggleTipOfTheDay ? 'bg-primary-200' : 'bg-grey'
+                  tipWidget ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  setToggleTipOfTheDay(!toggleTipOfTheDay);
+                  localStorage.setItem('tipWidget', String(!tipWidget));
+                  setTipWidget(!tipWidget);
                 }}
                 onKeyDown={() => {
-                  setToggleTipOfTheDay(!toggleTipOfTheDay);
+                  localStorage.setItem('tipWidget', String(!tipWidget));
+                  setTipWidget(!tipWidget);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    toggleTipOfTheDay ? null : toggleClass
+                    tipWidget ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleTipOfTheDay ? 'invisible' : 'visible'
+                  tipWidget ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -258,7 +242,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleTotalAlarms ? 'visible' : 'invisible'
+                  totalWidget ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -267,24 +251,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  toggleTotalAlarms ? 'bg-primary-200' : 'bg-grey'
+                  totalWidget ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  setToggleTotalAlarms(!toggleTotalAlarms);
+                  localStorage.setItem('totalWidget', String(!totalWidget));
+                  setTotalWidget(!totalWidget);
                 }}
                 onKeyDown={() => {
-                  setToggleTotalAlarms(!toggleTotalAlarms);
+                  localStorage.setItem('totalWidget', String(!totalWidget));
+                  setTotalWidget(!totalWidget);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    toggleTotalAlarms ? null : toggleClass
+                    totalWidget ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleTotalAlarms ? 'invisible' : 'visible'
+                  totalWidget ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -297,7 +283,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleAlarmsByType ? 'visible' : 'invisible'
+                  typeWidget ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -306,24 +292,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  toggleAlarmsByType ? 'bg-primary-200' : 'bg-grey'
+                  typeWidget ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  setToggleAlarmsByType(!toggleAlarmsByType);
+                  localStorage.setItem('typeWidget', String(!typeWidget));
+                  setTypeWidget(!typeWidget);
                 }}
                 onKeyDown={() => {
-                  setToggleAlarmsByType(!toggleAlarmsByType);
+                  localStorage.setItem('typeWidget', String(!typeWidget));
+                  setTypeWidget(!typeWidget);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    toggleAlarmsByType ? null : toggleClass
+                    typeWidget ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleAlarmsByType ? 'invisible' : 'visible'
+                  typeWidget ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -336,7 +324,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleTime ? 'visible' : 'invisible'
+                  timeWidget ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -345,24 +333,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  toggleTime ? 'bg-primary-200' : 'bg-grey'
+                  timeWidget ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  setToggleTime(!toggleTime);
+                  localStorage.setItem('timeWidget', String(!timeWidget));
+                  setTimeWidget(!timeWidget);
                 }}
                 onKeyDown={() => {
-                  setToggleTime(!toggleTime);
+                  localStorage.setItem('timeWidget', String(!timeWidget));
+                  setTimeWidget(!timeWidget);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    toggleTime ? null : toggleClass
+                    timeWidget ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleTime ? 'invisible' : 'visible'
+                  timeWidget ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -375,7 +365,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleNewestAlarm ? 'visible' : 'invisible'
+                  newestWidget ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -384,24 +374,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  toggleNewestAlarm ? 'bg-primary-200' : 'bg-grey'
+                  newestWidget ? 'bg-primary-200' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
-                  setToggleNewestAlarm(!toggleNewestAlarm);
+                  localStorage.setItem('newestWidget', String(!newestWidget));
+                  setNewestWidget(!newestWidget);
                 }}
                 onKeyDown={() => {
-                  setToggleNewestAlarm(!toggleNewestAlarm);
+                  localStorage.setItem('newestWidget', String(!newestWidget));
+                  setNewestWidget(!newestWidget);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    toggleNewestAlarm ? null : toggleClass
+                    newestWidget ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey ${
-                  toggleNewestAlarm ? 'invisible' : 'visible'
+                  newestWidget ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -466,11 +458,11 @@ function SettingsModal() {
               } p-1`}
               onClick={() => {
                 setTheme(colorTheme);
-                setToggleDarkMode(!toggleDarkMode);
+                setDarkMode(!darkMode);
               }}
               onKeyDown={() => {
                 setTheme(colorTheme);
-                setToggleDarkMode(!toggleDarkMode);
+                setDarkMode(!darkMode);
               }}
             >
               <div

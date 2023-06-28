@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import useSettingsStore from '../../stores/SettingsStore';
 
 interface IModal {

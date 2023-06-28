@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import Settings from '@mui/icons-material/Settings';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import useSettingsStore from '../../stores/SettingsStore';
 
 function SettingsWidget() {
@@ -20,7 +20,10 @@ function SettingsWidget() {
       >
         <p>{t('dashboard.modal.title')}</p>
         <span className="flex h-full w-full items-center justify-center">
-          <Settings className="text-primary-200" style={{ fontSize: '40px' }} />
+          <DashboardIcon
+            className="text-primary-200"
+            style={{ fontSize: '40px' }}
+          />
         </span>
       </button>
     </div>

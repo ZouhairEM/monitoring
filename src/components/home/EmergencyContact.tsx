@@ -9,10 +9,8 @@ interface EmergencyContactProps {
 }
 
 function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
-  const expand = useSettingsStore((state) => state.expandEmergencyContact);
-  const setExpand = useSettingsStore(
-    (state) => state.setExpandEmergencyContact
-  );
+  const expand = useSettingsStore((state) => state.expandContact);
+  const setExpand = useSettingsStore((state) => state.setExpandContact);
   const { t } = useTranslation();
 
   const renderIcon = () => {

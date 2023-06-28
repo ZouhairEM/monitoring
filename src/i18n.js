@@ -15,7 +15,26 @@ i18n
         translation: {
           dashboard: {
             title: 'Dashboard',
-            toMonitoring: 'To Monitoring',
+            toMonitoring: 'To monitoring',
+            thisWeek: 'This week',
+            tips: {
+              first:
+                'To close an alarm, click the "Close Alarm" button. It has an icon of a close symbol. This will mark the alarm as closed and trigger any necessary actions.',
+              second:
+                'Hover over buttons to see a visual change indicating it is clickable. The background color will change to a slightly lighter shade when you move the cursor over it.',
+              third:
+                'If you close an alarm, a toast notification may appear briefly to confirm the action. The toast notification provides feedback that the alarm has been closed successfully.',
+              fourth:
+                'Need to follow up on an alarm? Use the "Follow Up" button in the control panel. Clicking this will open a modal or dialog box where you can perform follow-up actions.',
+              fifth:
+                'Want to shuffle between alarms? Use the arrow buttons in the control panel. Clicking these will navigate through the available alarms, allowing you to review or interact with each one.',
+              sixth:
+                'Take advantage of the keyboard shortcuts for quick interactions. For example, you can press the Enter key to close the selected alarm or use the arrow keys to navigate between alarms.',
+              seventh:
+                'The control panel and alarm interface adapt to different screen sizes, ensuring a seamless user experience across various devices.',
+              eigth:
+                'Multilingual support is provided. The text on buttons, titles, and notifications will be displayed in the selected language.',
+            },
             modal: {
               title: 'Settings',
               openAlarms: 'Open alarms',
@@ -125,21 +144,40 @@ i18n
         translation: {
           dashboard: {
             title: 'Dashboard',
-            toMonitoring: 'Naar monitoren',
+            toMonitoring: 'Naar monitoring',
+            thisWeek: 'Deze week',
+            tips: {
+              first:
+                'Om een alarm te sluiten, klik op de knop "Alarm Sluiten". Deze heeft een icoon van een sluitsymbool. Hierdoor wordt het alarm als gesloten gemarkeerd en worden eventuele benodigde acties geactiveerd.',
+              second:
+                'Beweeg de cursor over knoppen om een visuele verandering te zien die aangeeft dat erop geklikt kan worden. De achtergrondkleur verandert naar een iets lichtere tint wanneer je de cursor erover beweegt.',
+              third:
+                'Als je een alarm sluit, kan er kort een toastmelding verschijnen om de actie te bevestigen. De toastmelding geeft feedback dat het alarm succesvol is gesloten.',
+              fourth:
+                'Moet je een alarm opvolgen? Gebruik de "Opvolgen" knop in het bedieningspaneel. Door hierop te klikken, wordt een modaal of dialoogvenster geopend waarin je opvolgacties kunt uitvoeren.',
+              fifth:
+                'Wil je schakelen tussen alarmen? Gebruik de pijlknoppen in het bedieningspaneel. Door hierop te klikken, kun je door de beschikbare alarmen navigeren en elk alarm bekijken of ermee interageren.',
+              sixth:
+                'Maak gebruik van sneltoetsen voor snelle interacties. Bijvoorbeeld, je kunt op de Enter-toets drukken om het geselecteerde alarm te sluiten of de pijltoetsen gebruiken om tussen alarmen te navigeren.',
+              seventh:
+                'Het bedieningspaneel en het alarmscherm passen zich aan aan verschillende schermformaten, wat zorgt voor een naadloze gebruikerservaring op verschillende apparaten.',
+              eigth:
+                'Er is ondersteuning voor meerdere talen. De tekst op knoppen, titels en meldingen wordt weergegeven in de geselecteerde taal.',
+            },
             modal: {
               title: 'Instellingen',
-              openAlarms: 'Open meldingen',
-              darkMode: 'Donkere Modus',
+              openAlarms: 'Open alarmen',
+              darkMode: 'Donkere modus',
               on: 'Aan',
               off: 'Uit',
-              visible: 'Tonen',
-              hidden: 'Verstoppen',
+              visible: 'Zichtbaar',
+              hidden: 'Verborgen',
               language: 'Taal',
               tipOfTheDay: 'Tip van de dag',
-              totalAlarms: 'Totaal meldingen',
-              alarmsByType: 'Melding per type',
+              totalAlarms: 'Aantal alarmen',
+              alarmsByType: 'Alarmen per type',
               time: 'Tijd',
-              newestAlarm: 'Nieuwste melding',
+              newestAlarm: 'Meest recente alarm',
               fontSize: 'Lettergrootte',
               theme: 'Thema',
             },
@@ -152,32 +190,32 @@ i18n
           },
           toast: {
             didntMeanTo: 'Niet de bedoeling?',
-            undo: 'Maak ongedaan',
+            undo: 'Ongedaan maken',
           },
           controlPanel: {
-            title: 'Beheeropties',
+            title: 'Bedieningsopties',
             followUp: 'Opvolgen',
-            closeAlarm: 'Melding sluiten',
-            previousAlarm: 'Vorige melding',
-            nextAlarm: 'Volgende melding',
+            closeAlarm: 'Alarm sluiten',
+            previousAlarm: 'Vorig alarm',
+            nextAlarm: 'Volgend alarm',
             modal: {
               title: 'Opvolgen',
-              patientName: 'Patiëntnaam',
+              patientName: 'Naam patiënt',
               room: 'Kamer',
               call: 'Bel',
-              cancel: 'Annuleer',
+              cancel: 'Annuleren',
             },
           },
           alarmTypes: {
-            loudNoise: 'Harde knal',
+            loudNoise: 'Luid geluid',
             fireHazard: 'Brandgevaar',
-            helpCall: 'Hulpomroep',
+            helpCall: 'Hulpoproep',
             patientUp: 'Patiënt uit',
-            heartMonitor: 'Hartslag',
+            heartMonitor: 'Hartmonitor',
           },
           entryTypes: {
             priority: 'Prioriteit',
-            alarm: 'Melding',
+            alarm: 'Alarm',
             patient: 'Patiënt',
             time: 'Tijd',
             status: 'Status',
@@ -185,18 +223,18 @@ i18n
           },
           availableStatus: {
             open: 'Open',
-            done: 'Klaar',
+            done: 'Af',
           },
           navBar: {
             title: 'Monitor App',
             description:
-              'Een gesimuleerde dashboard app voor verplegers om patiënten te monitoren',
-            openAlarms: 'open meldingen',
+              'Een gesimuleerd dashboard voor verpleegkundigen om de activiteit van patiënten te monitoren',
+            openAlarms: 'open alarmen',
             modal: {
-              job: 'Verpleger',
-              description: 'Uitloggen van de Monitor App?',
-              confirm: 'Ja, log uit',
-              cancel: 'Annuleer',
+              job: 'Zorgverlener',
+              description: 'Uitloggen uit Monitor App?',
+              confirm: 'Ja, uitloggen',
+              cancel: 'Annuleren',
             },
           },
           patientBio: {
@@ -207,52 +245,53 @@ i18n
             age: 'Leeftijd',
             room: 'Kamer',
             doctor: 'Dokter',
-            clickOnAlarm: 'Klik op een melding',
-            below: 'hieronder weergegeven',
-            onTheRight: 'rechts weergegeven',
-            patientInfo:
-              ', de bijbehorende patiëntinformatie zal hier verschijnen.',
+            clickOnAlarm: 'Klik op een actief alarm',
+            below: 'hieronder',
+            onTheRight: 'aan de rechterkant',
+            patientInfo: ', patiënt wordt hier weergegeven.',
           },
           healthCareInfo: {
-            title: 'Zorggegevens',
-            plan: 'Zorgplan',
+            title: 'Zorginformatie',
+            plan: 'Plan',
             diagnosis: 'Diagnose',
-            provider: 'Verzekeraar',
+            provider: 'Verstrekker',
           },
-          noAlarmHasBeenSelected: 'Geen melding geselecteerd',
+          noAlarmHasBeenSelected: 'Er is geen alarm geselecteerd',
           emergencyContact: {
-            title: 'Contactpersoon',
+            title: 'Noodcontact',
             name: 'Naam',
             relation: 'Relatie',
             address: 'Adres',
-            private_phone: 'Privé tel.',
-            work_phone: 'Werk tel.',
+            private_phone: 'Prive-telefoon',
+            work_phone: 'Werktelefoon',
           },
-          alarm: 'Melding',
-          alarmHasBeenClosed: 'is gesloten.',
+          alarm: 'Alarm',
+          alarmHasBeenClosed: 'is gesloten',
         },
       },
       de: {
         translation: {
           dashboard: {
-            title: 'Armaturenbrett',
-            toMonitoring: 'XXX',
-            modal: {
-              title: 'Einstellungen',
-              openAlarms: 'Offene Alarme',
-              darkMode: 'Dunkler Modus',
-              on: 'Ein',
-              off: 'Aus',
-              visible: 'Sichtbar',
-              hidden: 'Versteckt',
-              language: 'Sprache',
-              tipOfTheDay: 'Tipp des Tages',
-              totalAlarms: 'Gesamtanzahl Alarme',
-              alarmsByType: 'Alarme nach Typ',
-              time: 'Zeit',
-              newestAlarm: 'Neuester Alarm',
-              fontSize: 'Schriftgröße',
-              theme: 'Thema',
+            title: 'Dashboard',
+            toMonitoring: 'Zur Überwachung',
+            thisWeek: 'Diese Woche',
+            tips: {
+              first:
+                'Um einen Alarm zu schließen, klicken Sie auf die Schaltfläche "Alarm schließen". Sie hat ein Symbol eines Schließsymbols. Dadurch wird der Alarm als geschlossen markiert und alle erforderlichen Aktionen ausgelöst.',
+              second:
+                'Bewegen Sie den Mauszeiger über die Schaltflächen, um eine visuelle Veränderung zu sehen, die anzeigt, dass sie anklickbar sind. Die Hintergrundfarbe ändert sich beim Überfahren mit dem Cursor leicht zu einem helleren Farbton.',
+              third:
+                'Wenn Sie einen Alarm schließen, kann eine Toast-Benachrichtigung kurzzeitig erscheinen, um die Aktion zu bestätigen. Die Toast-Benachrichtigung gibt Feedback, dass der Alarm erfolgreich geschlossen wurde.',
+              fourth:
+                'Müssen Sie einem Alarm nachgehen? Verwenden Sie die Schaltfläche "Nachverfolgen" im Bedienfeld. Durch Klicken darauf wird ein Modalfenster geöffnet, in dem Sie Nachverfolgungsaktionen durchführen können.',
+              fifth:
+                'Möchten Sie zwischen Alarmen wechseln? Verwenden Sie die Pfeilschaltflächen im Bedienfeld. Durch Klicken darauf können Sie durch die verfügbaren Alarme navigieren und jeden einzelnen überprüfen oder mit ihm interagieren.',
+              sixth:
+                'Nutzen Sie die Tastenkombinationen für schnelle Interaktionen. Zum Beispiel können Sie die Eingabetaste drücken, um den ausgewählten Alarm zu schließen, oder die Pfeiltasten verwenden, um zwischen Alarmen zu navigieren.',
+              seventh:
+                'Das Bedienfeld und die Alarmoberfläche passen sich verschiedenen Bildschirmgrößen an und sorgen für ein nahtloses Benutzererlebnis auf verschiedenen Geräten.',
+              eigth:
+                'Es wird eine mehrsprachige Unterstützung bereitgestellt. Der Text auf Schaltflächen, Titeln und Benachrichtigungen wird in der ausgewählten Sprache angezeigt.',
             },
           },
           sidebar: {
@@ -346,23 +385,25 @@ i18n
         translation: {
           dashboard: {
             title: 'Tableau de bord',
-            toMonitoring: 'XXX',
-            modal: {
-              title: 'Paramètres',
-              openAlarms: 'Alarmes ouvertes',
-              darkMode: 'Mode sombre',
-              on: 'Activé',
-              off: 'Désactivé',
-              visible: 'Visible',
-              hidden: 'Caché',
-              language: 'Langue',
-              tipOfTheDay: 'Astuce du jour',
-              totalAlarms: 'Alarmes totales',
-              alarmsByType: 'Alarmes par type',
-              time: 'Heure',
-              newestAlarm: 'Dernière alarme',
-              fontSize: 'Taille de police',
-              theme: 'Thème',
+            toMonitoring: 'Vers la surveillance',
+            thisWeek: 'Cette semaine',
+            tips: {
+              first:
+                'Pour fermer une alarme, cliquez sur le bouton "Fermer l\'alarme". Il a une icône de symbole de fermeture. Cela marquera l\'alarme comme fermée et déclenchera toutes les actions nécessaires.',
+              second:
+                "Survolez les boutons pour voir un changement visuel indiquant qu'ils sont cliquables. La couleur de fond changera légèrement pour devenir plus claire lorsque vous déplacez le curseur dessus.",
+              third:
+                "Si vous fermez une alarme, une notification toast peut apparaître brièvement pour confirmer l'action. La notification toast fournit un retour d'information indiquant que l'alarme a été fermée avec succès.",
+              fourth:
+                'Besoin de faire un suivi sur une alarme ? Utilisez le bouton "Suivi" dans le panneau de contrôle. En cliquant dessus, cela ouvrira une boîte modale ou un dialogue où vous pourrez effectuer des actions de suivi.',
+              fifth:
+                "Vous voulez naviguer entre les alarmes ? Utilisez les boutons fléchés dans le panneau de contrôle. En cliquant dessus, vous pourrez naviguer parmi les alarmes disponibles, vous permettant de les revoir ou d'interagir avec chacune d'elles.",
+              sixth:
+                "Profitez des raccourcis clavier pour des interactions rapides. Par exemple, vous pouvez appuyer sur la touche Entrée pour fermer l'alarme sélectionnée ou utiliser les touches fléchées pour naviguer entre les alarmes.",
+              seventh:
+                "Le panneau de contrôle et l'interface d'alarme s'adaptent à différentes tailles d'écran, garantissant une expérience utilisateur fluide sur différents appareils.",
+              eigth:
+                'Une prise en charge multilingue est fournie. Le texte des boutons, des titres et des notifications sera affiché dans la langue sélectionnée.',
             },
           },
           sidebar: {
