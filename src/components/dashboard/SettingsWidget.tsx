@@ -21,8 +21,8 @@ function SettingsWidget() {
         <p>{t('dashboard.modal.title')}</p>
         <span className="flex h-full w-full items-center justify-center">
           <DashboardIcon
-            className="text-primary-200"
-            style={{ fontSize: '40px' }}
+            className="text-primary-200 dark:text-primary-300"
+            style={{ fontSize: '60px' }}
           />
         </span>
       </button>

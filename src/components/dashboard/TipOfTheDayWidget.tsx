@@ -39,8 +39,8 @@ function TipOfTheDayWidget() {
   };
 
   return (
-    <div className="flex h-full flex-col justify-between">
-      <p className="flex h-full items-center justify-center text-center font-medium">
+    <div className="flex h-full flex-col items-center justify-center">
+      <p className="flex h-full w-3/4 items-center justify-center text-center font-medium">
         {currentTip}
       </p>
       <div className="flex justify-center gap-2">

@@ -9,9 +9,11 @@ function AlarmCountWidget() {
 
   return (
     <div className="flex h-full flex-col justify-between">
-      <div className="flex flex-col justify-between gap-2">
+      <div className="flex h-full flex-col justify-between gap-2">
         <p>{t('dashboard.modal.openAlarms')}</p>
-        <h3 className="text-center text-6xl">{alarms?.length}</h3>
+        <h3 className="flex h-full items-center justify-center text-center text-6xl">
+          {alarms?.length}
+        </h3>
       </div>
       <div className="flex justify-center">
         <Link to="/">

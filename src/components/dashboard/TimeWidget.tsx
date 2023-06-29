@@ -7,6 +7,9 @@ function TimeWidget() {
   const [time, setTime] = useState(
     new Date().toLocaleTimeString(language === 'en' ? 'en-EN' : 'nl-NL')
   );
+  const date = new Date().toLocaleDateString(
+    language === 'en' ? 'en-EN' : 'nl-NL'
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,6 +28,9 @@ function TimeWidget() {
       <p>{t('dashboard.modal.time')}</p>
       <div className="flex h-full items-center justify-center">
         <h3 className="text-center text-2xl">{time}</h3>
+      </div>
+      <div className="flex justify-center">
+        <p>{date}</p>
       </div>
     </div>
   );

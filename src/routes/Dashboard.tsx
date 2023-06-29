@@ -5,6 +5,8 @@ import TotalCountWidget from '../components/dashboard/TotalCountWidget';
 import TipOfTheDayWidget from '../components/dashboard/TipOfTheDayWidget';
 import SettingsWidget from '../components/dashboard/SettingsWidget';
 import TimeWidget from '../components/dashboard/TimeWidget';
+import AlarmsByType from '../components/dashboard/AlarmsByType';
+import NewestWidget from '../components/dashboard/NewestWidget';
 import Modal from '../components/generic/Modal';
 import useSettingsStore from '../stores/SettingsStore';
 
@@ -17,8 +19,8 @@ function Dashboard() {
     <div className="w-full">
       <main className="flex h-[754px] w-full flex-col gap-2 p-[1px] md:mb-0">
         <h1>{t('dashboard.title')}</h1>
-        <div className="flex h-full flex-col gap-2">
-          <div className="grid h-1/4 grid-cols-4 gap-2">
+        <div className="flex h-full flex-col gap-3">
+          <div className="grid h-1/3 grid-cols-4 gap-3">
             {widgets.alarms && (
               <section className="widget col-span-2 md:col-span-1">
                 <AlarmCountWidget />
@@ -39,7 +41,7 @@ function Dashboard() {
               )}
             </section>
           </div>
-          <div className="grid h-1/4 grid-cols-4 gap-2">
+          <div className="grid h-1/3 grid-cols-4 gap-3">
             {widgets.total && (
               <section className="widget col-span-2 md:col-span-1">
                 <TotalCountWidget />
@@ -47,7 +49,7 @@ function Dashboard() {
             )}
             {widgets.type && (
               <section className="widget col-span-2">
-                <div>{t('dashboard.modal.alarmsByType')}</div>
+                <AlarmsByType />
               </section>
             )}
             {widgets.time && (
@@ -56,10 +58,10 @@ function Dashboard() {
               </section>
             )}
           </div>
-          <div className="grid h-1/4 grid-cols-4 gap-2">
+          <div className="grid h-1/3 grid-cols-4 gap-3">
             {widgets.newest && (
               <section className="widget col-span-2 md:col-span-1">
-                <div>{t('dashboard.modal.newestAlarm')}</div>
+                <NewestWidget />
               </section>
             )}
           </div>

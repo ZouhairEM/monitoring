@@ -17,6 +17,7 @@ i18n
             title: 'Dashboard',
             toMonitoring: 'To monitoring',
             thisWeek: 'This week',
+            toAlarm: 'To alarm',
             tips: {
               first:
                 'To close an alarm, click the "Close Alarm" button. It has an icon of a close symbol. This will mark the alarm as closed and trigger any necessary actions.',
@@ -146,6 +147,7 @@ i18n
             title: 'Dashboard',
             toMonitoring: 'Naar monitoring',
             thisWeek: 'Deze week',
+            toAlarm: 'Naar alarm',
             tips: {
               first:
                 'Om een alarm te sluiten, klik op de knop "Alarm Sluiten". Deze heeft een icoon van een sluitsymbool. Hierdoor wordt het alarm als gesloten gemarkeerd en worden eventuele benodigde acties geactiveerd.',
@@ -275,6 +277,7 @@ i18n
             title: 'Dashboard',
             toMonitoring: 'Zur Überwachung',
             thisWeek: 'Diese Woche',
+            toAlarm: 'To alarm',
             tips: {
               first:
                 'Um einen Alarm zu schließen, klicken Sie auf die Schaltfläche "Alarm schließen". Sie hat ein Symbol eines Schließsymbols. Dadurch wird der Alarm als geschlossen markiert und alle erforderlichen Aktionen ausgelöst.',
@@ -387,6 +390,7 @@ i18n
             title: 'Tableau de bord',
             toMonitoring: 'Vers la surveillance',
             thisWeek: 'Cette semaine',
+            toAlarm: 'To alarm',
             tips: {
               first:
                 'Pour fermer une alarme, cliquez sur le bouton "Fermer l\'alarme". Il a une icône de symbole de fermeture. Cela marquera l\'alarme comme fermée et déclenchera toutes les actions nécessaires.',

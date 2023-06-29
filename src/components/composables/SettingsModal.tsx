@@ -159,7 +159,9 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.alarms ? 'bg-primary-200' : 'bg-grey'
+                  widgets.alarms
+                    ? 'bg-primary-200 dark:bg-primary-300'
+                    : 'bg-grey'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem(
@@ -206,7 +208,7 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.tip ? 'bg-primary-200' : 'bg-grey'
+                  widgets.tip ? 'bg-primary-200 dark:bg-primary-300' : 'bg-grey'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.tip', String(!widgets.tip));
@@ -247,7 +249,9 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.total ? 'bg-primary-200' : 'bg-grey'
+                  widgets.total
+                    ? 'bg-primary-200 dark:bg-primary-300'
+                    : 'bg-grey'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.total', String(!widgets.total));
@@ -288,7 +292,9 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.type ? 'bg-primary-200' : 'bg-grey'
+                  widgets.type
+                    ? 'bg-primary-200 dark:bg-primary-300'
+                    : 'bg-grey'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.type', String(!widgets.type));
@@ -329,7 +335,9 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.time ? 'bg-primary-200' : 'bg-grey'
+                  widgets.time
+                    ? 'bg-primary-200 dark:bg-primary-300'
+                    : 'bg-grey'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.time', String(!widgets.time));
@@ -370,7 +378,9 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.newest ? 'bg-primary-200' : 'bg-grey'
+                  widgets.newest
+                    ? 'bg-primary-200 dark:bg-primary-300'
+                    : 'bg-grey'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem(
@@ -456,7 +466,9 @@ function SettingsModal() {
               type="button"
               tabIndex={0}
               className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                colorTheme === 'light' ? 'bg-primary-200' : 'bg-grey'
+                colorTheme === 'light'
+                  ? 'bg-primary-200 dark:bg-primary-300'
+                  : 'bg-grey'
               } p-1`}
               onClick={() => {
                 setTheme(colorTheme);
@@ -494,12 +506,12 @@ function SettingsModal() {
               htmlFor="range"
               className="text-neutral-700 dark:text-neutral-200 flex items-center justify-center"
             >
-              <span className="px-4 text-xs font-normal">
+              <span className="px-4 text-xs font-normal dark:text-grey">
                 {!Number.isNaN(rangeValue) ? rangeValue : 50}%
               </span>
               <input
                 type="range"
-                className="transparent border-transparent h-1.5 cursor-pointer appearance-none rounded-lg bg-grey accent-primary-200"
+                className="transparent border-transparent h-1.5 cursor-pointer appearance-none rounded-lg bg-grey accent-primary-200 dark:accent-primary-300"
                 id="range"
                 min={0}
                 max={100}

@@ -38,7 +38,7 @@ function FollowUpModal() {
             </p>
           </>
         )}
-        <img src={location} alt="Floormap" />
+        <img src={location} alt="Floormap" className="w-[400px]" />
       </div>
       <div className="flex justify-center gap-2">
         <button
