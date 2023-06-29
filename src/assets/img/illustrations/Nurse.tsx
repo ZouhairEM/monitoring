@@ -1,10 +1,6 @@
 function Nurse() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 89.62 310.02"
-      width="80"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.62 310.02">
       <defs>
         <style>
           {

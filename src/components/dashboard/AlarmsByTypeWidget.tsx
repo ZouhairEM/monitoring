@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import useAlarmsStore from '../../stores/AlarmsStore';
 import AlarmTypes from '../../data/alarmtypes';
 
-function AlarmsByType() {
+function AlarmsByTypeWidget() {
   const alarms = useAlarmsStore((state) => state.alarms);
   const countAlarmOne = alarms.filter(
     (alarm) => alarm.alarm === AlarmTypes.One
@@ -165,4 +165,4 @@ function AlarmsByType() {
   );
 }
 
-export default AlarmsByType;
+export default AlarmsByTypeWidget;

@@ -112,7 +112,9 @@ function PatientBio({ profile }: PatientBioProps) {
       )}
       {!profile && (
         <div className="profile-block empty flex h-full flex-col items-center justify-center gap-1 rounded-t-lg p-4">
-          <Nurse />
+          <div className="w-10 sm:w-16">
+            <Nurse />
+          </div>
           <p className="py-4 text-center dark:text-grey">
             {t('patientBio.clickOnAlarm')}{' '}
             {breakpoint === 'sm' || breakpoint === 'md'

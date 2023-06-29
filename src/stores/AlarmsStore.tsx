@@ -8,9 +8,10 @@ interface AlarmState {
   correspondingPatient: PatientType[] | null;
   patients: PatientType[];
   alarms: AlarmEntryType[];
+  sortedAlarms: AlarmEntryType[] | [];
   actualAlarms: number[] | [];
   activeAlarm: number;
-  closedAlarm: any;
+  closedAlarm: AlarmEntryType[] | null;
   clickedAlarm: AlarmEntryType | null;
   hasTotalChanged: boolean;
   closedAlarmIndex: number;
@@ -22,12 +23,14 @@ interface AlarmState {
   setNext: () => void;
   closeAlarm: (id: number) => void;
   setUndo: () => void;
+  setSortedAlarms: (id: string) => void;
 }
 
 const useAlarmsStore = create<AlarmState>((set) => ({
   correspondingPatient: null,
   patients,
   alarms,
+  sortedAlarms: [...alarms],
   actualAlarms: [],
   activeAlarm: 0,
   clickedAlarm: null,
@@ -59,12 +62,16 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     })),
   setClosedAlarm: () =>
     set((state: AlarmState) => ({
-      closedAlarm: state.alarms[state.activeAlarm],
+      closedAlarm: state.alarms[state.activeAlarm]
+        ? [state.alarms[state.activeAlarm]]
+        : null,
     })),
   setUndo: () => {
     set((state) => {
       const newAlarms = [...state.alarms];
-      newAlarms.splice(state.closedAlarmIndex, 0, ...state.closedAlarm);
+      if (state.closedAlarm !== null) {
+        newAlarms.splice(state.closedAlarmIndex, 0, ...state.closedAlarm);
+      }
       return { alarms: newAlarms };
     });
   },
@@ -81,6 +88,42 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       correspondingPatient: null,
       activeAlarm: 0,
     })),
+  setSortedAlarms: (id: string) =>
+    set((state: AlarmState) => {
+      const sortedAlarms = [...state.alarms];
+
+      if (id === 'room') {
+        sortedAlarms.sort((alarmA: AlarmEntryType, alarmB: AlarmEntryType) => {
+          const patientA = state.patients.find(
+            (patient: PatientType) => patient.profile.id === alarmA.patient_id
+          );
+          const patientB = state.patients.find(
+            (patient: PatientType) => patient.profile.id === alarmB.patient_id
+          );
+
+          if (patientA && patientB) {
+            return patientA.profile.room - patientB.profile.room;
+          }
+          return 0;
+        });
+      } else {
+        sortedAlarms.sort((alarmA: AlarmEntryType, alarmB: AlarmEntryType) => {
+          const valueA = alarmA[id as keyof AlarmEntryType];
+          const valueB = alarmB[id as keyof AlarmEntryType];
+
+          if (typeof valueA === 'string' && typeof valueB === 'string') {
+            return valueA.localeCompare(valueB);
+          }
+
+          if (typeof valueA === 'number' && typeof valueB === 'number') {
+            return valueA - valueB;
+          }
+          return 0;
+        });
+      }
+
+      return { alarms: sortedAlarms, sortedAlarms };
+    }),
 }));
 
 export default useAlarmsStore;

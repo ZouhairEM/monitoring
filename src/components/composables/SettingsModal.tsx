@@ -537,14 +537,14 @@ function SettingsModal() {
                 className="hover:outline"
                 onClick={() =>
                   changeColorPalette({
-                    color1: '#rgba(32, 162, 211, 0.1)',
+                    color1: 'rgba(32, 162, 211, 0.1)',
                     color2: '#20a2d3',
                     color3: '#3E54AC',
                   })
                 }
                 onKeyDown={() =>
                   changeColorPalette({
-                    color1: '#rgba(32, 162, 211, 0.1)',
+                    color1: 'rgba(32, 162, 211, 0.1)',
                     color2: '#20a2d3',
                     color3: '#3E54AC',
                   })
@@ -605,31 +605,31 @@ function SettingsModal() {
                 className="hover:outline"
                 onClick={() =>
                   changeColorPalette({
-                    color1: '#fed766',
-                    color2: '#ffa630',
-                    color3: '#363635',
+                    color1: '#F7F1E5',
+                    color2: '#F86F03',
+                    color3: '#ffa630',
                   })
                 }
                 onKeyDown={() =>
                   changeColorPalette({
-                    color1: '#fed766',
-                    color2: '#ffa630',
-                    color3: '#363635',
+                    color1: '#F7F1E5',
+                    color2: '#F86F03',
+                    color3: '#ffa630',
                   })
                 }
               >
                 <div className="flex h-8 w-8 rounded-sm drop-shadow-sm">
                   <div
                     className="w-1/3"
-                    style={{ backgroundColor: '#fed766' }}
+                    style={{ backgroundColor: '#F7F1E5' }}
+                  />
+                  <div
+                    className="w-1/3"
+                    style={{ backgroundColor: '#F86F03' }}
                   />
                   <div
                     className="w-1/3"
                     style={{ backgroundColor: '#ffa630' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#363635' }}
                   />
                 </div>
               </button>

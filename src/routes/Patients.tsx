@@ -7,7 +7,7 @@ function Patients() {
   return (
     <div className="w-full">
       <main className="flex h-[754px] w-full flex-col gap-2 p-[1px] md:mb-0">
-        <h1>{t('patientsPage.title')}</h1>
+        <h1 className="dark:text-grey">{t('patientsPage.title')}</h1>
         <div className="flex h-full items-center justify-center">
           <div className="flex flex-col items-center justify-center">
             <div className="w-24">

@@ -79,13 +79,11 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
     if (entry.alarm === AlarmTypes.One) {
       return (
         <>
-          <div className="w-1/3 rounded bg-primary-200 opacity-90  dark:bg-primary-300" />
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300"
-            />
-          ))}
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
         </>
       );
     }
@@ -94,25 +92,18 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         <>
           <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
           <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300"
-            />
-          ))}
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
         </>
       );
     }
     if (entry.alarm === AlarmTypes.Three) {
       return (
         <>
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300"
-            />
-          ))}
-
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
           <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
           <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
         </>
@@ -121,13 +112,11 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
     if (entry.alarm === AlarmTypes.Four) {
       return (
         <>
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300"
-            />
-          ))}
-          <div className="w-1/3 rounded bg-primary-200 opacity-10 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
         </>
       );
     }
@@ -171,11 +160,11 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`row alarm-bio grid w-[710px] grid-cols-9 gap-4 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 dark:text-grey lg:w-auto ${
+      className={`alarm-bio grid w-[660px] grid-cols-9 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 dark:text-grey sm:w-full md:w-[710px] lg:w-full ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-around">
         <input
           type="checkbox"
           ref={inputRef}
@@ -183,9 +172,8 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
           checked={entry.id === activeAlarm && !disabled}
           readOnly
         />
-        <div className="flex items-center">
-          <TagIcon style={{ fontSize: '14px' }} />
-          {entryId < 10 ? `0${entryId}` : entryId}
+        <div className="flex items-center px-3">
+          {entryId < 10 ? `#0${entryId}` : entryId}
         </div>
       </div>
       <div className="flex items-center justify-center">
@@ -200,7 +188,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
               '-'
             )}-alarm active-alarm flex justify-center gap-2 rounded p-1 text-white dark:opacity-80 `}
         >
-          <span>{handleIcon()}</span>
+          <span className="hidden sm:block">{handleIcon()}</span>
           {handleAlarmTranslation()}
         </span>
       </div>
@@ -217,11 +205,13 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
               className="dark:text-grey"
               style={{ height: '15px', opacity: '0.9' }}
             />
-            <p>
-              {entry.status === t('availableStatus.open')
-                ? t('availableStatus.open')
-                : t('availableStatus.done')}
-            </p>
+            <span>
+              {entry.status === t('availableStatus.open') ? (
+                <p className="hidden sm:block">{t('availableStatus.open')}</p>
+              ) : (
+                <p className="hidden sm:block">{t('availableStatus.done')}</p>
+              )}
+            </span>
           </span>
         ) : (
           <span className="flex items-center justify-end gap-1">
@@ -231,9 +221,11 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
                 opacity: '0.9',
               }}
             />
-            {entry.status === 'Done'
-              ? t('availableStatus.done')
-              : t('availableStatus.open')}
+            {entry.status === 'Done' ? (
+              <p className="hidden sm:block">{t('availableStatus.done')}</p>
+            ) : (
+              <p className="hidden sm:block">{t('availableStatus.open')}</p>
+            )}
           </span>
         )}
       </div>

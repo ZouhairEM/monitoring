@@ -3,6 +3,7 @@
 import { useState, useEffect, useReducer, Dispatch } from 'react';
 import { useTranslation } from 'react-i18next';
 import TagIcon from '@mui/icons-material/Tag';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import useAlarmsStore from '../stores/AlarmsStore';
 import useSettingsStore from '../stores/SettingsStore';
 import PatientBio from '../components/monitoring/PatientBio';
@@ -33,6 +34,7 @@ function Monitoring() {
   const [, setClickedAlarm] = useState(activeAlarm);
   const breakpoint = useBreakpoint();
   const { t } = useTranslation();
+  const setSortedAlarms = useAlarmsStore((state) => state.setSortedAlarms);
 
   type MonitoringState = {
     isPanelVisible: boolean;
@@ -92,6 +94,16 @@ function Monitoring() {
   const patient = useAlarmsStore<PatientType[] | null>(
     (zustandState) => zustandState.correspondingPatient
   );
+
+  const handleSort = (id: string) => {
+    if (id === 'Patient') {
+      setSortedAlarms('patient_id');
+    } else if (id === 'Priority') {
+      setSortedAlarms('alarm');
+    } else {
+      setSortedAlarms(id.toLowerCase());
+    }
+  };
 
   const lastIndex = state.currentPage * state.alarmsPerPage;
   const alarmsIndex = lastIndex - state.alarmsPerPage;
@@ -277,43 +289,57 @@ function Monitoring() {
           </div>
         </section>
         <div className="col-span-12 flex flex-col justify-between gap-2 md:col-span-7">
-          <div className="box-shadow-md flex h-full flex-col rounded-b-lg rounded-t-lg bg-white">
-            <div
-              className={`box-shadow-md grid grid-cols-6 gap-4 rounded-t-lg bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white dark:bg-black-200 md:grid-cols-9 ${
-                state?.isPanelVisible ? 'pr-4' : ''
-              }`}
-            >
-              <span className="hidden items-center justify-end md:flex">
-                <TagIcon
-                  className="dark:text-grey"
-                  style={{ fontSize: '16px' }}
-                />
-              </span>
-              {entryTypes.map((entryType) => (
-                <div
-                  className={`flex items-center justify-center gap-2 font-bold dark:text-grey md:justify-end ${
-                    entryType === t('entryTypes.alarm') ||
-                    entryType === t('entryTypes.patient')
-                      ? 'col-span-2'
-                      : 'col-span-2 md:col-span-1'
-                  }`}
-                  key={entryType}
-                  role="button"
-                  tabIndex={0}
-                >
-                  {entryType}
-                </div>
-              ))}
-            </div>
-
+          <div className="alarm-grid box-shadow-md flex h-full flex-col rounded-b-lg rounded-t-lg bg-white">
             <div className="flex h-full flex-col justify-between overflow-hidden dark:bg-black-100 dark:text-grey">
               <div
-                className={`alarm-grid my-3 pb-4 sm:pb-0 ${
+                className={`alarm-grid pb-4 sm:pb-0 ${
                   state?.isPanelVisible
                     ? 'overflow-auto md:overflow-hidden'
                     : ''
                 }`}
               >
+                <div
+                  className={`box-shadow-md alarm-bio grid w-[660px] grid-cols-9 gap-4 rounded-t-lg bg-primary-200 px-4 py-2 pb-2 text-sm font-medium text-white dark:bg-black-200 sm:w-full md:w-[710px] lg:w-full ${
+                    state?.isPanelVisible ? 'pr-4' : ''
+                  }`}
+                >
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleSort('id')}
+                    onKeyDown={() => handleSort('id')}
+                    className="col-span-1 flex justify-end"
+                  >
+                    <TagIcon
+                      className="dark:text-grey"
+                      style={{ fontSize: '16px' }}
+                    />
+                  </div>
+                  <div className="col-span-8">
+                    <div className="grid grid-cols-8">
+                      {entryTypes.map((entryType) => (
+                        <div
+                          className={`flex justify-end px-0 font-bold dark:text-grey md:justify-end ${
+                            entryType === t('entryTypes.alarm') ||
+                            entryType === t('entryTypes.patient')
+                              ? 'col-span-2'
+                              : 'col-span-1'
+                          }`}
+                          key={entryType}
+                          role="button"
+                          onClick={() => handleSort(entryType)}
+                          onKeyDown={() => handleSort(entryType)}
+                          tabIndex={0}
+                        >
+                          {entryType}{' '}
+                          <span className="hidden sm:block">
+                            <ExpandMoreIcon style={{ fontSize: '20px' }} />
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
                 {currentAlarms}
               </div>
               <div className="m-2 flex">{pageNums}</div>

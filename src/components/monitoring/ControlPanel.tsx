@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CloseIcon from '@mui/icons-material/Close';
-import MedicationIcon from '@mui/icons-material/Medication';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useAlarmsStore from '../../stores/AlarmsStore';
@@ -104,23 +104,23 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
         {t('controlPanel.title')}
       </div>
       <div className="flex flex-col gap-2 rounded-t-lg p-2 py-3 text-sm sm:flex-row">
-        <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
+        <div className="grid grid-cols-1 justify-center gap-2 sm:flex">
           <button
             type="button"
             onClick={() => handleFollowUp()}
             onKeyDown={() => handleFollowUp()}
             tabIndex={0}
-            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >
             {t('controlPanel.followUp')}
-            <MedicationIcon style={{ height: '16px' }} />
+            <PriorityHighIcon style={{ height: '16px' }} />
           </button>
           <button
             type="button"
             onClick={() => handleCloseAlarmSelection(activeAlarm)}
             onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
             tabIndex={0}
-            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
           >
             {t('controlPanel.closeAlarm')}
             <CloseIcon style={{ height: '16px' }} />
@@ -131,7 +131,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
           <button
             type="button"
             tabIndex={0}
-            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
             onClick={() => {
               if (activeAlarm >= 2) {
                 handleAlarmShuffle('prev');
@@ -143,13 +143,13 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
               }
             }}
           >
-            {t('controlPanel.previousAlarm')}
+            <p className="hidden sm:block">{t('controlPanel.previousAlarm')}</p>
             <ArrowBackIosNewIcon style={{ height: '13px' }} />
           </button>
           <button
             type="button"
             tabIndex={0}
-            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
             onClick={() => {
               if (
                 activeAlarm !==
@@ -168,7 +168,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
             }}
           >
             <ArrowForwardIosIcon style={{ height: '13px' }} />
-            {t('controlPanel.nextAlarm')}
+            <p className="hidden sm:block">{t('controlPanel.nextAlarm')}</p>
           </button>
         </div>
       </div>

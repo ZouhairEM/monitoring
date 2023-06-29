@@ -22,7 +22,7 @@ function TipOfTheDayWidget() {
   );
 
   useEffect(() => {
-    setCurrentTip(tips[1]);
+    setCurrentTip(tips[0]);
   }, [i18n.language, tips]);
 
   const changeTip = (direction: 'prev' | 'next') => {
@@ -40,7 +40,7 @@ function TipOfTheDayWidget() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <p className="flex h-full w-3/4 items-center justify-center text-center font-medium">
+      <p className="flex h-full w-3/4 items-center justify-center p-2 text-center font-medium sm:p-0">
         {currentTip}
       </p>
       <div className="flex justify-center gap-2">

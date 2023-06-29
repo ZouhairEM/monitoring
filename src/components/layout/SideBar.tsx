@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
+import useBreakpoint from '../../hooks/useBreakpoint';
 
 function SideBar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const breakpoint = useBreakpoint();
+
+  useEffect(() => {
+    if (breakpoint === 'lg') {
+      setIsCollapsed(false);
+    }
+  }, [breakpoint]);
 
   return (
     <aside className="sidebar mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
@@ -18,17 +26,19 @@ function SideBar() {
             <button
               type="button"
               tabIndex={0}
-              className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-2 dark:bg-black-100 md:mb-3"
+              className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-1 dark:bg-black-100 md:mb-3 md:pt-2"
             >
               <VisibilityIcon
                 className={`dark:text-grey ${
-                  pathname === '/' ? 'text-primary-300' : ''
+                  pathname === '/' ? 'text-black-300 dark:text-primary-200' : ''
                 }`}
               />
               {isCollapsed && (
                 <div
                   className={`hidden ${
-                    pathname === '/' ? 'text-primary-300' : ''
+                    pathname === '/'
+                      ? 'text-black-300 dark:text-primary-200'
+                      : ''
                   } dark:text-grey md:block`}
                 >
                   {t('sidebar.monitoring')}
@@ -44,13 +54,17 @@ function SideBar() {
             >
               <Grid3x3Icon
                 className={`dark:text-grey ${
-                  pathname === '/dashboard' ? 'text-primary-300' : ''
+                  pathname === '/dashboard'
+                    ? 'text-black-300 dark:text-primary-200'
+                    : ''
                 }`}
               />
               {isCollapsed && (
                 <div
                   className={`hidden dark:text-grey ${
-                    pathname === '/dashboard' ? 'text-primary-300' : ''
+                    pathname === '/dashboard'
+                      ? 'text-black-300 dark:text-primary-200'
+                      : ''
                   }  md:block`}
                 >
                   {t('sidebar.dashboard')}
@@ -64,11 +78,19 @@ function SideBar() {
               type="button"
               tabIndex={0}
             >
-              <HealthAndSafetyIcon className="dark:text-grey" />
+              <HealthAndSafetyIcon
+                className={`dark:text-grey ${
+                  pathname === '/patients'
+                    ? 'text-black-300 dark:text-primary-200'
+                    : ''
+                }`}
+              />
               {isCollapsed && (
                 <div
                   className={`hidden dark:text-grey ${
-                    pathname === '/patients' ? 'text-primary-300' : ''
+                    pathname === '/patients'
+                      ? 'text-black-300 dark:text-primary-200'
+                      : ''
                   }  md:block`}
                 >
                   {t('sidebar.patients')}
