@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
-import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
@@ -58,18 +58,24 @@ function SideBar() {
               )}
             </button>
           </Link>
-          <button
-            className="flex items-center gap-x-2 px-4 py-1"
-            type="button"
-            tabIndex={0}
-          >
-            <HistoryToggleOffIcon className="dark:text-grey" />
-            {isCollapsed && (
-              <div className="hidden dark:text-grey md:block">
-                {t('sidebar.history')}
-              </div>
-            )}
-          </button>
+          <Link to="/patients">
+            <button
+              className="flex items-center gap-x-2 px-4 py-1"
+              type="button"
+              tabIndex={0}
+            >
+              <HealthAndSafetyIcon className="dark:text-grey" />
+              {isCollapsed && (
+                <div
+                  className={`hidden dark:text-grey ${
+                    pathname === '/patients' ? 'text-primary-300' : ''
+                  }  md:block`}
+                >
+                  {t('sidebar.patients')}
+                </div>
+              )}
+            </button>
+          </Link>
         </div>
         <div
           onClick={() => setIsCollapsed(!isCollapsed)}

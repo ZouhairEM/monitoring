@@ -54,10 +54,13 @@ i18n
               theme: 'Theme',
             },
           },
+          patientsPage: {
+            title: 'Patients',
+          },
           sidebar: {
             monitoring: 'Monitoring',
             dashboard: 'Dashboard',
-            history: 'History',
+            patients: 'Patients',
             collapse: 'Collapse',
           },
           toast: {
@@ -166,6 +169,9 @@ i18n
               eigth:
                 'Er is ondersteuning voor meerdere talen. De tekst op knoppen, titels en meldingen wordt weergegeven in de geselecteerde taal.',
             },
+            patientsPage: {
+              title: 'Patiënten',
+            },
             modal: {
               title: 'Instellingen',
               openAlarms: 'Open alarmen',
@@ -187,7 +193,7 @@ i18n
           sidebar: {
             monitoring: 'Monitoring',
             dashboard: 'Dashboard',
-            history: 'Geschiedenis',
+            patients: 'Patiënten',
             collapse: 'Inklappen',
           },
           toast: {
@@ -296,6 +302,9 @@ i18n
               eigth:
                 'Es wird eine mehrsprachige Unterstützung bereitgestellt. Der Text auf Schaltflächen, Titeln und Benachrichtigungen wird in der ausgewählten Sprache angezeigt.',
             },
+            patientsPage: {
+              title: 'Patienten',
+            },
             modal: {
               title: 'Einstellungen',
               openAlarms: 'Offene Alarme',
@@ -317,7 +326,7 @@ i18n
           sidebar: {
             monitoring: 'Überwachung',
             dashboard: 'Dashboard',
-            history: 'Verlauf',
+            patients: 'Patienten',
             collapse: 'Einklappen',
           },
           toast: {
@@ -426,6 +435,9 @@ i18n
               eigth:
                 'Une prise en charge multilingue est fournie. Le texte des boutons, des titres et des notifications sera affiché dans la langue sélectionnée.',
             },
+            patientsPage: {
+              title: 'Patients',
+            },
             modal: {
               title: 'Paramètres',
               openAlarms: 'Alarmes ouvertes',
@@ -447,7 +459,7 @@ i18n
           sidebar: {
             monitoring: 'Surveillance',
             dashboard: 'Tableau de bord',
-            history: 'Historique',
+            history: 'Patients',
             collapse: 'Réduire',
           },
           toast: {

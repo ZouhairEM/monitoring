@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import TagIcon from '@mui/icons-material/Tag';
 import useAlarmsStore from '../stores/AlarmsStore';
 import useSettingsStore from '../stores/SettingsStore';
-import PatientBio from '../components/home/PatientBio';
-import AlarmBio from '../components/home/AlarmBio';
-import HealthCareInfo from '../components/home/HealthCareInfo';
-import EmergencyContact from '../components/home/EmergencyContact';
-import ControlPanel from '../components/home/ControlPanel';
+import PatientBio from '../components/monitoring/PatientBio';
+import AlarmBio from '../components/monitoring/AlarmBio';
+import HealthCareInfo from '../components/monitoring/HealthCareInfo';
+import EmergencyContact from '../components/monitoring/EmergencyContact';
+import ControlPanel from '../components/monitoring/ControlPanel';
 import AlarmEntryType from '../types/AlarmEntryType';
 import PatientType from '../types/PatientType';
 import Toast from '../components/generic/Toast';
@@ -17,7 +17,7 @@ import useBreakpoint from '../hooks/useBreakpoint';
 import Modal from '../components/generic/Modal';
 import FollowupModal from '../components/composables/FollowupModal';
 
-function Home() {
+function Monitoring() {
   const alarms: AlarmEntryType[] = useAlarmsStore((state) => state.alarms);
   const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
   const legalClick = useSettingsStore((state) => state.legalClick);
@@ -34,7 +34,7 @@ function Home() {
   const breakpoint = useBreakpoint();
   const { t } = useTranslation();
 
-  type HomeState = {
+  type MonitoringState = {
     isPanelVisible: boolean;
     isActive: number;
     currentPage: number;
@@ -47,7 +47,7 @@ function Home() {
     | { type: 'set_current_page'; setCurrentPage: number }
     | { type: 'alarms_per_page'; setAlarmsPerPage: number };
 
-  function reducer(state: HomeState, action: Action): HomeState {
+  function reducer(state: MonitoringState, action: Action): MonitoringState {
     switch (action.type) {
       case 'visibility_control_panel': {
         return {
@@ -78,13 +78,13 @@ function Home() {
     }
   }
 
-  const initialState: HomeState = {
+  const initialState: MonitoringState = {
     isPanelVisible: false,
     isActive: 1,
     currentPage: 1,
     alarmsPerPage: 7,
   };
-  const [state, dispatch]: [HomeState, Dispatch<Action>] = useReducer(
+  const [state, dispatch]: [MonitoringState, Dispatch<Action>] = useReducer(
     reducer,
     initialState
   );
@@ -353,4 +353,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Monitoring;

@@ -20,57 +20,51 @@ function Dashboard() {
     <div className="w-full">
       <main className="flex h-[754px] w-full flex-col gap-2 p-[1px] md:mb-0">
         <h1>{t('dashboard.title')}</h1>
-        <div className="flex h-full flex-col gap-3">
-          <div className="grid h-1/3 grid-cols-4 gap-3">
-            {widgets.alarms && (
-              <section className="widget col-span-2 md:col-span-1">
-                <AlarmCountWidget />
-              </section>
-            )}
-            {widgets.tip && (
-              <section className="widget col-span-2">
-                <div>{t('dashboard.modal.tipOfTheDay')}</div>
-                <TipOfTheDayWidget />
-              </section>
-            )}
-            <section className="widget col-span-2 flex justify-center md:col-span-1">
-              <SettingsWidget />
-              {modal.status && modal.name === 'settings' && (
-                <Modal>
-                  <SettingsModal />
-                </Modal>
-              )}
+        <div className="grid h-full grid-cols-4 gap-3">
+          {widgets.alarms && (
+            <section className="widget col-span-4 sm:col-span-2 md:col-span-1">
+              <AlarmCountWidget />
             </section>
-          </div>
-          <div className="grid h-1/3 grid-cols-4 gap-3">
-            {widgets.total && (
-              <section className="widget col-span-2 md:col-span-1">
-                <TotalCountWidget />
-              </section>
-            )}
-            {widgets.type && (
-              <section className="widget col-span-2">
-                <AlarmsByType />
-              </section>
-            )}
-            {widgets.time && (
-              <section className="widget col-span-2 md:col-span-1">
-                <TimeWidget />
-              </section>
-            )}
-          </div>
-          <div className="grid h-1/3 grid-cols-4 gap-3">
-            {widgets.newest && (
-              <section className="widget col-span-2 md:col-span-1">
-                <NewestWidget />
-              </section>
-            )}
-            <section className="col-span-3 flex items-end justify-end">
-              <div className="w-16">
-                <Doctor />
-              </div>
+          )}
+          {widgets.tip && (
+            <section className="widget col-span-4 sm:col-span-2">
+              <div>{t('dashboard.modal.tipOfTheDay')}</div>
+              <TipOfTheDayWidget />
             </section>
-          </div>
+          )}
+          <section className="widget col-span-2 flex justify-center md:col-span-1">
+            <SettingsWidget />
+            {modal.status && modal.name === 'settings' && (
+              <Modal>
+                <SettingsModal />
+              </Modal>
+            )}
+          </section>
+          {widgets.total && (
+            <section className="widget col-span-2 md:col-span-1">
+              <TotalCountWidget />
+            </section>
+          )}
+          {widgets.type && (
+            <section className="widget col-span-4 md:col-span-2">
+              <AlarmsByType />
+            </section>
+          )}
+          {widgets.time && (
+            <section className="widget col-span-4 sm:col-span-2 md:col-span-1">
+              <TimeWidget />
+            </section>
+          )}
+          {widgets.newest && (
+            <section className="widget col-span-4 sm:col-span-2 md:col-span-1">
+              <NewestWidget />
+            </section>
+          )}
+          <section className="col-span-4 flex items-center justify-center md:col-span-3 md:items-end md:justify-end">
+            <div className="w-16">
+              <Doctor />
+            </div>
+          </section>
         </div>
       </main>
     </div>

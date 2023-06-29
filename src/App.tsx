@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/layout/NavBar';
-import Home from './routes/Home';
-import NotFound from './routes/NotFound';
+import Monitoring from './routes/Monitoring';
+import Patients from './routes/Patients';
 import useDarkMode from './hooks/useDarkMode';
 import useColorTheme from './hooks/useColorTheme';
 import SideBar from './components/layout/SideBar';
@@ -19,9 +19,9 @@ function App() {
       <div className="flex flex-col gap-0 sm:gap-2 md:flex-row">
         <SideBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Monitoring />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/patients" element={<Patients />} />
         </Routes>
       </div>
     </div>
