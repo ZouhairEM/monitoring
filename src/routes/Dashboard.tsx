@@ -9,6 +9,7 @@ import AlarmsByType from '../components/dashboard/AlarmsByType';
 import NewestWidget from '../components/dashboard/NewestWidget';
 import Modal from '../components/generic/Modal';
 import useSettingsStore from '../stores/SettingsStore';
+import Doctor from '../assets/img/illustrations/Doctor';
 
 function Dashboard() {
   const { t } = useTranslation();
@@ -64,6 +65,11 @@ function Dashboard() {
                 <NewestWidget />
               </section>
             )}
+            <section className="col-span-3 flex items-end justify-end">
+              <div className="w-16">
+                <Doctor />
+              </div>
+            </section>
           </div>
         </div>
       </main>

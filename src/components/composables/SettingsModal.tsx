@@ -605,6 +605,40 @@ function SettingsModal() {
                 className="hover:outline"
                 onClick={() =>
                   changeColorPalette({
+                    color1: '#fed766',
+                    color2: '#ffa630',
+                    color3: '#363635',
+                  })
+                }
+                onKeyDown={() =>
+                  changeColorPalette({
+                    color1: '#fed766',
+                    color2: '#ffa630',
+                    color3: '#363635',
+                  })
+                }
+              >
+                <div className="flex h-8 w-8 rounded-sm drop-shadow-sm">
+                  <div
+                    className="w-1/3"
+                    style={{ backgroundColor: '#fed766' }}
+                  />
+                  <div
+                    className="w-1/3"
+                    style={{ backgroundColor: '#ffa630' }}
+                  />
+                  <div
+                    className="w-1/3"
+                    style={{ backgroundColor: '#363635' }}
+                  />
+                </div>
+              </button>
+              <button
+                type="button"
+                tabIndex={0}
+                className="hover:outline"
+                onClick={() =>
+                  changeColorPalette({
                     color1: '#e6f5fe',
                     color2: '#00DFA2',
                     color3: '#617A55',

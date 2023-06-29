@@ -4,6 +4,7 @@ import FemaleIcon from '@mui/icons-material/Female';
 import Patient from '../../types/PatientType';
 import Doctors from '../../data/doctors';
 import useBreakpoint from '../../hooks/useBreakpoint';
+import Nurse from '../../assets/img/illustrations/Nurse';
 
 interface PatientBioProps {
   profile: Patient['profile'] | null;
@@ -18,13 +19,7 @@ function PatientBio({ profile }: PatientBioProps) {
     import.meta.url
   ).href;
 
-  const nurse = new URL(
-    `../../assets/img/illustrations/nurse.png`,
-    import.meta.url
-  ).href;
-
   const breakpoint = useBreakpoint();
-
   const getCorrespondingDoctor = () => {
     if (profile) {
       return Doctors.filter((doctor) => doctor.id === profile.doctor)[0].name;
@@ -117,7 +112,7 @@ function PatientBio({ profile }: PatientBioProps) {
       )}
       {!profile && (
         <div className="profile-block empty flex h-full flex-col items-center justify-center gap-1 rounded-t-lg p-4">
-          <img src={nurse} alt="Nurse" />
+          <Nurse />
           <p className="py-4 text-center dark:text-grey">
             {t('patientBio.clickOnAlarm')}{' '}
             {breakpoint === 'sm' || breakpoint === 'md'

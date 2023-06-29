@@ -67,7 +67,9 @@ function NewestWidget() {
             </span>
             <span className="grid grid-cols-3 gap-2 text-left">
               <p>{t('entryTypes.time')}</p>
-              <p className="col-span-2">{newestAlarm.time}</p>
+              <p className="col-span-2">
+                {newestAlarm.time.replaceAll('AM' || 'PM', '')}
+              </p>
             </span>
           </div>
         </div>

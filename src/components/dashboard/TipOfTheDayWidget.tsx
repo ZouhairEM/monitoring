@@ -16,7 +16,7 @@ function TipOfTheDayWidget() {
       t('dashboard.tips.fifth'),
       t('dashboard.tips.sixth'),
       t('dashboard.tips.seventh'),
-      t('dashboard.tips.eighth'),
+      t('dashboard.tips.eigth'),
     ],
     [t]
   );

@@ -277,7 +277,7 @@ i18n
             title: 'Dashboard',
             toMonitoring: 'Zur Überwachung',
             thisWeek: 'Diese Woche',
-            toAlarm: 'To alarm',
+            toAlarm: 'Zur Alarmierung',
             tips: {
               first:
                 'Um einen Alarm zu schließen, klicken Sie auf die Schaltfläche "Alarm schließen". Sie hat ein Symbol eines Schließsymbols. Dadurch wird der Alarm als geschlossen markiert und alle erforderlichen Aktionen ausgelöst.',
@@ -295,6 +295,23 @@ i18n
                 'Das Bedienfeld und die Alarmoberfläche passen sich verschiedenen Bildschirmgrößen an und sorgen für ein nahtloses Benutzererlebnis auf verschiedenen Geräten.',
               eigth:
                 'Es wird eine mehrsprachige Unterstützung bereitgestellt. Der Text auf Schaltflächen, Titeln und Benachrichtigungen wird in der ausgewählten Sprache angezeigt.',
+            },
+            modal: {
+              title: 'Einstellungen',
+              openAlarms: 'Offene Alarme',
+              darkMode: 'Dunkler Modus',
+              on: 'Ein',
+              off: 'Aus',
+              visible: 'Sichtbar',
+              hidden: 'Versteckt',
+              language: 'Sprache',
+              tipOfTheDay: 'Tipp des Tages',
+              totalAlarms: 'Gesamtanzahl an Alarmen',
+              alarmsByType: 'Alarme nach Typ',
+              time: 'Zeit',
+              newestAlarm: 'Neuester Alarm',
+              fontSize: 'Schriftgröße',
+              theme: 'Design',
             },
           },
           sidebar: {
@@ -390,7 +407,7 @@ i18n
             title: 'Tableau de bord',
             toMonitoring: 'Vers la surveillance',
             thisWeek: 'Cette semaine',
-            toAlarm: 'To alarm',
+            toAlarm: 'Pour alarme',
             tips: {
               first:
                 'Pour fermer une alarme, cliquez sur le bouton "Fermer l\'alarme". Il a une icône de symbole de fermeture. Cela marquera l\'alarme comme fermée et déclenchera toutes les actions nécessaires.',
@@ -408,6 +425,23 @@ i18n
                 "Le panneau de contrôle et l'interface d'alarme s'adaptent à différentes tailles d'écran, garantissant une expérience utilisateur fluide sur différents appareils.",
               eigth:
                 'Une prise en charge multilingue est fournie. Le texte des boutons, des titres et des notifications sera affiché dans la langue sélectionnée.',
+            },
+            modal: {
+              title: 'Paramètres',
+              openAlarms: 'Alarmes ouvertes',
+              darkMode: 'Mode sombre',
+              on: 'Activé',
+              off: 'Désactivé',
+              visible: 'Visible',
+              hidden: 'Caché',
+              language: 'Langue',
+              tipOfTheDay: 'Astuce du jour',
+              totalAlarms: "Nombre total d'alarmes",
+              alarmsByType: 'Alarmes par type',
+              time: 'Heure',
+              newestAlarm: 'Dernière alarme',
+              fontSize: 'Taille de la police',
+              theme: 'Thème',
             },
           },
           sidebar: {
