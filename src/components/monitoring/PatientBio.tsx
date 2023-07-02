@@ -29,9 +29,6 @@ function PatientBio({ profile }: PatientBioProps) {
 
   return (
     <>
-      <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
-        {t('patientBio.title')}
-      </div>
       {profile && (
         <div className="flex flex-col gap-1 p-2 py-3">
           <h2 className="font-extrabold text-primary-200 dark:text-grey">

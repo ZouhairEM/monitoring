@@ -4,7 +4,7 @@ interface Breakpoints {
   [key: string]: MediaQueryList;
 }
 
-const useBreakpoint = () => {
+function useBreakpoint() {
   const [breakpoint, setBreakpoint] = useState('');
 
   useEffect(() => {
@@ -29,6 +29,6 @@ const useBreakpoint = () => {
   }, []);
 
   return breakpoint;
-};
+}
 
 export default useBreakpoint;

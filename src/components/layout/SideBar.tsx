@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import PeopleIcon from '@mui/icons-material/People';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
@@ -78,7 +78,7 @@ function SideBar() {
               type="button"
               tabIndex={0}
             >
-              <HealthAndSafetyIcon
+              <PeopleIcon
                 className={`dark:text-grey ${
                   pathname === '/patients'
                     ? 'text-black-300 dark:text-primary-200'

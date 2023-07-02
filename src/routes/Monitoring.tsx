@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/no-this-in-sfc */
 import { useState, useEffect, useReducer, Dispatch } from 'react';
 import { useTranslation } from 'react-i18next';
 import TagIcon from '@mui/icons-material/Tag';
@@ -260,7 +258,10 @@ function Monitoring() {
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row">
       <main className="mb-11 grid h-[754px] w-full grid-cols-9 gap-2 p-[1px] md:mb-0">
-        <section className="box-shadow-md col-span-12 rounded-b-lg rounded-t-lg bg-white dark:bg-black-100 md:col-span-2 ">
+        <section className="box-shadow-md col-span-12 rounded-b-lg rounded-t-lg bg-white dark:bg-black-100 md:col-span-2">
+          <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+            {t('patientBio.title')}
+          </div>
           {patient ? (
             patient.map((patientInfo: PatientType) => (
               <PatientBio
@@ -277,6 +278,7 @@ function Monitoring() {
                 <HealthCareInfo
                   healthCare={patientInfo.healthcare}
                   key={patientInfo.healthcare.plan}
+                  onMonitoring
                 />
               ))}
             {patient &&
@@ -284,6 +286,7 @@ function Monitoring() {
                 <EmergencyContact
                   emergencyContact={patientInfo.emergency_contact}
                   key={patientInfo.emergency_contact.name}
+                  onMonitoring
                 />
               ))}
           </div>
