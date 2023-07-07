@@ -17,6 +17,10 @@
   animation: #{$name};
 }
 
+* {
+  // outline: solid 0.1px;
+}
+
 :root {
   --primary-100: rgba(32, 162, 211, 0.1);
   --primary-200: #20a2d3;
@@ -61,6 +65,10 @@ h3 {
 
 h4 {
   @apply text-sm font-bold text-black-200 dark:text-grey;
+}
+
+h5 {
+  @apply text-base text-black-200 dark:text-grey;
 }
 
 #app {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import useAlarmsStore from '../../stores/AlarmsStore';
 import PatientType from '../../types/PatientType';
+import NurseTwo from '../../assets/img/illustrations/NurseTwo';
 
 interface FindPatientProps {
   setMatchingPatient: (foundPatient: PatientType | null) => void;
@@ -40,43 +41,59 @@ function FindPatient({ setMatchingPatient }: FindPatientProps) {
     );
   };
 
-  const handleSelection = (patient: any) => {
+  const handleSelection = (patient: PatientType) => {
     if (foundPatient) {
       setMatchingPatient(patient);
       setIsResultVisible(false);
-      console.log(patient);
     }
   };
 
   return (
-    <section className="col-span-12 my-2 flex w-full flex-col rounded bg-white p-2 drop-shadow-md">
-      <h2>Find patient!</h2>
+    <section className="col-span-12 flex w-full flex-col rounded bg-white drop-shadow-md dark:bg-black-100">
+      <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+        Database
+      </div>
       <input
         id="patient-input"
         placeholder="Find patient by name"
-        className="relative rounded border-2 border-primary-300 p-2 capitalize"
+        className="relative m-2 rounded border-2 border-primary-200 p-2 text-sm focus:outline-primary-200 dark:bg-black-100"
         onChange={(e) => setInputQuery(e.target.value)}
         onFocus={() => {
           setIsResultVisible(true);
           setFoundPatient(patients);
         }}
       />
-      {isResultVisible && (
-        <div className="absolute top-24 w-full bg-white p-2 dark:text-grey">
-          {foundPatient?.map((patient) => (
-            <div
-              role="button"
-              tabIndex={0}
-              onClick={() => handleSelection(patient)}
-              onKeyDown={() => handleSelection(patient)}
-              className="hover:bg-primary-200 hover:text-white dark:hover:bg-primary-300"
-              key={patient.profile.id}
-            >
-              <p>{highlightMatch(patient.profile.name, inputQuery || '')}</p>
-            </div>
-          ))}
+      <div className="flex h-full items-center justify-center ">
+        {isResultVisible && foundPatient && (
+          <div className="absolute top-24 z-20 w-full bg-white p-2 dark:text-grey">
+            {foundPatient?.map((patient) => (
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => handleSelection(patient)}
+                onKeyDown={() => handleSelection(patient)}
+                className="hover:bg-primary-200 hover:text-white dark:hover:bg-primary-300"
+                key={patient.profile.id}
+              >
+                <p>{highlightMatch(patient.profile.name, inputQuery || '')}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex flex-col items-center justify-center">
+          {!foundPatient && (
+            <>
+              <div className="w-24">
+                <NurseTwo />
+              </div>
+              <h5 className="my-2">
+                Find any patient in the database first, patient will be
+                displayed here.
+              </h5>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </section>
   );
 }

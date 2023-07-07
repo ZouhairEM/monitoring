@@ -262,16 +262,19 @@ function Monitoring() {
           <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
             {t('patientBio.title')}
           </div>
-          {patient ? (
-            patient.map((patientInfo: PatientType) => (
-              <PatientBio
-                profile={patientInfo.profile}
-                key={patientInfo.profile.name}
-              />
-            ))
-          ) : (
-            <PatientBio profile={patient} />
-          )}
+          <div className="px-2">
+            {patient ? (
+              patient.map((patientInfo: PatientType) => (
+                <PatientBio
+                  profile={patientInfo.profile}
+                  key={patientInfo.profile.name}
+                />
+              ))
+            ) : (
+              <PatientBio profile={patient} />
+            )}
+          </div>
+
           <div className="noscrollbar flex flex-col gap-1 overflow-y-scroll px-2 pb-2 sm:pb-0">
             {patient &&
               patient.map((patientInfo: PatientType) => (

@@ -30,11 +30,11 @@ function PatientBio({ profile }: PatientBioProps) {
   return (
     <>
       {profile && (
-        <div className="flex flex-col gap-1 p-2 py-3">
+        <div className="flex flex-col gap-1">
           <h2 className="font-extrabold text-primary-200 dark:text-grey">
             {profile.name}
           </h2>
-          <div className="profile-block flex justify-center rounded-t-lg px-2">
+          <div className="profile-block flex justify-center rounded-t-lg px-2 py-4">
             <img
               src={profilePhoto}
               alt={profile.name}
