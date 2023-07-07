@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { useTranslation } from 'react-i18next';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -6,9 +7,15 @@ import useSettingsStore from '../../stores/SettingsStore';
 
 interface EmergencyContactProps {
   emergencyContact: Patient['emergency_contact'];
+  onPatients?: boolean;
+  onMonitoring?: boolean;
 }
 
-function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
+function EmergencyContact({
+  emergencyContact,
+  onPatients,
+  onMonitoring,
+}: EmergencyContactProps) {
   const expand = useSettingsStore((state) => state.expand.emergencyContact);
   const setExpand = useSettingsStore((state) => state.setExpand);
   const { t } = useTranslation();
@@ -23,18 +30,21 @@ function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
   return (
     <div>
       <div className="flex flex-col gap-2 text-sm">
-        <div
-          onClick={() => setExpand('emergencyContact', !expand)}
-          onKeyDown={() => setExpand('emergencyContact', !expand)}
-          role="button"
-          tabIndex={0}
-          className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey"
-        >
-          {t('emergencyContact.title')}
-          {renderIcon()}
-        </div>
+        {onMonitoring && (
+          <div
+            onClick={() => setExpand('emergencyContact', !expand)}
+            onKeyDown={() => setExpand('emergencyContact', !expand)}
+            role="button"
+            tabIndex={0}
+            className="mb-2 flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey"
+          >
+            {t('emergencyContact.title')}
+            {renderIcon()}
+          </div>
+        )}
 
         {expand &&
+          onMonitoring &&
           (emergencyContact ? (
             <>
               {Object.entries(emergencyContact).map(([name, value]) => (
@@ -56,6 +66,26 @@ function EmergencyContact({ emergencyContact }: EmergencyContactProps) {
           ) : (
             <div className="dark:text-grey">{t('noAlarmHasBeenSelected')}</div>
           ))}
+
+        {onPatients && emergencyContact && (
+          <>
+            {Object.entries(emergencyContact).map(([name, value]) => (
+              <div
+                key={name}
+                className={`mb-1 grid grid-cols-2 text-center sm:text-left ${
+                  emergencyContact ? 'show' : 'hide'
+                }`}
+              >
+                <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey">
+                  {t(`emergencyContact.${name}`)}
+                </div>
+                <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
+                  {value}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

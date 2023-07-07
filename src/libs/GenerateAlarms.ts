@@ -45,15 +45,12 @@ function GenerateAlarms() {
 
   const generatePatientID = (): number =>
     availablePatientIDs[Math.floor(Math.random() * availablePatientIDs.length)];
-
   const generateHighestAlarmID = (): number =>
     Math.max(...alarms.map((alarm) => alarm.id), 0) + 1;
   const generateAlarmType = (): string =>
     availableAlarmTypes[Math.floor(Math.random() * availableAlarmTypes.length)];
-
   const generateStatus = (): string =>
     availableStatuses[Math.floor(Math.random() * availableStatuses.length)];
-
   const timeStamp = new Date().toLocaleTimeString().replace(/:\d+ /, ' ');
 
   useEffect(() => {

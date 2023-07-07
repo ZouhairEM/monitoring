@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { useTranslation } from 'react-i18next';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -6,9 +7,15 @@ import useSettingsStore from '../../stores/SettingsStore';
 
 interface HealthCareInfoProps {
   healthCare: Patient['healthcare'];
+  onPatients?: boolean;
+  onMonitoring?: boolean;
 }
 
-function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
+function HealthCareInfo({
+  healthCare,
+  onPatients,
+  onMonitoring,
+}: HealthCareInfoProps) {
   const expand = useSettingsStore((state) => state.expand.healthcare);
   const setExpand = useSettingsStore((state) => state.setExpand);
   const { t } = useTranslation();
@@ -23,20 +30,23 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
   return (
     <div>
       <div className="flex flex-col gap-2 text-sm">
-        <div
-          onClick={() => setExpand('healthcare', !expand)}
-          onKeyDown={() => setExpand('healthcare', !expand)}
-          role="button"
-          tabIndex={0}
-          className={`${
-            !expand ? 'mb-4' : ''
-          } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey`}
-        >
-          {t('healthCareInfo.title')}
-          {renderIcon()}
-        </div>
+        {onMonitoring && (
+          <div
+            onClick={() => setExpand('healthcare', !expand)}
+            onKeyDown={() => setExpand('healthcare', !expand)}
+            role="button"
+            tabIndex={0}
+            className={`${
+              !expand ? 'mb-4' : ''
+            } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey`}
+          >
+            {t('healthCareInfo.title')}
+            {renderIcon()}
+          </div>
+        )}
 
         {expand &&
+          onMonitoring &&
           (healthCare ? (
             <>
               {Object.entries(healthCare).map(([name, value]) => (
@@ -59,6 +69,26 @@ function HealthCareInfo({ healthCare }: HealthCareInfoProps) {
               {t('healthCareInfo.noAlarmHasBeenSelected')}
             </div>
           ))}
+
+        {onPatients && healthCare && (
+          <>
+            {Object.entries(healthCare).map(([name, value]) => (
+              <div
+                key={name}
+                className={`mb-1 grid grid-cols-2 text-center sm:text-left ${
+                  healthCare ? 'show' : 'hide'
+                }`}
+              >
+                <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey">
+                  {t(`healthCareInfo.${name}`)}
+                </div>
+                <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
+                  {value}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
