@@ -62,7 +62,9 @@ function GenerateAlarms() {
         timeStamp,
         generateStatus()
       );
-      setReactiveAlarms(generateAlarm);
+      if (alarms?.length < 100) {
+        setReactiveAlarms(generateAlarm);
+      }
     }, 7000);
 
     return () => {

@@ -5,7 +5,7 @@ import TotalCountWidget from '../components/dashboard/TotalCountWidget';
 import TipOfTheDayWidget from '../components/dashboard/TipOfTheDayWidget';
 import SettingsWidget from '../components/dashboard/SettingsWidget';
 import TimeWidget from '../components/dashboard/TimeWidget';
-import AlarmsByType from '../components/dashboard/AlarmsByTypeWidget';
+import AlarmsByTypeWidget from '../components/dashboard/AlarmsByTypeWidget';
 import NewestWidget from '../components/dashboard/NewestWidget';
 import Modal from '../components/generic/Modal';
 import useSettingsStore from '../stores/SettingsStore';
@@ -19,7 +19,7 @@ function Dashboard() {
   return (
     <div className="w-full">
       <main className="flex h-[754px] w-full flex-col gap-2 p-[1px] md:mb-0">
-        <h1 className="dark:text-grey">{t('dashboard.title')}</h1>
+        <h1 className="dark:text-grey-200">{t('dashboard.title')}</h1>
         <div className="grid h-full grid-cols-4 gap-3">
           {widgets.alarms && (
             <section className="widget order-1 col-span-2 sm:order-1 sm:col-span-2 md:col-span-1">
@@ -28,7 +28,6 @@ function Dashboard() {
           )}
           {widgets.tip && (
             <section className="widget order-5 col-span-4 sm:order-2 sm:col-span-2">
-              <div>{t('dashboard.modal.tipOfTheDay')}</div>
               <TipOfTheDayWidget />
             </section>
           )}
@@ -47,7 +46,7 @@ function Dashboard() {
           )}
           {widgets.type && (
             <section className="widget order-5 col-span-4 sm:order-5 md:col-span-2">
-              <AlarmsByType />
+              <AlarmsByTypeWidget />
             </section>
           )}
           {widgets.time && (

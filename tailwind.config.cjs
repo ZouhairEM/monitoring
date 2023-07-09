@@ -41,7 +41,10 @@ module.exports = {
         300: '#1A1A2E',
       },
       white: '#FFF',
-      grey: '#d7dadc',
+      grey: {
+        100: '#ededed',
+        200: '#d7dadc',
+      },
     },
   },
   plugins: [],

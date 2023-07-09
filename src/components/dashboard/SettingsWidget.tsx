@@ -18,10 +18,10 @@ function SettingsWidget() {
         onKeyDown={() => handleFollowUp()}
         className="flex w-full flex-col justify-between"
       >
-        <p>{t('dashboard.modal.title')}</p>
+        <div className="panel-heading w-full">{t('dashboard.modal.title')}</div>
         <span className="flex h-full w-full items-center justify-center">
           <DashboardIcon
-            className="text-primary-200 dark:text-primary-300"
+            className="text-primary-200 dark:text-primary-200"
             style={{ fontSize: '60px' }}
           />
         </span>

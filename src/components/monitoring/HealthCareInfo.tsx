@@ -38,7 +38,7 @@ function HealthCareInfo({
             tabIndex={0}
             className={`${
               !expand ? 'mb-4' : ''
-            } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey dark:text-grey`}
+            } flex justify-between border-b-2 border-primary-200 py-1 text-sm font-bold text-primary-200 transition duration-200 dark:border-grey-200 dark:text-grey-200`}
           >
             {t('healthCareInfo.title')}
             {renderIcon()}
@@ -55,39 +55,39 @@ function HealthCareInfo({
                   className=" expand mb-1 grid grid-cols-2 text-center
                     sm:text-left"
                 >
-                  <div className="text-xs font-bold capitalize text-primary-200 transition duration-200 dark:text-grey">
+                  <div className="text-xs font-bold capitalize text-primary-200 transition duration-200 dark:text-grey-200">
                     {t(`healthCareInfo.${name}`)}
                   </div>
-                  <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
+                  <div className="text-xs text-black-100 transition duration-200 dark:text-grey-200">
                     {value}
                   </div>
                 </div>
               ))}
             </>
           ) : (
-            <div className="dark:text-grey">
+            <div className="dark:text-grey-200">
               {t('healthCareInfo.noAlarmHasBeenSelected')}
             </div>
           ))}
 
         {onPatients && healthCare && (
-          <>
+          <div className="grid grid-cols-3">
             {Object.entries(healthCare).map(([name, value]) => (
               <div
                 key={name}
-                className={`mb-1 grid grid-cols-2 text-center sm:text-left ${
+                className={`mb-1 flex flex-col sm:text-left ${
                   healthCare ? 'show' : 'hide'
                 }`}
               >
-                <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey">
+                <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey-200">
                   {t(`healthCareInfo.${name}`)}
                 </div>
-                <div className="text-xs text-black-100 transition duration-200 dark:text-grey">
+                <div className="text-xs text-black-100 transition duration-200 dark:text-grey-200">
                   {value}
                 </div>
               </div>
             ))}
-          </>
+          </div>
         )}
       </div>
     </div>

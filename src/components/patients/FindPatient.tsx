@@ -8,7 +8,7 @@ import NurseTwo from '../../assets/img/illustrations/NurseTwo';
 
 function FindPatient() {
   const patients = useAlarmsStore((state) => state.patients);
-  const [inputQuery, setInputQuery] = useState<string | null>(null);
+  const [inputQuery, setInputQuery] = useState<string>('');
   const [foundPatient, setFoundPatient] = useState<PatientType[] | null>(null);
   const [isResultVisible, setIsResultVisible] = useState(true);
   const matchingPatient = usePatientsStore((state) => state.matchingPatient);
@@ -19,7 +19,7 @@ function FindPatient() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (inputQuery) {
+    if (inputQuery.length > 1) {
       const queriedPatient = patients.filter((patient) =>
         patient.profile.name.toLowerCase().includes(inputQuery.toLowerCase())
       );
@@ -32,12 +32,14 @@ function FindPatient() {
   const highlightMatch = (text: string, query: string) => {
     const regex = new RegExp(`(${query})`, 'gi');
     const parts = text.split(regex);
-    return parts.map((part, index) =>
-      regex.test(part) && inputQuery !== null ? (
+    return parts.map((part) =>
+      regex.test(part) &&
+      inputQuery !== '' &&
+      inputQuery.length > 1 &&
+      !matchingPatient ? (
         <span
           className="underline decoration-primary-200 decoration-double"
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
+          key={part}
         >
           {part}
         </span>
@@ -58,14 +60,14 @@ function FindPatient() {
     if (target?.current) {
       target.current.value = '';
     }
+    setInputQuery('');
     setMatchingPatient(null);
+    setIsResultVisible(false);
   };
 
   return (
-    <section className="col-span-12 flex w-full flex-col rounded bg-white drop-shadow-md dark:bg-black-100">
-      <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
-        {t('patientsPage.database')}
-      </div>
+    <section className="col-span-12 flex w-full flex-col rounded rounded-t-lg bg-white drop-shadow-md dark:bg-black-100">
+      <div className="panel-heading">{t('patientsPage.database')}</div>
       <div
         className={`flex flex-col ${
           matchingPatient ? 'h-full justify-center' : 'mt-2'
@@ -79,10 +81,14 @@ function FindPatient() {
                 ? matchingPatient.profile.name
                 : t('patientsPage.findByName')
             }`}
+            value={matchingPatient?.profile.name ?? inputQuery}
             className={`z-10 w-full rounded border-2 border-primary-200 p-2 text-sm outline-none dark:bg-black-100 ${
               isResultVisible ? 'isResultVisible' : ''
             }`}
-            onChange={(e) => setInputQuery(e.target.value)}
+            onChange={(e) => {
+              setMatchingPatient(null);
+              return setInputQuery(e.target.value);
+            }}
             onFocus={() => {
               setIsResultVisible(true);
               setFoundPatient(patients);
@@ -95,7 +101,7 @@ function FindPatient() {
               onKeyDown={() => handleCloseInput()}
               tabIndex={0}
             >
-              <CloseIcon className="absolute right-2 top-2 dark:text-grey" />
+              <CloseIcon className="absolute right-2 top-2 dark:text-grey-200" />
             </button>
           )}
 
@@ -105,7 +111,7 @@ function FindPatient() {
             }`}
           >
             {isResultVisible && foundPatient && (
-              <div className="0 absolute top-8 z-20 w-full rounded rounded-t-none border-2 border-t-0 border-primary-200 bg-white p-2 dark:bg-black-100 dark:text-grey">
+              <div className="0 absolute top-7 z-20 w-full rounded rounded-t-none border-2 border-t-0 border-primary-200 bg-white p-2 dark:bg-black-100 dark:text-grey-200">
                 {foundPatient?.map((patient) => (
                   <div
                     role="button"
@@ -131,8 +137,10 @@ function FindPatient() {
           <div className="w-24">
             <NurseTwo />
           </div>
-          <h5 className="my-2 text-center">
-            {t('patientsPage.findPatientDescription')}
+          <h5 className="my-2 w-2/3 text-center">
+            {inputQuery && foundPatient?.length === 0
+              ? t('patientsPage.noPatientFoundDescription')
+              : t('patientsPage.findPatientDescription')}
           </h5>
         </div>
       )}

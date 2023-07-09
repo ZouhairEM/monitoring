@@ -23,7 +23,7 @@ function FollowUpModal() {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="flex flex-col gap-2 dark:text-grey">
+      <div className="flex flex-col gap-2 dark:text-grey-200">
         <h2>{t('controlPanel.modal.title')}</h2>
         {profile && (
           <>
@@ -46,7 +46,7 @@ function FollowUpModal() {
           onClick={() => setModal({ status: false, name: '' })}
           onKeyDown={() => setModal({ status: false, name: '' })}
           tabIndex={0}
-          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
         >
           {t('controlPanel.modal.call')} {getCorrespondingDoctor()}
         </button>
@@ -55,7 +55,7 @@ function FollowUpModal() {
           onClick={() => setModal({ status: false, name: '' })}
           onKeyDown={() => setModal({ status: false, name: '' })}
           tabIndex={0}
-          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
         >
           {t('controlPanel.modal.cancel')}
         </button>

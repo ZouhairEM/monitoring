@@ -213,7 +213,7 @@ function Monitoring() {
           tabIndex={0}
         >
           <h5
-            className={`rounded bg-primary-200 px-3 py-1 text-center font-medium text-white  hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300
+            className={`rounded bg-primary-200 px-3 py-1 text-center font-medium text-white  hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300
             ${
               index === state?.isActive
                 ? 'bg-primary-300 dark:bg-primary-300 dark:text-white'
@@ -259,10 +259,10 @@ function Monitoring() {
     <div className="flex w-full flex-col gap-2 sm:flex-row">
       <main className="mb-11 grid h-[754px] w-full grid-cols-9 gap-2 p-[1px] md:mb-0">
         <section className="box-shadow-md col-span-12 rounded-b-lg rounded-t-lg bg-white dark:bg-black-100 md:col-span-2">
-          <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+          <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey-200">
             {t('patientBio.title')}
           </div>
-          <div className="px-2">
+          <div className={`${!patient ? 'h-full' : ''} px-2`}>
             {patient ? (
               patient.map((patientInfo: PatientType) => (
                 <PatientBio
@@ -296,7 +296,7 @@ function Monitoring() {
         </section>
         <div className="col-span-12 flex flex-col justify-between gap-2 md:col-span-7">
           <div className="alarm-grid box-shadow-md flex h-full flex-col rounded-b-lg rounded-t-lg bg-white">
-            <div className="flex h-full flex-col justify-between overflow-hidden dark:bg-black-100 dark:text-grey">
+            <div className="flex h-full flex-col justify-between overflow-hidden dark:bg-black-100 dark:text-grey-200">
               <div
                 className={`alarm-grid pb-4 sm:pb-0 ${
                   state?.isPanelVisible
@@ -317,7 +317,7 @@ function Monitoring() {
                     className="col-span-1 flex justify-end"
                   >
                     <TagIcon
-                      className="dark:text-grey"
+                      className="dark:text-grey-200"
                       style={{ fontSize: '16px' }}
                     />
                   </div>
@@ -325,7 +325,7 @@ function Monitoring() {
                     <div className="grid grid-cols-8">
                       {entryTypes.map((entryType) => (
                         <div
-                          className={`flex justify-end px-0 font-bold dark:text-grey md:justify-end ${
+                          className={`flex justify-end px-0 font-bold dark:text-grey-200 md:justify-end ${
                             entryType === t('entryTypes.alarm') ||
                             entryType === t('entryTypes.patient')
                               ? 'col-span-2'
@@ -364,15 +364,17 @@ function Monitoring() {
         </div>
         {toast && closedAlarm && (
           <Toast timer={timer} icon="close">
-            {t('alarm')}{' '}
-            <span className="font-bold">
-              {' '}
-              #
-              {closedAlarm[0].id < 10
-                ? `0${closedAlarm[0].id}`
-                : closedAlarm[0].id}
-            </span>{' '}
-            {t('alarmHasBeenClosed')}
+            <p className="flex">
+              {t('alarm')}{' '}
+              <span className="px-2 font-bold">
+                {' '}
+                #
+                {closedAlarm[0].id < 10
+                  ? `0${closedAlarm[0].id}`
+                  : closedAlarm[0].id}
+              </span>{' '}
+              {t('alarmHasBeenClosed')}
+            </p>
           </Toast>
         )}
         {modal.status && modal.name === 'followup' && (

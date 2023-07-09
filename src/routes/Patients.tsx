@@ -13,7 +13,7 @@ function Patients() {
   return (
     <div className="w-full">
       <main className="flex h-[754px] w-full flex-col gap-4 p-[1px] md:mb-0">
-        <h1 className="dark:text-grey">{t('patientsPage.title')}</h1>
+        <h1 className="dark:text-grey-200">{t('patientsPage.title')}</h1>
         <div className="flex h-full flex-col gap-4">
           <div
             className={`grid grid-cols-12 ${
@@ -25,17 +25,18 @@ function Patients() {
           {matchingPatient ? (
             <>
               <section className="-z-10 grid h-auto w-full grid-cols-12 gap-4 rounded sm:h-3/6">
-                <div className="col-span-12 bg-white drop-shadow-md dark:bg-black-100 sm:col-span-9">
-                  <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+                <div className="col-span-12 rounded rounded-t-lg bg-white drop-shadow-md dark:bg-black-100 sm:col-span-9">
+                  <div className="panel-heading">
                     {t('patientsPage.details')}
                   </div>
-                  <div className="grid grid-cols-6">
-                    <div className="col-span-6 p-1 px-2 sm:col-span-3">
+                  <div className="grid grid-cols-12">
+                    <div className="col-span-12 p-1 px-2 sm:col-span-5">
                       <PatientBio profile={matchingPatient.profile} />
                     </div>
-                    <div className="col-span-6 flex flex-col sm:col-span-3">
-                      <div className="my-2">
-                        <h5 className="pb-2 text-center text-sm font-bold text-primary-200 dark:text-grey sm:text-left">
+                    <div className="col-span-12 flex flex-col gap-4 sm:col-span-7 sm:justify-evenly sm:gap-0">
+                      <div className="text-center">
+                        <hr className="mx-auto my-2 block w-11/12 opacity-30 sm:hidden" />
+                        <h5 className="pb-2 text-center text-sm font-bold text-primary-200 dark:text-grey-200 sm:pb-4 sm:text-left">
                           Healthcare
                         </h5>
                         <HealthCareInfo
@@ -44,7 +45,8 @@ function Patients() {
                         />
                       </div>
                       <div>
-                        <h5 className="pb-2 text-center text-sm font-bold text-primary-200 dark:text-grey sm:text-left">
+                        <hr className="mx-auto my-2 block w-11/12 opacity-30 sm:hidden" />
+                        <h5 className="pb-2 text-center text-sm font-bold text-primary-200 dark:text-grey-200 sm:pb-4 sm:text-left">
                           Emergency contact
                         </h5>
                         <EmergencyContact
@@ -55,17 +57,15 @@ function Patients() {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-12 rounded bg-white drop-shadow-md dark:bg-black-100 sm:col-span-3">
-                  <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+                <div className="col-span-12 rounded rounded-t-lg bg-white drop-shadow-md dark:bg-black-100 sm:col-span-3">
+                  <div className="panel-heading">
                     {t('patientsPage.alarmHistory')}
                   </div>
-                  <p className="p-2">Under construction</p>
+                  <p className="p-2 dark:text-grey-200">Under construction</p>
                 </div>
               </section>
-              <div className="col-span-12 h-auto rounded bg-white drop-shadow-md dark:bg-black-100 sm:col-span-2 sm:h-2/6">
-                <div className="box-shadow-md h-auto rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey sm:h-1/5">
-                  {t('patientsPage.notes')}
-                </div>
+              <div className="col-span-12 h-auto rounded rounded-t-lg bg-white drop-shadow-md dark:bg-black-100 sm:col-span-2 sm:h-2/6">
+                <div className="panel-heading">{t('patientsPage.notes')}</div>
                 <section className="h-auto sm:h-4/5">
                   <Notes />
                 </section>

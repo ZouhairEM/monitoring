@@ -24,19 +24,19 @@ function Notes() {
   const { t } = useTranslation();
 
   return (
-    <section className="flex h-full flex-col gap-2  p-2">
+    <section className="flex h-full flex-col gap-2 p-2">
       <div className="relative h-full w-full">
         <textarea
           value={editNote ?? matchingNotes ?? ''}
           placeholder={editNote ?? matchingNotes ?? t('patientsPage.addNote')}
           onChange={(e) => setEditNote(e.target.value)}
-          className="flex h-full w-full resize-none rounded bg-grey p-2 text-sm drop-shadow-md focus:outline-1 focus:outline-primary-200 dark:bg-black-100 dark:text-grey"
+          className="flex h-full w-full resize-none rounded bg-grey-100 p-2 text-sm drop-shadow-md focus:outline-1 focus:outline-primary-200 dark:bg-black-100 dark:text-grey-200"
           onFocus={() => setTextFocused(true)}
           onBlur={() => handleNotesPerId()}
         />
         {!textFocused && (
           <EditIcon
-            className="absolute right-2 top-2 text-black-100 dark:text-grey"
+            className="absolute right-2 top-2 text-black-100 dark:text-primary-200"
             style={{ fontSize: '20px' }}
           />
         )}

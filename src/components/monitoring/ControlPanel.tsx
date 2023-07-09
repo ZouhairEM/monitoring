@@ -100,17 +100,17 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
 
   return (
     <section className="rounded-t-lg dark:bg-black-100">
-      <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey">
+      <div className="box-shadow-md rounded-t-lg bg-primary-200 p-2 text-sm font-bold text-white dark:bg-black-200 dark:text-grey-200">
         {t('controlPanel.title')}
       </div>
       <div className="flex flex-col gap-2 rounded-t-lg p-2 py-3 text-sm sm:flex-row">
-        <div className="grid grid-cols-1 justify-center gap-2 sm:flex">
+        <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
           <button
             type="button"
             onClick={() => handleFollowUp()}
             onKeyDown={() => handleFollowUp()}
             tabIndex={0}
-            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
           >
             {t('controlPanel.followUp')}
             <PriorityHighIcon style={{ height: '16px' }} />
@@ -120,7 +120,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
             onClick={() => handleCloseAlarmSelection(activeAlarm)}
             onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
             tabIndex={0}
-            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
           >
             {t('controlPanel.closeAlarm')}
             <CloseIcon style={{ height: '16px' }} />
@@ -131,7 +131,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
           <button
             type="button"
             tabIndex={0}
-            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
             onClick={() => {
               if (activeAlarm >= 2) {
                 handleAlarmShuffle('prev');
@@ -149,7 +149,7 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
           <button
             type="button"
             tabIndex={0}
-            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+            className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
             onClick={() => {
               if (
                 activeAlarm !==

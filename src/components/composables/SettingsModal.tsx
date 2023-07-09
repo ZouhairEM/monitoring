@@ -149,7 +149,7 @@ function SettingsModal() {
             <h4>{t('dashboard.modal.openAlarms')}</h4>
             <div className="flex items-center gap-2">
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.alarms ? 'visible' : 'invisible'
                 }`}
               >
@@ -160,8 +160,8 @@ function SettingsModal() {
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
                   widgets.alarms
-                    ? 'bg-primary-200 dark:bg-primary-300'
-                    : 'bg-grey'
+                    ? 'bg-primary-200 dark:bg-primary-200'
+                    : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem(
@@ -185,7 +185,7 @@ function SettingsModal() {
                 />
               </button>
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.alarms ? 'invisible' : 'visible'
                 }`}
               >
@@ -198,7 +198,7 @@ function SettingsModal() {
             <h4>{t('dashboard.modal.tipOfTheDay')}</h4>
             <div className="flex items-center gap-2">
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.tip ? 'visible' : 'invisible'
                 }`}
               >
@@ -208,7 +208,9 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.tip ? 'bg-primary-200 dark:bg-primary-300' : 'bg-grey'
+                  widgets.tip
+                    ? 'bg-primary-200 dark:bg-primary-200'
+                    : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.tip', String(!widgets.tip));
@@ -226,7 +228,7 @@ function SettingsModal() {
                 />
               </button>
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.tip ? 'invisible' : 'visible'
                 }`}
               >
@@ -239,7 +241,7 @@ function SettingsModal() {
             <h4>{t('dashboard.modal.totalAlarms')}</h4>
             <div className="flex items-center gap-2">
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.total ? 'visible' : 'invisible'
                 }`}
               >
@@ -250,8 +252,8 @@ function SettingsModal() {
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
                   widgets.total
-                    ? 'bg-primary-200 dark:bg-primary-300'
-                    : 'bg-grey'
+                    ? 'bg-primary-200 dark:bg-primary-200'
+                    : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.total', String(!widgets.total));
@@ -269,7 +271,7 @@ function SettingsModal() {
                 />
               </button>
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.total ? 'invisible' : 'visible'
                 }`}
               >
@@ -282,7 +284,7 @@ function SettingsModal() {
             <h4>{t('dashboard.modal.alarmsByType')}</h4>
             <div className="flex items-center gap-2">
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.type ? 'visible' : 'invisible'
                 }`}
               >
@@ -293,8 +295,8 @@ function SettingsModal() {
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
                   widgets.type
-                    ? 'bg-primary-200 dark:bg-primary-300'
-                    : 'bg-grey'
+                    ? 'bg-primary-200 dark:bg-primary-200'
+                    : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.type', String(!widgets.type));
@@ -312,7 +314,7 @@ function SettingsModal() {
                 />
               </button>
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.type ? 'invisible' : 'visible'
                 }`}
               >
@@ -325,7 +327,7 @@ function SettingsModal() {
             <h4>{t('dashboard.modal.time')}</h4>
             <div className="flex items-center gap-2">
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.time ? 'visible' : 'invisible'
                 }`}
               >
@@ -336,8 +338,8 @@ function SettingsModal() {
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
                   widgets.time
-                    ? 'bg-primary-200 dark:bg-primary-300'
-                    : 'bg-grey'
+                    ? 'bg-primary-200 dark:bg-primary-200'
+                    : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem('widgets.time', String(!widgets.time));
@@ -355,7 +357,7 @@ function SettingsModal() {
                 />
               </button>
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.time ? 'invisible' : 'visible'
                 }`}
               >
@@ -368,7 +370,7 @@ function SettingsModal() {
             <h4>{t('dashboard.modal.newestAlarm')}</h4>
             <div className="flex items-center gap-2">
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.newest ? 'visible' : 'invisible'
                 }`}
               >
@@ -379,8 +381,8 @@ function SettingsModal() {
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
                   widgets.newest
-                    ? 'bg-primary-200 dark:bg-primary-300'
-                    : 'bg-grey'
+                    ? 'bg-primary-200 dark:bg-primary-200'
+                    : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
                   localStorage.setItem(
@@ -404,7 +406,7 @@ function SettingsModal() {
                 />
               </button>
               <p
-                className={`font-normal dark:text-grey ${
+                className={`font-normal dark:text-grey-200 ${
                   widgets.newest ? 'invisible' : 'visible'
                 }`}
               >
@@ -419,7 +421,7 @@ function SettingsModal() {
           <div className="mx-1 my-0 flex items-center justify-between md:my-2">
             <h4 className="flex gap-2">
               <LanguageIcon
-                className="text-black-300 dark:text-grey"
+                className="text-black-300 dark:text-grey-200"
                 style={{ fontSize: '20px' }}
               />
               <p>{t('dashboard.modal.language')}</p>
@@ -428,7 +430,7 @@ function SettingsModal() {
               <select
                 value={i18n.resolvedLanguage}
                 onChange={(event) => i18n.changeLanguage(event.target.value)}
-                className="p-1 font-normal outline-none dark:bg-black-100 dark:text-grey"
+                className="p-1 font-normal outline-none dark:bg-black-100 dark:text-grey-200"
               >
                 {Object.keys(languages).map((lng) => (
                   <option key={lng} value={lng}>
@@ -444,7 +446,7 @@ function SettingsModal() {
             <h4 className="flex gap-2">
               {colorTheme === 'light' ? (
                 <DarkModeIcon
-                  className="text-black-300 dark:text-grey"
+                  className="text-black-300 dark:text-grey-200"
                   style={{ fontSize: '20px' }}
                 />
               ) : (
@@ -456,7 +458,7 @@ function SettingsModal() {
               <p>{t('dashboard.modal.darkMode')}</p>
             </h4>
             <p
-              className={`font-normal dark:text-grey ${
+              className={`font-normal dark:text-grey-200 ${
                 colorTheme === 'light' ? 'visible' : 'invisible'
               }`}
             >
@@ -467,8 +469,8 @@ function SettingsModal() {
               tabIndex={0}
               className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
                 colorTheme === 'light'
-                  ? 'bg-primary-200 dark:bg-primary-300'
-                  : 'bg-grey'
+                  ? 'bg-primary-200 dark:bg-primary-200'
+                  : 'bg-grey-200'
               } p-1`}
               onClick={() => {
                 setTheme(colorTheme);
@@ -486,7 +488,7 @@ function SettingsModal() {
               />
             </button>
             <p
-              className={`font-normal dark:text-grey ${
+              className={`font-normal dark:text-grey-200 ${
                 colorTheme === 'light' ? 'invisible' : 'visible'
               }`}
             >
@@ -497,7 +499,7 @@ function SettingsModal() {
           <div className="mx-1 my-0 flex items-center justify-between md:my-2">
             <h4 className="flex gap-2">
               <TextFieldsIcon
-                className="text-black-300 dark:text-grey"
+                className="text-black-300 dark:text-grey-200"
                 style={{ fontSize: '20px' }}
               />
               <p>{t('dashboard.modal.fontSize')}</p>
@@ -506,12 +508,12 @@ function SettingsModal() {
               htmlFor="range"
               className="text-neutral-700 dark:text-neutral-200 flex items-center justify-center"
             >
-              <span className="px-4 text-xs font-normal dark:text-grey">
+              <span className="px-4 text-xs font-normal dark:text-grey-200">
                 {!Number.isNaN(rangeValue) ? rangeValue : 50}%
               </span>
               <input
                 type="range"
-                className="transparent border-transparent h-1.5 cursor-pointer appearance-none rounded-lg bg-grey accent-primary-200 dark:accent-primary-300"
+                className="transparent border-transparent h-1.5 cursor-pointer appearance-none rounded-lg bg-grey-200 accent-primary-200 dark:accent-primary-200"
                 id="range"
                 min={0}
                 max={100}
@@ -525,7 +527,7 @@ function SettingsModal() {
           <div className="mx-1 my-0 flex items-center justify-between md:my-2">
             <h4 className="flex gap-2">
               <PaletteIcon
-                className="text-black-300 dark:text-grey"
+                className="text-black-300 dark:text-grey-200"
                 style={{ fontSize: '20px' }}
               />
               <p>{t('dashboard.modal.theme')}</p>

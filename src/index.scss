@@ -43,7 +43,19 @@ body {
 }
 
 .widget {
-  @apply box-shadow-md flex flex-col justify-between rounded-b-lg rounded-t-lg bg-white p-2 text-sm font-bold dark:bg-black-100 dark:text-grey;
+  @apply box-shadow-md flex flex-col justify-between rounded-b-lg rounded-t-lg bg-white pb-2 text-sm font-bold dark:bg-black-100 dark:text-grey-200;
+}
+
+.panel-heading {
+  @apply box-shadow-md rounded-t-lg bg-primary-200 p-2 text-left text-sm font-bold text-white dark:bg-black-200 dark:text-grey-200;
+}
+
+.priority {
+  @apply w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-200;
+}
+
+.no-priority {
+  @apply w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-200;
 }
 
 nav {
@@ -52,23 +64,23 @@ nav {
 }
 
 h1 {
-  @apply text-2xl font-extrabold text-primary-200 dark:text-grey;
+  @apply text-2xl font-extrabold text-primary-200 dark:text-grey-200;
 }
 
 h2 {
-  @apply text-xl font-bold text-primary-200 dark:text-grey;
+  @apply text-xl font-bold text-primary-200 dark:text-grey-200;
 }
 
 h3 {
-  @apply text-lg font-bold dark:text-grey;
+  @apply text-lg font-bold dark:text-grey-200;
 }
 
 h4 {
-  @apply text-sm font-bold text-black-200 dark:text-grey;
+  @apply text-sm font-bold text-black-200 dark:text-grey-200;
 }
 
 h5 {
-  @apply text-base text-black-200 dark:text-grey;
+  @apply text-base text-black-200 dark:text-grey-200;
 }
 
 #app {
@@ -77,10 +89,6 @@ h5 {
 
 mark {
   @apply bg-primary-300 text-white dark:bg-primary-200;
-}
-
-.sidebar {
-  padding: 1px 0;
 }
 
 .alarm-grid {
@@ -120,7 +128,7 @@ mark {
   background-color: #d64045;
 }
 
-.heart-monitor-alarm,
+.hr-monitor-alarm,
 .hartmonitor-alarm,
 .herzmonitor-alarm,
 .mon\.-cardiaque-alarm {

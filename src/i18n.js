@@ -61,6 +61,7 @@ i18n
             findByName: 'Find patient by name',
             findPatientDescription:
               'Find any patient in the database first, patient will be displayed here.',
+            noPatientFoundDescription: 'No patient found by that name.',
             notes: 'Notes',
             addNote: 'Add a note',
             alarmHistory: 'Alarm history',
@@ -94,7 +95,7 @@ i18n
             fireHazard: 'Fire Hazard',
             helpCall: 'Help call',
             patientUp: 'Patient up',
-            heartMonitor: 'Heart monitor',
+            heartMonitor: 'HR monitor',
           },
           entryTypes: {
             priority: 'Priority',
@@ -193,7 +194,7 @@ i18n
               totalAlarms: 'Aantal alarmen',
               alarmsByType: 'Alarmen per type',
               time: 'Tijd',
-              newestAlarm: 'Meest recente alarm',
+              newestAlarm: 'Nieuwste alarm',
               fontSize: 'Lettergrootte',
               theme: 'Thema',
             },
@@ -205,6 +206,7 @@ i18n
             findByName: 'Zoek patiënt op naam',
             findPatientDescription:
               'Zoek eerst een patiënt in de database, de patiënt wordt hier weergegeven.',
+            noPatientFoundDescription: 'Geen patiënt gevonden met die naam.',
             notes: 'Notities',
             addNote: 'Voeg een notitie toe',
             alarmHistory: 'Alarmgeschiedenis',
@@ -349,6 +351,8 @@ i18n
             findByName: 'Patienten nach Namen finden',
             findPatientDescription:
               'Suchen Sie zuerst einen Patienten in der Datenbank, der Patient wird hier angezeigt.',
+            noPatientFoundDescription:
+              'Es wurde kein Patient mit diesem Namen gefunden.',
             notes: 'Notizen',
             addNote: 'Notiz hinzufügen',
             alarmHistory: 'Alarmverlauf',
@@ -493,6 +497,8 @@ i18n
             findByName: 'Trouver un patient par nom',
             findPatientDescription:
               "Recherchez d'abord un patient dans la base de données, le patient sera affiché ici.",
+            noPatientFoundDescription: 'Aucun patient trouvé avec ce nom.',
+
             notes: 'Notes',
             addNote: 'Ajouter une note',
             alarmHistory: 'Historique des alarmes',

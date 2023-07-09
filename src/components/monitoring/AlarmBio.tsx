@@ -79,44 +79,44 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
     if (entry.alarm === AlarmTypes.One) {
       return (
         <>
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
+          <div className="priority" />
+          <div className="priority" />
+          <div className="priority" />
+          <div className="priority" />
+          <div className="priority" />
         </>
       );
     }
     if (entry.alarm === AlarmTypes.Two) {
       return (
         <>
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="priority" />
+          <div className="priority" />
+          <div className="no-priority" />
+          <div className="no-priority" />
+          <div className="no-priority" />
         </>
       );
     }
     if (entry.alarm === AlarmTypes.Three) {
       return (
         <>
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="priority" />
+          <div className="priority" />
+          <div className="priority" />
+          <div className="no-priority" />
+          <div className="no-priority" />
         </>
       );
     }
     if (entry.alarm === AlarmTypes.Four) {
       return (
         <>
-          <div className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
-          <div className="w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-300" />
+          <div className="priority" />
+          <div className="no-priority" />
+          <div className="no-priority" />
+          <div className="no-priority" />
+          <div className="no-priority" />
         </>
       );
     }
@@ -124,10 +124,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       return (
         <>
           {[1, 2, 3, 4, 5].map((i) => (
-            <div
-              key={i}
-              className="w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-300"
-            />
+            <div key={i} className="priority" />
           ))}
         </>
       );
@@ -160,7 +157,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       onKeyDown={() => makeActivePatient(entry.patient_id)}
       role="button"
       tabIndex={0}
-      className={`alarm-bio grid w-[660px] grid-cols-9 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 dark:text-grey sm:w-full md:w-[710px] lg:w-full ${
+      className={`alarm-bio dark:text-grey grid w-[660px] grid-cols-9 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 sm:w-full md:w-[710px] lg:w-full ${
         entry.id === activeAlarm && !disabled ? 'active' : ''
       }`}
     >
@@ -202,8 +199,8 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         {entry.status === 'Done' ? (
           <span className="flex items-center gap-1">
             <CheckIcon
-              className="dark:text-grey"
-              style={{ height: '15px', opacity: '0.9' }}
+              className="opacity-90 dark:text-primary-200"
+              style={{ height: '15px' }}
             />
             <span>
               {entry.status === t('availableStatus.open') ? (
@@ -216,9 +213,9 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
         ) : (
           <span className="flex items-center justify-end gap-1">
             <NotificationsActiveIcon
+              className="opacity-90 dark:text-primary-200"
               style={{
                 height: '15px',
-                opacity: '0.9',
               }}
             />
             {entry.status === 'Done' ? (

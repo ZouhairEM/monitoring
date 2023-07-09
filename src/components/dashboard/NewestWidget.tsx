@@ -20,7 +20,7 @@ function NewestWidget() {
 
   const handleIcon = () => {
     if (newestAlarm.alarm === AlarmTypes.One) {
-      return <LocalFireDepartmentIcon style={{ height: '17px' }} />;
+      return <AccessibleIcon style={{ height: '17px' }} />;
     }
     if (newestAlarm.alarm === AlarmTypes.Two) {
       return <HearingIcon style={{ height: '18px' }} />;
@@ -29,20 +29,20 @@ function NewestWidget() {
       return <RecordVoiceOverIcon style={{ height: '18px' }} />;
     }
     if (newestAlarm.alarm === AlarmTypes.Four) {
-      return <AccessibleIcon style={{ height: '18px' }} />;
+      return <MonitorHeartIcon style={{ height: '18px' }} />;
     }
     if (newestAlarm.alarm === AlarmTypes.Five) {
-      return <MonitorHeartIcon style={{ height: '18px' }} />;
+      return <LocalFireDepartmentIcon style={{ height: '18px' }} />;
     }
     return <HearingIcon />;
   };
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="flex h-full flex-col justify-between gap-2">
-        <p>{t('dashboard.modal.newestAlarm')}</p>
+        <div className="panel-heading">{t('dashboard.modal.newestAlarm')}</div>
         <div className="flex h-full flex-col items-center justify-around text-center">
-          <span className="w-4/5 rounded p-1 text-center text-xl dark:text-grey">
-            <div className="flex items-center justify-center gap-4">
+          <span className="w-4/5 rounded p-1 text-left text-xl dark:text-grey-200">
+            <div className="flex items-center gap-4">
               <span
                 className={`${newestAlarm.alarm
                   .toLowerCase()
@@ -53,13 +53,17 @@ function NewestWidget() {
               >
                 <span>{handleIcon()}</span>
               </span>
-              <p>{newestAlarm.alarm}</p>
+              <p className="text-sm">{newestAlarm.alarm}</p>
             </div>
           </span>
           <div className="flex w-4/5 flex-col">
             <span className="grid grid-cols-3 gap-2 text-left">
               <p>{t('patientBio.name')}</p>
-              <p className="col-span-2">{matchingPatient}</p>
+              <p className="col-span-2">{`${
+                matchingPatient.split(' ').length > 1
+                  ? `${matchingPatient.split(' ')[0][0]}.`
+                  : ''
+              } ${matchingPatient.split(' ').pop()}`}</p>
             </span>
             <span className="grid grid-cols-3 gap-2 text-left">
               <p>{t('entryTypes.status')}</p>
@@ -78,7 +82,7 @@ function NewestWidget() {
             <button
               type="button"
               tabIndex={0}
-              className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
+              className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
             >
               <p className="text-xs">{t('dashboard.toAlarm')}</p>
               <ArrowForwardIosIcon style={{ height: '16px' }} />

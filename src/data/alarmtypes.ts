@@ -2,7 +2,7 @@ enum AlarmTypes {
   One = 'Patient up',
   Two = 'Loud noise',
   Three = 'Help call',
-  Four = 'Heart monitor',
+  Four = 'HR monitor',
   Five = 'Fire hazard',
 }
 

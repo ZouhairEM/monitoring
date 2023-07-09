@@ -50,11 +50,11 @@ function AlarmsByTypeWidget() {
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="flex h-full flex-col gap-2">
-        <p>{t('dashboard.modal.alarmsByType')}</p>
-        <div className="flex h-full w-full flex-col">
+        <div className="panel-heading">{t('dashboard.modal.alarmsByType')}</div>
+        <div className="flex h-full w-full flex-col px-2">
           <div className="flex w-full flex-grow items-end space-x-2">
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="text-xs font-bold">
+              <span className="mb-2 text-xs font-bold sm:mb-0">
                 {t('alarmTypes.loudNoise')}
               </span>
               <div
@@ -66,16 +66,19 @@ function AlarmsByTypeWidget() {
                     key={el.id}
                     className={`relative h-[10%] w-full ${handleAlarmTranslation(
                       1
-                    )} dark:bg-primary-300`}
+                    )} dark:bg-primary-200`}
                   />
                 ))}
               </div>
-              <span className="absolute bottom-0 text-xs font-bold">
-                {countAlarmOne.length}
+              <span className="absolute bottom-0 text-base font-bold sm:text-xs">
+                <span className="flex">
+                  {countAlarmOne.length}
+                  <span className="block sm:hidden">x</span>
+                </span>
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="text-xs font-bold">
+              <span className="mb-2 text-xs font-bold sm:mb-0">
                 {t('alarmTypes.fireHazard')}
               </span>
               <div
@@ -87,16 +90,19 @@ function AlarmsByTypeWidget() {
                     key={el.id}
                     className={`relative h-[10%] w-full ${handleAlarmTranslation(
                       2
-                    )} dark:bg-primary-300`}
+                    )} dark:bg-primary-200`}
                   />
                 ))}
               </div>
-              <span className="absolute bottom-0 text-xs font-bold">
-                {countAlarmTwo.length}
+              <span className="absolute bottom-0 text-base font-bold sm:text-xs">
+                <span className="flex">
+                  {countAlarmTwo.length}
+                  <span className="block sm:hidden">x</span>
+                </span>
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="text-xs font-bold">
+              <span className="mb-2 text-xs font-bold sm:mb-0">
                 {t('alarmTypes.helpCall')}
               </span>
               <div
@@ -108,16 +114,19 @@ function AlarmsByTypeWidget() {
                     key={el.id}
                     className={`relative h-[10%] w-full ${handleAlarmTranslation(
                       3
-                    )} dark:bg-primary-300`}
+                    )} dark:bg-primary-200`}
                   />
                 ))}
               </div>
-              <span className="absolute bottom-0 text-xs font-bold">
-                {countAlarmThree.length}
+              <span className="absolute bottom-0 text-base font-bold sm:text-xs">
+                <span className="flex">
+                  {countAlarmThree.length}
+                  <span className="block sm:hidden">x</span>
+                </span>
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="text-xs font-bold">
+              <span className="mb-2 text-xs font-bold sm:mb-0">
                 {t('alarmTypes.patientUp')}
               </span>
               <div
@@ -129,16 +138,19 @@ function AlarmsByTypeWidget() {
                     key={el.id}
                     className={`relative h-[10%] w-full ${handleAlarmTranslation(
                       4
-                    )} dark:bg-primary-300`}
+                    )} dark:bg-primary-200`}
                   />
                 ))}
               </div>
-              <span className="absolute bottom-0 text-xs font-bold">
-                {countAlarmFour.length}
+              <span className="absolute bottom-0 text-base font-bold sm:text-xs">
+                <span className="flex">
+                  {countAlarmFour.length}
+                  <span className="block sm:hidden">x</span>
+                </span>
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="text-xs font-bold">
+              <span className="mb-2 text-xs font-bold sm:mb-0">
                 {t('alarmTypes.heartMonitor')}
               </span>
               <div
@@ -150,12 +162,15 @@ function AlarmsByTypeWidget() {
                     key={el.id}
                     className={`relative h-[10%] w-full ${handleAlarmTranslation(
                       5
-                    )} dark:bg-primary-300`}
+                    )} dark:bg-primary-200`}
                   />
                 ))}
               </div>
-              <span className="absolute bottom-0 text-xs font-bold">
-                {countAlarmFive.length}
+              <span className="absolute bottom-0 text-base font-bold sm:text-xs">
+                <span className="flex">
+                  {countAlarmFive.length}
+                  <span className="block sm:hidden">x</span>
+                </span>
               </span>
             </div>
           </div>

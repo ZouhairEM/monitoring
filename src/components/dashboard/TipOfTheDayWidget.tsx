@@ -39,31 +39,34 @@ function TipOfTheDayWidget() {
   };
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
-      <p className="flex h-full w-3/4 items-center justify-center p-2 text-center font-medium sm:p-0">
-        {currentTip}
-      </p>
-      <div className="flex justify-center gap-2">
-        <button
-          type="button"
-          tabIndex={0}
-          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
-          onClick={() => changeTip('prev')}
-          onKeyDown={() => changeTip('prev')}
-        >
-          <ArrowBackIosNewIcon style={{ height: '13px' }} />
-        </button>
-        <button
-          type="button"
-          tabIndex={0}
-          className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey dark:hover:bg-primary-300"
-          onClick={() => changeTip('next')}
-          onKeyDown={() => changeTip('next')}
-        >
-          <ArrowForwardIosIcon style={{ height: '13px' }} />
-        </button>
+    <>
+      <div className="panel-heading">{t('dashboard.modal.tipOfTheDay')}</div>
+      <div className="flex h-full flex-col items-center justify-center">
+        <p className="flex h-full w-5/6 items-center justify-center p-2 text-center font-medium sm:p-0">
+          {currentTip}
+        </p>
+        <div className="flex justify-center gap-2">
+          <button
+            type="button"
+            tabIndex={0}
+            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
+            onClick={() => changeTip('prev')}
+            onKeyDown={() => changeTip('prev')}
+          >
+            <ArrowBackIosNewIcon style={{ height: '13px' }} />
+          </button>
+          <button
+            type="button"
+            tabIndex={0}
+            className="flex items-center justify-center gap-1 rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
+            onClick={() => changeTip('next')}
+            onKeyDown={() => changeTip('next')}
+          >
+            <ArrowForwardIosIcon style={{ height: '13px' }} />
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

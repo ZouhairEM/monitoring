@@ -19,8 +19,8 @@ function SideBar() {
   }, [breakpoint]);
 
   return (
-    <aside className="sidebar mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
-      <div className="bg-primary flex h-full flex-col justify-between pb-0 text-sm font-semibold text-white md:pb-2">
+    <aside className="mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
+      <div className="flex h-full flex-col justify-between pb-0 text-sm font-semibold text-white md:pb-2">
         <div className="flex justify-evenly md:flex-col">
           <Link to="/">
             <button
@@ -61,7 +61,7 @@ function SideBar() {
               />
               {isCollapsed && (
                 <div
-                  className={`hidden dark:text-grey ${
+                  className={`dark:text-grey hidden ${
                     pathname === '/dashboard'
                       ? 'text-black-300 dark:text-primary-200'
                       : ''
@@ -87,7 +87,7 @@ function SideBar() {
               />
               {isCollapsed && (
                 <div
-                  className={`hidden dark:text-grey ${
+                  className={`dark:text-grey hidden ${
                     pathname === '/patients'
                       ? 'text-black-300 dark:text-primary-200'
                       : ''

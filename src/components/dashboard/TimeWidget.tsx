@@ -25,7 +25,7 @@ function TimeWidget() {
 
   return (
     <div className="flex h-full flex-col justify-between">
-      <p>{t('dashboard.modal.time')}</p>
+      <div className="panel-heading">{t('dashboard.modal.time')}</div>
       <div className="flex h-full items-center justify-center">
         <h3 className="text-center text-2xl">{time}</h3>
       </div>
