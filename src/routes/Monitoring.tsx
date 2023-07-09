@@ -137,7 +137,7 @@ function Monitoring() {
         dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 12 });
       }
     } else if (breakpoint === 'sm' || breakpoint === 'md') {
-      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 7 });
+      dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 10 });
     } else {
       dispatch({ type: 'alarms_per_page', setAlarmsPerPage: 14 });
     }

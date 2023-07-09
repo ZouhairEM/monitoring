@@ -31,7 +31,7 @@ function PatientBio({ profile }: PatientBioProps) {
     <>
       {profile && (
         <div className="flex flex-col gap-1">
-          <h2 className="font-extrabold text-primary-200 dark:text-grey">
+          <h2 className="text-center font-extrabold text-primary-200 dark:text-grey sm:text-left">
             {profile.name}
           </h2>
           <div className="profile-block flex justify-center rounded-t-lg px-2 py-4">

@@ -56,6 +56,14 @@ i18n
           },
           patientsPage: {
             title: 'Patients',
+            database: 'Database',
+            details: 'Details',
+            findByName: 'Find patient by name',
+            findPatientDescription:
+              'Find any patient in the database first, patient will be displayed here.',
+            notes: 'Notes',
+            addNote: 'Add a note',
+            alarmHistory: 'Alarm history',
           },
           sidebar: {
             monitoring: 'Monitoring',
@@ -190,6 +198,17 @@ i18n
               theme: 'Thema',
             },
           },
+          patientsPage: {
+            title: 'Patiënten',
+            database: 'Database',
+            details: 'Details',
+            findByName: 'Zoek patiënt op naam',
+            findPatientDescription:
+              'Zoek eerst een patiënt in de database, de patiënt wordt hier weergegeven.',
+            notes: 'Notities',
+            addNote: 'Voeg een notitie toe',
+            alarmHistory: 'Alarmgeschiedenis',
+          },
           sidebar: {
             monitoring: 'Monitoring',
             dashboard: 'Dashboard',
@@ -323,6 +342,17 @@ i18n
               theme: 'Design',
             },
           },
+          patientsPage: {
+            title: 'Patienten',
+            database: 'Datenbank',
+            details: 'Details',
+            findByName: 'Patienten nach Namen finden',
+            findPatientDescription:
+              'Suchen Sie zuerst einen Patienten in der Datenbank, der Patient wird hier angezeigt.',
+            notes: 'Notizen',
+            addNote: 'Notiz hinzufügen',
+            alarmHistory: 'Alarmverlauf',
+          },
           sidebar: {
             monitoring: 'Überwachung',
             dashboard: 'Dashboard',
@@ -455,6 +485,17 @@ i18n
               fontSize: 'Taille de la police',
               theme: 'Thème',
             },
+          },
+          patientsPage: {
+            title: 'Patients',
+            database: 'Base de données',
+            details: 'Détails',
+            findByName: 'Trouver un patient par nom',
+            findPatientDescription:
+              "Recherchez d'abord un patient dans la base de données, le patient sera affiché ici.",
+            notes: 'Notes',
+            addNote: 'Ajouter une note',
+            alarmHistory: 'Historique des alarmes',
           },
           sidebar: {
             monitoring: 'Surveillance',
