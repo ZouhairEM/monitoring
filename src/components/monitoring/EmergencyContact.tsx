@@ -50,9 +50,7 @@ function EmergencyContact({
               {Object.entries(emergencyContact).map(([name, value]) => (
                 <div
                   key={name}
-                  className={`mb-1 grid grid-cols-2 text-center sm:text-left ${
-                    emergencyContact ? 'show' : 'hide'
-                  }`}
+                  className="mb-1 grid grid-cols-2 text-center sm:text-left"
                 >
                   <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey-200">
                     {t(`emergencyContact.${name}`)}
@@ -74,9 +72,7 @@ function EmergencyContact({
             {Object.entries(emergencyContact).map(([name, value]) => (
               <div
                 key={name}
-                className={`mb-1 flex flex-col text-center sm:text-left ${
-                  emergencyContact ? 'show' : 'hide'
-                }`}
+                className="mb-1 flex flex-col text-center sm:text-left"
               >
                 <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey-200">
                   {t(`emergencyContact.${name}`)}

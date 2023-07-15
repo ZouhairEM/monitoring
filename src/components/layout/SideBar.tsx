@@ -19,14 +19,14 @@ function SideBar() {
   }, [breakpoint]);
 
   return (
-    <aside className="mb-2 rounded-b-lg rounded-t-lg bg-primary-200 dark:bg-black-100 sm:mb-0 lg:block">
+    <aside className="mb-2 rounded-b-lg rounded-t-lg bg-primary-200 py-[1px] dark:bg-black-100 sm:mb-0 lg:block">
       <div className="flex h-full flex-col justify-between pb-0 text-sm font-semibold text-white md:pb-2">
         <div className="flex justify-evenly md:flex-col">
           <Link to="/">
             <button
               type="button"
               tabIndex={0}
-              className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-1 dark:bg-black-100 md:mb-3 md:pt-2"
+              className="mb-0 flex items-center gap-x-2 rounded-t-lg px-4 pb-1 pt-1 text-left dark:bg-black-100 md:mb-3 md:pt-2"
             >
               <VisibilityIcon
                 className={`dark:text-grey ${
@@ -50,7 +50,7 @@ function SideBar() {
             <button
               type="button"
               tabIndex={0}
-              className="mb-0 flex items-center gap-x-2 px-4 py-1 md:mb-3"
+              className="mb-0 flex items-center gap-x-2 px-4 py-1 text-left md:mb-3"
             >
               <Grid3x3Icon
                 className={`dark:text-grey ${
@@ -74,7 +74,7 @@ function SideBar() {
           </Link>
           <Link to="/patients">
             <button
-              className="flex items-center gap-x-2 px-4 py-1"
+              className="flex items-center gap-x-2 px-4 py-1 text-left"
               type="button"
               tabIndex={0}
             >

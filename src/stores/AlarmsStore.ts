@@ -15,6 +15,7 @@ interface AlarmState {
   clickedAlarm: AlarmEntryType | null;
   hasTotalChanged: boolean;
   closedAlarmIndex: number;
+  findAdjacentPatient: (id: number) => void;
   findPatient: (id: number) => void;
   setActualAlarms: (value: number[]) => void;
   setActive: (by: number) => void;
@@ -41,13 +42,19 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     set((state) => ({
       alarms: [...state.alarms, alarm],
     })),
-  findPatient: (id: number) =>
+  findAdjacentPatient: (id: number) =>
     set((state: AlarmState) => ({
       correspondingPatient: state.patients.filter(
         (patient: PatientType) =>
           patient.profile.id ===
           state.alarms.filter((alarm: AlarmEntryType) => alarm.id === id)[0]
             .patient_id
+      ),
+    })),
+  findPatient: (id: number) =>
+    set((state: AlarmState) => ({
+      correspondingPatient: state.patients.filter(
+        (patient: PatientType) => patient.profile.id === id
       ),
     })),
   setActualAlarms: (value) => set(() => ({ actualAlarms: value })),

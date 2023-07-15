@@ -42,7 +42,7 @@ function TipOfTheDayWidget() {
     <>
       <div className="panel-heading">{t('dashboard.modal.tipOfTheDay')}</div>
       <div className="flex h-full flex-col items-center justify-center">
-        <p className="flex h-full w-5/6 items-center justify-center p-2 text-center font-medium sm:p-0">
+        <p className="w-6/6 flex h-full items-center justify-center p-2 text-center font-medium sm:w-5/6 sm:p-0">
           {currentTip}
         </p>
         <div className="flex justify-center gap-2">

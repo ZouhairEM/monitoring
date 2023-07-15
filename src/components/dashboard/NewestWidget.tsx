@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import HearingIcon from '@mui/icons-material/Hearing';
-import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import AccessibleIcon from '@mui/icons-material/Accessible';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import useAlarmsStore from '../../stores/AlarmsStore';
 import Patients from '../../data/patients';
-import AlarmTypes from '../../data/alarmtypes';
+import AlarmIcons from '../generic/AlarmIcons';
 
 function NewestWidget() {
   const alarms = useAlarmsStore((state) => state.alarms);
@@ -18,24 +13,6 @@ function NewestWidget() {
   )[0].profile.name;
   const { t } = useTranslation();
 
-  const handleIcon = () => {
-    if (newestAlarm.alarm === AlarmTypes.One) {
-      return <AccessibleIcon style={{ height: '17px' }} />;
-    }
-    if (newestAlarm.alarm === AlarmTypes.Two) {
-      return <HearingIcon style={{ height: '18px' }} />;
-    }
-    if (newestAlarm.alarm === AlarmTypes.Three) {
-      return <RecordVoiceOverIcon style={{ height: '18px' }} />;
-    }
-    if (newestAlarm.alarm === AlarmTypes.Four) {
-      return <MonitorHeartIcon style={{ height: '18px' }} />;
-    }
-    if (newestAlarm.alarm === AlarmTypes.Five) {
-      return <LocalFireDepartmentIcon style={{ height: '18px' }} />;
-    }
-    return <HearingIcon />;
-  };
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="flex h-full flex-col justify-between gap-2">
@@ -51,7 +28,9 @@ function NewestWidget() {
                     '-'
                   )}-alarm flex h-8 w-8 items-center justify-center rounded-md text-white dark:bg-black-300`}
               >
-                <span>{handleIcon()}</span>
+                <span>
+                  <AlarmIcons alarm={newestAlarm.alarm} />
+                </span>
               </span>
               <p className="text-sm">{newestAlarm.alarm}</p>
             </div>

@@ -7,7 +7,7 @@ function FollowUpModal() {
   const setModal = useSettingsStore((state) => state.setModal);
   const profile = useAlarmsStore((state) => state.correspondingPatient);
   const location = new URL(
-    `../../assets/img/illustrations/floormap.png`,
+    `../../assets/img/illustrations/map.png`,
     import.meta.url
   ).href;
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ function FollowUpModal() {
             </p>
           </>
         )}
-        <img src={location} alt="Floormap" className="w-[400px]" />
+        <img src={location} alt="map" className="w-[400px]" />
       </div>
       <div className="flex justify-center gap-2">
         <button

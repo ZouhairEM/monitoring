@@ -30,7 +30,7 @@ function Notes() {
           value={editNote ?? matchingNotes ?? ''}
           placeholder={editNote ?? matchingNotes ?? t('patientsPage.addNote')}
           onChange={(e) => setEditNote(e.target.value)}
-          className="flex h-full w-full resize-none rounded bg-grey-100 p-2 text-sm drop-shadow-md focus:outline-1 focus:outline-primary-200 dark:bg-black-100 dark:text-grey-200"
+          className="flex h-full w-full resize-none rounded bg-grey-100 p-2 text-sm drop-shadow-md focus:bg-grey-200 focus:outline-1 focus:outline-primary-200 dark:bg-black-100 dark:text-grey-200"
           onFocus={() => setTextFocused(true)}
           onBlur={() => handleNotesPerId()}
         />

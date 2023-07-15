@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import useAlarmsStore from '../../stores/AlarmsStore';
 import AlarmTypes from '../../data/alarmtypes';
+import alarmTranslations from '../generic/AlarmTranslations';
 
 function AlarmsByTypeWidget() {
   const alarms = useAlarmsStore((state) => state.alarms);
@@ -21,32 +22,6 @@ function AlarmsByTypeWidget() {
   );
   const { t } = useTranslation();
 
-  const handleAlarmTranslation = (type: number) => {
-    if (type === 1) {
-      return `${t('alarmTypes.fireHazard')
-        .toLowerCase()
-        .replace(' ', '-')}-alarm`;
-    }
-    if (type === 2) {
-      return `${t('alarmTypes.loudNoise')
-        .toLowerCase()
-        .replace(' ', '-')}-alarm`;
-    }
-    if (type === 3) {
-      return `${t('alarmTypes.helpCall')
-        .toLowerCase()
-        .replace(' ', '-')}-alarm`;
-    }
-    if (type === 4) {
-      return `${t('alarmTypes.patientUp')
-        .toLowerCase()
-        .replace(' ', '-')}-alarm`;
-    }
-    return `${t('alarmTypes.heartMonitor')
-      .toLowerCase()
-      .replace(' ', '-')}-alarm`;
-  };
-
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="flex h-full flex-col gap-2">
@@ -64,9 +39,11 @@ function AlarmsByTypeWidget() {
                 {countAlarmOne.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${handleAlarmTranslation(
-                      1
-                    )} dark:bg-primary-200`}
+                    className={`relative h-[10%] w-full ${alarmTranslations(
+                      AlarmTypes.One
+                    )
+                      .toLowerCase()
+                      .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
                 ))}
               </div>
@@ -88,9 +65,11 @@ function AlarmsByTypeWidget() {
                 {countAlarmTwo.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${handleAlarmTranslation(
-                      2
-                    )} dark:bg-primary-200`}
+                    className={`relative h-[10%] w-full ${alarmTranslations(
+                      AlarmTypes.Two
+                    )
+                      .toLowerCase()
+                      .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
                 ))}
               </div>
@@ -112,9 +91,11 @@ function AlarmsByTypeWidget() {
                 {countAlarmThree.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${handleAlarmTranslation(
-                      3
-                    )} dark:bg-primary-200`}
+                    className={`relative h-[10%] w-full ${alarmTranslations(
+                      AlarmTypes.Three
+                    )
+                      .toLowerCase()
+                      .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
                 ))}
               </div>
@@ -136,9 +117,11 @@ function AlarmsByTypeWidget() {
                 {countAlarmFour.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${handleAlarmTranslation(
-                      4
-                    )} dark:bg-primary-200`}
+                    className={`relative h-[10%] w-full ${alarmTranslations(
+                      AlarmTypes.Four
+                    )
+                      .toLowerCase()
+                      .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
                 ))}
               </div>
@@ -160,9 +143,11 @@ function AlarmsByTypeWidget() {
                 {countAlarmFive.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${handleAlarmTranslation(
-                      5
-                    )} dark:bg-primary-200`}
+                    className={`relative h-[10%] w-full ${alarmTranslations(
+                      AlarmTypes.Five
+                    )
+                      .toLowerCase()
+                      .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
                 ))}
               </div>

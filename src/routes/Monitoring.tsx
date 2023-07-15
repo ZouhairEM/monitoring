@@ -364,17 +364,18 @@ function Monitoring() {
         </div>
         {toast && closedAlarm && (
           <Toast timer={timer} icon="close">
-            <p className="flex">
-              {t('alarm')}{' '}
-              <span className="px-2 font-bold">
-                {' '}
-                #
-                {closedAlarm[0].id < 10
-                  ? `0${closedAlarm[0].id}`
-                  : closedAlarm[0].id}
-              </span>{' '}
-              {t('alarmHasBeenClosed')}
-            </p>
+            <div className="flex">
+              <p>
+                {t('alarm')}
+                <span className="mx-1 font-bold">
+                  #
+                  {closedAlarm[0].id < 10
+                    ? `0${closedAlarm[0].id}`
+                    : closedAlarm[0].id}
+                </span>
+                {t('alarmHasBeenClosed')}
+              </p>
+            </div>
           </Toast>
         )}
         {modal.status && modal.name === 'followup' && (

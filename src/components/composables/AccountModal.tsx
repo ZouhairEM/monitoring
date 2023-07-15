@@ -18,7 +18,7 @@ function AccountModal() {
       </div>
       <div className="flex flex-col items-center gap-2">
         <p className="dark:text-grey-200">{t('navBar.modal.description')}</p>
-        <div className="flex justify-center gap-2">
+        <div className="flex flex-col justify-center gap-2 md:flex-row">
           <button
             type="button"
             onClick={() => setModal({ status: false, name: '' })}

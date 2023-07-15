@@ -41,13 +41,13 @@ function Toast({ children, icon, timer }: ToastProps) {
     <div
       className={`${
         toast ? 'toast' : ''
-      } fixed inset-x-0 bottom-12 z-20 mx-auto w-2/3 rounded border border-grey-200 bg-primary-200 p-5 text-white shadow-2xl dark:bg-primary-300 dark:text-grey-200 sm:w-3/5 md:inset-x-auto md:right-16 md:mx-0 md:w-auto`}
+      } fixed inset-x-0 bottom-12 z-20 mx-auto w-2/3 rounded border border-grey-200 bg-primary-200 p-4 text-white shadow-2xl dark:bg-primary-300 dark:text-grey-200 sm:w-3/5 md:inset-x-auto md:right-16 md:mx-0 md:w-auto`}
     >
-      <div className="relative flex gap-4">
+      <div className="relative flex gap-3">
         {renderTypeIcon(icon)}
-        <div className="flex flex-col gap-2">
+        <div className="flex w-10/12 flex-col gap-1">
           <div>{children}</div>
-          <p className="flex gap-2 text-center">
+          <p className="flex gap-1 text-center">
             <span>{t('toast.didntMeanTo')}</span>
             <span
               tabIndex={0}
@@ -70,7 +70,7 @@ function Toast({ children, icon, timer }: ToastProps) {
           tabIndex={0}
           onClick={() => setToast(false)}
           onKeyDown={() => setToast(false)}
-          className="absolute right-0 top-0 cursor-pointer dark:text-white"
+          className="absolute right-0 top-0 cursor-pointer rounded-full bg-primary-300 p-1 dark:bg-primary-200 dark:text-white"
         />
       </div>
     </div>

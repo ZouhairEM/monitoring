@@ -73,12 +73,7 @@ function HealthCareInfo({
         {onPatients && healthCare && (
           <div className="grid grid-cols-3">
             {Object.entries(healthCare).map(([name, value]) => (
-              <div
-                key={name}
-                className={`mb-1 flex flex-col sm:text-left ${
-                  healthCare ? 'show' : 'hide'
-                }`}
-              >
+              <div key={name} className="mb-1 flex flex-col sm:text-left">
                 <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey-200">
                   {t(`healthCareInfo.${name}`)}
                 </div>

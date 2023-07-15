@@ -2,16 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import CheckIcon from '@mui/icons-material/Check';
-import HearingIcon from '@mui/icons-material/Hearing';
-import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import AccessibleIcon from '@mui/icons-material/Accessible';
-import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import TagIcon from '@mui/icons-material/Tag';
 import AlarmEntry from '../../types/AlarmEntryType';
 import useAlarmsStore from '../../stores/AlarmsStore';
 import useSettingsStore from '../../stores/SettingsStore';
 import AlarmTypes from '../../data/alarmtypes';
+import AlarmIcons from '../generic/AlarmIcons';
+import alarmTranslations from '../generic/AlarmTranslations';
 
 interface AlarmBioProps {
   entry: AlarmEntry;
@@ -35,22 +32,6 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
   const alarms = useAlarmsStore((state) => state.alarms);
   const { t } = useTranslation();
 
-  const handleAlarmTranslation = () => {
-    if (entry.alarm === AlarmTypes.One) {
-      return t('alarmTypes.fireHazard');
-    }
-    if (entry.alarm === AlarmTypes.Two) {
-      return t('alarmTypes.loudNoise');
-    }
-    if (entry.alarm === AlarmTypes.Three) {
-      return t('alarmTypes.helpCall');
-    }
-    if (entry.alarm === AlarmTypes.Four) {
-      return t('alarmTypes.patientUp');
-    }
-    return t('alarmTypes.heartMonitor');
-  };
-
   useEffect(() => {
     setMappedPatient(
       patients.filter(
@@ -68,9 +49,9 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
     );
   }, [alarms, entry.id, mappedPatient, mappedPatientRoom, patients]);
 
-  const makeActivePatient = (id: number) => {
+  const makeActivePatient = () => {
     onToggle(entryId);
-    findPatient(id);
+    findPatient(entry.patient_id);
     setActive(entryId);
     setIndex(index);
   };
@@ -132,29 +113,10 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
     return null;
   };
 
-  const handleIcon = () => {
-    if (entry.alarm === AlarmTypes.One) {
-      return <LocalFireDepartmentIcon style={{ height: '17px' }} />;
-    }
-    if (entry.alarm === AlarmTypes.Two) {
-      return <HearingIcon style={{ height: '18px' }} />;
-    }
-    if (entry.alarm === AlarmTypes.Three) {
-      return <RecordVoiceOverIcon style={{ height: '18px' }} />;
-    }
-    if (entry.alarm === AlarmTypes.Four) {
-      return <AccessibleIcon style={{ height: '18px' }} />;
-    }
-    if (entry.alarm === AlarmTypes.Five) {
-      return <MonitorHeartIcon style={{ height: '18px' }} />;
-    }
-    return <HearingIcon />;
-  };
-
   return (
     <div
-      onClick={() => makeActivePatient(entry.patient_id)}
-      onKeyDown={() => makeActivePatient(entry.patient_id)}
+      onClick={() => makeActivePatient()}
+      onKeyDown={() => makeActivePatient()}
       role="button"
       tabIndex={0}
       className={`alarm-bio dark:text-grey grid w-[660px] grid-cols-9 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 sm:w-full md:w-[710px] lg:w-full ${
@@ -170,7 +132,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
           readOnly
         />
         <div className="flex items-center px-3">
-          {entryId < 10 ? `#0${entryId}` : entryId}
+          #{entryId < 10 ? `0${entryId}` : entryId}
         </div>
       </div>
       <div className="flex items-center justify-center">
@@ -178,15 +140,17 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       </div>
       <div className="col-span-2 flex justify-end text-right text-sm">
         <span
-          className={`${handleAlarmTranslation()
+          className={`${alarmTranslations(entry.alarm)
             .toLowerCase()
             .replace(
               ' ',
               '-'
             )}-alarm active-alarm flex justify-center gap-2 rounded p-1 text-white dark:opacity-80 `}
         >
-          <span className="hidden sm:block">{handleIcon()}</span>
-          {handleAlarmTranslation()}
+          <span className="hidden sm:block">
+            <AlarmIcons alarm={entry.alarm} />
+          </span>
+          {alarmTranslations(entry.alarm)}
         </span>
       </div>
       <div className="col-span-2 flex flex-col justify-center text-right">

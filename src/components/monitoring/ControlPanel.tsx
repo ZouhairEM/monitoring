@@ -22,7 +22,9 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
   const setPrevious = useAlarmsStore((state) => state.setPrevious);
   const setNext = useAlarmsStore((state) => state.setNext);
   const setIndex = useSettingsStore((state) => state.setIndex);
-  const findPatient = useAlarmsStore((state) => state.findPatient);
+  const findAdjacentPatient = useAlarmsStore(
+    (state) => state.findAdjacentPatient
+  );
   const setLegalClick = useSettingsStore((state) => state.setLegalClick);
   const setToast = useSettingsStore((state) => state.setToast);
   const setModal = useSettingsStore((state) => state.setModal);
@@ -86,15 +88,29 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
     if (closestElement && current && conditionalIndex) {
       if (availableAlarmsById.includes(current)) {
         overrideActive(current);
-        findPatient(current);
+        findAdjacentPatient(current);
         setClickedAlarm(current);
         setIndex(conditionalIndex);
       } else {
         overrideActive(closestElement);
-        findPatient(closestElement);
+        findAdjacentPatient(closestElement);
         setClickedAlarm(current);
         setIndex(conditionalIndex);
       }
+    }
+
+    if (!closestElement && direction === 'prev') {
+      overrideActive(1);
+      findAdjacentPatient(1);
+      setClickedAlarm(1);
+      setIndex(1);
+    } else if (!closestElement && direction === 'next') {
+      const lastAlarmIndex =
+        availableAlarmsById?.[availableAlarmsById.length - 1];
+      overrideActive(lastAlarmIndex);
+      findAdjacentPatient(lastAlarmIndex);
+      setClickedAlarm(lastAlarmIndex);
+      setIndex(lastAlarmIndex);
     }
   };
 

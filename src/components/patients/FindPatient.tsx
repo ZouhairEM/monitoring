@@ -5,18 +5,22 @@ import useAlarmsStore from '../../stores/AlarmsStore';
 import PatientType from '../../types/PatientType';
 import usePatientsStore from '../../stores/PatientsStore';
 import NurseTwo from '../../assets/img/illustrations/NurseTwo';
+import useSettingsStore from '../../stores/SettingsStore';
 
 function FindPatient() {
   const patients = useAlarmsStore((state) => state.patients);
   const [inputQuery, setInputQuery] = useState<string>('');
   const [foundPatient, setFoundPatient] = useState<PatientType[] | null>(null);
-  const [isResultVisible, setIsResultVisible] = useState(true);
   const matchingPatient = usePatientsStore((state) => state.matchingPatient);
   const setMatchingPatient = usePatientsStore(
     (state) => state.setMatchingPatient
   );
+  const isResultVisible = useSettingsStore((state) => state.isResultVisible);
   const target = useRef<HTMLInputElement | null>(null);
   const { t } = useTranslation();
+  const setIsResultVisible = useSettingsStore(
+    (state) => state.setIsResultVisible
+  );
 
   useEffect(() => {
     if (inputQuery.length > 1) {
@@ -82,9 +86,7 @@ function FindPatient() {
                 : t('patientsPage.findByName')
             }`}
             value={matchingPatient?.profile.name ?? inputQuery}
-            className={`z-10 w-full rounded border-2 border-primary-200 p-2 text-sm outline-none dark:bg-black-100 ${
-              isResultVisible ? 'isResultVisible' : ''
-            }`}
+            className="w-full rounded border-2 border-primary-200 p-2 text-sm outline-none dark:bg-black-100 dark:text-grey-200"
             onChange={(e) => {
               setMatchingPatient(null);
               return setInputQuery(e.target.value);

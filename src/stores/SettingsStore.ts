@@ -24,6 +24,7 @@ interface SettingsState {
   darkMode: boolean;
   theme: string;
   rangeValue: number;
+  isResultVisible: boolean;
   setIndex: (by: number) => void;
   setLegalClick: (value: boolean) => void;
   setExpand: (key: string, value: boolean) => void;
@@ -34,6 +35,7 @@ interface SettingsState {
   setDarkMode: (value: boolean) => void;
   setTheme: (value: string) => void;
   setRangeValue: (value: number) => void;
+  setIsResultVisible: (value: boolean) => void;
 }
 
 const useSettingsStore = create<SettingsState>((set) => {
@@ -67,6 +69,7 @@ const useSettingsStore = create<SettingsState>((set) => {
     },
     theme: localStorage.theme,
     rangeValue: Number(localStorage.rangeValue),
+    isResultVisible: false,
     setIndex: (index) => set(() => ({ currentIndex: index })),
     setLegalClick: (value) => set(() => ({ legalClick: value })),
     setExpand: (key, value) =>
@@ -80,6 +83,7 @@ const useSettingsStore = create<SettingsState>((set) => {
     setDarkMode: (value) => set(() => ({ darkMode: value })),
     setTheme: (value) => set(() => ({ theme: value })),
     setRangeValue: (value) => set(() => ({ rangeValue: value })),
+    setIsResultVisible: (value) => set(() => ({ isResultVisible: value })),
   };
 });
 

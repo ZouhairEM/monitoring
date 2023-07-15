@@ -63,8 +63,8 @@ i18n
               'Find any patient in the database first, patient will be displayed here.',
             noPatientFoundDescription: 'No patient found by that name.',
             notes: 'Notes',
-            addNote: 'Add a note',
-            alarmHistory: 'Alarm history',
+            addNote: 'Add a note specific to this patient',
+            currentAlarms: 'current alarms',
           },
           sidebar: {
             monitoring: 'Monitoring',
@@ -208,8 +208,8 @@ i18n
               'Zoek eerst een patiënt in de database, de patiënt wordt hier weergegeven.',
             noPatientFoundDescription: 'Geen patiënt gevonden met die naam.',
             notes: 'Notities',
-            addNote: 'Voeg een notitie toe',
-            alarmHistory: 'Alarmgeschiedenis',
+            addNote: 'Voeg een notitie toe specifiek over deze patiënt',
+            currentAlarms: 'huidige meldingen',
           },
           sidebar: {
             monitoring: 'Monitoring',
@@ -354,8 +354,9 @@ i18n
             noPatientFoundDescription:
               'Es wurde kein Patient mit diesem Namen gefunden.',
             notes: 'Notizen',
-            addNote: 'Notiz hinzufügen',
-            alarmHistory: 'Alarmverlauf',
+            addNote:
+              'Fügen Sie eine spezifische Notiz zu diesem Patienten hinzu',
+            currentAlarms: 'aktuelle Alarme',
           },
           sidebar: {
             monitoring: 'Überwachung',
@@ -447,7 +448,7 @@ i18n
       fr: {
         translation: {
           dashboard: {
-            title: 'Tableau de bord',
+            title: 'Dashboard',
             toMonitoring: 'Vers la surveillance',
             thisWeek: 'Cette semaine',
             toAlarm: 'Pour alarme',
@@ -500,13 +501,13 @@ i18n
             noPatientFoundDescription: 'Aucun patient trouvé avec ce nom.',
 
             notes: 'Notes',
-            addNote: 'Ajouter une note',
-            alarmHistory: 'Historique des alarmes',
+            addNote: 'Ajouter une note spécifique à ce patient',
+            currentAlarms: 'alarmes en cours',
           },
           sidebar: {
             monitoring: 'Surveillance',
-            dashboard: 'Tableau de bord',
-            history: 'Patients',
+            dashboard: 'Dashboard',
+            patients: 'Patients',
             collapse: 'Réduire',
           },
           toast: {
