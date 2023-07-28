@@ -72,14 +72,12 @@ const useSettingsStore = create<SettingsState>((set) => {
     isResultVisible: false,
     setIndex: (index) => set(() => ({ currentIndex: index })),
     setLegalClick: (value) => set(() => ({ legalClick: value })),
-    setExpand: (key, value) =>
-      set(({ expand }) => ({ expand: { ...expand, [key]: value } })),
+    setExpand: (key, value) => set(({ expand }) => ({ expand: { ...expand, [key]: value } })),
 
     setModal: ({ status, name }) => set(() => ({ modal: { status, name } })),
     setToast: (value) => set(() => ({ toast: value })),
     resetTimer: () => set(() => ({ timer: true })),
-    setWidget: (key, value) =>
-      set(({ widgets }) => ({ widgets: { ...widgets, [key]: value } })),
+    setWidget: (key, value) => set(({ widgets }) => ({ widgets: { ...widgets, [key]: value } })),
     setDarkMode: (value) => set(() => ({ darkMode: value })),
     setTheme: (value) => set(() => ({ theme: value })),
     setRangeValue: (value) => set(() => ({ rangeValue: value })),

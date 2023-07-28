@@ -6,17 +6,12 @@ import Doctors from '../../data/doctors';
 function FollowUpModal() {
   const setModal = useSettingsStore((state) => state.setModal);
   const profile = useAlarmsStore((state) => state.correspondingPatient);
-  const location = new URL(
-    `../../assets/img/illustrations/map.png`,
-    import.meta.url
-  ).href;
+  const location = new URL(`../../assets/img/illustrations/map.png`, import.meta.url).href;
   const { t } = useTranslation();
 
   const getCorrespondingDoctor = () => {
     if (profile) {
-      return Doctors.filter(
-        (doctor) => doctor.id === profile[0].profile.doctor
-      )[0].name;
+      return Doctors.filter((doctor) => doctor.id === profile[0].profile.doctor)[0].name;
     }
     return null;
   };

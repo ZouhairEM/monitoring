@@ -13,9 +13,7 @@ interface PatientBioProps {
 function PatientBio({ profile }: PatientBioProps) {
   const { t } = useTranslation();
   const profilePhoto = new URL(
-    `../../assets/img/patients/${
-      profile ? profile.photo ?? 'placeholder.png' : ''
-    }`,
+    `../../assets/img/patients/${profile ? profile.photo ?? 'placeholder.png' : ''}`,
     import.meta.url
   ).href;
 
@@ -56,9 +54,7 @@ function PatientBio({ profile }: PatientBioProps) {
                   {t('patientBio.dob')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey-200">
-                  <span className="dark:bg-black-100">
-                    {profile.date_of_birth}
-                  </span>
+                  <span className="dark:bg-black-100">{profile.date_of_birth}</span>
                 </div>
               </div>
               <div>
@@ -98,9 +94,7 @@ function PatientBio({ profile }: PatientBioProps) {
                   {t('patientBio.doctor')}
                 </div>
                 <div className="text-xs text-black-100 dark:text-grey-200">
-                  <span className="dark:bg-black-100">
-                    {getCorrespondingDoctor()}
-                  </span>
+                  <span className="dark:bg-black-100">{getCorrespondingDoctor()}</span>
                 </div>
               </div>
             </div>

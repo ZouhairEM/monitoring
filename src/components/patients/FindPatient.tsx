@@ -12,15 +12,11 @@ function FindPatient() {
   const [inputQuery, setInputQuery] = useState<string>('');
   const [foundPatient, setFoundPatient] = useState<PatientType[] | null>(null);
   const matchingPatient = usePatientsStore((state) => state.matchingPatient);
-  const setMatchingPatient = usePatientsStore(
-    (state) => state.setMatchingPatient
-  );
+  const setMatchingPatient = usePatientsStore((state) => state.setMatchingPatient);
   const isResultVisible = useSettingsStore((state) => state.isResultVisible);
   const target = useRef<HTMLInputElement | null>(null);
   const { t } = useTranslation();
-  const setIsResultVisible = useSettingsStore(
-    (state) => state.setIsResultVisible
-  );
+  const setIsResultVisible = useSettingsStore((state) => state.setIsResultVisible);
 
   useEffect(() => {
     if (inputQuery.length > 1) {
@@ -37,14 +33,8 @@ function FindPatient() {
     const regex = new RegExp(`(${query})`, 'gi');
     const parts = text.split(regex);
     return parts.map((part) =>
-      regex.test(part) &&
-      inputQuery !== '' &&
-      inputQuery.length > 1 &&
-      !matchingPatient ? (
-        <span
-          className="underline decoration-primary-200 decoration-double"
-          key={part}
-        >
+      regex.test(part) && inputQuery !== '' && inputQuery.length > 1 && !matchingPatient ? (
+        <span className="underline decoration-primary-200 decoration-double" key={part}>
           {part}
         </span>
       ) : (
@@ -53,14 +43,14 @@ function FindPatient() {
     );
   };
 
-  const handleSelection = (patient: PatientType) => {
+  const selectPatient = (patient: PatientType) => {
     if (foundPatient) {
       setMatchingPatient(patient);
       setIsResultVisible(false);
     }
   };
 
-  const handleCloseInput = () => {
+  const closeInput = () => {
     if (target?.current) {
       target.current.value = '';
     }
@@ -72,18 +62,12 @@ function FindPatient() {
   return (
     <section className="col-span-12 flex w-full flex-col rounded rounded-t-lg bg-white drop-shadow-md dark:bg-black-100">
       <div className="panel-heading">{t('patientsPage.database')}</div>
-      <div
-        className={`flex flex-col ${
-          matchingPatient ? 'h-full justify-center' : 'mt-2'
-        }`}
-      >
+      <div className={`flex flex-col ${matchingPatient ? 'h-full justify-center' : 'mt-2'}`}>
         <div className="relative m-2 rounded">
           <input
             ref={target}
             placeholder={`${
-              matchingPatient
-                ? matchingPatient.profile.name
-                : t('patientsPage.findByName')
+              matchingPatient ? matchingPatient.profile.name : t('patientsPage.findByName')
             }`}
             value={matchingPatient?.profile.name ?? inputQuery}
             className="w-full rounded border-2 border-primary-200 p-2 text-sm outline-none dark:bg-black-100 dark:text-grey-200"
@@ -99,8 +83,8 @@ function FindPatient() {
           {matchingPatient && (
             <button
               type="submit"
-              onClick={() => handleCloseInput()}
-              onKeyDown={() => handleCloseInput()}
+              onClick={() => closeInput()}
+              onKeyDown={() => closeInput()}
               tabIndex={0}
             >
               <CloseIcon className="absolute right-2 top-2 dark:text-grey-200" />
@@ -118,14 +102,12 @@ function FindPatient() {
                   <div
                     role="button"
                     tabIndex={0}
-                    onClick={() => handleSelection(patient)}
-                    onKeyDown={() => handleSelection(patient)}
+                    onClick={() => selectPatient(patient)}
+                    onKeyDown={() => selectPatient(patient)}
                     className="hover:bg-primary-200 hover:text-white dark:hover:bg-primary-300"
                     key={patient.profile.id}
                   >
-                    <p>
-                      {highlightMatch(patient.profile.name, inputQuery || '')}
-                    </p>
+                    <p>{highlightMatch(patient.profile.name, inputQuery || '')}</p>
                   </div>
                 ))}
               </div>

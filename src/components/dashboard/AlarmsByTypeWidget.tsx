@@ -5,21 +5,11 @@ import alarmTranslations from '../generic/AlarmTranslations';
 
 function AlarmsByTypeWidget() {
   const alarms = useAlarmsStore((state) => state.alarms);
-  const countAlarmOne = alarms.filter(
-    (alarm) => alarm.alarm === AlarmTypes.One
-  );
-  const countAlarmTwo = alarms.filter(
-    (alarm) => alarm.alarm === AlarmTypes.Two
-  );
-  const countAlarmThree = alarms.filter(
-    (alarm) => alarm.alarm === AlarmTypes.Three
-  );
-  const countAlarmFour = alarms.filter(
-    (alarm) => alarm.alarm === AlarmTypes.Four
-  );
-  const countAlarmFive = alarms.filter(
-    (alarm) => alarm.alarm === AlarmTypes.Five
-  );
+  const countAlarmOne = alarms.filter((alarm) => alarm.alarm === AlarmTypes.One);
+  const countAlarmTwo = alarms.filter((alarm) => alarm.alarm === AlarmTypes.Two);
+  const countAlarmThree = alarms.filter((alarm) => alarm.alarm === AlarmTypes.Three);
+  const countAlarmFour = alarms.filter((alarm) => alarm.alarm === AlarmTypes.Four);
+  const countAlarmFive = alarms.filter((alarm) => alarm.alarm === AlarmTypes.Five);
   const { t } = useTranslation();
 
   return (
@@ -29,9 +19,7 @@ function AlarmsByTypeWidget() {
         <div className="flex h-full w-full flex-col px-2">
           <div className="flex w-full flex-grow items-end space-x-2">
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="mb-2 text-xs font-bold sm:mb-0">
-                {t('alarmTypes.loudNoise')}
-              </span>
+              <span className="mb-2 text-xs font-bold sm:mb-0">{t('alarmTypes.loudNoise')}</span>
               <div
                 className="flex h-full w-full flex-col justify-end dark:bg-black-100"
                 style={{ backgroundColor: 'rgba(215, 218, 220, 0.3)' }}
@@ -39,9 +27,7 @@ function AlarmsByTypeWidget() {
                 {countAlarmOne.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${alarmTranslations(
-                      AlarmTypes.One
-                    )
+                    className={`relative h-[10%] w-full ${alarmTranslations(AlarmTypes.One)
                       .toLowerCase()
                       .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
@@ -55,9 +41,7 @@ function AlarmsByTypeWidget() {
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="mb-2 text-xs font-bold sm:mb-0">
-                {t('alarmTypes.fireHazard')}
-              </span>
+              <span className="mb-2 text-xs font-bold sm:mb-0">{t('alarmTypes.fireHazard')}</span>
               <div
                 className="flex h-full w-full flex-col justify-end dark:bg-black-100"
                 style={{ backgroundColor: 'rgba(215, 218, 220, 0.3)' }}
@@ -65,9 +49,7 @@ function AlarmsByTypeWidget() {
                 {countAlarmTwo.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${alarmTranslations(
-                      AlarmTypes.Two
-                    )
+                    className={`relative h-[10%] w-full ${alarmTranslations(AlarmTypes.Two)
                       .toLowerCase()
                       .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
@@ -81,9 +63,7 @@ function AlarmsByTypeWidget() {
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="mb-2 text-xs font-bold sm:mb-0">
-                {t('alarmTypes.helpCall')}
-              </span>
+              <span className="mb-2 text-xs font-bold sm:mb-0">{t('alarmTypes.helpCall')}</span>
               <div
                 className="flex h-full w-full flex-col justify-end dark:bg-black-100"
                 style={{ backgroundColor: 'rgba(215, 218, 220, 0.3)' }}
@@ -91,9 +71,7 @@ function AlarmsByTypeWidget() {
                 {countAlarmThree.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${alarmTranslations(
-                      AlarmTypes.Three
-                    )
+                    className={`relative h-[10%] w-full ${alarmTranslations(AlarmTypes.Three)
                       .toLowerCase()
                       .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
@@ -107,9 +85,7 @@ function AlarmsByTypeWidget() {
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="mb-2 text-xs font-bold sm:mb-0">
-                {t('alarmTypes.patientUp')}
-              </span>
+              <span className="mb-2 text-xs font-bold sm:mb-0">{t('alarmTypes.patientUp')}</span>
               <div
                 className="flex h-full w-full flex-col justify-end dark:bg-black-100"
                 style={{ backgroundColor: 'rgba(215, 218, 220, 0.3)' }}
@@ -117,9 +93,7 @@ function AlarmsByTypeWidget() {
                 {countAlarmFour.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${alarmTranslations(
-                      AlarmTypes.Four
-                    )
+                    className={`relative h-[10%] w-full ${alarmTranslations(AlarmTypes.Four)
                       .toLowerCase()
                       .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />
@@ -133,9 +107,7 @@ function AlarmsByTypeWidget() {
               </span>
             </div>
             <div className="relative flex h-full flex-grow flex-col items-center pb-5">
-              <span className="mb-2 text-xs font-bold sm:mb-0">
-                {t('alarmTypes.heartMonitor')}
-              </span>
+              <span className="mb-2 text-xs font-bold sm:mb-0">{t('alarmTypes.heartMonitor')}</span>
               <div
                 className="flex h-full w-full flex-col justify-end dark:bg-black-100"
                 style={{ backgroundColor: 'rgba(215, 218, 220, 0.3)' }}
@@ -143,9 +115,7 @@ function AlarmsByTypeWidget() {
                 {countAlarmFive.map((el) => (
                   <div
                     key={el.id}
-                    className={`relative h-[10%] w-full ${alarmTranslations(
-                      AlarmTypes.Five
-                    )
+                    className={`relative h-[10%] w-full ${alarmTranslations(AlarmTypes.Five)
                       .toLowerCase()
                       .replace(' ', '-')}-alarm dark:bg-primary-200`}
                   />

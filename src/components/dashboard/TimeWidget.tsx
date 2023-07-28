@@ -7,15 +7,11 @@ function TimeWidget() {
   const [time, setTime] = useState(
     new Date().toLocaleTimeString(language === 'en' ? 'en-EN' : 'nl-NL')
   );
-  const date = new Date().toLocaleDateString(
-    language === 'en' ? 'en-EN' : 'nl-NL'
-  );
+  const date = new Date().toLocaleDateString(language === 'en' ? 'en-EN' : 'nl-NL');
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(
-        new Date().toLocaleTimeString(language === 'en' ? 'en-EN' : 'nl-NL')
-      );
+      setTime(new Date().toLocaleTimeString(language === 'en' ? 'en-EN' : 'nl-NL'));
     }, 1000);
 
     return () => {

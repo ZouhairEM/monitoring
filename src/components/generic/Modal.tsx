@@ -12,10 +12,7 @@ function Modal({ children }: IModal) {
   const closeModalViaBackdrop = (
     event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
   ) => {
-    if (
-      modalRef.current &&
-      modalRef.current === (event.target as HTMLDivElement)
-    ) {
+    if (modalRef.current && modalRef.current === (event.target as HTMLDivElement)) {
       setModal({
         status: false,
         name: '',

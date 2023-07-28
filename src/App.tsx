@@ -7,7 +7,6 @@ import useColorTheme from './hooks/useColorTheme';
 import SideBar from './components/layout/SideBar';
 import Dashboard from './routes/Dashboard';
 import GenerateAlarms from './libs/GenerateAlarms';
-import Login from './routes/Login';
 
 function App() {
   useDarkMode();
@@ -21,7 +20,6 @@ function App() {
         <SideBar />
         <Routes>
           <Route path="/" element={<Monitoring />} />
-          <Route path="login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/patients" element={<Patients />} />
         </Routes>

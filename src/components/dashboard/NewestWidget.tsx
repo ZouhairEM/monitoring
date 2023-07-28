@@ -39,9 +39,7 @@ function NewestWidget() {
             <span className="grid grid-cols-3 gap-2 text-left">
               <p>{t('patientBio.name')}</p>
               <p className="col-span-2">{`${
-                matchingPatient.split(' ').length > 1
-                  ? `${matchingPatient.split(' ')[0][0]}.`
-                  : ''
+                matchingPatient.split(' ').length > 1 ? `${matchingPatient.split(' ')[0][0]}.` : ''
               } ${matchingPatient.split(' ').pop()}`}</p>
             </span>
             <span className="grid grid-cols-3 gap-2 text-left">
@@ -50,9 +48,7 @@ function NewestWidget() {
             </span>
             <span className="grid grid-cols-3 gap-2 text-left">
               <p>{t('entryTypes.time')}</p>
-              <p className="col-span-2">
-                {newestAlarm.time.replaceAll('AM' || 'PM', '')}
-              </p>
+              <p className="col-span-2">{newestAlarm.time.replaceAll('AM' || 'PM', '')}</p>
             </span>
           </div>
         </div>

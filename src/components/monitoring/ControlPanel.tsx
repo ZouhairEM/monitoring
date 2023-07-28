@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CloseIcon from '@mui/icons-material/Close';
@@ -13,41 +14,28 @@ interface ControlPanelProps {
 }
 
 function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
-  const alarms = useAlarmsStore((state) => state.alarms);
-  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
-  const currentIndex = useSettingsStore((state) => state.currentIndex);
-  const setActualAlarms = useAlarmsStore((state) => state.setActualAlarms);
-  const closeAlarm = useAlarmsStore((state) => state.closeAlarm);
-  const overrideActive = useAlarmsStore((state) => state.setActive);
-  const setPrevious = useAlarmsStore((state) => state.setPrevious);
-  const setNext = useAlarmsStore((state) => state.setNext);
-  const setIndex = useSettingsStore((state) => state.setIndex);
-  const findAdjacentPatient = useAlarmsStore(
-    (state) => state.findAdjacentPatient
-  );
-  const setLegalClick = useSettingsStore((state) => state.setLegalClick);
-  const setToast = useSettingsStore((state) => state.setToast);
-  const setModal = useSettingsStore((state) => state.setModal);
+  const alarmsStore = useAlarmsStore((state) => state);
+  const settingsStore = useSettingsStore((state) => state);
+  const overrideSetActive = useAlarmsStore((state) => state.setActive);
   const [availableAlarmsById, setAvailableAlarmsById] = useState<number[]>([]);
-  const timer = useSettingsStore((state) => state.resetTimer);
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (alarms.length !== 0) {
-      const AlarmIds = alarms.map((alarm) => alarm.id);
+    if (alarmsStore.alarms.length !== 0) {
+      const AlarmIds = alarmsStore.alarms.map((alarm) => alarm.id);
       setAvailableAlarmsById(AlarmIds);
-      setActualAlarms(AlarmIds);
+      alarmsStore.setActualAlarms(AlarmIds);
     }
-  }, [alarms, setActualAlarms]);
+  }, [alarmsStore.alarms, alarmsStore.setActualAlarms]);
 
-  const handleCloseAlarmSelection = (activeAlarmID: number) => {
-    sessionStorage.setItem('alarms', alarms.length.toString());
-    closeAlarm(activeAlarmID);
+  const closeAlarmSelection = (activeAlarmID: number) => {
+    sessionStorage.setItem('alarms', alarmsStore.alarms.length.toString());
+    alarmsStore.closeAlarm(activeAlarmID);
     onSelectAlarm(activeAlarmID);
-    setIndex(0);
-    timer();
-    setToast(false);
-    setTimeout(() => setToast(true), 0);
+    settingsStore.setIndex(0);
+    settingsStore.resetTimer();
+    settingsStore.setToast(false);
+    setTimeout(() => settingsStore.setToast(true), 0);
 
     setAvailableAlarmsById((prevAvailableAlarmsById) => {
       const availableAlarms = prevAvailableAlarmsById.filter(
@@ -57,60 +45,55 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
     });
   };
 
-  const handleFollowUp = () => {
-    setModal({ status: true, name: 'followup' });
-  };
-
-  const handleAlarmShuffle = (direction: string) => {
+  const shuffleAlarm = (direction: string) => {
     let current = 1;
     let conditionalIndex = 1;
     let closestElement: number | undefined;
-    setLegalClick(true);
+    settingsStore.setLegalClick(true);
 
     if (direction === 'prev') {
-      current = activeAlarm - 1;
+      current = alarmsStore.activeAlarm - 1;
       [closestElement] = availableAlarmsById
         .filter((element) => element < current)
         .sort((a, b) => b - a);
-      setPrevious();
-      if (currentIndex) {
-        conditionalIndex = currentIndex - 1;
+      alarmsStore.setPrevious();
+      if (settingsStore.currentIndex) {
+        conditionalIndex = settingsStore.currentIndex - 1;
       }
     } else if (direction === 'next') {
-      current = activeAlarm + 1;
-      if (currentIndex) {
-        conditionalIndex = currentIndex + 1;
+      current = alarmsStore.activeAlarm + 1;
+      if (settingsStore.currentIndex) {
+        conditionalIndex = settingsStore.currentIndex + 1;
       }
-      closestElement = availableAlarmsById.find((id) => id > activeAlarm + 1);
-      setNext();
+      closestElement = availableAlarmsById.find((id) => id > alarmsStore.activeAlarm + 1);
+      alarmsStore.setNext();
     }
 
     if (closestElement && current && conditionalIndex) {
       if (availableAlarmsById.includes(current)) {
-        overrideActive(current);
-        findAdjacentPatient(current);
+        overrideSetActive(current);
+        alarmsStore.findAdjacentPatient(current);
         setClickedAlarm(current);
-        setIndex(conditionalIndex);
+        settingsStore.setIndex(conditionalIndex);
       } else {
-        overrideActive(closestElement);
-        findAdjacentPatient(closestElement);
+        overrideSetActive(closestElement);
+        alarmsStore.findAdjacentPatient(closestElement);
         setClickedAlarm(current);
-        setIndex(conditionalIndex);
+        settingsStore.setIndex(conditionalIndex);
       }
     }
 
     if (!closestElement && direction === 'prev') {
-      overrideActive(1);
-      findAdjacentPatient(1);
+      overrideSetActive(1);
+      alarmsStore.findAdjacentPatient(1);
       setClickedAlarm(1);
-      setIndex(1);
+      settingsStore.setIndex(1);
     } else if (!closestElement && direction === 'next') {
-      const lastAlarmIndex =
-        availableAlarmsById?.[availableAlarmsById.length - 1];
-      overrideActive(lastAlarmIndex);
-      findAdjacentPatient(lastAlarmIndex);
+      const lastAlarmIndex = availableAlarmsById?.[availableAlarmsById.length - 1];
+      overrideSetActive(lastAlarmIndex);
+      alarmsStore.findAdjacentPatient(lastAlarmIndex);
       setClickedAlarm(lastAlarmIndex);
-      setIndex(lastAlarmIndex);
+      settingsStore.setIndex(lastAlarmIndex);
     }
   };
 
@@ -123,8 +106,8 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
         <div className="grid grid-cols-2 justify-center gap-2 sm:flex">
           <button
             type="button"
-            onClick={() => handleFollowUp()}
-            onKeyDown={() => handleFollowUp()}
+            onClick={() => settingsStore.setModal({ status: true, name: 'followup' })}
+            onKeyDown={() => settingsStore.setModal({ status: true, name: 'followup' })}
             tabIndex={0}
             className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
           >
@@ -133,8 +116,8 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
           </button>
           <button
             type="button"
-            onClick={() => handleCloseAlarmSelection(activeAlarm)}
-            onKeyDown={() => handleCloseAlarmSelection(activeAlarm)}
+            onClick={() => closeAlarmSelection(alarmsStore.activeAlarm)}
+            onKeyDown={() => closeAlarmSelection(alarmsStore.activeAlarm)}
             tabIndex={0}
             className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
           >
@@ -149,13 +132,13 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
             tabIndex={0}
             className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
             onClick={() => {
-              if (activeAlarm >= 2) {
-                handleAlarmShuffle('prev');
+              if (alarmsStore.activeAlarm >= 2) {
+                shuffleAlarm('prev');
               }
             }}
             onKeyDown={() => {
-              if (activeAlarm >= 2) {
-                handleAlarmShuffle('prev');
+              if (alarmsStore.activeAlarm >= 2) {
+                shuffleAlarm('prev');
               }
             }}
           >
@@ -168,18 +151,16 @@ function ControlPanel({ setClickedAlarm, onSelectAlarm }: ControlPanelProps) {
             className="flex items-center justify-center rounded bg-primary-200 p-2 text-center font-medium text-white hover:bg-primary-300 dark:bg-black-200 dark:text-grey-200 dark:hover:bg-primary-300"
             onClick={() => {
               if (
-                activeAlarm !==
-                availableAlarmsById?.[availableAlarmsById.length - 1]
+                alarmsStore.activeAlarm !== availableAlarmsById?.[availableAlarmsById.length - 1]
               ) {
-                handleAlarmShuffle('next');
+                shuffleAlarm('next');
               }
             }}
             onKeyDown={() => {
               if (
-                activeAlarm !==
-                availableAlarmsById?.[availableAlarmsById.length - 1]
+                alarmsStore.activeAlarm !== availableAlarmsById?.[availableAlarmsById.length - 1]
               ) {
-                handleAlarmShuffle('next');
+                shuffleAlarm('next');
               }
             }}
           >

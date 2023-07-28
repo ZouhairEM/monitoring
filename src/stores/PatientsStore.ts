@@ -11,10 +11,7 @@ interface PatientsState {
 }
 
 const usePatientsStore = create<PatientsState>((set) => {
-  const initWithLocalStorage = (
-    key: string,
-    initValue: NotesType[]
-  ): NotesType[] => {
+  const initWithLocalStorage = (key: string, initValue: NotesType[]): NotesType[] => {
     const storedValue = localStorage.getItem(key);
     return storedValue ? JSON.parse(storedValue) : initValue;
   };

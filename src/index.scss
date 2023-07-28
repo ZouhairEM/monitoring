@@ -37,53 +37,53 @@ body {
     no-repeat;
 }
 
-.widget {
-  @apply box-shadow-md flex flex-col justify-between rounded-b-lg rounded-t-lg bg-white pb-2 text-sm font-bold dark:bg-black-100 dark:text-grey-200;
-}
+@layer components {
+  .widget {
+    @apply box-shadow-md flex flex-col justify-between rounded-b-lg rounded-t-lg bg-white pb-2 text-sm font-bold dark:bg-black-100 dark:text-grey-200;
+  }
+  .panel-heading {
+    @apply box-shadow-md rounded-t-lg bg-primary-200 p-2 text-left text-sm font-bold text-white dark:bg-black-200 dark:text-grey-200;
+  }
 
-.panel-heading {
-  @apply box-shadow-md rounded-t-lg bg-primary-200 p-2 text-left text-sm font-bold text-white dark:bg-black-200 dark:text-grey-200;
-}
+  .priority {
+    @apply w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-200;
+  }
 
-.priority {
-  @apply w-1/3 rounded bg-primary-200 opacity-90 dark:bg-primary-200;
-}
+  .no-priority {
+    @apply w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-200;
+  }
 
-.no-priority {
-  @apply w-1/3 rounded bg-primary-200 opacity-20 dark:bg-primary-200;
+  h1 {
+    @apply text-2xl font-extrabold text-primary-200 dark:text-grey-200;
+  }
+
+  h2 {
+    @apply text-xl font-bold text-primary-200 dark:text-grey-200;
+  }
+
+  h3 {
+    @apply text-lg font-bold dark:text-grey-200;
+  }
+
+  h4 {
+    @apply text-sm font-bold text-black-200 dark:text-grey-200;
+  }
+
+  h5 {
+    @apply text-base text-black-200 dark:text-grey-200;
+  }
+
+  mark {
+    @apply bg-primary-300 text-white dark:bg-primary-200;
+  }
 }
 
 nav {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-
-h1 {
-  @apply text-2xl font-extrabold text-primary-200 dark:text-grey-200;
-}
-
-h2 {
-  @apply text-xl font-bold text-primary-200 dark:text-grey-200;
-}
-
-h3 {
-  @apply text-lg font-bold dark:text-grey-200;
-}
-
-h4 {
-  @apply text-sm font-bold text-black-200 dark:text-grey-200;
-}
-
-h5 {
-  @apply text-base text-black-200 dark:text-grey-200;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 #app {
   font-family: 'Roboto', sans-serif;
-}
-
-mark {
-  @apply bg-primary-300 text-white dark:bg-primary-200;
 }
 
 .alarm-grid {

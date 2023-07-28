@@ -47,8 +47,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       correspondingPatient: state.patients.filter(
         (patient: PatientType) =>
           patient.profile.id ===
-          state.alarms.filter((alarm: AlarmEntryType) => alarm.id === id)[0]
-            .patient_id
+          state.alarms.filter((alarm: AlarmEntryType) => alarm.id === id)[0].patient_id
       ),
     })),
   findPatient: (id: number) =>
@@ -69,9 +68,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
     })),
   setClosedAlarm: () =>
     set((state: AlarmState) => ({
-      closedAlarm: state.alarms[state.activeAlarm]
-        ? [state.alarms[state.activeAlarm]]
-        : null,
+      closedAlarm: state.alarms[state.activeAlarm] ? [state.alarms[state.activeAlarm]] : null,
     })),
   setUndo: () => {
     set((state) => {
@@ -87,9 +84,7 @@ const useAlarmsStore = create<AlarmState>((set) => ({
       closedAlarmIndex: state.alarms.indexOf(
         state.alarms.filter((alarm: AlarmEntryType) => alarm.id === id)[0]
       ),
-      closedAlarm: state.alarms.filter(
-        (alarm: AlarmEntryType) => alarm.id === id
-      ),
+      closedAlarm: state.alarms.filter((alarm: AlarmEntryType) => alarm.id === id),
       alarms: state.alarms.filter((alarm: AlarmEntryType) => alarm.id !== id),
       hasTotalChanged: true,
       correspondingPatient: null,

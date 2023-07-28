@@ -9,10 +9,7 @@ function EmptyProfile() {
       viewBox="0 0 512.000000 512.000000"
       preserveAspectRatio="xMidYMid meet"
     >
-      <g
-        transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-        stroke="none"
-      >
+      <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
         <path
           opacity="0"
           d="M25 5095 l-25 -24 0 -2500 c0 -1811 3 -2507 11 -2524 6 -14 22 -30

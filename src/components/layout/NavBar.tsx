@@ -32,9 +32,7 @@ function NavBar() {
         <div className="flex flex-col items-center gap-2 dark:text-grey-200 sm:flex-row">
           <p>{t('navBar.title')}</p>
           <p className="hidden sm:block">-</p>
-          <p className="text-center text-sm sm:text-left">
-            {t('navBar.description')}
-          </p>
+          <p className="text-center text-sm sm:text-left">{t('navBar.description')}</p>
         </div>
       </div>
       <div className="flex flex-row items-center gap-4 pb-2 sm:pb-0">
@@ -54,8 +52,7 @@ function NavBar() {
             />
           )}
           <span>
-            <span className="text-sm font-bold">x{alarms?.length}</span>{' '}
-            {t('navBar.openAlarms')}
+            <span className="text-sm font-bold">x{alarms?.length}</span> {t('navBar.openAlarms')}
           </span>
         </div>
         {modal.status && modal.name === 'account' && (

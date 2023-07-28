@@ -18,45 +18,39 @@ interface AlarmBioProps {
 }
 
 function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
+  const alarmsStore = useAlarmsStore((state) => state);
+  const setIndex = useSettingsStore((state) => state.setIndex);
   const [mappedPatient, setMappedPatient] = useState<string | null>(null);
-  const [mappedPatientRoom, setMappedPatientRoom] = useState<
-    string | number | null
-  >(null);
+  const [mappedPatientRoom, setMappedPatientRoom] = useState<string | number | null>(null);
   const [disabled] = useState(false);
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const activeAlarm = useAlarmsStore((state) => state.activeAlarm);
-  const findPatient = useAlarmsStore((state) => state.findPatient);
-  const setActive = useAlarmsStore((state) => state.setActive);
-  const setIndex = useSettingsStore((state) => state.setIndex);
-  const patients = useAlarmsStore((state) => state.patients);
-  const alarms = useAlarmsStore((state) => state.alarms);
   const { t } = useTranslation();
 
   useEffect(() => {
     setMappedPatient(
-      patients.filter(
+      alarmsStore.patients.filter(
         (patient) =>
           patient.profile.id ===
-          alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
+          alarmsStore.alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
       )[0].profile.name
     );
     setMappedPatientRoom(
-      patients.filter(
+      alarmsStore.patients.filter(
         (patient) =>
           patient.profile.id ===
-          alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
+          alarmsStore.alarms.filter((alarm) => alarm.id === entry.id)[0].patient_id
       )[0].profile.room
     );
-  }, [alarms, entry.id, mappedPatient, mappedPatientRoom, patients]);
+  }, [alarmsStore.alarms, entry.id, mappedPatient, mappedPatientRoom, alarmsStore.patients]);
 
   const makeActivePatient = () => {
     onToggle(entryId);
-    findPatient(entry.patient_id);
-    setActive(entryId);
+    alarmsStore.findPatient(entry.patient_id);
+    alarmsStore.setActive(entryId);
     setIndex(index);
   };
 
-  const handlePriority = () => {
+  const renderPriority = () => {
     if (entry.alarm === AlarmTypes.One) {
       return (
         <>
@@ -120,7 +114,7 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
       role="button"
       tabIndex={0}
       className={`alarm-bio dark:text-grey grid w-[660px] grid-cols-9 px-4 py-2 text-sm hover:bg-primary-100 dark:bg-black-100 sm:w-full md:w-[710px] lg:w-full ${
-        entry.id === activeAlarm && !disabled ? 'active' : ''
+        entry.id === alarmsStore.activeAlarm && !disabled ? 'active' : ''
       }`}
     >
       <div className="flex flex-row items-center justify-around">
@@ -128,15 +122,13 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
           type="checkbox"
           ref={inputRef}
           className="accent-primary-200 focus:accent-primary-200 dark:accent-black-200 dark:focus:accent-black-200"
-          checked={entry.id === activeAlarm && !disabled}
+          checked={entry.id === alarmsStore.activeAlarm && !disabled}
           readOnly
         />
-        <div className="flex items-center px-3">
-          #{entryId < 10 ? `0${entryId}` : entryId}
-        </div>
+        <div className="flex items-center px-3">#{entryId < 10 ? `0${entryId}` : entryId}</div>
       </div>
       <div className="flex items-center justify-center">
-        <div className="flex h-full w-full gap-0.5">{handlePriority()}</div>
+        <div className="flex h-full w-full gap-0.5">{renderPriority()}</div>
       </div>
       <div className="col-span-2 flex justify-end text-right text-sm">
         <span
@@ -153,19 +145,12 @@ function AlarmBio({ entry, entryId, index, onToggle }: AlarmBioProps) {
           {alarmTranslations(entry.alarm)}
         </span>
       </div>
-      <div className="col-span-2 flex flex-col justify-center text-right">
-        {mappedPatient}
-      </div>
-      <div className="flex flex-col justify-center text-right">
-        {entry.time}
-      </div>
+      <div className="col-span-2 flex flex-col justify-center text-right">{mappedPatient}</div>
+      <div className="flex flex-col justify-center text-right">{entry.time}</div>
       <div className="flex flex-col items-end justify-center">
         {entry.status === 'Done' ? (
           <span className="flex items-center gap-1">
-            <CheckIcon
-              className="opacity-90 dark:text-primary-200"
-              style={{ height: '15px' }}
-            />
+            <CheckIcon className="opacity-90 dark:text-primary-200" style={{ height: '15px' }} />
             <span>
               {entry.status === t('availableStatus.open') ? (
                 <p className="hidden sm:block">{t('availableStatus.open')}</p>

@@ -17,11 +17,7 @@ function Patients() {
     <main className="flex h-[754px] w-full flex-col gap-2 p-[1px] md:mb-0">
       <h1 className="dark:text-grey-200">{t('patientsPage.title')}</h1>
       <div className="flex h-full flex-col gap-4">
-        <div
-          className={`grid grid-cols-12 ${
-            matchingPatient ? 'h-1/6' : 'h-full'
-          }`}
-        >
+        <div className={`grid grid-cols-12 ${matchingPatient ? 'h-1/6' : 'h-full'}`}>
           <FindPatient />
         </div>
         {matchingPatient ? (
@@ -43,10 +39,7 @@ function Patients() {
                       <h5 className="pb-2 text-center text-sm font-bold text-primary-200 dark:text-grey-200 sm:pb-4 sm:text-left">
                         Healthcare
                       </h5>
-                      <HealthCareInfo
-                        healthCare={matchingPatient.healthcare}
-                        onPatients
-                      />
+                      <HealthCareInfo healthCare={matchingPatient.healthcare} onPatients />
                     </div>
                     <div>
                       <hr className="mx-auto my-2 block w-11/12 opacity-30 sm:hidden" />
@@ -65,9 +58,7 @@ function Patients() {
                 <div className="panel-heading">
                   {`${
                     matchingPatient.profile.name.split(' ')[0].slice(-1) === 's'
-                      ? `${matchingPatient.profile.name
-                          .split(' ')[0]
-                          .slice(0, -1)}s'`
+                      ? `${matchingPatient.profile.name.split(' ')[0].slice(0, -1)}s'`
                       : `${matchingPatient.profile.name.split(' ')[0]}s`
                   } ${t('patientsPage.currentAlarms')}`}
                 </div>

@@ -22,16 +22,9 @@ interface ILanguages {
 }
 
 function SettingsModal() {
-  const rangeValue = useSettingsStore((state) => state.rangeValue);
-  const setRangeValue = useSettingsStore((state) => state.setRangeValue);
+  const settingsStore = useSettingsStore((state) => state);
   const breakpoint = useBreakpoint();
-
   const { t, i18n } = useTranslation();
-  const widgets = useSettingsStore((state) => state.widgets);
-  const darkMode = useSettingsStore((state) => state.darkMode);
-
-  const setWidget = useSettingsStore((state) => state.setWidget);
-  const setDarkMode = useSettingsStore((state) => state.setDarkMode);
 
   const toggleClass = ' transform translate-x-5';
   const [colorTheme, setTheme] = useDarkMode();
@@ -47,10 +40,8 @@ function SettingsModal() {
     if (!localStorage.getItem('rangeValue')) {
       localStorage.setItem('rangeValue', '50');
     }
-  }, []);
 
-  useEffect(() => {
-    if (rangeValue === 0) {
+    if (settingsStore.rangeValue === 0) {
       localStorage.setItem('--text-xs', '0.55rem');
       localStorage.setItem('--text-sm', '0.675rem');
       localStorage.setItem('--text-base', '0.8rem');
@@ -59,7 +50,7 @@ function SettingsModal() {
       localStorage.setItem('--text-2xl', '1.3rem');
       localStorage.setItem('--text-6xl', '3.8rem');
     }
-    if (rangeValue === 25) {
+    if (settingsStore.rangeValue === 25) {
       localStorage.setItem('--text-xs', '0.65rem');
       localStorage.setItem('--text-sm', '0.775rem');
       localStorage.setItem('--text-base', '0.9rem');
@@ -68,7 +59,7 @@ function SettingsModal() {
       localStorage.setItem('--text-2xl', '1.4rem');
       localStorage.setItem('--text-6xl', '3.9rem');
     }
-    if (rangeValue === 50) {
+    if (settingsStore.rangeValue === 50) {
       localStorage.setItem('--text-xs', '0.75rem');
       localStorage.setItem('--text-sm', '0.875rem');
       localStorage.setItem('--text-base', '1rem');
@@ -77,7 +68,7 @@ function SettingsModal() {
       localStorage.setItem('--text-2xl', '1.5rem');
       localStorage.setItem('--text-6xl', '4rem');
     }
-    if (rangeValue === 75) {
+    if (settingsStore.rangeValue === 75) {
       localStorage.setItem('--text-xs', '0.85rem');
       localStorage.setItem('--text-sm', '0.975rem');
       localStorage.setItem('--text-base', '1.1rem');
@@ -86,7 +77,7 @@ function SettingsModal() {
       localStorage.setItem('--text-2xl', '1.4rem');
       localStorage.setItem('--text-6xl', '4.1rem');
     }
-    if (rangeValue === 100) {
+    if (settingsStore.rangeValue === 100) {
       localStorage.setItem('--text-xs', '0.95rem');
       localStorage.setItem('--text-sm', '1.075rem');
       localStorage.setItem('--text-base', '1.2rem');
@@ -95,42 +86,17 @@ function SettingsModal() {
       localStorage.setItem('--text-2xl', '1.5rem');
       localStorage.setItem('--text-6xl', '4.2rem');
     }
-    document.documentElement.style.setProperty(
-      '--text-xs',
-      localStorage.getItem('--text-xs')
-    );
-    document.documentElement.style.setProperty(
-      '--text-sm',
-      localStorage.getItem('--text-sm')
-    );
-    document.documentElement.style.setProperty(
-      '--text-base',
-      localStorage.getItem('--text-base')
-    );
-    document.documentElement.style.setProperty(
-      '--text-lg',
-      localStorage.getItem('--text-lg')
-    );
-    document.documentElement.style.setProperty(
-      '--text-xl',
-      localStorage.getItem('--text-xl')
-    );
-    document.documentElement.style.setProperty(
-      '--text-2xl',
-      localStorage.getItem('--text-2xl')
-    );
-    document.documentElement.style.setProperty(
-      '--text-6xl',
-      localStorage.getItem('--text-6xl')
-    );
-    localStorage.setItem('rangeValue', rangeValue.toString());
-  }, [rangeValue]);
+    document.documentElement.style.setProperty('--text-xs', localStorage.getItem('--text-xs'));
+    document.documentElement.style.setProperty('--text-sm', localStorage.getItem('--text-sm'));
+    document.documentElement.style.setProperty('--text-base', localStorage.getItem('--text-base'));
+    document.documentElement.style.setProperty('--text-lg', localStorage.getItem('--text-lg'));
+    document.documentElement.style.setProperty('--text-xl', localStorage.getItem('--text-xl'));
+    document.documentElement.style.setProperty('--text-2xl', localStorage.getItem('--text-2xl'));
+    document.documentElement.style.setProperty('--text-6xl', localStorage.getItem('--text-6xl'));
+    localStorage.setItem('rangeValue', settingsStore.rangeValue.toString());
+  }, [settingsStore.rangeValue]);
 
-  const changeColorPalette = (colors: {
-    color1: string;
-    color2: string;
-    color3: string;
-  }) => {
+  const changeColorPalette = (colors: { color1: string; color2: string; color3: string }) => {
     document.documentElement.style.setProperty('--primary-100', colors.color1);
     document.documentElement.style.setProperty('--primary-200', colors.color2);
     document.documentElement.style.setProperty('--primary-300', colors.color3);
@@ -150,7 +116,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.alarms ? 'visible' : 'invisible'
+                  settingsStore.widgets.alarms ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -159,34 +125,28 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.alarms
+                  settingsStore.widgets.alarms
                     ? 'bg-primary-200 dark:bg-primary-200'
                     : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem(
-                    'widgets.alarms',
-                    String(!widgets.alarms)
-                  );
-                  setWidget('alarms', !widgets.alarms);
+                  localStorage.setItem('widgets.alarms', String(!settingsStore.widgets.alarms));
+                  settingsStore.setWidget('alarms', !settingsStore.widgets.alarms);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem(
-                    'widgets.alarms',
-                    String(!widgets.alarms)
-                  );
-                  setWidget('alarms', !widgets.alarms);
+                  localStorage.setItem('widgets.alarms', String(!settingsStore.widgets.alarms));
+                  settingsStore.setWidget('alarms', !settingsStore.widgets.alarms);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    widgets.alarms ? null : toggleClass
+                    settingsStore.widgets.alarms ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.alarms ? 'invisible' : 'visible'
+                  settingsStore.widgets.alarms ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -199,7 +159,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.tip ? 'visible' : 'invisible'
+                  settingsStore.widgets.tip ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -208,28 +168,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.tip
-                    ? 'bg-primary-200 dark:bg-primary-200'
-                    : 'bg-grey-200'
+                  settingsStore.widgets.tip ? 'bg-primary-200 dark:bg-primary-200' : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('widgets.tip', String(!widgets.tip));
-                  setWidget('tip', !widgets.tip);
+                  localStorage.setItem('widgets.tip', String(!settingsStore.widgets.tip));
+                  settingsStore.setWidget('tip', !settingsStore.widgets.tip);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('widgets.tip', String(!widgets.tip));
-                  setWidget('tip', !widgets.tip);
+                  localStorage.setItem('widgets.tip', String(!settingsStore.widgets.tip));
+                  settingsStore.setWidget('tip', !settingsStore.widgets.tip);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    widgets.tip ? null : toggleClass
+                    settingsStore.widgets.tip ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.tip ? 'invisible' : 'visible'
+                  settingsStore.widgets.tip ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -242,7 +200,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.total ? 'visible' : 'invisible'
+                  settingsStore.widgets.total ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -251,28 +209,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.total
-                    ? 'bg-primary-200 dark:bg-primary-200'
-                    : 'bg-grey-200'
+                  settingsStore.widgets.total ? 'bg-primary-200 dark:bg-primary-200' : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('widgets.total', String(!widgets.total));
-                  setWidget('total', !widgets.total);
+                  localStorage.setItem('widgets.total', String(!settingsStore.widgets.total));
+                  settingsStore.setWidget('total', !settingsStore.widgets.total);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('widgets.total', String(!widgets.total));
-                  setWidget('total', !widgets.total);
+                  localStorage.setItem('widgets.total', String(!settingsStore.widgets.total));
+                  settingsStore.setWidget('total', !settingsStore.widgets.total);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    widgets.total ? null : toggleClass
+                    settingsStore.widgets.total ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.total ? 'invisible' : 'visible'
+                  settingsStore.widgets.total ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -285,7 +241,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.type ? 'visible' : 'invisible'
+                  settingsStore.widgets.type ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -294,28 +250,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.type
-                    ? 'bg-primary-200 dark:bg-primary-200'
-                    : 'bg-grey-200'
+                  settingsStore.widgets.type ? 'bg-primary-200 dark:bg-primary-200' : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('widgets.type', String(!widgets.type));
-                  setWidget('type', !widgets.type);
+                  localStorage.setItem('widgets.type', String(!settingsStore.widgets.type));
+                  settingsStore.setWidget('type', !settingsStore.widgets.type);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('widgets.type', String(!widgets.type));
-                  setWidget('type', !widgets.type);
+                  localStorage.setItem('widgets.type', String(!settingsStore.widgets.type));
+                  settingsStore.setWidget('type', !settingsStore.widgets.type);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    widgets.type ? null : toggleClass
+                    settingsStore.widgets.type ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.type ? 'invisible' : 'visible'
+                  settingsStore.widgets.type ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -328,7 +282,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.time ? 'visible' : 'invisible'
+                  settingsStore.widgets.time ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -337,28 +291,26 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.time
-                    ? 'bg-primary-200 dark:bg-primary-200'
-                    : 'bg-grey-200'
+                  settingsStore.widgets.time ? 'bg-primary-200 dark:bg-primary-200' : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem('widgets.time', String(!widgets.time));
-                  setWidget('time', !widgets.time);
+                  localStorage.setItem('widgets.time', String(!settingsStore.widgets.time));
+                  settingsStore.setWidget('time', !settingsStore.widgets.time);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem('widgets.time', String(!widgets.time));
-                  setWidget('time', !widgets.time);
+                  localStorage.setItem('widgets.time', String(!settingsStore.widgets.time));
+                  settingsStore.setWidget('time', !settingsStore.widgets.time);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    widgets.time ? null : toggleClass
+                    settingsStore.widgets.time ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.time ? 'invisible' : 'visible'
+                  settingsStore.widgets.time ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -371,7 +323,7 @@ function SettingsModal() {
             <div className="flex items-center gap-2">
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.newest ? 'visible' : 'invisible'
+                  settingsStore.widgets.newest ? 'visible' : 'invisible'
                 }`}
               >
                 {t('dashboard.modal.visible')}
@@ -380,34 +332,28 @@ function SettingsModal() {
                 type="button"
                 tabIndex={0}
                 className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                  widgets.newest
+                  settingsStore.widgets.newest
                     ? 'bg-primary-200 dark:bg-primary-200'
                     : 'bg-grey-200'
                 } p-1`}
                 onClick={() => {
-                  localStorage.setItem(
-                    'widgets.newest',
-                    String(!widgets.newest)
-                  );
-                  setWidget('newest', !widgets.newest);
+                  localStorage.setItem('widgets.newest', String(!settingsStore.widgets.newest));
+                  settingsStore.setWidget('newest', !settingsStore.widgets.newest);
                 }}
                 onKeyDown={() => {
-                  localStorage.setItem(
-                    'widgets.newest',
-                    String(!widgets.newest)
-                  );
-                  setWidget('newest', !widgets.newest);
+                  localStorage.setItem('widgets.newest', String(!settingsStore.widgets.newest));
+                  settingsStore.setWidget('newest', !settingsStore.widgets.newest);
                 }}
               >
                 <div
                   className={`h-5 w-5 rounded-full bg-white shadow-md duration-300 ease-in-out ${
-                    widgets.newest ? null : toggleClass
+                    settingsStore.widgets.newest ? null : toggleClass
                   }`}
                 />
               </button>
               <p
                 className={`font-normal dark:text-grey-200 ${
-                  widgets.newest ? 'invisible' : 'visible'
+                  settingsStore.widgets.newest ? 'invisible' : 'visible'
                 }`}
               >
                 {t('dashboard.modal.hidden')}
@@ -450,10 +396,7 @@ function SettingsModal() {
                   style={{ fontSize: '20px' }}
                 />
               ) : (
-                <LightModeIcon
-                  className="text-black-300"
-                  style={{ fontSize: '20px' }}
-                />
+                <LightModeIcon className="text-black-300" style={{ fontSize: '20px' }} />
               )}
               <p>{t('dashboard.modal.darkMode')}</p>
             </h4>
@@ -468,17 +411,15 @@ function SettingsModal() {
               type="button"
               tabIndex={0}
               className={`flex h-6 w-12 cursor-pointer items-center rounded-full transition ${
-                colorTheme === 'light'
-                  ? 'bg-primary-200 dark:bg-primary-200'
-                  : 'bg-grey-200'
+                colorTheme === 'light' ? 'bg-primary-200 dark:bg-primary-200' : 'bg-grey-200'
               } p-1`}
               onClick={() => {
                 setTheme(colorTheme);
-                setDarkMode(!darkMode);
+                settingsStore.setDarkMode(!settingsStore.darkMode);
               }}
               onKeyDown={() => {
                 setTheme(colorTheme);
-                setDarkMode(!darkMode);
+                settingsStore.setDarkMode(!settingsStore.darkMode);
               }}
             >
               <div
@@ -509,7 +450,7 @@ function SettingsModal() {
               className="text-neutral-700 dark:text-neutral-200 flex items-center justify-center"
             >
               <span className="px-4 text-xs font-normal dark:text-grey-200">
-                {!Number.isNaN(rangeValue) ? rangeValue : 50}%
+                {!Number.isNaN(settingsStore.rangeValue) ? settingsStore.rangeValue : 50}%
               </span>
               <input
                 type="range"
@@ -518,8 +459,8 @@ function SettingsModal() {
                 min={0}
                 max={100}
                 step={25}
-                value={!Number.isNaN(rangeValue) ? rangeValue : 50}
-                onChange={(e) => setRangeValue(e.target.valueAsNumber)}
+                value={!Number.isNaN(settingsStore.rangeValue) ? settingsStore.rangeValue : 50}
+                onChange={(e) => settingsStore.setRangeValue(e.target.valueAsNumber)}
               />
             </label>
           </div>
@@ -553,18 +494,9 @@ function SettingsModal() {
                 }
               >
                 <div className="flex h-8 w-8 rounded-sm drop-shadow-sm">
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: 'rgba(32, 162, 211, 0.1)' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#20a2d3' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#3E54AC' }}
-                  />
+                  <div className="w-1/3" style={{ backgroundColor: 'rgba(32, 162, 211, 0.1)' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#20a2d3' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#3E54AC' }} />
                 </div>
               </button>
               <button
@@ -587,18 +519,9 @@ function SettingsModal() {
                 }
               >
                 <div className="flex h-8 w-8 rounded-sm drop-shadow-sm">
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#f3f5fa' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#7d3884' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#bc457e' }}
-                  />
+                  <div className="w-1/3" style={{ backgroundColor: '#f3f5fa' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#7d3884' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#bc457e' }} />
                 </div>
               </button>
               <button
@@ -621,18 +544,9 @@ function SettingsModal() {
                 }
               >
                 <div className="flex h-8 w-8 rounded-sm drop-shadow-sm">
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#F7F1E5' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#F86F03' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#ffa630' }}
-                  />
+                  <div className="w-1/3" style={{ backgroundColor: '#F7F1E5' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#F86F03' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#ffa630' }} />
                 </div>
               </button>
               <button
@@ -655,18 +569,9 @@ function SettingsModal() {
                 }
               >
                 <div className="flex h-8 w-8 rounded-sm drop-shadow-sm">
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#e6f5fe' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#00DFA2' }}
-                  />
-                  <div
-                    className="w-1/3"
-                    style={{ backgroundColor: '#617A55' }}
-                  />
+                  <div className="w-1/3" style={{ backgroundColor: '#e6f5fe' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#00DFA2' }} />
+                  <div className="w-1/3" style={{ backgroundColor: '#617A55' }} />
                 </div>
               </button>
             </div>

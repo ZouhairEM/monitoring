@@ -11,11 +11,7 @@ interface HealthCareInfoProps {
   onMonitoring?: boolean;
 }
 
-function HealthCareInfo({
-  healthCare,
-  onPatients,
-  onMonitoring,
-}: HealthCareInfoProps) {
+function HealthCareInfo({ healthCare, onPatients, onMonitoring }: HealthCareInfoProps) {
   const expand = useSettingsStore((state) => state.expand.healthcare);
   const setExpand = useSettingsStore((state) => state.setExpand);
   const { t } = useTranslation();
@@ -65,9 +61,7 @@ function HealthCareInfo({
               ))}
             </>
           ) : (
-            <div className="dark:text-grey-200">
-              {t('healthCareInfo.noAlarmHasBeenSelected')}
-            </div>
+            <div className="dark:text-grey-200">{t('healthCareInfo.noAlarmHasBeenSelected')}</div>
           ))}
 
         {onPatients && healthCare && (

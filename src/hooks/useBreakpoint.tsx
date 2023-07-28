@@ -16,9 +16,7 @@ function useBreakpoint() {
         xl: window.matchMedia('(max-width: 1280px)'),
       };
 
-      const activeBreakpoint = Object.keys(breakpoints).find(
-        (key) => breakpoints[key].matches
-      );
+      const activeBreakpoint = Object.keys(breakpoints).find((key) => breakpoints[key].matches);
       setBreakpoint(activeBreakpoint || '');
     }
 

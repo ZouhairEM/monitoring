@@ -10,13 +10,9 @@ interface PatientAlarmsOverviewProps {
   matchingPatient: PatientType;
 }
 
-function PatientAlarmsOverview({
-  matchingPatient,
-}: PatientAlarmsOverviewProps) {
+function PatientAlarmsOverview({ matchingPatient }: PatientAlarmsOverviewProps) {
   const matchingAlarms = useAlarmsStore((state) =>
-    state.alarms.filter(
-      (alarm) => alarm.patient_id === matchingPatient.profile.id
-    )
+    state.alarms.filter((alarm) => alarm.patient_id === matchingPatient.profile.id)
   );
   const { t } = useTranslation();
 
@@ -24,15 +20,12 @@ function PatientAlarmsOverview({
     <div className="flex h-full flex-col gap-2 p-2">
       <div className="dark:texjustify-betweent-grey-200 flex gap-2">
         <p className="capitalize dark:text-grey-200">
-          {t('navBar.openAlarms')}:{' '}
-          <span className="font-bold">{matchingAlarms.length}</span>
+          {t('navBar.openAlarms')}: <span className="font-bold">{matchingAlarms.length}</span>
         </p>
       </div>
       <div className="flex h-full max-h-[260px] flex-col justify-between gap-2">
         <div
-          className={`flex flex-col gap-1 ${
-            matchingAlarms.length > 6 ? 'overflow-y-scroll' : ''
-          }`}
+          className={`flex flex-col gap-1 ${matchingAlarms.length > 6 ? 'overflow-y-scroll' : ''}`}
         >
           {matchingAlarms.map((matchingAlarm) => (
             <div key={matchingAlarm.id}>

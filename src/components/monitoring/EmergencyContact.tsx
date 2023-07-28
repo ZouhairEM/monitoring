@@ -11,11 +11,7 @@ interface EmergencyContactProps {
   onMonitoring?: boolean;
 }
 
-function EmergencyContact({
-  emergencyContact,
-  onPatients,
-  onMonitoring,
-}: EmergencyContactProps) {
+function EmergencyContact({ emergencyContact, onPatients, onMonitoring }: EmergencyContactProps) {
   const expand = useSettingsStore((state) => state.expand.emergencyContact);
   const setExpand = useSettingsStore((state) => state.setExpand);
   const { t } = useTranslation();
@@ -48,10 +44,7 @@ function EmergencyContact({
           (emergencyContact ? (
             <>
               {Object.entries(emergencyContact).map(([name, value]) => (
-                <div
-                  key={name}
-                  className="mb-1 grid grid-cols-2 text-center sm:text-left"
-                >
+                <div key={name} className="mb-1 grid grid-cols-2 text-center sm:text-left">
                   <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey-200">
                     {t(`emergencyContact.${name}`)}
                   </div>
@@ -62,18 +55,13 @@ function EmergencyContact({
               ))}
             </>
           ) : (
-            <div className="dark:text-grey-200">
-              {t('noAlarmHasBeenSelected')}
-            </div>
+            <div className="dark:text-grey-200">{t('noAlarmHasBeenSelected')}</div>
           ))}
 
         {onPatients && emergencyContact && (
           <div className="mb-2 grid grid-cols-3 gap-y-2 sm:mb-0 sm:grid-cols-3">
             {Object.entries(emergencyContact).map(([name, value]) => (
-              <div
-                key={name}
-                className="mb-1 flex flex-col text-center sm:text-left"
-              >
+              <div key={name} className="mb-1 flex flex-col text-center sm:text-left">
                 <div className="text-xs font-bold capitalize  text-primary-200 transition duration-200 dark:text-grey-200">
                   {t(`emergencyContact.${name}`)}
                 </div>

@@ -36,9 +36,7 @@ function SideBar() {
               {isCollapsed && (
                 <div
                   className={`hidden ${
-                    pathname === '/'
-                      ? 'text-black-300 dark:text-primary-200'
-                      : ''
+                    pathname === '/' ? 'text-black-300 dark:text-primary-200' : ''
                   } dark:text-grey md:block`}
                 >
                   {t('sidebar.monitoring')}
@@ -54,17 +52,13 @@ function SideBar() {
             >
               <Grid3x3Icon
                 className={`dark:text-grey ${
-                  pathname === '/dashboard'
-                    ? 'text-black-300 dark:text-primary-200'
-                    : ''
+                  pathname === '/dashboard' ? 'text-black-300 dark:text-primary-200' : ''
                 }`}
               />
               {isCollapsed && (
                 <div
                   className={`dark:text-grey hidden ${
-                    pathname === '/dashboard'
-                      ? 'text-black-300 dark:text-primary-200'
-                      : ''
+                    pathname === '/dashboard' ? 'text-black-300 dark:text-primary-200' : ''
                   }  md:block`}
                 >
                   {t('sidebar.dashboard')}
@@ -80,17 +74,13 @@ function SideBar() {
             >
               <PeopleIcon
                 className={`dark:text-grey ${
-                  pathname === '/patients'
-                    ? 'text-black-300 dark:text-primary-200'
-                    : ''
+                  pathname === '/patients' ? 'text-black-300 dark:text-primary-200' : ''
                 }`}
               />
               {isCollapsed && (
                 <div
                   className={`dark:text-grey hidden ${
-                    pathname === '/patients'
-                      ? 'text-black-300 dark:text-primary-200'
-                      : ''
+                    pathname === '/patients' ? 'text-black-300 dark:text-primary-200' : ''
                   }  md:block`}
                 >
                   {t('sidebar.patients')}
@@ -129,9 +119,7 @@ function SideBar() {
               />
             )}
           </svg>
-          {isCollapsed && (
-            <div className="dark:text-grey">{t('sidebar.collapse')}</div>
-          )}
+          {isCollapsed && <div className="dark:text-grey">{t('sidebar.collapse')}</div>}
         </div>
       </div>
     </aside>

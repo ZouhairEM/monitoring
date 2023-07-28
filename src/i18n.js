@@ -111,8 +111,7 @@ i18n
           },
           navBar: {
             title: 'Monitor App',
-            description:
-              'A simulated dashboard for nurses to monitor patient activity',
+            description: 'A simulated dashboard for nurses to monitor patient activity',
             openAlarms: 'open alarms',
             modal: {
               job: 'Healthcare Provider',
@@ -351,11 +350,9 @@ i18n
             findByName: 'Patienten nach Namen finden',
             findPatientDescription:
               'Suchen Sie zuerst einen Patienten in der Datenbank, der Patient wird hier angezeigt.',
-            noPatientFoundDescription:
-              'Es wurde kein Patient mit diesem Namen gefunden.',
+            noPatientFoundDescription: 'Es wurde kein Patient mit diesem Namen gefunden.',
             notes: 'Notizen',
-            addNote:
-              'Fügen Sie eine spezifische Notiz zu diesem Patienten hinzu',
+            addNote: 'Fügen Sie eine spezifische Notiz zu diesem Patienten hinzu',
             currentAlarms: 'aktuelle Alarme',
           },
           sidebar: {
